@@ -248,6 +248,7 @@
 									<goal>attach-artifact</goal>
 								</goals>
 								<configuration>
+                                    <skipAttach>true</skipAttach>
 									<artifacts>
 										<artifact>
 											<file>${project.build.directory}/${project.artifactId}-${project.version}.zip</file>
