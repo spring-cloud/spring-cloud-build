@@ -1,0 +1,1 @@
+Common build concerns for Spring Cloud projects
