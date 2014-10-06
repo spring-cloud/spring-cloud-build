@@ -138,6 +138,7 @@
 			            <goals>
 				          <goal>process-asciidoc</goal>
 			            </goals>
+                        <inherited>false</inherited>
 			            <configuration>
 				          <sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
                           <backend>html</backend>
@@ -188,6 +189,7 @@
 				            <goals>
 				              <goal>run</goal>
 				            </goals>
+                            <inherited>false</inherited>
                             <configuration>
                               <tasks>
                                 <java classname="org.jruby.Main" failonerror="yes">
@@ -204,6 +206,7 @@
 								<goals>
 									<goal>run</goal>
 								</goals>
+                                <inherited>false</inherited>
 								<configuration>
 									<target>
 										<zip destfile="${project.build.directory}/${project.artifactId}-${project.version}.zip">
@@ -248,6 +251,7 @@
 								<goals>
 									<goal>attach-artifact</goal>
 								</goals>
+                                <inherited>false</inherited>
 								<configuration>
 									<artifacts>
 										<artifact>
