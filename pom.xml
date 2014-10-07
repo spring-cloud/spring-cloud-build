@@ -25,7 +25,10 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>https://github.com/spring-cloud/spring-cloud-config</url>
+		<url>https://github.com/spring-cloud/spring-cloud-build</url>
+		<connection>scm:git:git://github.com/spring-cloud/spring-cloud-build.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/spring-cloud/spring-cloud-build.git</developerConnection>
+		<tag>HEAD</tag>
 	</scm>
 	<developers>
 		<developer>
