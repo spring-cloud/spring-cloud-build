@@ -196,7 +196,7 @@
                                 <java classname="org.jruby.Main" failonerror="yes">
                                   <arg value="${basedir}/src/main/ruby/generate_readme.sh" />
                                   <arg value="-o" />
-                                  <arg value="${basedir}/README.adoc" />
+                                  <arg value="${main.basedir}/README.adoc" />
                                 </java>
                               </tasks>
                             </configuration>
