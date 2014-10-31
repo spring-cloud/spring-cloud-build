@@ -10,6 +10,7 @@
 build
 bin
 /target/
+asciidoctor.css
 _site/
 *.swp
 .idea

@@ -79,6 +79,11 @@
 					<artifactId>replacer</artifactId>
 					<version>1.5.3</version>
 				</plugin>
+		        <plugin>
+		          <groupId>org.asciidoctor</groupId>
+		          <artifactId>asciidoctor-maven-plugin</artifactId>
+		          <version>1.5.0</version>
+                </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -133,7 +138,6 @@
 		          <plugin>
 		            <groupId>org.asciidoctor</groupId>
 		            <artifactId>asciidoctor-maven-plugin</artifactId>
-		            <version>1.5.0</version>
 		            <executions>
 			          <execution>
 			            <id>generate-docs</id>
