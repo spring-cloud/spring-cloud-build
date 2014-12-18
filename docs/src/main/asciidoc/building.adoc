@@ -105,5 +105,25 @@ following command:
 The generated eclipse projects can be imported by selecting `import existing projects`
 from the `file` menu.
 
+==== Adding Project Lombok Agent
+
+Spring Cloud uses [Project
+Lombok](http://projectlombok.org/features/index.html) to generate
+getters and setters etc. Compiling from the command line this
+shouldn't cause any problems, but in an IDE you need to add an agent
+to the JVM. Full instructions can be found in the Lombok website. The
+sign that you need to do this is a lot of compiler errors to do with
+missing methods and fields, e.g.
+
+[indent=0]
+----
+The method getInitialStatus() is undefined for the type EurekaInstanceConfigBean    EurekaDiscoveryClientConfiguration.java /spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka   line 120    Java Problem
+The method getInitialStatus() is undefined for the type EurekaInstanceConfigBean    EurekaDiscoveryClientConfiguration.java /spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka   line 121    Java Problem
+The method setNonSecurePort(int) is undefined for the type EurekaInstanceConfigBean EurekaDiscoveryClientConfiguration.java /spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka   line 112    Java Problem
+The type EurekaInstanceConfigBean.IdentifyingDataCenterInfo must implement the inherited abstract method DataCenterInfo.getName()   EurekaInstanceConfigBean.java   /spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka   line 131    Java Problem
+The method getId() is undefined for the type ProxyRouteLocator.ProxyRouteSpec   PreDecorationFilter.java    /spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/zuul/filters/pre line 60 Java Problem
+The method getLocation() is undefined for the type ProxyRouteLocator.ProxyRouteSpec PreDecorationFilter.java    /spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/zuul/filters/pre line 55 Java Problem
+----
+
 ==== Importing into other IDEs
 Maven is well supported by most Java IDEs. Refer to you vendor documentation.
