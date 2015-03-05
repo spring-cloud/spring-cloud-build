@@ -9,7 +9,7 @@
 .gradle
 build
 bin
-/target/
+target/
 asciidoctor.css
 _site/
 *.swp
