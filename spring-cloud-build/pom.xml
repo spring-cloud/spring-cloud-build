@@ -141,6 +141,16 @@
 			</distributionManagement>
 		</profile>
 		<profile>
+			<id>bintray</id>
+			<distributionManagement>
+				<repository>
+					<id>bintray</id>
+					<name>Jcenter Repository</name>
+					<url>https://api.bintray.com/maven/spring/jars/org.springframework.cloud:${bintray.package}</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+		<profile>
 			<id>central</id>
 			<distributionManagement>
 				<snapshotRepository>
