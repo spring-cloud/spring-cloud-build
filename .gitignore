@@ -5,4 +5,7 @@ _site
 .idea
 *.sw[op]
 .project
+.classpath
+.settings/
+target/
 sample-pages
