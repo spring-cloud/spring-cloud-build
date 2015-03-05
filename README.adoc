@@ -24,6 +24,12 @@ for a RELEASE build use
 $ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-release-local
 ----
 
+and for jcenter use
+
+---
+$ mvn deploy -DaltReleaseDeploymentRepository=bintray::default::https://api.bintray.com/maven/spring/jars/org.springframework.cloud:build
+---
+
 and for Maven Central use
 
 ----
