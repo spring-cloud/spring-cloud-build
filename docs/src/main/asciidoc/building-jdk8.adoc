@@ -1,4 +1,4 @@
-:jdkversion: 1.7
+:jdkversion: 1.8
 
 include::building-base.adoc[]
 
