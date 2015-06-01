@@ -204,6 +204,13 @@ limitations under the License.
 				<os>
 					<family>!windows</family>
 				</os>
+				<file>
+					<missing>.google</missing>
+				</file>
+				<property>
+					<name>project.packaging</name>
+					<value>jar</value>
+				</property>
 			</activation>
 			<build>
 				<plugins>
@@ -227,7 +234,7 @@ limitations under the License.
 										<!-- file patterns -->
 										<argument>--include=*.java</argument>
 										<!-- search path -->
-										<argument>.</argument>
+										<argument>${project.basedir}</argument>
 									</arguments>
 								</configuration>
 								<goals>
