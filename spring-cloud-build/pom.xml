@@ -494,7 +494,7 @@ limitations under the License.
 										<goal>attach-artifact</goal>
 									</goals>
 									<configuration>
-										<!--skipAttach>true</skipAttach-->
+										<skipAttach>true</skipAttach>
 										<artifacts>
 											<artifact>
 												<file>${project.build.directory}/${project.artifactId}-${project.version}.zip</file>
