@@ -9,7 +9,7 @@ To install locally:
 
 ----
 
-$ mvn install -s .settings.xml
+$ mvn install
 ----
 
 and to deploy snapshots to repo.spring.io:
