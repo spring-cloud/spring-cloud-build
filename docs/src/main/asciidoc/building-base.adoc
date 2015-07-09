@@ -53,6 +53,14 @@ We recommend the http://eclipse.org/m2e/[m2eclipe] eclipse plugin when working w
 eclipse. If you don't already have m2eclipse installed it is available from the "eclipse
 marketplace".
 
+Once the projects are imported into Eclipse you will also need to tell m2eclipse
+to use the `.settings.xml` file for the projects.  If you do not do this you may 
+see errors many different errors related to the POMs in the projects. 
+Open your Eclipse preferences, expand the Maven preferences, and select User Settings.  
+In the User Settings field click Browse and navigate to the Spring Cloud project you
+imported selecting the `.settings.xml` file in that project.  Click Apply and then OK to 
+save the preference changes.
+
 ==== Importing into eclipse without m2eclipse
 If you prefer not to use m2eclipse you can generate eclipse project metadata using the
 following command:
