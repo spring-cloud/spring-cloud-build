@@ -75,9 +75,8 @@ from the `file` menu.
 
 ==== Adding Project Lombok Agent
 
-Spring Cloud uses [Project
-Lombok](http://projectlombok.org/features/index.html) to generate
-getters and setters etc. Compiling from the command line this
+Spring Cloud uses Spring Cloud uses http://projectlombok.org/features/index.html[Project Lombok]
+to generate getters and setters etc. Compiling from the command line this
 shouldn't cause any problems, but in an IDE you need to add an agent
 to the JVM. Full instructions can be found in the Lombok website. The
 sign that you need to do this is a lot of compiler errors to do with
