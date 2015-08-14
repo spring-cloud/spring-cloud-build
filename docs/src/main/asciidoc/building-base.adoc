@@ -26,7 +26,7 @@ For hints on how to build the project look in `.travis.yml` if there
 is one. There should be a "script" and maybe "install" command. Also
 look at the "services" section to see if any services need to be
 running locally (e.g. mongo or rabbit).  Ignore the git-related bits
-that you might find in "before_install" since they will be able git
+that you might find in "before_install" since they're related to setting git
 credentials and you already have those.
 
 The projects that require middleware generally include a
@@ -87,7 +87,7 @@ from the `file` menu.
 
 ==== Adding Project Lombok Agent
 
-Spring Cloud uses Spring Cloud uses http://projectlombok.org/features/index.html[Project Lombok]
+Spring Cloud uses http://projectlombok.org/features/index.html[Project Lombok]
 to generate getters and setters etc. Compiling from the command line this
 shouldn't cause any problems, but in an IDE you need to add an agent
 to the JVM. Full instructions can be found in the Lombok website. The
