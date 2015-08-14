@@ -1,22 +1,26 @@
 === Basic Compile and Test
 
-To build the source you will need to install
-http://maven.apache.org/run-maven/index.html[Apache Maven] v3.0.6 or above and JDK {jdkversion}.
+To build the source you will need to install JDK {jdkversion}.
 
 Spring Cloud uses Maven for most build-related activities, and you
 should be able to get off the ground quite quickly by cloning the
 project you are interested in and typing
 
 ----
-$ mvn install -s .settings.xml
+$ ./mvnw install
 ----
 
-NOTE: You may need to increase the amount of memory available to Maven by setting
-a `MAVEN_OPTS` environment variable with the value `-Xmx512m -XX:MaxPermSize=128m`
+NOTE: You can also install Maven (3.3.1) yourself and run the `mvn` command
+in place of `./mvnw` in the examples below. If you do that you also 
+might need to add `-P spring` if your local Maven settings do not
+contain repository declarations for spring pre-release artifacts.
 
-The `.settings.xml` is only required the first time (or after updates
-to dependencies). It is there to provide repository declarations so
-that those do not need to be hard coded in the project poms.
+NOTE: Be aware that you might need to increase the amount of memory
+available to Maven by setting a `MAVEN_OPTS` environment variable with
+a value like `-Xmx512m -XX:MaxPermSize=128m`. We try to cover this in
+the `.mvn` configuration, so if you find you have to do it to make a
+build succeed, please raise a ticket to get the settings added to
+source control.
 
 For hints on how to build the project look in `.travis.yml` if there
 is one. There should be a "script" and maybe "install" command. Also
@@ -25,10 +29,18 @@ running locally (e.g. mongo or rabbit).  Ignore the git-related bits
 that you might find in "before_install" since they will be able git
 credentials and you already have those.
 
-If you need mongo, rabbit or redis, see the README in the https://github.com/spring-cloud-samples/scripts[scripts
-demo repository] for
-instructions. For example consider using the "fig.yml" with
-http://www.fig.sh/[Fig] to run them in Docker containers.
+The projects that require middleware generally include a
+`docker-compose.yml`, so consider using
+http://compose.docker.io/[Docker Compose] to run the middeware servers
+in Docker containers. See the README in the
+https://github.com/spring-cloud-samples/scripts[scripts demo
+repository] for specific instructions about the common cases of mongo,
+rabbit and redis.
+
+NOTE: migration to the Maven wrapper (`.mvnw`) is underway. If you
+find a project that doesn't have it yet, raise an issue to get it
+added, and build with the command from `.travis.yml` (usually 
+`mvn install -s .settings.xml`).
 
 === Documentation
 
@@ -67,7 +79,7 @@ following command:
 
 [indent=0]
 ----
-	$ mvn eclipse:eclipse
+	$ ./mvnw eclipse:eclipse
 ----
 
 The generated eclipse projects can be imported by selecting `import existing projects`
