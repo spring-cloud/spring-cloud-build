@@ -10,7 +10,7 @@ project you are interested in and typing
 $ ./mvnw install
 ----
 
-NOTE: You can also install Maven (3.3.1) yourself and run the `mvn` command
+NOTE: You can also install Maven (>=3.3.3) yourself and run the `mvn` command
 in place of `./mvnw` in the examples below. If you do that you also 
 might need to add `-P spring` if your local Maven settings do not
 contain repository declarations for spring pre-release artifacts.
