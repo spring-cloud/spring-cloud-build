@@ -16,6 +16,9 @@
   <modules>
 	<module>spring-cloud-build</module>
   </modules>
+  <properties>
+    <lombok.version>1.16.6</lombok.version>
+  </properties>
   <dependencyManagement>
 	<dependencies>
  	  <dependency>
