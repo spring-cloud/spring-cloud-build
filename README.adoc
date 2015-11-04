@@ -26,9 +26,9 @@ $ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://r
 
 and for jcenter use
 
----
+----
 $ mvn deploy -DaltReleaseDeploymentRepository=bintray::default::https://api.bintray.com/maven/spring/jars/org.springframework.cloud:build
----
+----
 
 and for Maven Central use
 
