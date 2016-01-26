@@ -84,6 +84,25 @@ limitations under the License.
 	<build>
 		<pluginManagement>
 			<plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                  <execution>
+                    <id>enforce-versions</id>
+                    <goals>
+                      <goal>enforce</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <fail>false</fail>
+                  <rules>
+                    <dependencyConvergence/>
+                  </rules>
+                </configuration>
+              </plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>

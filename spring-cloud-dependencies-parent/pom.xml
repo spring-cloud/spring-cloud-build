@@ -125,4 +125,29 @@ limitations under the License.
 			</distributionManagement>
 		</profile>
 	</profiles>
+	<build>
+		<pluginManagement>
+			<plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                  <execution>
+                    <id>enforce-versions</id>
+                    <goals>
+                      <goal>enforce</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <fail>false</fail>
+                  <rules>
+                    <dependencyConvergence/>
+                  </rules>
+                </configuration>
+			  </plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
