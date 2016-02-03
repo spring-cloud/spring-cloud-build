@@ -32,21 +32,21 @@
 			<name>Apache License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 			<comments>
-				Copyright 2014-2015 the original author or authors.
+Copyright 2014-2015 the original author or authors.
 
-				Licensed under the Apache License, Version 2.0 (the "License");
-				you may not use this file except in compliance with the License.
-				You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-				http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
 
-				Unless required by applicable law or agreed to in writing, software
-				distributed under the License is distributed on an "AS IS" BASIS,
-				WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-				implied.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.
 
-				See the License for the specific language governing permissions and
-				limitations under the License.
+See the License for the specific language governing permissions and
+limitations under the License.
 			</comments>
 		</license>
 	</licenses>
@@ -184,9 +184,7 @@
 		<downloadUrl>https://github.com/spring-cloud</downloadUrl>
 		<site>
 			<id>spring-docs</id>
-			<url>
-				scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}
-			</url>
+			<url>scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}</url>
 		</site>
 		<repository>
 			<id>repo.spring.io</id>
@@ -507,22 +505,22 @@
 											<var name="version-type" value="${project.version}"/>
 											<propertyregex property="version-type"
 														   override="true" input="${version-type}" regexp=".*\.(.*)"
-														   replace="\1"/>
+														   replace="\1" />
 											<propertyregex property="version-type"
 														   override="true" input="${version-type}" regexp="(M)\d+"
-														   replace="MILESTONE"/>
+														   replace="MILESTONE" />
 											<propertyregex property="version-type"
 														   override="true" input="${version-type}" regexp="(RC)\d+"
-														   replace="MILESTONE"/>
+														   replace="MILESTONE" />
 											<propertyregex property="version-type"
 														   override="true" input="${version-type}" regexp="BUILD-(.*)"
-														   replace="SNAPSHOT"/>
+														   replace="SNAPSHOT" />
 											<stringutil string="${version-type}" property="spring-cloud-repo">
 												<lowercase/>
 											</stringutil>
 											<var name="github-tag" value="v${project.version}"/>
 											<propertyregex property="github-tag" override="true"
-														   input="${github-tag}" regexp=".*SNAPSHOT" replace="master"/>
+														   input="${github-tag}" regexp=".*SNAPSHOT" replace="master" />
 										</target>
 									</configuration>
 								</execution>
