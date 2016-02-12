@@ -8,9 +8,9 @@ before_install:
   - gem install asciidoctor
 install:
 - ./mvnw install -P docs -q -U -DskipTests=true -Dmaven.test.redirectTestOutputToFile=true
-- ./docs/src/main/asciidoc/ghpages.sh
+- '[ "${MVN_GOAL}" == "deploy" ] && ./docs/src/main/asciidoc/ghpages.sh'
 script:
-- './mvnw -s .settings.xml $MVN_GOAL -nsu -Dmaven.test.redirectTestOutputToFile=true'
+- './mvnw -s .settings.xml $MVN_GOAL $MVN_PROFILE -nsu -Dmaven.test.redirectTestOutputToFile=true'
 env:
   global:
   - GIT_NAME="Dave Syer"
@@ -18,4 +18,7 @@ env:
   - CI_DEPLOY_USERNAME=buildmaster
   - FEATURE_BRANCH=$(echo ${TRAVIS_BRANCH} | grep "^.*/.*$" && echo true || echo false)
   - MVN_GOAL=$([ "${TRAVIS_PULL_REQUEST}" == "false" -a "${TRAVIS_TAG}" == "" -a "${FEATURE_BRANCH}" == "false" ] && echo deploy || echo install)
+  - VERSION=$(mvn validate | grep Building | head -1 | sed -e 's/.* //')
+  - MILESTONE=$(echo ${VERSION} | egrep 'M|RC' && echo true || echo false)
+  - MVN_PROFILE=$([ "${MILESTONE}" == "true" ] && echo -P milestone)
   - secure: "LJf0hWIf2CT5JGXyokvBLK7YcOR8jA/Ajy9JadW6XSIpcwOFnZ/ssuOV2V3ISdBfufEukfaK19WVO4th/UBvjQd9JhZwMoPpu37ybSjd62hZHuIRZnyVlXxvDM/+OYR2TCR5XXb7G86fXsmmY6u9IOJ8PIVRvskH9LCwSei9vBg="
