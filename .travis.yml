@@ -10,7 +10,7 @@ install:
 - ./mvnw install -P docs -q -U -DskipTests=true -Dmaven.test.redirectTestOutputToFile=true
 - ./docs/src/main/asciidoc/ghpages.sh
 script:
-- 'if [ "${TRAVIS_PULL_REQUEST}" != "false" && "${TRAVIS_TAG}" == "" ]; then || ./mvnw -s .settings.xml deploy -nsu -Dmaven.test.redirectTestOutputToFile=true; else; ./mvnw install -nsu -Dmaven.test.redirectTestOutputToFile=true; fi'
+- '[ "${TRAVIS_PULL_REQUEST}" == "false" -a "${TRAVIS_TAG}" == "" ] && ./mvnw -s .settings.xml deploy -nsu -Dmaven.test.redirectTestOutputToFile=true || ./mvnw install -nsu -Dmaven.test.redirectTestOutputToFile=true'
 env:
   global:
   - GIT_NAME="Dave Syer"
