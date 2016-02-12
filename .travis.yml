@@ -16,5 +16,6 @@ env:
   - GIT_NAME="Dave Syer"
   - GIT_EMAIL=dsyer@pivotal.io
   - CI_DEPLOY_USERNAME=buildmaster
-  - MVN_GOAL=$([ "${TRAVIS_PULL_REQUEST}" == "false" -a "${TRAVIS_TAG}" == "" ] && echo deploy || echo install)
+  - FEATURE_BRANCH=$(echo ${TRAVIS_BRANCH} | grep "^.*/.*$" && echo true || echo false)
+  - MVN_GOAL=$([ "${TRAVIS_PULL_REQUEST}" == "false" -a "${TRAVIS_TAG}" == "" -a "${FEATURE_BRANCH}" == "false" ] && echo deploy || echo install)
   - secure: "LJf0hWIf2CT5JGXyokvBLK7YcOR8jA/Ajy9JadW6XSIpcwOFnZ/ssuOV2V3ISdBfufEukfaK19WVO4th/UBvjQd9JhZwMoPpu37ybSjd62hZHuIRZnyVlXxvDM/+OYR2TCR5XXb7G86fXsmmY6u9IOJ8PIVRvskH9LCwSei9vBg="
