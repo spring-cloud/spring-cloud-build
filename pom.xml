@@ -418,6 +418,7 @@ limitations under the License.
 										<attributes>
 											<docinfo>true</docinfo>
 											<spring-cloud-version>${project.version}</spring-cloud-version>
+											<allow-uri-read>true</allow-uri-read>
 										</attributes>
 									</configuration>
 								</execution>
