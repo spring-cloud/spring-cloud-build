@@ -839,5 +839,11 @@ limitations under the License.
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>fast</id>
+			<properties>
+				<checkstyle.skip>true</checkstyle.skip>
+			</properties>
+		</profile>
 	</profiles>
 </project>
