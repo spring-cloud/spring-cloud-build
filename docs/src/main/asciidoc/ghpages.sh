@@ -28,6 +28,18 @@ fi
 # Prop that will let commit the changes
 COMMIT_CHANGES="no"
 
+# Code getting the name of the current branch. For master we want to publish as we did until now
+# http://stackoverflow.com/questions/1593051/how-to-programmatically-determine-the-current-checked-out-git-branch
+# If there is a branch already passed will reuse it - otherwise will try to find it
+CURRENT_BRANCH=${BRANCH}
+if [[ -z "${CURRENT_BRANCH}" ]] ; then
+  CURRENT_BRANCH=$(git symbolic-ref -q HEAD)
+  CURRENT_BRANCH=${CURRENT_BRANCH##refs/heads/}
+  CURRENT_BRANCH=${CURRENT_BRANCH:-HEAD}
+fi
+echo "Current branch is [${CURRENT_BRANCH}]"
+git checkout ${CURRENT_BRANCH}
+
 # Get the name of the `docs.main` property
 MAIN_ADOC_VALUE=$(mvn -q \
     -Dexec.executable="echo" \
@@ -46,17 +58,9 @@ WHITELISTED_BRANCHES_VALUE=$(mvn -q \
     -pl docs)
 echo "Extracted '${WHITELIST_PROPERTY}' from Maven build [${WHITELISTED_BRANCHES_VALUE}]"
 
-# Code getting the name of the current branch. For master we want to publish as we did until now
-# http://stackoverflow.com/questions/1593051/how-to-programmatically-determine-the-current-checked-out-git-branch
-CURRENT_BRANCH=$(git symbolic-ref -q HEAD)
-CURRENT_BRANCH=${CURRENT_BRANCH##refs/heads/}
-CURRENT_BRANCH=${CURRENT_BRANCH:-HEAD}
-echo "Current branch is [${CURRENT_BRANCH}]"
-
 # Stash any outstanding changes
 ###################################################################
-git diff-index --quiet HEAD
-dirty=$?
+git diff-index --quiet HEAD && dirty=$? || (echo "Failed to check if the current repo is dirty. Assuming that it is." && dirty="1")
 if [ "$dirty" != "0" ]; then git stash; fi
 
 # Switch to gh-pages branch to sync it with master
