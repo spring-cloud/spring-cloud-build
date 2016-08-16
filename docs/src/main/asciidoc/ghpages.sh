@@ -27,6 +27,7 @@ fi
 
 # Prop that will let commit the changes
 COMMIT_CHANGES="no"
+MAVEN_PATH=${MAVEN_PATH:-}
 
 # Code getting the name of the current branch. For master we want to publish as we did until now
 # http://stackoverflow.com/questions/1593051/how-to-programmatically-determine-the-current-checked-out-git-branch
@@ -41,7 +42,7 @@ echo "Current branch is [${CURRENT_BRANCH}]"
 git checkout ${CURRENT_BRANCH}
 
 # Get the name of the `docs.main` property
-MAIN_ADOC_VALUE=$(mvn -q \
+MAIN_ADOC_VALUE=$("${MAVEN_PATH}"mvn -q \
     -Dexec.executable="echo" \
     -Dexec.args='${docs.main}' \
     --non-recursive \
@@ -50,7 +51,7 @@ echo "Extracted 'main.adoc' from Maven build [${MAIN_ADOC_VALUE}]"
 
 # Get whitelisted branches - assumes that a `docs` module is available under `docs` profile
 WHITELIST_PROPERTY="docs.whitelisted.branches"
-WHITELISTED_BRANCHES_VALUE=$(mvn -q \
+WHITELISTED_BRANCHES_VALUE=$("${MAVEN_PATH}"mvn -q \
     -Dexec.executable="echo" \
     -Dexec.args="\${${WHITELIST_PROPERTY}}" \
     org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
