@@ -28,6 +28,7 @@ fi
 # Prop that will let commit the changes
 COMMIT_CHANGES="no"
 MAVEN_PATH=${MAVEN_PATH:-}
+echo "Path to Maven is [${MAVEN_PATH}]"
 
 # Code getting the name of the current branch. For master we want to publish as we did until now
 # http://stackoverflow.com/questions/1593051/how-to-programmatically-determine-the-current-checked-out-git-branch
