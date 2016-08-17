@@ -12,7 +12,7 @@
 		<module>spring-cloud-dependencies-parent</module>
 		<module>spring-cloud-build-tools</module>
 	</modules>
-	<url>http://spring.io/spring-cloud</url>
+	<url>https://spring.io/spring-cloud</url>
 	<properties>
 		<java.version>1.7</java.version>
 		<resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
@@ -33,12 +33,12 @@
 	</properties>
 	<organization>
 		<name>Pivotal Software, Inc.</name>
-		<url>http://www.spring.io</url>
+		<url>https://www.spring.io</url>
 	</organization>
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<comments>
 Copyright 2014-2015 the original author or authors.
 
@@ -415,7 +415,7 @@ limitations under the License.
 				<repository>
 					<id>spring-snapshots</id>
 					<name>Spring Snapshots</name>
-					<url>http://repo.spring.io/libs-snapshot-local</url>
+					<url>https://repo.spring.io/libs-snapshot-local</url>
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
@@ -423,7 +423,7 @@ limitations under the License.
 				<repository>
 					<id>spring-milestones</id>
 					<name>Spring Milestones</name>
-					<url>http://repo.spring.io/libs-milestone-local</url>
+					<url>https://repo.spring.io/libs-milestone-local</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
@@ -431,7 +431,7 @@ limitations under the License.
 				<repository>
 					<id>spring-releases</id>
 					<name>Spring Releases</name>
-					<url>http://repo.spring.io/release</url>
+					<url>https://repo.spring.io/release</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
@@ -441,7 +441,7 @@ limitations under the License.
 				<pluginRepository>
 					<id>spring-snapshots</id>
 					<name>Spring Snapshots</name>
-					<url>http://repo.spring.io/libs-snapshot-local</url>
+					<url>https://repo.spring.io/libs-snapshot-local</url>
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
@@ -449,7 +449,7 @@ limitations under the License.
 				<pluginRepository>
 					<id>spring-milestones</id>
 					<name>Spring Milestones</name>
-					<url>http://repo.spring.io/libs-milestone-local</url>
+					<url>https://repo.spring.io/libs-milestone-local</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
