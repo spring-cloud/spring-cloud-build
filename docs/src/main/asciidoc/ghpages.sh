@@ -207,6 +207,8 @@ function commit_changes_if_applicable() {
 
 # Switch back to the previous branch and exit block
 function checkout_previous_branch() {
+    # If -version was provided we need to come back to root project
+    cd ${ROOT_FOLDER}
     git checkout ${CURRENT_BRANCH}
     if [ "$dirty" != "0" ]; then git stash pop; fi
     exit 0
