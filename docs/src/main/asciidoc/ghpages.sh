@@ -114,7 +114,6 @@ function add_docs_from_target() {
 
 # Copies the docs by using the retrieved properties from Maven build
 function copy_docs_for_current_version() {
-    mkdir -p ${DESTINATION_REPO_FOLDER}/${CURRENT_BRANCH}
     if [[ "${CURRENT_BRANCH}" == "master" ]] ; then
         echo -e "Current branch is master - will copy the current docs only to the root folder"
         for f in ${ROOT_FOLDER}/docs/target/generated-docs/*; do
@@ -127,6 +126,7 @@ function copy_docs_for_current_version() {
         done
         COMMIT_CHANGES="yes"
     else
+        mkdir -p ${DESTINATION_REPO_FOLDER}/${CURRENT_BRANCH}
         echo -e "Current branch is [${CURRENT_BRANCH}]"
         # http://stackoverflow.com/questions/29300806/a-bash-script-to-check-if-a-string-is-present-in-a-comma-separated-list-of-strin
         if [[ ",${WHITELISTED_BRANCHES_VALUE}," = *",${CURRENT_BRANCH},"* ]] ; then
