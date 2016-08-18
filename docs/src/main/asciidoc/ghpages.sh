@@ -129,6 +129,7 @@ function copy_docs_for_current_version() {
         echo -e "Current branch is [${CURRENT_BRANCH}]"
         # http://stackoverflow.com/questions/29300806/a-bash-script-to-check-if-a-string-is-present-in-a-comma-separated-list-of-strin
         if [[ ",${WHITELISTED_BRANCHES_VALUE}," = *",${CURRENT_BRANCH},"* ]] ; then
+            mkdir -p ${ROOT_FOLDER}/${CURRENT_BRANCH}
             echo -e "Branch [${CURRENT_BRANCH}] is whitelisted! Will copy the current docs to the [${CURRENT_BRANCH}] folder"
             for f in docs/target/generated-docs/*; do
                 file=${f#docs/target/generated-docs/*}
