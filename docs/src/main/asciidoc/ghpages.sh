@@ -47,8 +47,7 @@ function retrieve_current_branch() {
       CURRENT_BRANCH=${CURRENT_BRANCH:-HEAD}
     fi
     echo "Current branch is [${CURRENT_BRANCH}]"
-    git checkout ${CURRENT_BRANCH}
-
+    git checkout ${CURRENT_BRANCH} || echo "Failed to check the branch... continuing with the script"
 }
 
 # Switches to the provided value of the release version. We always prefix it with `v`
