@@ -121,19 +121,20 @@ function copy_docs_for_current_version() {
             if ! git ls-files -i -o --exclude-standard --directory | grep -q ^${file}$; then
                 # Not ignored...
                 cp -rf $f ${ROOT_FOLDER}/
-                git add -A ${DESTINATION_REPO_FOLDER}/$file
+                git add -A $file
             fi
         done
         COMMIT_CHANGES="yes"
     else
-        mkdir -p ${DESTINATION_REPO_FOLDER}/${CURRENT_BRANCH}
+        local destination=${ROOT_FOLDER}/${CURRENT_BRANCH}
+        mkdir -p ${destination}
         echo -e "Current branch is [${CURRENT_BRANCH}]"
         # http://stackoverflow.com/questions/29300806/a-bash-script-to-check-if-a-string-is-present-in-a-comma-separated-list-of-strin
         if [[ ",${WHITELISTED_BRANCHES_VALUE}," = *",${CURRENT_BRANCH},"* ]] ; then
             echo -e "Branch [${CURRENT_BRANCH}] is whitelisted! Will copy the current docs to the [${CURRENT_BRANCH}] folder"
             for f in ${ROOT_FOLDER}/docs/target/generated-docs/*; do
                 file=${f#${ROOT_FOLDER}/docs/target/generated-docs/*}
-                copy_docs_for_branch ${file} ${DESTINATION_REPO_FOLDER}
+                copy_docs_for_branch ${file} ${destination}
             done
             COMMIT_CHANGES="yes"
         else
