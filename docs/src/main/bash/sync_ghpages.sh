@@ -43,11 +43,12 @@ function update_ghpages_script() {
     fi
     local REPO_NAME=$1
     local BRANCH_NAME=$2
-    download_ghpages_if_missing
     echo "Updating ghpages script for [${REPO_NAME}] and branch [${BRANCH_NAME}]"
     cd  ${REPO_NAME}
     echo "Checking out [${BRANCH_NAME}]"
     git checkout ${BRANCH_NAME}
+    echo "Resetting the repo and pulling before commiting"
+    git reset --hard origin/${BRANCH_NAME} && git pull origin ${BRANCH_NAME}
     # If the user wants to just push we will not copy / add / commit files
     if [[ "${JUST_PUSH}" != "yes" ]] ; then
         echo "Copying [${GHPAGES_DOWNLOAD_PATH}] to [${GHPAGES_IN_REPO_PATH}]"
@@ -64,16 +65,12 @@ function update_ghpages_script() {
     cd ${ROOT_FOLDER}
 }
 
-# Downloads ghpages.sh if it wasn't already downloaded
-function download_ghpages_if_missing() {
-    if [ ! -f ${GHPAGES_DOWNLOAD_PATH} ]
-    then
-        echo "Downloading ghpages.sh from [${GHPAGES_URL}] to [${GHPAGES_DOWNLOAD_PATH}]"
-        curl ${GHPAGES_URL} -o ${GHPAGES_DOWNLOAD_PATH}
-        chmod +x ${GHPAGES_DOWNLOAD_PATH}
-    else
-        echo "ghpages.sh was already found at [${GHPAGES_DOWNLOAD_PATH}]"
-    fi
+# Downloads ghpages.sh
+function download_ghpages() {
+    rm -rf ${GHPAGES_DOWNLOAD_PATH}
+    echo "Downloading ghpages.sh from [${GHPAGES_URL}] to [${GHPAGES_DOWNLOAD_PATH}]"
+    curl ${GHPAGES_URL} -o ${GHPAGES_DOWNLOAD_PATH}
+    chmod +x ${GHPAGES_DOWNLOAD_PATH}
 }
 
 # Either clones or pulls the repo for given project and then updates gh-pages for the given project
@@ -124,6 +121,8 @@ EOF
 function print_usage() {
 cat <<EOF
 The idea of this script is to batch update all ghpages scripts for all projects that we have in Spring Cloud.
+If you don't provide any options by default the script will copy the latest ghpages.sh, commit it for each repo
+and then push it to the appropriate branch.
 
 USAGE:
 
@@ -173,7 +172,7 @@ esac
 shift # past argument or value
 done
 
-export GHPAGES_URL=${GHPAGES_URL:-https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/jenkins/docs/src/main/asciidoc/ghpages.sh}
+export GHPAGES_URL=${GHPAGES_URL:-https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/docs/src/main/asciidoc/ghpages.sh}
 export GHPAGES_DOWNLOAD_PATH=${GHPAGES_DOWNLOAD_PATH:-/tmp/ghpages.sh}
 export COMMIT_MESSAGE=${COMMIT_MESSAGE:-Updating ghpages for all projects}
 export GHPAGES_IN_REPO_PATH=${GHPAGES_IN_REPO_PATH:-docs/src/main/asciidoc/ghpages.sh}
@@ -184,7 +183,7 @@ export ROOT_FOLDER=`pwd`
 
 
 print_parameters
-download_ghpages_if_missing
+download_ghpages
 clone_and_update_ghpages spring-cloud spring-cloud-aws master
 clone_and_update_ghpages spring-cloud spring-cloud-aws 1.0.x
 clone_and_update_ghpages spring-cloud spring-cloud-aws 1.2.x
