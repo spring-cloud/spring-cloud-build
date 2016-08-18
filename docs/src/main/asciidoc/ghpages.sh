@@ -178,7 +178,7 @@ function copy_docs_for_branch() {
     if ! git ls-files -i -o --exclude-standard --directory | grep -q ^${file}$; then
         # Not ignored...
         # We want users to access 1.0.0.RELEASE/ instead of 1.0.0.RELEASE/spring-cloud.sleuth.html
-        if [[ "${file}" == "${MAIN_ADOC_VALUE}.html" ]] ; then
+        if [[ ("${file}" == "${MAIN_ADOC_VALUE}.html") || ("${file}" == "${REPO_NAME}.html") ]] ; then
             # We don't want to copy the spring-cloud-sleuth.html
             # we want it to be converted to index.html
             cp -rf $f ${destination}/index.html
