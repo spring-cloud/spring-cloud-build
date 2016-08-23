@@ -27,7 +27,7 @@ function set_default_props() {
 function check_if_anything_to_sync() {
     git remote set-url --push origin `git config remote.origin.url | sed -e 's/^git:/https:/'`
 
-    if ! (git remote set-branches --add origin gh-pages && git fetch -q); then
+    if ! (git remote set-branches --add origin gh-pages && git fetch -q) && [[ "${RELEASE_TRAIN}" != "yes" ]] ; then
         echo "No gh-pages, so not syncing"
         exit 0
     fi
@@ -54,7 +54,9 @@ function retrieve_current_branch() {
 
 # Switches to the provided value of the release version. We always prefix it with `v`
 function switch_to_tag() {
-    git checkout v${VERSION}
+    if [[ "${RELEASE_TRAIN}" != "yes" ]] ; then
+        git checkout v${VERSION}
+    fi
 }
 
 # Build the docs if switch is on
@@ -70,8 +72,9 @@ function retrieve_doc_properties() {
     MAIN_ADOC_VALUE=$("${MAVEN_PATH}"mvn -q \
         -Dexec.executable="echo" \
         -Dexec.args='${docs.main}' \
-        --non-recursive \
-        org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
+        -P docs \
+        -pl docs)
     echo "Extracted 'main.adoc' from Maven build [${MAIN_ADOC_VALUE}]"
 
 
@@ -101,19 +104,27 @@ function add_docs_from_target() {
         local clonedStatic=${ROOT_FOLDER}/target/spring-cloud-static
         if [[ ! -e "${clonedStatic}/.git" ]]; then
             echo "Cloning Spring Cloud Static to target"
-            git clone ${SPRING_CLOUD_STATIC_REPO} ${clonedStatic} && git checkout gh-pages
+            git clone ${SPRING_CLOUD_STATIC_REPO} ${clonedStatic} && cd ${clonedStatic} && git checkout gh-pages
         else
             echo "Spring Cloud Static already cloned - will pull changes"
             cd ${clonedStatic} && git checkout gh-pages && git pull origin gh-pages
         fi
-        DESTINATION_REPO_FOLDER=${clonedStatic}/${REPO_NAME}
+        if [[ -z "${RELEASE_TRAIN}" ]] ; then
+            DESTINATION_REPO_FOLDER=${clonedStatic}/${REPO_NAME}
+        else
+            DESTINATION_REPO_FOLDER=${clonedStatic}
+        fi
         mkdir -p ${DESTINATION_REPO_FOLDER}
     else
         if [[ ! -e "${DESTINATION}/.git" ]]; then
             echo "[${DESTINATION}] is not a git repository"
             exit 1
         fi
-        DESTINATION_REPO_FOLDER=${DESTINATION}/${REPO_NAME}
+        if [[ -z "${RELEASE_TRAIN}" ]] ; then
+            DESTINATION_REPO_FOLDER=${DESTINATION}/${REPO_NAME}
+        else
+            DESTINATION_REPO_FOLDER=${DESTINATION}
+        fi
         mkdir -p ${DESTINATION_REPO_FOLDER}
         echo "Destination was provided [${DESTINATION}]"
     fi
@@ -123,7 +134,7 @@ function add_docs_from_target() {
 
     # Add git branches
     ###################################################################
-    if [[ -z "${VERSION}" ]] ; then
+    if [[ -z "${VERSION}" && -z "${RELEASE_TRAIN}" ]] ; then
         copy_docs_for_current_version
     else
         copy_docs_for_provided_version
@@ -236,10 +247,11 @@ function checkout_previous_branch() {
 
 # Assert if properties have been properly passed
 function assert_properties() {
-echo "VERSION [${VERSION}], DESTINATION [${DESTINATION}], CLONE [${CLONE}]"
+echo "VERSION [${VERSION}], RELEASE_TRAIN [${RELEASE_TRAIN}], DESTINATION [${DESTINATION}], CLONE [${CLONE}]"
 if [[ "${VERSION}" != "" && (-z "${DESTINATION}" && -z "${CLONE}") ]] ; then echo "Version was set but destination / clone was not!"; exit 1;fi
 if [[ ("${DESTINATION}" != "" && "${CLONE}" != "") && -z "${VERSION}" ]] ; then echo "Destination / clone was set but version was not!"; exit 1;fi
 if [[ "${DESTINATION}" != "" && "${CLONE}" == "yes" ]] ; then echo "Destination and clone was set. Pick one!"; exit 1;fi
+if [[ "${RELEASE_TRAIN}" != "" && -z "${VERSION}" ]] ; then echo "Release train was set but no version was passed!"; exit 1;fi
 }
 
 # Prints the usage
@@ -258,12 +270,15 @@ the script will work in the following manner:
     switch to gh-pages of that repo and copy the generated docs to `docs/<project-name>/<version>`
 - if the destination switch is passed (-d) then the script will check if the provided dir is a git repo and then will
     switch to gh-pages of that repo and copy the generated docs to `docs/<project-name>/<version>`
+- if the release train switch is passed (-r) then the script will check if the provided dir is a git repo and then will
+    switch to gh-pages of that repo and copy the generated docs to `docs/<version>`
 
 USAGE:
 
 You can use the following options:
 
 -v|--version        - the script will apply the whole procedure for a particular library version
+-r|--releasetrain   - instead of nesting the docs under the project_name/version folder the docs will end up in version
 -d|--destination    - the root of destination folder where the docs should be copied. You have to use the full path.
                         E.g. point to spring-cloud-static folder. Can't be used with (-c)
 -b|--build          - will run the standard build process after checking out the branch
@@ -291,6 +306,9 @@ case ${key} in
     -v|--version)
     VERSION="$2"
     shift # past argument
+    ;;
+    -r|--releasetrain)
+    RELEASE_TRAIN="yes"
     ;;
     -d|--destination)
     DESTINATION="$2"
