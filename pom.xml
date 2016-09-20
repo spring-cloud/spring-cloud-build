@@ -23,7 +23,7 @@
 		<lombok.version>1.16.6</lombok.version>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>1.4.0.RELEASE</spring-boot.version>
+		<spring-boot.version>1.4.1.BUILD-SNAPSHOT</spring-boot.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
