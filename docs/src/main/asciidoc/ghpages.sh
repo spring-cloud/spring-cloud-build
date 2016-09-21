@@ -1,5 +1,7 @@
 #!/bin/bash -x
 
+# Usage: (cd <project root>; ghpages.sh -v <version> -b -c)
+
 set -e
 
 # Set default props like MAVEN_PATH, ROOT_FOLDER etc.
@@ -16,8 +18,15 @@ function set_default_props() {
     # Prop that will let commit the changes
     COMMIT_CHANGES="no"
     MAVEN_PATH=${MAVEN_PATH:-}
-    echo "Path to Maven is [${MAVEN_PATH}]"
-    REPO_NAME=${PWD##*/}
+    if [ -e "${ROOT_FOLDER}/mvnw" ]; then
+        MAVEN_EXEC="$ROOT_FOLDER/mvnw"
+    else
+        MAVEN_EXEC="${MAVEN_PATH}mvn"
+    fi
+    echo "Path to Maven is [${MAVEN_EXEC}]"
+    if [ -z $REPO_NAME ]; then
+        REPO_NAME=$(sed '\!<parent!,\!</parent!d' pom.xml | grep '<artifactId' | head -1 | sed -e 's/.*<artifactId>//' -e 's!</artifactId>.*$!!' )
+    fi
     echo "Repo name is [${REPO_NAME}]"
     SPRING_CLOUD_STATIC_REPO=${SPRING_CLOUD_STATIC_REPO:-git@github.com:spring-cloud/spring-cloud-static.git}
     echo "Spring Cloud Static repo is [${SPRING_CLOUD_STATIC_REPO}"
@@ -69,7 +78,7 @@ function build_docs_if_applicable() {
 # Get the name of the `docs.main` property
 # Get whitelisted branches - assumes that a `docs` module is available under `docs` profile
 function retrieve_doc_properties() {
-    MAIN_ADOC_VALUE=$("${MAVEN_PATH}"mvn -q \
+    MAIN_ADOC_VALUE=$("${MAVEN_EXEC}" -q \
         -Dexec.executable="echo" \
         -Dexec.args='${docs.main}' \
         org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
@@ -79,7 +88,7 @@ function retrieve_doc_properties() {
 
 
     WHITELIST_PROPERTY=${WHITELIST_PROPERTY:-"docs.whitelisted.branches"}
-    WHITELISTED_BRANCHES_VALUE=$("${MAVEN_PATH}"mvn -q \
+    WHITELISTED_BRANCHES_VALUE=$("${MAVEN_EXEC}" -q \
         -Dexec.executable="echo" \
         -Dexec.args="\${${WHITELIST_PROPERTY}}" \
         org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
