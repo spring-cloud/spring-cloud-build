@@ -25,7 +25,7 @@ function set_default_props() {
     fi
     echo "Path to Maven is [${MAVEN_EXEC}]"
     if [ -z $REPO_NAME ]; then
-        REPO_NAME=$(sed '\!<parent!,\!</parent!d' pom.xml | grep '<artifactId' | head -1 | sed -e 's/.*<artifactId>//' -e 's!</artifactId>.*$!!' )
+        REPO_NAME=$(git remote -v | grep origin | head -1 | sed -e 's!.*/!!' -e 's/\.git.*//')
     fi
     echo "Repo name is [${REPO_NAME}]"
     SPRING_CLOUD_STATIC_REPO=${SPRING_CLOUD_STATIC_REPO:-git@github.com:spring-cloud/spring-cloud-static.git}
@@ -161,9 +161,9 @@ function copy_docs_for_current_version() {
             if ! git ls-files -i -o --exclude-standard --directory | grep -q ^$file$; then
                 # Not ignored...
                 cp -rf $f ${ROOT_FOLDER}/
-                git add -A ${ROOT_FOLDER}/$file
             fi
         done
+        git add -A ${ROOT_FOLDER}
         COMMIT_CHANGES="yes"
     else
         echo -e "Current branch is [${CURRENT_BRANCH}]"
@@ -222,11 +222,10 @@ function copy_docs_for_branch() {
             # We don't want to copy the spring-cloud-sleuth.html
             # we want it to be converted to index.html
             cp -rf $f ${destination}/index.html
-            git add -A ${destination}/index.html
         else
             cp -rf $f ${destination}
-            git add -A ${destination}/$file
         fi
+        git add -A ${destination}
     fi
 }
 
@@ -240,7 +239,7 @@ function commit_changes_if_applicable() {
         # This is a little extreme. Use with care!
         ###################################################################
         if [[ "${COMMIT_SUCCESSFUL}" == "yes" ]] ; then
-            git push origin gh-pages
+            echo git push origin gh-pages
         fi
     fi
 }
