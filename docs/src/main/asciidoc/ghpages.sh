@@ -25,7 +25,7 @@ function set_default_props() {
     fi
     echo "Path to Maven is [${MAVEN_EXEC}]"
     if [ -z $REPO_NAME ]; then
-        REPO_NAME=$(git remote -v | grep origin | head -1 | sed -e 's!.*/!!' -e 's/\.git.*//')
+        REPO_NAME=$(git remote -v | grep origin | head -1 | sed -e 's!.*/!!' -e 's/ .*//' -e 's/\.git.*//')
     fi
     echo "Repo name is [${REPO_NAME}]"
     SPRING_CLOUD_STATIC_REPO=${SPRING_CLOUD_STATIC_REPO:-git@github.com:spring-cloud/spring-cloud-static.git}
