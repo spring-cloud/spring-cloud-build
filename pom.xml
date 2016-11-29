@@ -111,6 +111,7 @@ limitations under the License.
 		<plugins>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
 				<executions>
 					<execution>
 						<id>javadoc</id>
@@ -126,6 +127,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -155,6 +157,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.6</version>
 					<configuration>
 						<archive>
 							<manifest>
