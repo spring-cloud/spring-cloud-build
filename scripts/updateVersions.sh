@@ -1,6 +1,5 @@
-#!/usr/local/bin/bash
 #!/bin/bash
-
+#!/usr/local/bin/bash
 
 # If you have exceptions while using associative arrays from Bash 4.0 in OSX.
 # instead of #!/bin/bash you have to have #!/usr/local/bin/bash
@@ -14,7 +13,7 @@ CURRENT_DIR_NAME=$( basename ${ROOT_FOLDER} )
 PROJECT_SHORTENED_NAME=${CURRENT_DIR_NAME#*spring-cloud-}
 SPRING_CLOUD_RELEASE_REPO=${SPRING_CLOUD_RELEASE_REPO:-git@github.com:spring-cloud/spring-cloud-release.git}
 MAVEN_PATH=${MAVEN_PATH:-}
-RELEASE_TRAIN_PROJECTS=${RELEASE_TRAIN_PROJECTS:-aws bus cloudfoundry commons config netflix security consul sleuth stream task zookeeper}
+RELEASE_TRAIN_PROJECTS=${RELEASE_TRAIN_PROJECTS:-aws bus cloudfoundry commons config contract netflix security consul sleuth stream task zookeeper}
 CLOUD_PREFIX="${CLOUD_PREFIX:-spring-cloud}"
 PARENT_NAME="${PARENT_NAME:-spring-cloud-build}"
 
@@ -159,7 +158,7 @@ else
       cd ${clonedStatic} && git reset --hard && git fetch
   fi
   cd ${clonedStatic}
-  git checkout v"${RELEASE_TRAIN_VERSION}"
+  git checkout v"${RELEASE_TRAIN_VERSION}" || echo "Failed to checkout [v${RELEASE_TRAIN_VERSION}], will try [${RELEASE_TRAIN_VERSION}]" && git checkout "${RELEASE_TRAIN_VERSION}"
   git status
   ARTIFACTS=( ${RELEASE_TRAIN_PROJECTS} )
   echo -e "\n\nRetrieving versions from Maven for projects [${RELEASE_TRAIN_PROJECTS}]\n\n"
@@ -199,9 +198,9 @@ else
   PROJECTS[build]=${SC_BUILD_VERSION}
 fi
 echo -e "\nSetting version of parent [spring-cloud-build] to [${SC_BUILD_VERSION}]"
-${MAVEN_EXEC} versions:update-parent "-DparentVersion=[${SC_BUILD_VERSION}]" -DgenerateBackupPoms=false
+${MAVEN_EXEC} versions:update-parent -DparentVersion="[${SC_BUILD_VERSION}]" -DgenerateBackupPoms=false -DallowSnapshots=true
 echo -e "\nSetting version of project to [${VERSION}]"
-${MAVEN_EXEC} versions:set -DnewVersion=${VERSION} -DgenerateBackupPoms=false
+${MAVEN_EXEC} versions:set -DnewVersion=${VERSION} -DgenerateBackupPoms=false -DallowSnapshots=true
 for K in "${!PROJECTS[@]}"
 do
   RETRIEVED_VERSION=${PROJECTS[$K]}
