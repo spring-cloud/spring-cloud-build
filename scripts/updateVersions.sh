@@ -13,7 +13,7 @@ CURRENT_DIR_NAME=$( basename ${ROOT_FOLDER} )
 PROJECT_SHORTENED_NAME=${CURRENT_DIR_NAME#*spring-cloud-}
 SPRING_CLOUD_RELEASE_REPO=${SPRING_CLOUD_RELEASE_REPO:-git@github.com:spring-cloud/spring-cloud-release.git}
 MAVEN_PATH=${MAVEN_PATH:-}
-RELEASE_TRAIN_PROJECTS=${RELEASE_TRAIN_PROJECTS:-aws bus cloudfoundry commons config contract netflix security consul sleuth stream task zookeeper}
+RELEASE_TRAIN_PROJECTS=${RELEASE_TRAIN_PROJECTS:-aws bus cloudfoundry commons config contract netflix security consul sleuth stream task zookeeper vault}
 CLOUD_PREFIX="${CLOUD_PREFIX:-spring-cloud}"
 PARENT_NAME="${PARENT_NAME:-spring-cloud-build}"
 
