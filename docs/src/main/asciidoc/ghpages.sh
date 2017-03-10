@@ -347,6 +347,7 @@ check_if_anything_to_sync
 if echo $VERSION | egrep -q 'SNAPSHOT' || [[ -z "${VERSION}" ]]; then
     CLONE=""
     VERSION=""
+    echo "You've provided a version variable but it's a snapshot one. Due to this will not clone spring-cloud-static and publish docs over there"
     retrieve_current_branch
 else
     switch_to_tag
