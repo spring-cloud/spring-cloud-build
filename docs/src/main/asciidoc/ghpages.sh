@@ -345,6 +345,8 @@ assert_properties
 set_default_props
 check_if_anything_to_sync
 if echo $VERSION | egrep -q 'SNAPSHOT' || [[ -z "${VERSION}" ]]; then
+    CLONE=""
+    VERSION=""
     retrieve_current_branch
 else
     switch_to_tag
