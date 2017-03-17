@@ -59,6 +59,7 @@ function retrieve_current_branch() {
     fi
     echo "Current branch is [${CURRENT_BRANCH}]"
     git checkout ${CURRENT_BRANCH} || echo "Failed to check the branch... continuing with the script"
+    PREVIOUS_BRANCH=${CURRENT_BRANCH}
 }
 
 # Switches to the provided value of the release version. We always prefix it with `v`
@@ -248,7 +249,7 @@ function commit_changes_if_applicable() {
 function checkout_previous_branch() {
     # If -version was provided we need to come back to root project
     cd ${ROOT_FOLDER}
-    git checkout ${CURRENT_BRANCH} || echo "Failed to check the branch... continuing with the script"
+    git checkout ${PREVIOUS_BRANCH} || echo "Failed to check the branch... continuing with the script"
     if [ "$dirty" != "0" ]; then git stash pop; fi
     exit 0
 }
@@ -344,8 +345,11 @@ done
 assert_properties
 set_default_props
 check_if_anything_to_sync
-if [[ -z "${VERSION}" ]] ; then
-    retrieve_current_branch
+retrieve_current_branch
+if echo $VERSION | egrep -q 'SNAPSHOT' || [[ -z "${VERSION}" ]]; then
+    CLONE=""
+    VERSION=""
+    echo "You've provided a version variable but it's a snapshot one. Due to this will not clone spring-cloud-static and publish docs over there"
 else
     switch_to_tag
 fi
