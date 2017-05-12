@@ -612,6 +612,7 @@ limitations under the License.
 											<docinfo>true</docinfo>
 											<spring-cloud-version>${project.version}</spring-cloud-version>
 											<allow-uri-read>true</allow-uri-read>
+											<source-highlighter>prettify</source-highlighter>
 										</attributes>
 									</configuration>
 								</execution>
