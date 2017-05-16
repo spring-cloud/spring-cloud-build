@@ -19,6 +19,8 @@
 		<resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
@@ -172,6 +174,20 @@ limitations under the License.
 		</plugins>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven-eclipse-plugin.version}</version>
+				</plugin>
 				<!-- Apply more sensible defaults for user projects -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
