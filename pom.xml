@@ -25,7 +25,6 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>2.0.0.M1</spring-boot.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -38,7 +37,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-build-dependencies</artifactId>
-				<version>${spring-boot.version}</version>
+				<version>${project.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
