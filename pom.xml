@@ -31,7 +31,7 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
-		<spring-boot.version>2.0.0.M1</spring-boot.version>
+		<spring-boot.version>2.0.0.BUILD-SNAPSHOT</spring-boot.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
