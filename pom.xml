@@ -742,6 +742,8 @@ limitations under the License.
 									<configuration>
 										<htmlCustomization>${basedir}/src/main/docbook/xsl/html-multipage.xsl</htmlCustomization>
 										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
+										<!-- By default `-` prefix is added to files and gh-pages don't render these files -->
+										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
 										<chunkedOutput>true</chunkedOutput>
 										<postProcess>
 											<copy todir="${basedir}/target/contents/reference/html">
@@ -859,7 +861,7 @@ limitations under the License.
 == Pick The Documentation Option
 
 - link:single/{docs-main}.html[Single HTML]
-- link:multi/{docs-main}.html[Multi HTML]
+- link:multi/multi_{docs-main}.html[Multi HTML]
 											</echo>
 										</target>
 									</configuration>
