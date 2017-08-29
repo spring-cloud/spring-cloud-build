@@ -580,15 +580,40 @@ limitations under the License.
 							<groupId>org.asciidoctor</groupId>
 							<artifactId>asciidoctor-maven-plugin</artifactId>
 							<version>1.5.3</version>
+							<dependencies>
+								<dependency>
+									<groupId>io.spring.asciidoctor</groupId>
+									<artifactId>spring-asciidoctor-extensions</artifactId>
+									<version>0.1.0.RELEASE</version>
+								</dependency>
+							</dependencies>
 							<executions>
 								<execution>
-									<id>generate-docs</id>
+									<id>generate-docbook</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>process-asciidoc</goal>
+									</goals>
+									<configuration>
+										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+										<backend>docbook5</backend>
+										<doctype>book</doctype>
+										<attributes>
+											<docinfo>true</docinfo>
+											<spring-boot-docs-version>${spring-boot.version}</spring-boot-docs-version>
+											<spring-cloud-version>${project.version}</spring-cloud-version>
+										</attributes>
+									</configuration>
+								</execution>
+								<execution>
+									<id>generate-index</id>
 									<phase>process-resources</phase>
 									<goals>
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
 										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+										<sourceDirectory>${basedir}/target/</sourceDirectory>
 										<backend>html</backend>
 										<doctype>article</doctype>
 										<attributes>
@@ -596,10 +621,102 @@ limitations under the License.
 											<spring-cloud-version>${project.version}</spring-cloud-version>
 											<allow-uri-read>true</allow-uri-read>
 											<source-highlighter>prettify</source-highlighter>
+											<docs-main>${docs.main}</docs-main>
 										</attributes>
 									</configuration>
 								</execution>
 							</executions>
+						</plugin>
+						<plugin>
+							<groupId>com.agilejava.docbkx</groupId>
+							<artifactId>docbkx-maven-plugin</artifactId>
+							<version>2.0.15</version>
+							<configuration>
+								<sourceDirectory>${basedir}/target/generated-docs</sourceDirectory>
+								<includes>${docs.main}.xml</includes>
+								<xincludeSupported>true</xincludeSupported>
+								<chunkedOutput>false</chunkedOutput>
+								<foCustomization>${basedir}/src/main/docbook/xsl/pdf.xsl</foCustomization>
+								<useExtensions>1</useExtensions>
+								<highlightSource>1</highlightSource>
+								<highlightXslthlConfig>${basedir}/src/main/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
+							</configuration>
+							<dependencies>
+								<dependency>
+									<groupId>net.sf.xslthl</groupId>
+									<artifactId>xslthl</artifactId>
+									<version>2.1.0</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sf.docbook</groupId>
+									<artifactId>docbook-xml</artifactId>
+									<version>5.0-all</version>
+									<classifier>resources</classifier>
+									<type>zip</type>
+									<scope>runtime</scope>
+								</dependency>
+							</dependencies>
+							<executions>
+								<execution>
+									<id>html-single</id>
+									<goals>
+										<goal>generate-html</goal>
+									</goals>
+									<phase>prepare-package</phase>
+									<configuration>
+										<htmlCustomization>${basedir}/src/main/docbook/xsl/html-singlepage.xsl</htmlCustomization>
+										<targetDirectory>${basedir}/target/docbook/htmlsingle</targetDirectory>
+										<postProcess>
+											<copy todir="${basedir}/target/contents/reference/htmlsingle">
+												<fileset dir="${basedir}/target/docbook/htmlsingle">
+													<include name="**/*.html" />
+												</fileset>
+											</copy>
+											<copy todir="${basedir}/target/contents/reference/htmlsingle">
+												<fileset dir="${basedir}/src/main/docbook">
+													<include name="**/*.css" />
+													<include name="**/*.png" />
+													<include name="**/*.gif" />
+													<include name="**/*.jpg" />
+												</fileset>
+											</copy>
+										</postProcess>
+									</configuration>
+								</execution>
+								<execution>
+									<id>html</id>
+									<goals>
+										<goal>generate-html</goal>
+									</goals>
+									<phase>prepare-package</phase>
+									<configuration>
+										<htmlCustomization>${basedir}/src/main/docbook/xsl/html-multipage.xsl</htmlCustomization>
+										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
+										<chunkedOutput>true</chunkedOutput>
+										<postProcess>
+											<copy todir="${basedir}/target/contents/reference/html">
+												<fileset dir="${basedir}/target/docbook/html">
+													<include name="**/*.html" />
+												</fileset>
+											</copy>
+											<copy todir="${basedir}/target/contents/reference/html">
+												<fileset dir="${basedir}/src/main/docbook">
+													<include name="**/*.css" />
+													<include name="**/*.png" />
+													<include name="**/*.gif" />
+													<include name="**/*.jpg" />
+												</fileset>
+											</copy>
+										</postProcess>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>build-helper-maven-plugin</artifactId>
+							<version>1.12</version>
+							<inherited>false</inherited>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -645,28 +762,72 @@ limitations under the License.
 										<goal>run</goal>
 									</goals>
 									<configuration>
-										<tasks>
+										<target>
 											<java classname="org.jruby.Main" failonerror="yes">
 												<arg value="${basedir}/src/main/ruby/generate_readme.sh"/>
 												<arg value="-o"/>
 												<arg value="${main.basedir}/README.adoc"/>
 											</java>
-										</tasks>
+										</target>
 									</configuration>
 								</execution>
 								<execution>
-									<id>package-and-attach-docs-zip</id>
-									<phase>package</phase>
+									<id>copy-css</id>
+									<phase>process-resources</phase>
 									<goals>
 										<goal>run</goal>
 									</goals>
 									<configuration>
 										<target>
-											<zip
-													destfile="${project.build.directory}/${project.artifactId}-${project.version}.zip">
-												<fileset dir="${project.build.directory}/generated-docs"
-														 excludes="*.sh"/>
-											</zip>
+											<copy todir="${basedir}/target/generated-docs/css">
+												<fileset dir="${basedir}/src/main/docbook/css"/>
+											</copy>
+											<copy failonerror="false" todir="${basedir}/target/generated-docs/images">
+												<fileset dir="${basedir}/src/main/docbook/images"/>
+											</copy>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
+									<id>generate-documentation-index</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<target>
+											<echo file="${basedir}/target/${docs.main}.adoc">
+:nofooter:
+:linkcss:
+:stylesdir: css
+:stylesheet: manual-singlepage.css
+
+= {docs-main}
+
+{spring-cloud-version}
+
+== Pick The Documentation Option
+
+- link:single/{docs-main}.html[Single HTML]
+- link:multi/{docs-main}.html[Multi HTML]
+											</echo>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
+									<id>copy-generated-html</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<target>
+											<copy todir="${basedir}/target/generated-docs/single">
+												<fileset dir="${basedir}/target/contents/reference/htmlsingle"/>
+											</copy>
+											<copy todir="${basedir}/target/generated-docs/multi">
+												<fileset dir="${basedir}/target/contents/reference/html"/>
+											</copy>
 										</target>
 									</configuration>
 								</execution>
@@ -725,29 +886,6 @@ limitations under the License.
 											<repoKey>libs-release-local</repoKey>
 											<snapshotRepoKey>libs-snapshots-local</snapshotRepoKey>
 										</publisher>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>build-helper-maven-plugin</artifactId>
-							<executions>
-								<execution>
-									<id>attach-zip</id>
-									<goals>
-										<goal>attach-artifact</goal>
-									</goals>
-									<configuration>
-										<skipAttach>true</skipAttach>
-										<artifacts>
-											<artifact>
-												<file>
-													${project.build.directory}/${project.artifactId}-${project.version}.zip
-												</file>
-												<type>zip</type>
-											</artifact>
-										</artifacts>
 									</configuration>
 								</execution>
 							</executions>
