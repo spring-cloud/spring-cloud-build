@@ -579,7 +579,7 @@ limitations under the License.
 						<plugin>
 							<groupId>org.asciidoctor</groupId>
 							<artifactId>asciidoctor-maven-plugin</artifactId>
-							<version>1.5.3</version>
+							<version>1.5.5</version>
 							<dependencies>
 								<dependency>
 									<groupId>io.spring.asciidoctor</groupId>
@@ -602,6 +602,8 @@ limitations under the License.
 											<docinfo>true</docinfo>
 											<spring-boot-docs-version>${spring-boot.version}</spring-boot-docs-version>
 											<spring-cloud-version>${project.version}</spring-cloud-version>
+											<allow-uri-read>true</allow-uri-read>
+											<safe-mode>unsafe</safe-mode>
 										</attributes>
 									</configuration>
 								</execution>
@@ -620,6 +622,7 @@ limitations under the License.
 											<docinfo>true</docinfo>
 											<spring-cloud-version>${project.version}</spring-cloud-version>
 											<allow-uri-read>true</allow-uri-read>
+											<safe-mode>unsafe</safe-mode>
 											<source-highlighter>prettify</source-highlighter>
 											<docs-main>${docs.main}</docs-main>
 										</attributes>
