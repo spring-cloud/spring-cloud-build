@@ -26,7 +26,7 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-cloud-build.version>${project.version}</spring-cloud-build.version>
+		<spring-cloud-build.version>2.0.0.BUILD-SNAPSHOT</spring-cloud-build.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
