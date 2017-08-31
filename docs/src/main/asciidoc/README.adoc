@@ -82,3 +82,5 @@ approach of generating documentation just add these plugins to your `docs` modul
 <2> This plugin is required to parse the Asciidoctor documentation
 <3> This plugin converts the Asciidoctor documentation into single and multi page docs
 <4> This plugin is required to copy resources into proper final destinations and to generate main README.adoc
+
+IMPORTANT: The order of plugin declaration is important!

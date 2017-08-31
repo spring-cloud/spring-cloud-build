@@ -11,6 +11,13 @@
 		<artifactId>spring-cloud-build</artifactId>
 		<version>2.0.0.BUILD-SNAPSHOT</version>
 	</parent>
+	<properties>
+		<docs.main>spring-cloud-build</docs.main>
+		<!-- Comma separated list of whitelisted branches -->
+		<docs.whitelisted.branches>1.2.x,2.0.x</docs.whitelisted.branches>
+		<main.basedir>${basedir}/..</main.basedir>
+		<docs.resources.dir>${basedir}/src/main</docs.resources.dir>
+	</properties>
 	<build>
 		<resources>
 			<resource>
@@ -24,4 +31,25 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>docs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctor-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>com.agilejava.docbkx</groupId>
+						<artifactId>docbkx-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

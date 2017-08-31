@@ -27,14 +27,15 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
+		<spring-boot.version>2.0.0.M3</spring-boot.version>
 		<spring-cloud-build.version>2.0.0.BUILD-SNAPSHOT</spring-cloud-build.version>
+		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
-		<spring-boot.version>2.0.0.M3</spring-boot.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -459,6 +460,9 @@ limitations under the License.
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
 				</repository>
 				<repository>
 					<id>spring-milestones</id>
@@ -485,11 +489,22 @@ limitations under the License.
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
 				</pluginRepository>
 				<pluginRepository>
 					<id>spring-milestones</id>
 					<name>Spring Milestones</name>
 					<url>https://repo.spring.io/libs-milestone-local</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>spring-releases</id>
+					<name>Spring Releases</name>
+					<url>https://repo.spring.io/libs-release-local</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
@@ -659,7 +674,7 @@ limitations under the License.
 												<classifier>sources</classifier>
 												<type>jar</type>
 												<overWrite>false</overWrite>
-												<outputDirectory>${project.build.directory}/build-docs</outputDirectory>
+												<outputDirectory>${docs.resources.dir}</outputDirectory>
 											</artifactItem>
 										</artifactItems>
 									</configuration>
@@ -729,10 +744,10 @@ limitations under the License.
 								<includes>${docs.main}.xml</includes>
 								<xincludeSupported>true</xincludeSupported>
 								<chunkedOutput>false</chunkedOutput>
-								<foCustomization>${project.build.directory}/build-docs/docbook/xsl/pdf.xsl</foCustomization>
+								<foCustomization>${docs.resources.dir}/docbook/xsl/pdf.xsl</foCustomization>
 								<useExtensions>1</useExtensions>
 								<highlightSource>1</highlightSource>
-								<highlightXslthlConfig>${project.build.directory}/build-docs/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
+								<highlightXslthlConfig>${docs.resources.dir}/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
 							</configuration>
 							<dependencies>
 								<dependency>
@@ -757,7 +772,7 @@ limitations under the License.
 									</goals>
 									<phase>prepare-package</phase>
 									<configuration>
-										<htmlCustomization>${project.build.directory}/build-docs/docbook/xsl/html-singlepage.xsl</htmlCustomization>
+										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-singlepage.xsl</htmlCustomization>
 										<targetDirectory>${basedir}/target/docbook/htmlsingle</targetDirectory>
 										<postProcess>
 											<copy todir="${basedir}/target/contents/reference/htmlsingle">
@@ -766,7 +781,7 @@ limitations under the License.
 												</fileset>
 											</copy>
 											<copy todir="${basedir}/target/contents/reference/htmlsingle">
-												<fileset dir="${project.build.directory}/build-docs/docbook">
+												<fileset dir="${docs.resources.dir}/docbook">
 													<include name="**/*.css" />
 													<include name="**/*.png" />
 													<include name="**/*.gif" />
@@ -783,7 +798,7 @@ limitations under the License.
 									</goals>
 									<phase>prepare-package</phase>
 									<configuration>
-										<htmlCustomization>${project.build.directory}/build-docs/docbook/xsl/html-multipage.xsl</htmlCustomization>
+										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-multipage.xsl</htmlCustomization>
 										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
 										<!-- By default `-` prefix is added to files and gh-pages don't render these files -->
 										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
@@ -795,7 +810,7 @@ limitations under the License.
 												</fileset>
 											</copy>
 											<copy todir="${basedir}/target/contents/reference/html">
-												<fileset dir="${project.build.directory}/build-docs/docbook">
+												<fileset dir="${docs.resources.dir}/docbook">
 													<include name="**/*.css" />
 													<include name="**/*.png" />
 													<include name="**/*.gif" />
@@ -859,7 +874,7 @@ limitations under the License.
 									<configuration>
 										<target>
 											<java classname="org.jruby.Main" failonerror="yes">
-												<arg value="${project.build.directory}/build-docs/ruby/generate_readme.sh"/>
+												<arg value="${docs.resources.dir}/ruby/generate_readme.sh"/>
 												<arg value="-o"/>
 												<arg value="${main.basedir}/README.adoc"/>
 											</java>
@@ -875,10 +890,10 @@ limitations under the License.
 									<configuration>
 										<target>
 											<copy todir="${basedir}/target/generated-docs/css">
-												<fileset dir="${project.build.directory}/build-docs/docbook/css"/>
+												<fileset dir="${docs.resources.dir}/docbook/css"/>
 											</copy>
 											<copy failonerror="false" todir="${basedir}/target/generated-docs/images">
-												<fileset dir="${project.build.directory}/build-docs/docbook/images"/>
+												<fileset dir="${docs.resources.dir}/docbook/images"/>
 											</copy>
 										</target>
 									</configuration>
