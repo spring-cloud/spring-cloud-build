@@ -720,7 +720,7 @@ limitations under the License.
 									</goals>
 									<configuration>
 										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
-										<sourceDirectory>${basedir}/target/</sourceDirectory>
+										<sourceDirectory>${basedir}/target/generated-index/</sourceDirectory>
 										<backend>html</backend>
 										<doctype>article</doctype>
 										<attributes>
@@ -906,7 +906,7 @@ limitations under the License.
 									</goals>
 									<configuration>
 										<target>
-											<echo file="${basedir}/target/${docs.main}.adoc">
+											<echo file="${basedir}/target/generated-index/${docs.main}.adoc">
 :nofooter:
 :linkcss:
 :stylesdir: css
