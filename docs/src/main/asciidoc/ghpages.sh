@@ -184,7 +184,7 @@ function copy_docs_for_current_version() {
                         git add -A ${ROOT_FOLDER}/${CURRENT_BRANCH}/index.html
                     else
                         cp -rf $f ${ROOT_FOLDER}/${CURRENT_BRANCH}
-                        git add -A ${ROOT_FOLDER}/${CURRENT_BRANCH}/$file
+                        git add -A ${ROOT_FOLDER}/${CURRENT_BRANCH}/$file || echo "Failed to add the file [$file]"
                     fi
                 fi
             done

@@ -9,6 +9,7 @@
 	<name>Spring Cloud Parent</name>
 	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring Cloud projects</description>
 	<modules>
+		<module>docs</module>
 		<module>spring-cloud-build-dependencies</module>
 		<module>spring-cloud-dependencies-parent</module>
 		<module>spring-cloud-build-tools</module>
@@ -639,6 +640,33 @@ limitations under the License.
 				<pluginManagement>
 					<plugins>
 						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<version>3.0.0</version>
+							<executions>
+								<execution>
+									<id>unpack-docs</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>unpack</goal>
+									</goals>
+									<configuration>
+										<artifactItems>
+											<artifactItem>
+												<groupId>org.springframework.cloud</groupId>
+												<artifactId>spring-cloud-build-docs</artifactId>
+												<version>${spring-cloud-build.version}</version>
+												<classifier>sources</classifier>
+												<type>jar</type>
+												<overWrite>false</overWrite>
+												<outputDirectory>${project.build.directory}/build-docs</outputDirectory>
+											</artifactItem>
+										</artifactItems>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
 							<groupId>org.asciidoctor</groupId>
 							<artifactId>asciidoctor-maven-plugin</artifactId>
 							<version>1.5.5</version>
@@ -701,10 +729,10 @@ limitations under the License.
 								<includes>${docs.main}.xml</includes>
 								<xincludeSupported>true</xincludeSupported>
 								<chunkedOutput>false</chunkedOutput>
-								<foCustomization>${basedir}/src/main/docbook/xsl/pdf.xsl</foCustomization>
+								<foCustomization>${project.build.directory}/build-docs/docbook/xsl/pdf.xsl</foCustomization>
 								<useExtensions>1</useExtensions>
 								<highlightSource>1</highlightSource>
-								<highlightXslthlConfig>${basedir}/src/main/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
+								<highlightXslthlConfig>${project.build.directory}/build-docs/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
 							</configuration>
 							<dependencies>
 								<dependency>
@@ -729,7 +757,7 @@ limitations under the License.
 									</goals>
 									<phase>prepare-package</phase>
 									<configuration>
-										<htmlCustomization>${basedir}/src/main/docbook/xsl/html-singlepage.xsl</htmlCustomization>
+										<htmlCustomization>${project.build.directory}/build-docs/docbook/xsl/html-singlepage.xsl</htmlCustomization>
 										<targetDirectory>${basedir}/target/docbook/htmlsingle</targetDirectory>
 										<postProcess>
 											<copy todir="${basedir}/target/contents/reference/htmlsingle">
@@ -738,7 +766,7 @@ limitations under the License.
 												</fileset>
 											</copy>
 											<copy todir="${basedir}/target/contents/reference/htmlsingle">
-												<fileset dir="${basedir}/src/main/docbook">
+												<fileset dir="${project.build.directory}/build-docs/docbook">
 													<include name="**/*.css" />
 													<include name="**/*.png" />
 													<include name="**/*.gif" />
@@ -755,7 +783,7 @@ limitations under the License.
 									</goals>
 									<phase>prepare-package</phase>
 									<configuration>
-										<htmlCustomization>${basedir}/src/main/docbook/xsl/html-multipage.xsl</htmlCustomization>
+										<htmlCustomization>${project.build.directory}/build-docs/docbook/xsl/html-multipage.xsl</htmlCustomization>
 										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
 										<!-- By default `-` prefix is added to files and gh-pages don't render these files -->
 										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
@@ -767,7 +795,7 @@ limitations under the License.
 												</fileset>
 											</copy>
 											<copy todir="${basedir}/target/contents/reference/html">
-												<fileset dir="${basedir}/src/main/docbook">
+												<fileset dir="${project.build.directory}/build-docs/docbook">
 													<include name="**/*.css" />
 													<include name="**/*.png" />
 													<include name="**/*.gif" />
@@ -831,7 +859,7 @@ limitations under the License.
 									<configuration>
 										<target>
 											<java classname="org.jruby.Main" failonerror="yes">
-												<arg value="${basedir}/src/main/ruby/generate_readme.sh"/>
+												<arg value="${project.build.directory}/build-docs/ruby/generate_readme.sh"/>
 												<arg value="-o"/>
 												<arg value="${main.basedir}/README.adoc"/>
 											</java>
@@ -847,10 +875,10 @@ limitations under the License.
 									<configuration>
 										<target>
 											<copy todir="${basedir}/target/generated-docs/css">
-												<fileset dir="${basedir}/src/main/docbook/css"/>
+												<fileset dir="${project.build.directory}/build-docs/docbook/css"/>
 											</copy>
 											<copy failonerror="false" todir="${basedir}/target/generated-docs/images">
-												<fileset dir="${basedir}/src/main/docbook/images"/>
+												<fileset dir="${project.build.directory}/build-docs/docbook/images"/>
 											</copy>
 										</target>
 									</configuration>
