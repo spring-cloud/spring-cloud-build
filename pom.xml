@@ -190,6 +190,7 @@ limitations under the License.
 					<configuration>
 						<source>${maven.compiler.source}</source>
 						<target>${maven.compiler.target}</target>
+						<compilerArgument>-parameters</compilerArgument>
 					</configuration>
 				</plugin>
 				<plugin>
