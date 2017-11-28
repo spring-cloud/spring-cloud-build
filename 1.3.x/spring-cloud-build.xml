@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Spring Cloud Build</title>
+<date>2017-11-28</date>
+</info>
+<preface>
+<title></title>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg"/>
+</imageobject>
+<textobject><phrase>spring cloud build</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>Spring Cloud Build is a common utility project for Spring Cloud
+to use for plugin and dependency management.</simpara>
+</preface>
+<chapter xml:id="_building_and_deploying">
+<title>Building and Deploying</title>
+<simpara>To install locally:</simpara>
+<screen>$ mvn install -s .settings.xml</screen>
+<simpara>and to deploy snapshots to repo.spring.io:</simpara>
+<screen>$ mvn deploy -DaltSnapshotDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-snapshot-local</screen>
+<simpara>for a RELEASE build use</simpara>
+<screen>$ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-release-local</screen>
+<simpara>and for jcenter use</simpara>
+<screen>$ mvn deploy -DaltReleaseDeploymentRepository=bintray::default::https://api.bintray.com/maven/spring/jars/org.springframework.cloud:build</screen>
+<simpara>and for Maven Central use</simpara>
+<screen>$ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging::default::https://oss.sonatype.org/service/local/staging/deploy/maven2</screen>
+<simpara>(the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).</simpara>
+</chapter>
+<chapter xml:id="_contributing">
+<title>Contributing</title>
+<simpara>Spring Cloud is released under the non-restrictive Apache 2.0 license,
+and follows a very standard Github development process, using Github
+tracker for issues and merging pull requests into master. If you want
+to contribute even something trivial please do not hesitate, but
+follow the guidelines below.</simpara>
+<section xml:id="_sign_the_contributor_license_agreement">
+<title>Sign the Contributor License Agreement</title>
+<simpara>Before we accept a non-trivial patch or pull request we will need you to sign the
+<link xl:href="https://cla.pivotal.io/sign/spring">Contributor License Agreement</link>.
+Signing the contributor&#8217;s agreement does not grant anyone commit rights to the main
+repository, but it does mean that we can accept your contributions, and you will get an
+author credit if we do.  Active contributors might be asked to join the core team, and
+given the ability to merge pull requests.</simpara>
+</section>
+<section xml:id="_code_of_conduct">
+<title>Code of Conduct</title>
+<simpara>This project adheres to the Contributor Covenant <link xl:href="https://github.com/spring-cloud/spring-cloud-build/blob/master/docs/src/main/asciidoc/code-of-conduct.adoc">code of
+conduct</link>. By participating, you  are expected to uphold this code. Please report
+unacceptable behavior to <link xl:href="mailto:spring-code-of-conduct@pivotal.io">spring-code-of-conduct@pivotal.io</link>.</simpara>
+</section>
+<section xml:id="_code_conventions_and_housekeeping">
+<title>Code Conventions and Housekeeping</title>
+<simpara>None of these is essential for a pull request, but they will all help.  They can also be
+added after the original pull request but before a merge.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Use the Spring Framework code format conventions. If you use Eclipse
+you can import formatter settings using the
+<literal>eclipse-code-formatter.xml</literal> file from the
+<link xl:href="https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/spring-cloud-dependencies-parent/eclipse-code-formatter.xml">Spring
+Cloud Build</link> project. If using IntelliJ, you can use the
+<link xl:href="http://plugins.jetbrains.com/plugin/6546">Eclipse Code Formatter
+Plugin</link> to import the same file.</simpara>
+</listitem>
+<listitem>
+<simpara>Make sure all new <literal>.java</literal> files to have a simple Javadoc class comment with at least an
+<literal>@author</literal> tag identifying you, and preferably at least a paragraph on what the class is
+for.</simpara>
+</listitem>
+<listitem>
+<simpara>Add the ASF license header comment to all new <literal>.java</literal> files (copy from existing files
+in the project)</simpara>
+</listitem>
+<listitem>
+<simpara>Add yourself as an <literal>@author</literal> to the .java files that you modify substantially (more
+than cosmetic changes).</simpara>
+</listitem>
+<listitem>
+<simpara>Add some Javadocs and, if you change the namespace, some XSD doc elements.</simpara>
+</listitem>
+<listitem>
+<simpara>A few unit tests would help a lot as well&#8201;&#8212;&#8201;someone has to do it.</simpara>
+</listitem>
+<listitem>
+<simpara>If no-one else is using your branch, please rebase it against the current master (or
+other target branch in the main project).</simpara>
+</listitem>
+<listitem>
+<simpara>When writing a commit message please follow <link xl:href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">these conventions</link>,
+if you are fixing an existing issue please add <literal>Fixes gh-XXXX</literal> at the end of the commit
+message (where XXXX is the issue number).</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter xml:id="_reusing_the_documentation">
+<title>Reusing the documentation</title>
+<simpara>Spring Cloud Build publishes its <literal>spring-cloud-build-docs</literal> module that contains
+helpful scripts (e.g. README generation ruby script) and css, xslt and images
+for the Spring Cloud documentation. If you want to follow the same convention
+approach of generating documentation just add these plugins to your <literal>docs</literal> module</simpara>
+<programlisting language="xml" linenumbering="unnumbered">&lt;profiles&gt;
+		&lt;profile&gt;
+			&lt;id&gt;docs&lt;/id&gt;
+			&lt;build&gt;
+				&lt;plugins&gt;
+					&lt;plugin&gt;
+						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+						&lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt; <co xml:id="CO1-1"/>
+					&lt;/plugin&gt;
+					&lt;plugin&gt;
+						&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <co xml:id="CO1-2"/>
+					&lt;/plugin&gt;
+					&lt;plugin&gt;
+						&lt;groupId&gt;com.agilejava.docbkx&lt;/groupId&gt;
+						&lt;artifactId&gt;docbkx-maven-plugin&lt;/artifactId&gt; <co xml:id="CO1-3"/>
+					&lt;/plugin&gt;
+					&lt;plugin&gt;
+						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <co xml:id="CO1-4"/>
+						&lt;inherited&gt;false&lt;/inherited&gt;
+					&lt;/plugin&gt;
+				&lt;/plugins&gt;
+			&lt;/build&gt;
+		&lt;/profile&gt;
+	&lt;/profiles&gt;</programlisting>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>This plugin downloads and unpacks the resources of the <literal>spring-cloud-build-docs</literal> module</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>This plugin is required to parse the Asciidoctor documentation</para>
+</callout>
+<callout arearefs="CO1-3">
+<para>This plugin converts the Asciidoctor documentation into single and multi page docs</para>
+</callout>
+<callout arearefs="CO1-4">
+<para>This plugin is required to copy resources into proper final destinations and to generate main README.adoc</para>
+</callout>
+</calloutlist>
+<important>
+<simpara>The order of plugin declaration is important!</simpara>
+</important>
+</chapter>
+</book>
