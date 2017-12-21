@@ -5,14 +5,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build-dependencies</artifactId>
-	<version>1.3.7.BUILD-SNAPSHOT</version>
+	<version>1.3.8.BUILD-SNAPSHOT</version>
 	<name>spring-cloud-build-tools</name>
 	<packaging>pom</packaging>
 	<description>Spring Cloud Build Dependencies: an internal BOM for use with Spring Cloud projects. Use as a BOM or by inheriting from the spring-cloud build parent.</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-dependencies</artifactId>
-		<version>1.5.9.RELEASE</version>
+		<version>1.3.8.BUILD-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
