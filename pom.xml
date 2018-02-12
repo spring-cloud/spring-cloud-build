@@ -910,6 +910,25 @@ limitations under the License.
 									</configuration>
 								</execution>
 								<execution>
+									<id>assert-no-unresolved-links</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<target>
+											<fileset id="unresolved.file" dir="${basedir}/target/contents/reference/" includes="**/*.html">
+												<contains text="Unresolved"/>
+											</fileset>
+											<fail message="[Unresolved] Found...failing">
+												<condition>
+													<resourcecount when="greater" count="0" refid="unresolved.file" />
+												</condition>
+											</fail>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
 									<id>setup-maven-properties</id>
 									<phase>validate</phase>
 									<goals>
