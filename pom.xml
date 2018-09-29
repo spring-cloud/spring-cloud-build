@@ -20,9 +20,6 @@
 		<resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
-		<checkstyle.version>2.17</checkstyle.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
@@ -36,6 +33,31 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
+
+		<!-- Plugins -->
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+		<checkstyle.version>3.0.0</checkstyle.version>
+		<puppycrawl-tools-checkstyle.version>8.12</puppycrawl-tools-checkstyle.version>
+		<spring-javaformat.version>0.0.6</spring-javaformat.version>
+		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+		<maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+		<git-commit-id-plugin.version>2.2.4</git-commit-id-plugin.version>
+		<maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+		<asciidoctor-maven-plugin.version>1.5.7</asciidoctor-maven-plugin.version>
+		<docbkx-maven-plugin.version>2.0.17</docbkx-maven-plugin.version>
+		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
+		<license-maven-plugin.version>1.16</license-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -148,7 +170,7 @@ limitations under the License.
 		<plugins>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
+				<version>${maven-javadoc-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>javadoc</id>
@@ -164,7 +186,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.4</version>
+				<version>${maven-source-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -208,7 +230,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${maven-jar-plugin.version}</version>
 					<configuration>
 						<archive>
 							<manifest>
@@ -221,11 +243,12 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-antrun-plugin</artifactId>
-					<version>1.7</version>
+					<version>${maven-antrun-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
 						<includes>
 							<include>**/*Tests.java</include>
@@ -239,6 +262,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven-war-plugin.version}</version>
 					<configuration>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<archive>
@@ -252,6 +276,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
+					<version>${exec-maven-plugin.version}</version>
 					<configuration>
 						<mainClass>${start-class}</mainClass>
 					</configuration>
@@ -259,7 +284,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<version>${maven-resources-plugin.version}</version>
 					<configuration>
 						<delimiters>
 							<delimiter>${resource.delimiter}</delimiter>
@@ -267,37 +292,63 @@ limitations under the License.
 						<useDefaultDelimiters>false</useDefaultDelimiters>
 					</configuration>
 				</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${checkstyle.version}</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework.cloud</groupId>
-						<artifactId>spring-cloud-build-tools</artifactId>
-						<version>${spring-cloud-build.version}</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
-					<headerLocation>LICENSE.txt</headerLocation>
-					<consoleOutput>true</consoleOutput>
-					<failsOnError>true</failsOnError>
-				</configuration>
-				<executions>
-					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${checkstyle.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>${puppycrawl-tools-checkstyle.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-build</artifactId>
+							<version>${spring-boot.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>io.spring.javaformat</groupId>
+							<artifactId>spring-javaformat-checkstyle</artifactId>
+							<version>${spring-javaformat.version}</version>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<id>checkstyle-validation</id>
+							<phase>validate</phase>
+							<configuration>
+								<skip>${disable.checks}</skip>
+								<configLocation>src/checkstyle/checkstyle.xml</configLocation>
+								<suppressionsLocation>src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+								<includeTestSourceDirectory>true</includeTestSourceDirectory>
+							</configuration>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>io.spring.javaformat</groupId>
+					<artifactId>spring-javaformat-maven-plugin</artifactId>
+					<version>${spring-javaformat.version}</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<configuration>
+								<skip>${disable.checks}</skip>
+							</configuration>
+							<goals>
+								<goal>validate</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 				<plugin>
 					<groupId>pl.project13.maven</groupId>
 					<artifactId>git-commit-id-plugin</artifactId>
-					<version>2.1.11</version>
+					<version>${git-commit-id-plugin.version}</version>
 					<executions>
 						<execution>
 							<goals>
@@ -332,7 +383,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
-					<version>2.2</version>
+					<version>${maven-shade-plugin.version}</version>
 					<dependencies>
 						<dependency>
 							<groupId>org.springframework.boot</groupId>
@@ -383,7 +434,7 @@ limitations under the License.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
-					<version>1.4.1</version>
+					<version>${maven-enforcer-plugin.version}</version>
 					<executions>
 						<execution>
 							<id>enforce-versions</id>
@@ -539,6 +590,7 @@ limitations under the License.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -588,6 +640,7 @@ limitations under the License.
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
+						<version>${exec-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>imports</id>
@@ -625,7 +678,7 @@ limitations under the License.
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-dependency-plugin</artifactId>
-							<version>3.0.0</version>
+							<version>${maven-dependency-plugin.version}</version>
 							<executions>
 								<execution>
 									<id>unpack-docs</id>
@@ -652,7 +705,7 @@ limitations under the License.
 						<plugin>
 							<groupId>org.asciidoctor</groupId>
 							<artifactId>asciidoctor-maven-plugin</artifactId>
-							<version>1.5.5</version>
+							<version>${asciidoctor-maven-plugin.version}</version>
 							<dependencies>
 								<dependency>
 									<groupId>io.spring.asciidoctor</groupId>
@@ -706,7 +759,7 @@ limitations under the License.
 						<plugin>
 							<groupId>com.agilejava.docbkx</groupId>
 							<artifactId>docbkx-maven-plugin</artifactId>
-							<version>2.0.15</version>
+							<version>${docbkx-maven-plugin.version}</version>
 							<configuration>
 								<sourceDirectory>${basedir}/target/generated-docs</sourceDirectory>
 								<includes>${docs.main}.xml</includes>
@@ -793,12 +846,13 @@ limitations under the License.
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>build-helper-maven-plugin</artifactId>
-							<version>1.12</version>
+							<version>${build-helper-maven-plugin.version}</version>
 							<inherited>false</inherited>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-antrun-plugin</artifactId>
+							<version>${maven-antrun-plugin.version}</version>
 							<dependencies>
 								<dependency>
 									<groupId>ant-contrib</groupId>
@@ -966,7 +1020,7 @@ limitations under the License.
 						<plugin>
 							<groupId>org.jfrog.buildinfo</groupId>
 							<artifactId>artifactory-maven-plugin</artifactId>
-							<version>2.2.1</version>
+							<version>${artifactory-maven-plugin.version}</version>
 							<executions>
 								<execution>
 									<id>build-info</id>
@@ -1018,6 +1072,7 @@ limitations under the License.
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
 						<configuration>
 							<properties>
 								<property>
@@ -1048,7 +1103,7 @@ limitations under the License.
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>license-maven-plugin</artifactId>
-						<version>1.8</version>
+						<version>${license-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>aggregate-licenses</id>
