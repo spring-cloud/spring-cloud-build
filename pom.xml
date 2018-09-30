@@ -321,9 +321,13 @@ limitations under the License.
 							<phase>validate</phase>
 							<configuration>
 								<skip>${disable.checks}</skip>
-								<configLocation>/checkstyle.xml</configLocation>
-								<suppressionsLocation>/checkstyle-supressions.xml</suppressionsLocation>
+								<configLocation>/checkstyle/checkstyle.xml</configLocation>
+								<suppressionsLocation>/checkstyle/checkstyle-supressions.xml</suppressionsLocation>
 								<includeTestSourceDirectory>true</includeTestSourceDirectory>
+								<!-- TODO: Turn this on one day -->
+								<failOnViolation>false</failOnViolation>
+								<failsOnError>false</failsOnError>
+								<consoleOutput>true</consoleOutput>
 							</configuration>
 							<goals>
 								<goal>check</goal>
