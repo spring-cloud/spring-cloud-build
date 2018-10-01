@@ -300,31 +300,21 @@ limitations under the License.
 					<version>${checkstyle.version}</version>
 					<dependencies>
 						<dependency>
-							<groupId>com.puppycrawl.tools</groupId>
-							<artifactId>checkstyle</artifactId>
-							<version>${puppycrawl-tools-checkstyle.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.springframework.boot</groupId>
-							<artifactId>spring-boot-build</artifactId>
-							<version>${spring-boot.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>io.spring.javaformat</groupId>
-							<artifactId>spring-javaformat-checkstyle</artifactId>
-							<version>${spring-javaformat.version}</version>
+							<groupId>org.springframework.cloud</groupId>
+							<artifactId>spring-cloud-build-tools</artifactId>
+							<version>${spring-cloud-build.version}</version>
 						</dependency>
 					</dependencies>
+					<configuration>
+						<configLocation>checkstyle.xml</configLocation>
+						<headerLocation>LICENSE.txt</headerLocation>
+						<consoleOutput>true</consoleOutput>
+						<failsOnError>true</failsOnError>
+					</configuration>
 					<executions>
 						<execution>
-							<id>checkstyle-validation</id>
+							<id>validate</id>
 							<phase>validate</phase>
-							<configuration>
-								<skip>${disable.checks}</skip>
-								<configLocation>src/checkstyle/checkstyle.xml</configLocation>
-								<suppressionsLocation>src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-								<includeTestSourceDirectory>true</includeTestSourceDirectory>
-							</configuration>
 							<goals>
 								<goal>check</goal>
 							</goals>
