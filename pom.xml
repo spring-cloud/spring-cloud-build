@@ -311,6 +311,11 @@ limitations under the License.
 							<artifactId>spring-javaformat-checkstyle</artifactId>
 							<version>${spring-javaformat-checkstyle.version}</version>
 						</dependency>
+						<dependency>
+							<groupId>org.springframework.cloud</groupId>
+							<artifactId>spring-cloud-build-tools</artifactId>
+							<version>${spring-cloud-build.version}</version>
+						</dependency>
 					</dependencies>
 					<executions>
 						<execution>
@@ -318,7 +323,8 @@ limitations under the License.
 							<phase>validate</phase>
 							<inherited>true</inherited>
 							<configuration>
-								<configLocation>io/spring/javaformat/checkstyle/checkstyle.xml</configLocation>
+								<configLocation>checkstyle.xml</configLocation>
+								<headerLocation>LICENSE.txt</headerLocation>
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
 								<includeTestSourceDirectory>false</includeTestSourceDirectory>
