@@ -37,7 +37,8 @@
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
-		<checkstyle.version>8.12</checkstyle.version>
+		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
+		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
 		<puppycrawl-tools-checkstyle.version>8.12</puppycrawl-tools-checkstyle.version>
 		<spring-javaformat.version>0.0.6</spring-javaformat.version>
 		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
@@ -60,6 +61,7 @@
 		<license-maven-plugin.version>1.16</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.6</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+		<disable.checks>false</disable.checks>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -304,7 +306,7 @@ limitations under the License.
 						<dependency>
 							<groupId>com.puppycrawl.tools</groupId>
 							<artifactId>checkstyle</artifactId>
-							<version>${checkstyle.version}</version>
+							<version>${puppycrawl-tools-checkstyle.version}</version>
 						</dependency>
 						<dependency>
 							<groupId>io.spring.javaformat</groupId>
