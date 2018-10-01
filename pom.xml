@@ -321,7 +321,7 @@ limitations under the License.
 								<configLocation>io/spring/javaformat/checkstyle/checkstyle.xml</configLocation>
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
-								<includeTestSourceDirectory>true</includeTestSourceDirectory>
+								<includeTestSourceDirectory>false</includeTestSourceDirectory>
 								<failsOnError>false</failsOnError>
 								<failOnViolation>false</failOnViolation>
 							</configuration>
