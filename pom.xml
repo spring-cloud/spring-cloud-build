@@ -350,6 +350,7 @@ limitations under the License.
 								<skip>${disable.checks}</skip>
 							</configuration>
 							<goals>
+								<goal>apply</goal>
 								<goal>validate</goal>
 							</goals>
 						</execution>
