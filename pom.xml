@@ -325,8 +325,8 @@ limitations under the License.
 							<phase>validate</phase>
 							<inherited>true</inherited>
 							<configuration>
-								<configLocation>checkstyle.xml</configLocation>
-								<headerLocation>LICENSE.txt</headerLocation>
+								<headerLocation>spring-cloud-build-tools/src/main/resources/checkstyle-header.txt</headerLocation>
+								<propertyExpansion>checkstyle.build.directory=${project.build.directory}</propertyExpansion>
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
 								<includeTestSourceDirectory>false</includeTestSourceDirectory>
