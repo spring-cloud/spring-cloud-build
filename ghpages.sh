@@ -32,10 +32,20 @@ function set_default_props() {
     echo "Spring Cloud Static repo is [${SPRING_CLOUD_STATIC_REPO}"
 }
 
+# Adds the oauth token if present to the remote url
+function add_oauth_token_to_remote_url() {
+    if [[ "${RELEASER_GIT_OAUTH_TOKEN}" != "" ]]; then
+        echo "OAuth token found. Will reuse it to push the code"
+        git remote set-url --push origin `git config remote.origin.url | sed -e 's/^git:/https:/' | sed -e "s|^git://|https://${RELEASER_GIT_OAUTH_TOKEN}@|"`
+    else
+        echo "No OAuth token found"
+        git remote set-url --push origin `git config remote.origin.url | sed -e 's/^git:/https:/'`
+    fi
+}
+
 # Check if gh-pages exists and docs have been built
 function check_if_anything_to_sync() {
-    git remote set-url --push origin `git config remote.origin.url | sed -e 's/^git:/https:/'`
-
+    add_oauth_token_to_remote_url
     if ! (git remote set-branches --add origin gh-pages && git fetch -q) && [[ "${RELEASE_TRAIN}" != "yes" ]] ; then
         echo "No gh-pages, so not syncing"
         exit 0
@@ -240,6 +250,7 @@ function commit_changes_if_applicable() {
         # This is a little extreme. Use with care!
         ###################################################################
         if [[ "${COMMIT_SUCCESSFUL}" == "yes" ]] ; then
+            add_oauth_token_to_remote_url
             git push origin gh-pages
         fi
     fi
