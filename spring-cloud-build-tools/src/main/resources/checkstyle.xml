@@ -4,11 +4,6 @@
 		"http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 <module name="com.puppycrawl.tools.checkstyle.Checker">
 
-	<module name="SuppressionFilter">
-		<property name="file" value="src/checkstyle/checkstyle-suppressions.xml"/>
-		<property name="optional" value="true"/>
-	</module>
-
 	<!-- TAKEN FROM SPRING BOOT -->
 	<!-- Root Checks -->
 	<module name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck">
