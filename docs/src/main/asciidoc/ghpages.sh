@@ -34,10 +34,10 @@ function set_default_props() {
 
 # Adds the oauth token if present to the remote url
 function add_oauth_token_to_remote_url() {
-    if [[ "${RELEASER_GIT_OAUTH_TOKEN}" != "" ]]; then
+    remote=`git config remote.origin.url | sed -e 's/^git:/https:/'`
+    echo "Current remote [${remote}]"
+    if [[ "${RELEASER_GIT_OAUTH_TOKEN}" != "" && ${remote} != *"@"* ]]; then
         echo "OAuth token found. Will reuse it to push the code"
-        remote=`git config remote.origin.url | sed -e 's/^git:/https:/'`
-        echo "Current remote [${remote}]"
         withToken=${remote/https:\/\//https://${RELEASER_GIT_OAUTH_TOKEN}@}
         git remote set-url --push origin "${withToken}"
     else
