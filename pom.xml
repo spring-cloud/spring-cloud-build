@@ -27,6 +27,7 @@
 		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
 		<spring-cloud-build.version>2.1.0.BUILD-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
+		<spring-doc-resources.version>0.1.0.RELEASE</spring-doc-resources.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -55,7 +56,7 @@
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-		<asciidoctor-maven-plugin.version>1.5.7</asciidoctor-maven-plugin.version>
+		<asciidoctor-maven-plugin.version>1.5.7.1</asciidoctor-maven-plugin.version>
 		<docbkx-maven-plugin.version>2.0.17</docbkx-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
@@ -547,6 +548,11 @@ limitations under the License.
 						<enabled>false</enabled>
 					</snapshots>
 				</repository>
+				<repository>
+					<id>spring-plugins</id>
+					<name>Spring Maven Plugins Repository</name>
+					<url>https://repo.spring.io/plugins-release</url>
+				</repository>
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
@@ -704,19 +710,40 @@ limitations under the License.
 									<configuration>
 										<artifactItems>
 											<artifactItem>
-												<groupId>org.springframework.cloud</groupId>
-												<artifactId>spring-cloud-build-docs</artifactId>
-												<version>${spring-cloud-build.version}</version>
-												<classifier>sources</classifier>
-												<type>jar</type>
-												<overWrite>false</overWrite>
-												<outputDirectory>${docs.resources.dir}</outputDirectory>
+												<groupId>io.spring.docresources</groupId>
+												<artifactId>spring-doc-resources</artifactId>
+												<version>${spring-doc-resources.version}</version>
+												<type>zip</type>
+												<overWrite>true</overWrite>
+												<outputDirectory>${project.build.directory}/refdocs/</outputDirectory>
 											</artifactItem>
 										</artifactItems>
 									</configuration>
 								</execution>
 							</executions>
 						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-resources-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>copy-asciidoc-resources</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>copy-resources</goal>
+									</goals>
+									<configuration>
+										<outputDirectory>${project.build.directory}/refdocs/</outputDirectory>
+										<resources>
+											<resource>
+												<directory>src/main/asciidoc</directory>
+											</resource>
+										</resources>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+<!-- end JB add -->
 						<plugin>
 							<groupId>org.asciidoctor</groupId>
 							<artifactId>asciidoctor-maven-plugin</artifactId>
@@ -727,8 +754,65 @@ limitations under the License.
 									<artifactId>spring-asciidoctor-extensions</artifactId>
 									<version>0.1.0.RELEASE</version>
 								</dependency>
+<!-- start JB add -->
+								<dependency>
+									<groupId>org.asciidoctor</groupId>
+									<artifactId>asciidoctorj-pdf</artifactId>
+									<version>1.5.0-alpha.16</version>
+								</dependency>
+<!-- end JB add -->
 							</dependencies>
+<!-- start JB add -->
+							<configuration>
+								<sourceDirectory>${project.build.directory}/refdocs/</sourceDirectory>
+								<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+							</configuration>
 							<executions>
+								<execution>
+									<id>generate-html-documentation</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>process-asciidoc</goal>
+									</goals>
+									<configuration>
+										<backend>html5</backend>
+										<sourceHighlighter>highlight.js</sourceHighlighter>
+										<doctype>book</doctype>
+										<attributes>
+											// these attributes are required to use the doc resources
+											<docinfo>shared</docinfo>
+											<stylesdir>css/</stylesdir>
+											<stylesheet>spring.css</stylesheet>
+											<linkcss>true</linkcss>
+											<icons>font</icons>
+											<highlightjsdir>js/highlight</highlightjsdir>
+											<highlightjs-theme>atom-one-dark-reasonable</highlightjs-theme>
+										</attributes>
+										<outputFile>${docs.main}.html</outputFile>
+									</configuration>
+								</execution>
+<!--								<execution>
+									<id>generate-pdf-documentation</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>process-asciidoc</goal>
+									</goals>
+									<configuration>
+										<backend>pdf</backend>
+										<sourceHighlighter>coderay</sourceHighlighter>
+										<attributes>
+											<icons>font</icons>
+											<pagenums/>
+											<toc/>
+											<idprefix/>
+											<idseparator>-</idseparator>
+										</attributes>
+										<outputFile>${docs.main}.pdf</outputFile>
+									</configuration>
+								</execution> -->
+							</executions>
+<!-- end JB add -->
+<!--							<executions>
 								<execution>
 									<id>generate-docbook</id>
 									<phase>prepare-package</phase>
@@ -770,8 +854,9 @@ limitations under the License.
 									</configuration>
 								</execution>
 							</executions>
+-->
 						</plugin>
-						<plugin>
+<!--						<plugin>
 							<groupId>com.agilejava.docbkx</groupId>
 							<artifactId>docbkx-maven-plugin</artifactId>
 							<version>${docbkx-maven-plugin.version}</version>
@@ -836,8 +921,9 @@ limitations under the License.
 									<configuration>
 										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-multipage.xsl</htmlCustomization>
 										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
+-->
 										<!-- By default `-` prefix is added to files and gh-pages don't render these files -->
-										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
+<!--										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
 										<chunkedOutput>true</chunkedOutput>
 										<postProcess>
 											<copy todir="${basedir}/target/contents/reference/html">
@@ -858,6 +944,7 @@ limitations under the License.
 								</execution>
 							</executions>
 						</plugin>
+-->
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>build-helper-maven-plugin</artifactId>
@@ -918,7 +1005,7 @@ limitations under the License.
 										</target>
 									</configuration>
 								</execution>
-								<execution>
+<!--								<execution>
 									<id>copy-css</id>
 									<phase>process-resources</phase>
 									<goals>
@@ -978,6 +1065,7 @@ limitations under the License.
 										</target>
 									</configuration>
 								</execution>
+-->
 								<execution>
 									<id>assert-no-unresolved-links</id>
 									<phase>prepare-package</phase>
@@ -986,7 +1074,7 @@ limitations under the License.
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/contents/reference/" includes="**/*.html">
+											<fileset id="unresolved.file" dir="${basedir}/target/generated-docs/" includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
 											<fail message="[Unresolved] Found...failing">
