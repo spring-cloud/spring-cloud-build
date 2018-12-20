@@ -118,12 +118,8 @@ approach of generating documentation just add these plugins to your <literal>doc
 						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <co xml:id="CO1-2"/>
 					&lt;/plugin&gt;
 					&lt;plugin&gt;
-						&lt;groupId&gt;com.agilejava.docbkx&lt;/groupId&gt;
-						&lt;artifactId&gt;docbkx-maven-plugin&lt;/artifactId&gt; <co xml:id="CO1-3"/>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
 						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <co xml:id="CO1-4"/>
+						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <co xml:id="CO1-3"/>
 						&lt;inherited&gt;false&lt;/inherited&gt;
 					&lt;/plugin&gt;
 				&lt;/plugins&gt;
@@ -138,9 +134,6 @@ approach of generating documentation just add these plugins to your <literal>doc
 <para>This plugin is required to parse the Asciidoctor documentation</para>
 </callout>
 <callout arearefs="CO1-3">
-<para>This plugin converts the Asciidoctor documentation into single and multi page docs</para>
-</callout>
-<callout arearefs="CO1-4">
 <para>This plugin is required to copy resources into proper final destinations and to generate main README.adoc</para>
 </callout>
 </calloutlist>
