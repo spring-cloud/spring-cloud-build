@@ -87,21 +87,21 @@
 			<name>Apache License, Version 2.0</name>
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<comments>
-Copyright 2014-2015 the original author or authors.
+				Copyright 2014-2015 the original author or authors.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+				Licensed under the Apache License, Version 2.0 (the "License");
+				you may not use this file except in compliance with the License.
+				You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+				http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied.
+				Unless required by applicable law or agreed to in writing, software
+				distributed under the License is distributed on an "AS IS" BASIS,
+				WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+				implied.
 
-See the License for the specific language governing permissions and
-limitations under the License.
+				See the License for the specific language governing permissions and
+				limitations under the License.
 			</comments>
 		</license>
 	</licenses>
@@ -709,6 +709,26 @@ limitations under the License.
 									<configuration>
 										<artifactItems>
 											<artifactItem>
+												<groupId>org.springframework.cloud</groupId>
+												<artifactId>spring-cloud-build-docs</artifactId>
+												<version>${spring-cloud-build.version}</version>
+												<classifier>sources</classifier>
+												<type>jar</type>
+												<overWrite>false</overWrite>
+												<outputDirectory>${docs.resources.dir}</outputDirectory>
+											</artifactItem>
+										</artifactItems>
+									</configuration>
+								</execution>
+								<execution>
+									<id>unpack-docs-resources</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>unpack</goal>
+									</goals>
+									<configuration>
+										<artifactItems>
+											<artifactItem>
 												<groupId>io.spring.docresources</groupId>
 												<artifactId>spring-doc-resources</artifactId>
 												<version>${spring-doc-resources.version}</version>
@@ -739,21 +759,6 @@ limitations under the License.
 												<excludes>
 													<exclude>ghpages.sh</exclude>
 												</excludes>
-											</resource>
-										</resources>
-									</configuration>
-								</execution>
-								<execution>
-									<id>copy-bash-resources</id>
-									<phase>generate-resources</phase>
-									<goals>
-										<goal>copy-resources</goal>
-									</goals>
-									<configuration>
-										<outputDirectory>${project.build.directory}/ruby/</outputDirectory>
-										<resources>
-											<resource>
-												<directory>src/main/ruby</directory>
 											</resource>
 										</resources>
 									</configuration>
@@ -804,6 +809,8 @@ limitations under the License.
 											<nofooter/>
 											<toc>left</toc>
 											<toc-levels>4</toc-levels>
+											<spring-cloud-version>${project.version}</spring-cloud-version>
+											<sectlinks>true</sectlinks>
 										</attributes>
 										<outputFile>${docs.main}.html</outputFile>
 									</configuration>
