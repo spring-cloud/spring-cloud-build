@@ -850,7 +850,7 @@ limitations under the License.
 								<dependency>
 									<groupId>org.asciidoctor</groupId>
 									<artifactId>asciidoctorj</artifactId>
-									<version>1.5.2</version>
+									<version>1.5.8</version>
 								</dependency>
 							</dependencies>
 							<executions>
