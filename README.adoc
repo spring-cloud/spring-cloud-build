@@ -110,12 +110,8 @@ approach of generating documentation just add these plugins to your `docs` modul
 						<artifactId>asciidoctor-maven-plugin</artifactId> <2>
 					</plugin>
 					<plugin>
-						<groupId>com.agilejava.docbkx</groupId>
-						<artifactId>docbkx-maven-plugin</artifactId> <3>
-					</plugin>
-					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-antrun-plugin</artifactId> <4>
+						<artifactId>maven-antrun-plugin</artifactId> <3>
 						<inherited>false</inherited>
 					</plugin>
 				</plugins>
@@ -125,7 +121,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 ----
 <1> This plugin downloads and unpacks the resources of the `spring-cloud-build-docs` module
 <2> This plugin is required to parse the Asciidoctor documentation
-<3> This plugin converts the Asciidoctor documentation into single and multi page docs
-<4> This plugin is required to copy resources into proper final destinations and to generate main README.adoc
+<3> This plugin is required to copy resources into proper final destinations and to generate main README.adoc
 
 IMPORTANT: The order of plugin declaration is important!

@@ -16,3 +16,4 @@ _site/
 .idea
 *.iml
 .factorypath
+.vscode/
