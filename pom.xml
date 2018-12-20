@@ -743,6 +743,21 @@ limitations under the License.
 										</resources>
 									</configuration>
 								</execution>
+								<execution>
+									<id>copy-bash-resources</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>copy-resources</goal>
+									</goals>
+									<configuration>
+										<outputDirectory>${project.build.directory}/ruby/</outputDirectory>
+										<resources>
+											<resource>
+												<directory>src/main/ruby</directory>
+											</resource>
+										</resources>
+									</configuration>
+								</execution>
 							</executions>
 						</plugin>
 						<plugin>
