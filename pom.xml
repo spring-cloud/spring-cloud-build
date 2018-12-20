@@ -27,10 +27,6 @@
 		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
 		<spring-cloud-build.version>2.1.0.BUILD-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
-		<spring-doc-resources.version>0.1.0.RELEASE</spring-doc-resources.version>
-		<spring-asciidoctor-extensions.version>0.1.0.RELEASE
-		</spring-asciidoctor-extensions.version>
-		<asciidoctorj-pdf.version>1.5.0-alpha.16</asciidoctorj-pdf.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -59,7 +55,8 @@
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-		<asciidoctor-maven-plugin.version>1.5.7.1</asciidoctor-maven-plugin.version>
+		<asciidoctor-maven-plugin.version>1.5.7</asciidoctor-maven-plugin.version>
+		<docbkx-maven-plugin.version>2.0.17</docbkx-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>1.16</license-maven-plugin.version>
@@ -153,6 +150,9 @@ limitations under the License.
 			</roles>
 		</developer>
 	</developers>
+	<prerequisites>
+		<maven>3.0.0</maven>
+	</prerequisites>
 	<build>
 		<!-- Turn on filtering by default for application properties -->
 		<resources>
@@ -547,11 +547,6 @@ limitations under the License.
 						<enabled>false</enabled>
 					</snapshots>
 				</repository>
-				<repository>
-					<id>spring-plugins</id>
-					<name>Spring Maven Plugins Repository</name>
-					<url>https://repo.spring.io/plugins-release</url>
-				</repository>
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
@@ -709,53 +704,15 @@ limitations under the License.
 									<configuration>
 										<artifactItems>
 											<artifactItem>
-												<groupId>io.spring.docresources</groupId>
-												<artifactId>spring-doc-resources</artifactId>
-												<version>${spring-doc-resources.version}</version>
-												<type>zip</type>
-												<overWrite>true</overWrite>
-												<outputDirectory>${project.build.directory}/refdocs/</outputDirectory>
+												<groupId>org.springframework.cloud</groupId>
+												<artifactId>spring-cloud-build-docs</artifactId>
+												<version>${spring-cloud-build.version}</version>
+												<classifier>sources</classifier>
+												<type>jar</type>
+												<overWrite>false</overWrite>
+												<outputDirectory>${docs.resources.dir}</outputDirectory>
 											</artifactItem>
 										</artifactItems>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-resources-plugin</artifactId>
-							<executions>
-								<execution>
-									<id>copy-asciidoc-resources</id>
-									<phase>generate-resources</phase>
-									<goals>
-										<goal>copy-resources</goal>
-									</goals>
-									<configuration>
-										<outputDirectory>${project.build.directory}/refdocs/</outputDirectory>
-										<resources>
-											<resource>
-												<directory>src/main/asciidoc</directory>
-												<excludes>
-													<exclude>ghpages.sh</exclude>
-												</excludes>
-											</resource>
-										</resources>
-									</configuration>
-								</execution>
-								<execution>
-									<id>copy-bash-resources</id>
-									<phase>generate-resources</phase>
-									<goals>
-										<goal>copy-resources</goal>
-									</goals>
-									<configuration>
-										<outputDirectory>${project.build.directory}/ruby/</outputDirectory>
-										<resources>
-											<resource>
-												<directory>src/main/ruby</directory>
-											</resource>
-										</resources>
 									</configuration>
 								</execution>
 							</executions>
@@ -768,44 +725,135 @@ limitations under the License.
 								<dependency>
 									<groupId>io.spring.asciidoctor</groupId>
 									<artifactId>spring-asciidoctor-extensions</artifactId>
-									<version>${spring-asciidoctor-extensions.version}</version>
-								</dependency>
-								<dependency>
-									<groupId>org.asciidoctor</groupId>
-									<artifactId>asciidoctorj-pdf</artifactId>
-									<version>${asciidoctorj-pdf.version}</version>
+									<version>0.1.0.RELEASE</version>
 								</dependency>
 							</dependencies>
-							<configuration>
-								<sourceDirectory>${project.build.directory}/refdocs/</sourceDirectory>
-								<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
-							</configuration>
 							<executions>
 								<execution>
-									<id>generate-html-documentation</id>
+									<id>generate-docbook</id>
 									<phase>prepare-package</phase>
 									<goals>
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<backend>html5</backend>
-										<sourceHighlighter>highlight.js</sourceHighlighter>
+										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+										<backend>docbook5</backend>
 										<doctype>book</doctype>
 										<attributes>
-											// these attributes are required to use the doc resources
-											<docinfo>shared</docinfo>
-											<stylesdir>css/</stylesdir>
-											<stylesheet>spring.css</stylesheet>
-											<linkcss>true</linkcss>
-											<icons>font</icons>
-											<highlightjsdir>js/highlight</highlightjsdir>
-											<highlightjs-theme>atom-one-dark-reasonable</highlightjs-theme>
+											<docinfo>true</docinfo>
+											<spring-boot-docs-version>${spring-boot.version}</spring-boot-docs-version>
+											<spring-cloud-version>${project.version}</spring-cloud-version>
 											<allow-uri-read>true</allow-uri-read>
-											<nofooter/>
-											<toc>left</toc>
-											<toc-levels>4</toc-levels>
+											<safe-mode>unsafe</safe-mode>
 										</attributes>
-										<outputFile>${docs.main}.html</outputFile>
+									</configuration>
+								</execution>
+								<execution>
+									<id>generate-index</id>
+									<phase>process-resources</phase>
+									<goals>
+										<goal>process-asciidoc</goal>
+									</goals>
+									<configuration>
+										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+										<sourceDirectory>${basedir}/target/generated-index/</sourceDirectory>
+										<backend>html</backend>
+										<doctype>article</doctype>
+										<attributes>
+											<docinfo>true</docinfo>
+											<spring-cloud-version>${project.version}</spring-cloud-version>
+											<allow-uri-read>true</allow-uri-read>
+											<safe-mode>unsafe</safe-mode>
+											<source-highlighter>prettify</source-highlighter>
+											<docs-main>${docs.main}</docs-main>
+										</attributes>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<groupId>com.agilejava.docbkx</groupId>
+							<artifactId>docbkx-maven-plugin</artifactId>
+							<version>${docbkx-maven-plugin.version}</version>
+							<configuration>
+								<sourceDirectory>${basedir}/target/generated-docs</sourceDirectory>
+								<includes>${docs.main}.xml</includes>
+								<xincludeSupported>true</xincludeSupported>
+								<chunkedOutput>false</chunkedOutput>
+								<foCustomization>${docs.resources.dir}/docbook/xsl/pdf.xsl</foCustomization>
+								<useExtensions>1</useExtensions>
+								<highlightSource>1</highlightSource>
+								<highlightXslthlConfig>${docs.resources.dir}/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
+							</configuration>
+							<dependencies>
+								<dependency>
+									<groupId>net.sf.xslthl</groupId>
+									<artifactId>xslthl</artifactId>
+									<version>2.1.0</version>
+								</dependency>
+								<dependency>
+									<groupId>net.sf.docbook</groupId>
+									<artifactId>docbook-xml</artifactId>
+									<version>5.0-all</version>
+									<classifier>resources</classifier>
+									<type>zip</type>
+									<scope>runtime</scope>
+								</dependency>
+							</dependencies>
+							<executions>
+								<execution>
+									<id>html-single</id>
+									<goals>
+										<goal>generate-html</goal>
+									</goals>
+									<phase>prepare-package</phase>
+									<configuration>
+										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-singlepage.xsl</htmlCustomization>
+										<targetDirectory>${basedir}/target/docbook/htmlsingle</targetDirectory>
+										<postProcess>
+											<copy todir="${basedir}/target/contents/reference/htmlsingle">
+												<fileset dir="${basedir}/target/docbook/htmlsingle">
+													<include name="**/*.html" />
+												</fileset>
+											</copy>
+											<copy todir="${basedir}/target/contents/reference/htmlsingle">
+												<fileset dir="${docs.resources.dir}/docbook">
+													<include name="**/*.css" />
+													<include name="**/*.png" />
+													<include name="**/*.gif" />
+													<include name="**/*.jpg" />
+												</fileset>
+											</copy>
+										</postProcess>
+									</configuration>
+								</execution>
+								<execution>
+									<id>html</id>
+									<goals>
+										<goal>generate-html</goal>
+									</goals>
+									<phase>prepare-package</phase>
+									<configuration>
+										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-multipage.xsl</htmlCustomization>
+										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
+										<!-- By default `-` prefix is added to files and gh-pages don't render these files -->
+										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
+										<chunkedOutput>true</chunkedOutput>
+										<postProcess>
+											<copy todir="${basedir}/target/contents/reference/html">
+												<fileset dir="${basedir}/target/docbook/html">
+													<include name="**/*.html" />
+												</fileset>
+											</copy>
+											<copy todir="${basedir}/target/contents/reference/html">
+												<fileset dir="${docs.resources.dir}/docbook">
+													<include name="**/*.css" />
+													<include name="**/*.png" />
+													<include name="**/*.gif" />
+													<include name="**/*.jpg" />
+												</fileset>
+											</copy>
+										</postProcess>
 									</configuration>
 								</execution>
 							</executions>
@@ -850,7 +898,7 @@ limitations under the License.
 								<dependency>
 									<groupId>org.asciidoctor</groupId>
 									<artifactId>asciidoctorj</artifactId>
-									<version>1.5.8</version>
+									<version>1.5.2</version>
 								</dependency>
 							</dependencies>
 							<executions>
@@ -871,6 +919,66 @@ limitations under the License.
 									</configuration>
 								</execution>
 								<execution>
+									<id>copy-css</id>
+									<phase>process-resources</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<target>
+											<copy todir="${basedir}/target/generated-docs/css">
+												<fileset dir="${docs.resources.dir}/docbook/css"/>
+											</copy>
+											<copy failonerror="false" todir="${basedir}/target/generated-docs/images">
+												<fileset dir="${docs.resources.dir}/docbook/images"/>
+											</copy>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
+									<id>generate-documentation-index</id>
+									<phase>generate-resources</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<target>
+											<echo file="${basedir}/target/generated-index/${docs.main}.adoc">
+:nofooter:
+:linkcss:
+:stylesdir: css
+:stylesheet: manual-singlepage.css
+
+= {docs-main}
+
+{spring-cloud-version}
+
+== Pick The Documentation Option
+
+- link:single/{docs-main}.html[Single HTML]
+- link:multi/multi_{docs-main}.html[Multi HTML]
+											</echo>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
+									<id>copy-generated-html</id>
+									<phase>prepare-package</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<target>
+											<copy todir="${basedir}/target/generated-docs/single">
+												<fileset dir="${basedir}/target/contents/reference/htmlsingle"/>
+											</copy>
+											<copy todir="${basedir}/target/generated-docs/multi">
+												<fileset dir="${basedir}/target/contents/reference/html"/>
+											</copy>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
 									<id>assert-no-unresolved-links</id>
 									<phase>prepare-package</phase>
 									<goals>
@@ -878,7 +986,7 @@ limitations under the License.
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/generated-docs/" includes="**/*.html">
+											<fileset id="unresolved.file" dir="${basedir}/target/contents/reference/" includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
 											<fail message="[Unresolved] Found...failing">
