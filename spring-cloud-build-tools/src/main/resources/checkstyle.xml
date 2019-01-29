@@ -21,6 +21,12 @@
 
 	<!-- TreeWalker Checks -->
 	<module name="com.puppycrawl.tools.checkstyle.TreeWalker">
+
+		<!-- Spring Cloud ones -->
+		<module name="LineLength">
+			<property name="max" value="120"/>
+		</module>
+
 		<module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck" >
 			<property name="illegalPkgs" value="com.google.common"/>
 		</module>
