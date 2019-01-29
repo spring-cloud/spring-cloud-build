@@ -19,6 +19,7 @@
 		<property name="lineSeparator" value="lf"/>
 	</module>
 
+	<!-- TreeWalker Checks -->
 	<module name="com.puppycrawl.tools.checkstyle.TreeWalker">
 		<module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck" >
 			<property name="illegalPkgs" value="com.google.common"/>
@@ -73,10 +74,10 @@
 			<property name="max" value="3" />
 		</module>
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck" />
-		<module name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck">
+		<!--<module name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck">
 			<property name="checkMethods" value="false" />
 			<property name="validateOnlyOverlapping" value="false" />
-		</module>
+		</module>-->
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck" />
 
 		<!-- Imports -->
@@ -85,6 +86,7 @@
 			<property name="excludes"
 					  value="io.restassured.RestAssured.*, org.assertj.core.api.Assertions.*, org.assertj.core.api.Assumptions.*, org.awaitility.Awaitility.*, org.junit.Assert.*, org.junit.Assume.*, org.junit.internal.matchers.ThrowableMessageMatcher.*, org.junit.jupiter.api.Assertions.*, org.hamcrest.CoreMatchers.*, org.hamcrest.Matchers.*, org.springframework.boot.configurationprocessor.ConfigurationMetadataMatchers.*, org.springframework.boot.configurationprocessor.TestCompiler.*, org.springframework.boot.test.autoconfigure.AutoConfigurationImportedCondition.*, org.mockito.Mockito.*, org.mockito.BDDMockito.*, org.mockito.ArgumentMatchers.*, org.mockito.Matchers.*, org.springframework.restdocs.headers.HeaderDocumentation.*, org.springframework.restdocs.hypermedia.HypermediaDocumentation.*, org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*, org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*, org.springframework.restdocs.operation.preprocess.Preprocessors.*, org.springframework.restdocs.payload.PayloadDocumentation.*, org.springframework.restdocs.request.RequestDocumentation.*, org.springframework.restdocs.restassured3.operation.preprocess.RestAssuredPreprocessors.*, org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.*, org.springframework.restdocs.snippet.Attributes.*, org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.*, org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*, org.springframework.test.web.servlet.result.MockMvcResultMatchers.*, org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.*, org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*, org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*, org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo, org.springframework.test.web.client.ExpectedCount.*, org.springframework.test.web.client.match.MockRestRequestMatchers.*, org.springframework.test.web.client.response.MockRestResponseCreators.*, org.springframework.test.web.servlet.result.MockMvcResultHandlers.*, org.springframework.web.reactive.function.BodyInserters.*, org.springframework.web.reactive.function.server.RequestPredicates.*, org.springframework.web.reactive.function.server.RouterFunctions.*, org.springframework.test.web.servlet.setup.MockMvcBuilders.*" />
 		</module>
+		<module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck" />
 		<module name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck" />
 		<module name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck">
 			<property name="processJavadoc" value="true" />
@@ -134,7 +136,6 @@
 
 		<!-- Modifiers -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck" />
-		<module name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
 
 		<!-- Regexp -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck">
@@ -174,12 +175,5 @@
 		<module name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck" />
 		<module name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck" />
 		<module name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck" />
-
-		<!-- Spring Conventions -->
-		<module name="io.spring.javaformat.checkstyle.check.SpringLambdaCheck" />
-		<!--<module name="io.spring.javaformat.checkstyle.check.SpringTernaryCheck" />-->
-		<module name="io.spring.javaformat.checkstyle.check.SpringCatchCheck" />
-		<module name="io.spring.javaformat.checkstyle.check.SpringJavadocCheck" />
-		<module name="io.spring.javaformat.checkstyle.check.SpringMethodOrderCheck" />
 	</module>
 </module>
