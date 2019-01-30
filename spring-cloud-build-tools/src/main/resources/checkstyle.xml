@@ -117,10 +117,8 @@
 		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck">
 			<property name="scope" value="public"/>
 		</module>
-		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck">
-			<property name="checkEmptyJavadoc" value="true"/>
-		</module>
-		<!--<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck" />-->
+		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck" />
 		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck">
 			<property name="offset" value="0"/>
 		</module>
