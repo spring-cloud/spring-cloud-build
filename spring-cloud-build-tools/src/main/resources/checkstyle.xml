@@ -21,6 +21,7 @@
 
 	<!-- TreeWalker Checks -->
 	<module name="com.puppycrawl.tools.checkstyle.TreeWalker">
+		<property name="tabWidth" value="1"/>
 
 		<!-- Spring Cloud ones -->
 		<module name="LineLength">
