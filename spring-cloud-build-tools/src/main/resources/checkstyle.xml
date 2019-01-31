@@ -32,6 +32,10 @@
 			<!--<property name="illegalPkgs" value="com.google.common"/>-->
 		<!--</module>-->
 
+		<module name="ImportControl">
+			<property name="file" value="import-control.xml"/>
+		</module>
+
 		<!-- TAKEN FROM SPRING BOOT -->
 		<!-- Annotations -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck">
