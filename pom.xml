@@ -63,6 +63,9 @@
 		<spring-javaformat-checkstyle.version>0.0.6</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
 		<disable.checks>false</disable.checks>
+		<maven-checkstyle-plugin.failsOnError>false</maven-checkstyle-plugin.failsOnError>
+		<maven-checkstyle-plugin.failOnViolation>false
+		</maven-checkstyle-plugin.failOnViolation>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -334,8 +337,8 @@ limitations under the License.
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
 								<includeTestSourceDirectory>false</includeTestSourceDirectory>
-								<failsOnError>false</failsOnError>
-								<failOnViolation>false</failOnViolation>
+								<failsOnError>${maven-checkstyle-plugin.failsOnError}</failsOnError>
+								<failOnViolation>${maven-checkstyle-plugin.failOnViolation}</failOnViolation>
 							</configuration>
 							<goals>
 								<goal>check</goal>
