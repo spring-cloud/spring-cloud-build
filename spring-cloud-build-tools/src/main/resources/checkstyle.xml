@@ -28,9 +28,9 @@
 			<property name="max" value="120"/>
 		</module>
 
-		<!--<module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck" >-->
-			<!--<property name="illegalPkgs" value="com.google.common"/>-->
-		<!--</module>-->
+		<module name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck" >
+			<property name="illegalPkgs" value="com.google.common"/>
+		</module>
 
 		<!-- TAKEN FROM SPRING BOOT -->
 		<!-- Annotations -->
