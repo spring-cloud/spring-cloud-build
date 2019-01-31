@@ -34,6 +34,7 @@
 
 		<module name="ImportControl">
 			<property name="file" value="import-control.xml"/>
+			<property name="path" value="^.*[\\/]src[\\/]main[\\/].*$"/>
 		</module>
 
 		<!-- TAKEN FROM SPRING BOOT -->
