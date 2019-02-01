@@ -32,6 +32,11 @@
 			<property name="illegalPkgs" value="com.google.common"/>
 		</module>
 
+		<module name="SuppressionCommentFilter">
+			<property name="offCommentFormat" value="@checkstyle:off"/>
+			<property name="onCommentFormat" value="@checkstyle:on"/>
+		</module>
+
 		<!-- TAKEN FROM SPRING BOOT -->
 		<!-- Annotations -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck">
