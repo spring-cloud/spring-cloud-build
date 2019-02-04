@@ -5,6 +5,7 @@
 <suppressions>
 	<suppress files="[\\/]src[\\/]test[\\/](java|groovy)[\\/]" checks="(Javadoc*|HideUtility*)" />
 	<suppress files=".*samples.*" checks="(Javadoc*|HideUtility*)" />
+	<suppress files=".*sample.*" checks="(Javadoc*|HideUtility*)" />
 	<suppress files="(.*Tests\.java|.*Tests\.groovy)" checks="Javadoc*" />
 	<suppress files="generated-sources" checks="[a-zA-Z0-9]*" />
 	<suppress files=".*target.*" checks="[a-zA-Z0-9]*" />
