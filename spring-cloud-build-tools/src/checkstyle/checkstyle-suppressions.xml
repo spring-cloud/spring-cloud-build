@@ -7,4 +7,6 @@
 	<suppress files=".*samples.*" checks="(Javadoc*|HideUtility*)" />
 	<suppress files="(.*Tests\.java|.*Tests\.groovy)" checks="Javadoc*" />
 	<suppress files="generated-sources" checks="[a-zA-Z0-9]*" />
+	<suppress files=".*OkHttpRibbonResponse\.java" checks="IllegalImportCheck"/>
+	<suppress files=".*RibbonApacheHttpResponse\.java" checks="IllegalImportCheck"/>
 </suppressions>
