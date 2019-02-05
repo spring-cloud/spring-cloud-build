@@ -10,8 +10,4 @@
 	<suppress files="generated-sources" checks="[a-zA-Z0-9]*" />
 	<suppress files=".*target.*" checks="[a-zA-Z0-9]*" />
 	<suppress files=".*build.*" checks="[a-zA-Z0-9]*" />
-
-	<!-- Spring Cloud Netflix -->
-	<suppress files=".*OkHttpRibbonResponse\.java" checks="IllegalImportCheck"/>
-	<suppress files=".*RibbonApacheHttpResponse\.java" checks="IllegalImportCheck"/>
 </suppressions>
