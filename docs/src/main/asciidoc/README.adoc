@@ -38,6 +38,87 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 (the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).
 
+== Checkstyle
+
+Spring Cloud Build comes with a set of checkstyle rules. You can find them in the `spring-cloud-build-tools` module. The most notable files under the module are:
+
+.spring-cloud-build-tools/
+----
+└── src
+    ├── checkstyle
+    │   └── checkstyle-suppressions.xml <3>
+    └── main
+        └── resources
+            ├── checkstyle-header.txt <2>
+            ├── checkstyle.xml <1>
+            └── intellij
+                ├── Intellij_Project_Defaults.xml <4>
+                └── Intellij_Spring_Boot_Java_Conventions.xml <5>
+----
+<1> Default Checkstyle rules
+<2> File header setup
+<3> Default suppression rules
+<4> Project defaults for Intellij that apply most of Checkstyle rules
+<5> Project style conventions for Intellij that apply most of Checkstyle rules
+
+=== Checkstyle configuration
+
+Checkstyle rules are *disabled by deafult*. To add checkstyle to your project just define the following properties and plugins.
+
+.pom.xml
+----
+<properties>
+<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError> <1>
+        <maven-checkstyle-plugin.failsOnViolation>true
+        </maven-checkstyle-plugin.failsOnViolation> <2>
+        <maven-checkstyle-plugin.includeTestSourceDirectory>true
+        </maven-checkstyle-plugin.includeTestSourceDirectory> <3>
+</properties>
+
+<build>
+        <plugins>
+            <plugin> <4>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+            <plugin> <5>
+                <groupId>io.spring.javaformat</groupId>
+                <artifactId>spring-javaformat-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin> <4>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
+</build>
+----
+<1> Fails the build upon Checkstyle errors
+<2> Fails the build upon Checkstyle violations
+<3> Checkstyle analyzes also the test sources
+<4> Add checkstyle plugin to your build and reporting phases
+<5> Add the Spring Java Format plugin that will reformat your code to pass most of the Checkstyle formatting rules
+
+If you need to suppress some rules (e.g. line length needs to be longer), then it's enough for you to define a file under `${project.root}/src/checkstyle/checkstyle-suppressions.xml` with your suppressions. Example:
+
+.projectRoot/src/checkstyle/checkstyle-suppresions.xml
+----
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+		"-//Puppy Crawl//DTD Suppressions 1.1//EN"
+		"http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+	<suppress files=".*ConfigServerApplication\.java" checks="HideUtilityClassConstructor"/>
+	<suppress files=".*ConfigClientWatch\.java" checks="LineLengthCheck"/>
+</suppressions>
+----
+
+
 == Contributing
 
 include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/docs/src/main/asciidoc/contributing.adoc[]
