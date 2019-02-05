@@ -31,6 +31,112 @@ to use for plugin and dependency management.</simpara>
 <screen>$ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging::default::https://oss.sonatype.org/service/local/staging/deploy/maven2</screen>
 <simpara>(the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).</simpara>
 </chapter>
+<chapter xml:id="_checkstyle">
+<title>Checkstyle</title>
+<simpara>Spring Cloud Build comes with a set of checkstyle rules. You can find them in the <literal>spring-cloud-build-tools</literal> module. The most notable files under the module are:</simpara>
+<formalpara>
+<title>spring-cloud-build-tools/</title>
+<para>
+<screen>└── src
+    ├── checkstyle
+    │   └── checkstyle-suppressions.xml <co xml:id="CO1-1"/>
+    └── main
+        └── resources
+            ├── checkstyle-header.txt <co xml:id="CO1-2"/>
+            ├── checkstyle.xml <co xml:id="CO1-3"/>
+            └── intellij
+                ├── Intellij_Project_Defaults.xml <co xml:id="CO1-4"/>
+                └── Intellij_Spring_Boot_Java_Conventions.xml <co xml:id="CO1-5"/></screen>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO1-3">
+<para>Default Checkstyle rules</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>File header setup</para>
+</callout>
+<callout arearefs="CO1-1">
+<para>Default suppression rules</para>
+</callout>
+<callout arearefs="CO1-4">
+<para>Project defaults for Intellij that apply most of Checkstyle rules</para>
+</callout>
+<callout arearefs="CO1-5">
+<para>Project style conventions for Intellij that apply most of Checkstyle rules</para>
+</callout>
+</calloutlist>
+<section xml:id="_checkstyle_configuration">
+<title>Checkstyle configuration</title>
+<simpara>Checkstyle rules are <emphasis role="strong">disabled by deafult</emphasis>. To add checkstyle to your project just define the following properties and plugins.</simpara>
+<formalpara>
+<title>pom.xml</title>
+<para>
+<screen>&lt;properties&gt;
+&lt;maven-checkstyle-plugin.failsOnError&gt;true&lt;/maven-checkstyle-plugin.failsOnError&gt; <co xml:id="CO2-1"/>
+        &lt;maven-checkstyle-plugin.failsOnViolation&gt;true
+        &lt;/maven-checkstyle-plugin.failsOnViolation&gt; <co xml:id="CO2-2"/>
+        &lt;maven-checkstyle-plugin.includeTestSourceDirectory&gt;true
+        &lt;/maven-checkstyle-plugin.includeTestSourceDirectory&gt; <co xml:id="CO2-3"/>
+&lt;/properties&gt;
+
+&lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt; <co xml:id="CO2-4"/>
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt; <co xml:id="CO2-5"/>
+                &lt;groupId&gt;io.spring.javaformat&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-javaformat-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+    &lt;reporting&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt; <co xml:id="CO2-6"/>
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/reporting&gt;
+&lt;/build&gt;</screen>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO2-1">
+<para>Fails the build upon Checkstyle errors</para>
+</callout>
+<callout arearefs="CO2-2">
+<para>Fails the build upon Checkstyle violations</para>
+</callout>
+<callout arearefs="CO2-3">
+<para>Checkstyle analyzes also the test sources</para>
+</callout>
+<callout arearefs="CO2-4 CO2-6">
+<para>Add checkstyle plugin to your build and reporting phases</para>
+</callout>
+<callout arearefs="CO2-5">
+<para>Add the Spring Java Format plugin that will reformat your code to pass most of the Checkstyle formatting rules</para>
+</callout>
+</calloutlist>
+<simpara>If you need to suppress some rules (e.g. line length needs to be longer), then it&#8217;s enough for you to define a file under <literal>${project.root}/src/checkstyle/checkstyle-suppressions.xml</literal> with your suppressions. Example:</simpara>
+<formalpara>
+<title>projectRoot/src/checkstyle/checkstyle-suppresions.xml</title>
+<para>
+<screen>&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+		"-//Puppy Crawl//DTD Suppressions 1.1//EN"
+		"http://www.puppycrawl.com/dtds/suppressions_1_1.dtd"&gt;
+&lt;suppressions&gt;
+	&lt;suppress files=".*ConfigServerApplication\.java" checks="HideUtilityClassConstructor"/&gt;
+	&lt;suppress files=".*ConfigClientWatch\.java" checks="LineLengthCheck"/&gt;
+&lt;/suppressions&gt;</screen>
+</para>
+</formalpara>
+</section>
+</chapter>
 <chapter xml:id="_contributing">
 <title>Contributing</title>
 <simpara>Spring Cloud is released under the non-restrictive Apache 2.0 license,
@@ -111,15 +217,15 @@ approach of generating documentation just add these plugins to your <literal>doc
 				&lt;plugins&gt;
 					&lt;plugin&gt;
 						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt; <co xml:id="CO1-1"/>
+						&lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt; <co xml:id="CO3-1"/>
 					&lt;/plugin&gt;
 					&lt;plugin&gt;
 						&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
-						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <co xml:id="CO1-2"/>
+						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <co xml:id="CO3-2"/>
 					&lt;/plugin&gt;
 					&lt;plugin&gt;
 						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <co xml:id="CO1-3"/>
+						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <co xml:id="CO3-3"/>
 						&lt;inherited&gt;false&lt;/inherited&gt;
 					&lt;/plugin&gt;
 				&lt;/plugins&gt;
@@ -127,13 +233,13 @@ approach of generating documentation just add these plugins to your <literal>doc
 		&lt;/profile&gt;
 	&lt;/profiles&gt;</programlisting>
 <calloutlist>
-<callout arearefs="CO1-1">
+<callout arearefs="CO3-1">
 <para>This plugin downloads and unpacks the resources of the <literal>spring-cloud-build-docs</literal> module</para>
 </callout>
-<callout arearefs="CO1-2">
+<callout arearefs="CO3-2">
 <para>This plugin is required to parse the Asciidoctor documentation</para>
 </callout>
-<callout arearefs="CO1-3">
+<callout arearefs="CO3-3">
 <para>This plugin is required to copy resources into proper final destinations and to generate main README.adoc</para>
 </callout>
 </calloutlist>
