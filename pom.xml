@@ -70,6 +70,7 @@
 		</maven-checkstyle-plugin.includeTestSourceDirectory>
 		<spring-cloud-build-checkstyle.branch>master</spring-cloud-build-checkstyle.branch>
 		<checkstyle.suppressions.file>https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/checkstyle-suppressions.xml</checkstyle.suppressions.file>
+		<checkstyle.additional.suppressions.file>override me if necessary</checkstyle.additional.suppressions.file>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -338,7 +339,8 @@ limitations under the License.
 								<configLocation>checkstyle.xml</configLocation>
 								<headerLocation>checkstyle-header.txt</headerLocation>
 								<propertyExpansion>checkstyle.build.directory=${project.build.directory}
-									checkstyle.suppressions.file=${checkstyle.suppressions.file}</propertyExpansion>
+									checkstyle.suppressions.file=${checkstyle.suppressions.file}
+									checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}</propertyExpansion>
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
 								<includeTestSourceDirectory>${maven-checkstyle-plugin.includeTestSourceDirectory}</includeTestSourceDirectory>

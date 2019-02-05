@@ -9,6 +9,11 @@
 		<property name="optional" value="true"/>
 	</module>
 
+	<module name="SuppressionFilter">
+		<property name="file" value="${checkstyle.additional.suppressions.file}"/>
+		<property name="optional" value="true"/>
+	</module>
+
 	<!-- TAKEN FROM SPRING BOOT -->
 	<!-- Root Checks -->
 	<module name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck">
