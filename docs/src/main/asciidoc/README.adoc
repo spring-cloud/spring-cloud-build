@@ -78,19 +78,19 @@ Checkstyle rules are *disabled by deafult*. To add checkstyle to your project ju
 <build>
         <plugins>
             <plugin> <4>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-            </plugin>
-            <plugin> <5>
                 <groupId>io.spring.javaformat</groupId>
                 <artifactId>spring-javaformat-maven-plugin</artifactId>
+            </plugin>
+            <plugin> <5>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
 
     <reporting>
         <plugins>
-            <plugin> <4>
+            <plugin> <5>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
@@ -101,8 +101,8 @@ Checkstyle rules are *disabled by deafult*. To add checkstyle to your project ju
 <1> Fails the build upon Checkstyle errors
 <2> Fails the build upon Checkstyle violations
 <3> Checkstyle analyzes also the test sources
-<4> Add checkstyle plugin to your build and reporting phases
-<5> Add the Spring Java Format plugin that will reformat your code to pass most of the Checkstyle formatting rules
+<4> Add the Spring Java Format plugin that will reformat your code to pass most of the Checkstyle formatting rules
+<5> Add checkstyle plugin to your build and reporting phases
 
 If you need to suppress some rules (e.g. line length needs to be longer), then it's enough for you to define a file under `${project.root}/src/checkstyle/checkstyle-suppressions.xml` with your suppressions. Example:
 
