@@ -23,12 +23,12 @@
 &lt;build&gt;
         &lt;plugins&gt;
             &lt;plugin&gt; <a name="CO2-4" href="#CO2-4"></a><span><img src="images/callouts/4.png" alt="4" border="0"></span>
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
-            &lt;/plugin&gt;
-            &lt;plugin&gt; <a name="CO2-5" href="#CO2-5"></a><span><img src="images/callouts/5.png" alt="5" border="0"></span>
                 &lt;groupId&gt;io.spring.javaformat&lt;/groupId&gt;
                 &lt;artifactId&gt;spring-javaformat-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt; <a name="CO2-5" href="#CO2-5"></a><span><img src="images/callouts/5.png" alt="5" border="0"></span>
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
             &lt;/plugin&gt;
         &lt;/plugins&gt;
     &lt;/build&gt;
@@ -42,7 +42,7 @@
         &lt;/plugins&gt;
     &lt;/reporting&gt;
 &lt;/build&gt;</pre><p>
-</p><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-1"><span><img src="images/callouts/1.png" alt="1" border="0"></span></a> </p></td><td valign="top" align="left"><p>Fails the build upon Checkstyle errors</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-2"><span><img src="images/callouts/2.png" alt="2" border="0"></span></a> </p></td><td valign="top" align="left"><p>Fails the build upon Checkstyle violations</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-3"><span><img src="images/callouts/3.png" alt="3" border="0"></span></a> </p></td><td valign="top" align="left"><p>Checkstyle analyzes also the test sources</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-4"><span><img src="images/callouts/4.png" alt="4" border="0"></span></a> <a href="#CO2-6"><span><img src="images/callouts/6.png" alt="6" border="0"></span></a> </p></td><td valign="top" align="left"><p>Add checkstyle plugin to your build and reporting phases</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-5"><span><img src="images/callouts/5.png" alt="5" border="0"></span></a> </p></td><td valign="top" align="left"><p>Add the Spring Java Format plugin that will reformat your code to pass most of the Checkstyle formatting rules</p></td></tr></table></div><p>If you need to suppress some rules (e.g. line length needs to be longer), then it&#8217;s enough for you to define a file under <code class="literal">${project.root}/src/checkstyle/checkstyle-suppressions.xml</code> with your suppressions. Example:</p><p><b>projectRoot/src/checkstyle/checkstyle-suppresions.xml.&nbsp;</b>
+</p><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-1"><span><img src="images/callouts/1.png" alt="1" border="0"></span></a> </p></td><td valign="top" align="left"><p>Fails the build upon Checkstyle errors</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-2"><span><img src="images/callouts/2.png" alt="2" border="0"></span></a> </p></td><td valign="top" align="left"><p>Fails the build upon Checkstyle violations</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-3"><span><img src="images/callouts/3.png" alt="3" border="0"></span></a> </p></td><td valign="top" align="left"><p>Checkstyle analyzes also the test sources</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-4"><span><img src="images/callouts/4.png" alt="4" border="0"></span></a> </p></td><td valign="top" align="left"><p>Add the Spring Java Format plugin that will reformat your code to pass most of the Checkstyle formatting rules</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#CO2-5"><span><img src="images/callouts/5.png" alt="5" border="0"></span></a> <a href="#CO2-6"><span><img src="images/callouts/6.png" alt="6" border="0"></span></a> </p></td><td valign="top" align="left"><p>Add checkstyle plugin to your build and reporting phases</p></td></tr></table></div><p>If you need to suppress some rules (e.g. line length needs to be longer), then it&#8217;s enough for you to define a file under <code class="literal">${project.root}/src/checkstyle/checkstyle-suppressions.xml</code> with your suppressions. Example:</p><p><b>projectRoot/src/checkstyle/checkstyle-suppresions.xml.&nbsp;</b>
 </p><pre class="screen">&lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE suppressions PUBLIC
 		"-//Puppy Crawl//DTD Suppressions 1.1//EN"
