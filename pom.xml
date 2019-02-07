@@ -310,6 +310,40 @@ limitations under the License.
 					</configuration>
 				</plugin>
 				<plugin>
+					<groupId>io.spring.javaformat</groupId>
+					<artifactId>spring-javaformat-maven-plugin</artifactId>
+					<version>${spring-javaformat.version}</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<configuration>
+								<skip>${disable.checks}</skip>
+							</configuration>
+							<goals>
+								<goal>apply</goal>
+								<goal>validate</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>io.spring.javaformat</groupId>
+					<artifactId>spring-javaformat-maven-plugin</artifactId>
+					<version>${spring-javaformat.version}</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<configuration>
+								<skip>${disable.checks}</skip>
+							</configuration>
+							<goals>
+								<goal>apply</goal>
+								<goal>validate</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
 					<version>${maven-checkstyle-plugin.version}</version>
@@ -336,6 +370,7 @@ limitations under the License.
 							<phase>validate</phase>
 							<inherited>true</inherited>
 							<configuration>
+								<skip>${disable.checks}</skip>
 								<configLocation>checkstyle.xml</configLocation>
 								<headerLocation>checkstyle-header.txt</headerLocation>
 								<propertyExpansion>checkstyle.build.directory=${project.build.directory}
@@ -349,23 +384,6 @@ limitations under the License.
 							</configuration>
 							<goals>
 								<goal>check</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>io.spring.javaformat</groupId>
-					<artifactId>spring-javaformat-maven-plugin</artifactId>
-					<version>${spring-javaformat.version}</version>
-					<executions>
-						<execution>
-							<phase>validate</phase>
-							<configuration>
-								<skip>${disable.checks}</skip>
-							</configuration>
-							<goals>
-								<goal>apply</goal>
-								<goal>validate</goal>
 							</goals>
 						</execution>
 					</executions>
