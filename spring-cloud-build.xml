@@ -68,7 +68,7 @@ to use for plugin and dependency management.</simpara>
 </calloutlist>
 <section xml:id="_checkstyle_configuration">
 <title>Checkstyle configuration</title>
-<simpara>Checkstyle rules are <emphasis role="strong">disabled by deafult</emphasis>. To add checkstyle to your project just define the following properties and plugins.</simpara>
+<simpara>Checkstyle rules are <emphasis role="strong">disabled by default</emphasis>. To add checkstyle to your project just define the following properties and plugins.</simpara>
 <formalpara>
 <title>pom.xml</title>
 <para>
@@ -135,6 +135,7 @@ to use for plugin and dependency management.</simpara>
 &lt;/suppressions&gt;</screen>
 </para>
 </formalpara>
+<simpara>It&#8217;s advisable to copy the <literal>${spring-cloud-build.rootFolder}/.editorconfig</literal> and <literal>${spring-cloud-build.rootFolder}/.springformat</literal> to your project. That way, some default formatting rules will be applied.</simpara>
 </section>
 </chapter>
 <chapter xml:id="_contributing">
