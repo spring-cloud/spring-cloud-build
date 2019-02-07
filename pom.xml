@@ -327,23 +327,6 @@ limitations under the License.
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>io.spring.javaformat</groupId>
-					<artifactId>spring-javaformat-maven-plugin</artifactId>
-					<version>${spring-javaformat.version}</version>
-					<executions>
-						<execution>
-							<phase>validate</phase>
-							<configuration>
-								<skip>${disable.checks}</skip>
-							</configuration>
-							<goals>
-								<goal>apply</goal>
-								<goal>validate</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
 					<version>${maven-checkstyle-plugin.version}</version>
