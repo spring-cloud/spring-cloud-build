@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
@@ -7,7 +8,9 @@
 	<version>2.1.3.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Parent</name>
-	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring Cloud projects</description>
+	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring
+		Cloud projects
+	</description>
 	<modules>
 		<module>docs</module>
 		<module>spring-cloud-build-dependencies</module>
@@ -17,7 +20,8 @@
 	<url>https://spring.io/spring-cloud</url>
 	<properties>
 		<java.version>1.8</java.version>
-		<resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
+		<resource.delimiter>@
+		</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -31,7 +35,8 @@
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec
+		</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
 
 		<!-- Plugins -->
@@ -68,9 +73,14 @@
 		</maven-checkstyle-plugin.failOnViolation>
 		<maven-checkstyle-plugin.includeTestSourceDirectory>false
 		</maven-checkstyle-plugin.includeTestSourceDirectory>
-		<spring-cloud-build-checkstyle.branch>master</spring-cloud-build-checkstyle.branch>
-		<checkstyle.suppressions.file>https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/checkstyle-suppressions.xml</checkstyle.suppressions.file>
-		<checkstyle.additional.suppressions.file>${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml</checkstyle.additional.suppressions.file>
+		<spring-cloud-build-checkstyle.branch>master
+		</spring-cloud-build-checkstyle.branch>
+		<checkstyle.suppressions.file>
+			https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/checkstyle-suppressions.xml
+		</checkstyle.suppressions.file>
+		<checkstyle.additional.suppressions.file>
+			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
+		</checkstyle.additional.suppressions.file>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -92,28 +102,31 @@
 			<name>Apache License, Version 2.0</name>
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<comments>
-Copyright 2014-2015 the original author or authors.
+				Copyright 2014-2015 the original author or authors.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+				Licensed under the Apache License, Version 2.0 (the "License");
+				you may not use this file except in compliance with the License.
+				You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+				http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied.
+				Unless required by applicable law or agreed to in writing, software
+				distributed under the License is distributed on an "AS IS" BASIS,
+				WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+				implied.
 
-See the License for the specific language governing permissions and
-limitations under the License.
+				See the License for the specific language governing permissions and
+				limitations under the License.
 			</comments>
 		</license>
 	</licenses>
 	<scm>
 		<url>https://github.com/spring-cloud/spring-cloud-build</url>
-		<connection>scm:git:git://github.com/spring-cloud/spring-cloud-build.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/spring-cloud/spring-cloud-build.git</developerConnection>
+		<connection>scm:git:git://github.com/spring-cloud/spring-cloud-build.git
+		</connection>
+		<developerConnection>
+			scm:git:ssh://git@github.com/spring-cloud/spring-cloud-build.git
+		</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<developers>
@@ -252,7 +265,8 @@ limitations under the License.
 						<archive>
 							<manifest>
 								<mainClass>${start-class}</mainClass>
-								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultImplementationEntries>true
+								</addDefaultImplementationEntries>
 							</manifest>
 						</archive>
 					</configuration>
@@ -285,7 +299,8 @@ limitations under the License.
 						<archive>
 							<manifest>
 								<mainClass>${start-class}</mainClass>
-								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultImplementationEntries>true
+								</addDefaultImplementationEntries>
 							</manifest>
 						</archive>
 					</configuration>
@@ -356,14 +371,21 @@ limitations under the License.
 								<skip>${disable.checks}</skip>
 								<configLocation>checkstyle.xml</configLocation>
 								<headerLocation>checkstyle-header.txt</headerLocation>
-								<propertyExpansion>checkstyle.build.directory=${project.build.directory}
+								<propertyExpansion>
+									checkstyle.build.directory=${project.build.directory}
 									checkstyle.suppressions.file=${checkstyle.suppressions.file}
-									checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}</propertyExpansion>
+									checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}
+								</propertyExpansion>
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
-								<includeTestSourceDirectory>${maven-checkstyle-plugin.includeTestSourceDirectory}</includeTestSourceDirectory>
-								<failsOnError>${maven-checkstyle-plugin.failsOnError}</failsOnError>
-								<failOnViolation>${maven-checkstyle-plugin.failOnViolation}</failOnViolation>
+								<includeTestSourceDirectory>
+									${maven-checkstyle-plugin.includeTestSourceDirectory}
+								</includeTestSourceDirectory>
+								<failsOnError>${maven-checkstyle-plugin.failsOnError}
+								</failsOnError>
+								<failOnViolation>
+									${maven-checkstyle-plugin.failOnViolation}
+								</failOnViolation>
 							</configuration>
 							<goals>
 								<goal>check</goal>
@@ -386,7 +408,9 @@ limitations under the License.
 						<verbose>true</verbose>
 						<dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
 						<generateGitPropertiesFile>true</generateGitPropertiesFile>
-						<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+						<generateGitPropertiesFilename>
+							${project.build.outputDirectory}/git.properties
+						</generateGitPropertiesFilename>
 					</configuration>
 				</plugin>
 				<!-- Support our own plugin -->
@@ -418,7 +442,8 @@ limitations under the License.
 						</dependency>
 					</dependencies>
 					<configuration>
-						<keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
+						<keepDependenciesWithProvidedScope>true
+						</keepDependenciesWithProvidedScope>
 						<createDependencyReducedPom>true</createDependencyReducedPom>
 						<filters>
 							<filter>
@@ -439,17 +464,22 @@ limitations under the License.
 							</goals>
 							<configuration>
 								<transformers>
-									<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 										<resource>META-INF/spring.handlers</resource>
 									</transformer>
-									<transformer implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+									<transformer
+											implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
 										<resource>META-INF/spring.factories</resource>
 									</transformer>
-									<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 										<resource>META-INF/spring.schemas</resource>
 									</transformer>
-									<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-									<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 										<mainClass>${start-class}</mainClass>
 									</transformer>
 								</transformers>
@@ -514,7 +544,9 @@ limitations under the License.
 		<downloadUrl>https://github.com/spring-cloud</downloadUrl>
 		<site>
 			<id>spring-docs</id>
-			<url>scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}</url>
+			<url>
+				scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}
+			</url>
 		</site>
 		<repository>
 			<id>sonatype-nexus-staging</id>
@@ -605,7 +637,9 @@ limitations under the License.
 				<repository>
 					<id>bintray</id>
 					<name>Jcenter Repository</name>
-					<url>https://api.bintray.com/maven/spring/jars/org.springframework.cloud:${bintray.package}</url>
+					<url>
+						https://api.bintray.com/maven/spring/jars/org.springframework.cloud:${bintray.package}
+					</url>
 				</repository>
 			</distributionManagement>
 		</profile>
@@ -715,13 +749,17 @@ limitations under the License.
 									<configuration>
 										<artifactItems>
 											<artifactItem>
-												<groupId>org.springframework.cloud</groupId>
-												<artifactId>spring-cloud-build-docs</artifactId>
-												<version>${spring-cloud-build.version}</version>
+												<groupId>org.springframework.cloud
+												</groupId>
+												<artifactId>spring-cloud-build-docs
+												</artifactId>
+												<version>${spring-cloud-build.version}
+												</version>
 												<classifier>sources</classifier>
 												<type>jar</type>
 												<overWrite>false</overWrite>
-												<outputDirectory>${docs.resources.dir}</outputDirectory>
+												<outputDirectory>${docs.resources.dir}
+												</outputDirectory>
 											</artifactItem>
 										</artifactItems>
 									</configuration>
@@ -747,13 +785,17 @@ limitations under the License.
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+										<sourceDocumentName>${docs.main}.adoc
+										</sourceDocumentName>
 										<backend>docbook5</backend>
 										<doctype>book</doctype>
 										<attributes>
 											<docinfo>true</docinfo>
-											<spring-boot-docs-version>${spring-boot.version}</spring-boot-docs-version>
-											<spring-cloud-version>${project.version}</spring-cloud-version>
+											<spring-boot-docs-version>
+												${spring-boot.version}
+											</spring-boot-docs-version>
+											<spring-cloud-version>${project.version}
+											</spring-cloud-version>
 											<allow-uri-read>true</allow-uri-read>
 											<safe-mode>unsafe</safe-mode>
 										</attributes>
@@ -766,16 +808,21 @@ limitations under the License.
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
-										<sourceDirectory>${basedir}/target/generated-index/</sourceDirectory>
+										<sourceDocumentName>${docs.main}.adoc
+										</sourceDocumentName>
+										<sourceDirectory>
+											${basedir}/target/generated-index/
+										</sourceDirectory>
 										<backend>html</backend>
 										<doctype>article</doctype>
 										<attributes>
 											<docinfo>true</docinfo>
-											<spring-cloud-version>${project.version}</spring-cloud-version>
+											<spring-cloud-version>${project.version}
+											</spring-cloud-version>
 											<allow-uri-read>true</allow-uri-read>
 											<safe-mode>unsafe</safe-mode>
-											<source-highlighter>prettify</source-highlighter>
+											<source-highlighter>prettify
+											</source-highlighter>
 											<docs-main>${docs.main}</docs-main>
 										</attributes>
 									</configuration>
@@ -787,14 +834,19 @@ limitations under the License.
 							<artifactId>docbkx-maven-plugin</artifactId>
 							<version>${docbkx-maven-plugin.version}</version>
 							<configuration>
-								<sourceDirectory>${basedir}/target/generated-docs</sourceDirectory>
+								<sourceDirectory>${basedir}/target/generated-docs
+								</sourceDirectory>
 								<includes>${docs.main}.xml</includes>
 								<xincludeSupported>true</xincludeSupported>
 								<chunkedOutput>false</chunkedOutput>
-								<foCustomization>${docs.resources.dir}/docbook/xsl/pdf.xsl</foCustomization>
+								<foCustomization>
+									${docs.resources.dir}/docbook/xsl/pdf.xsl
+								</foCustomization>
 								<useExtensions>1</useExtensions>
 								<highlightSource>1</highlightSource>
-								<highlightXslthlConfig>${docs.resources.dir}/docbook/xsl/xslthl-config.xml</highlightXslthlConfig>
+								<highlightXslthlConfig>
+									${docs.resources.dir}/docbook/xsl/xslthl-config.xml
+								</highlightXslthlConfig>
 							</configuration>
 							<dependencies>
 								<dependency>
@@ -819,20 +871,26 @@ limitations under the License.
 									</goals>
 									<phase>prepare-package</phase>
 									<configuration>
-										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-singlepage.xsl</htmlCustomization>
-										<targetDirectory>${basedir}/target/docbook/htmlsingle</targetDirectory>
+										<htmlCustomization>
+											${docs.resources.dir}/docbook/xsl/html-singlepage.xsl
+										</htmlCustomization>
+										<targetDirectory>
+											${basedir}/target/docbook/htmlsingle
+										</targetDirectory>
 										<postProcess>
 											<copy todir="${basedir}/target/contents/reference/htmlsingle">
-												<fileset dir="${basedir}/target/docbook/htmlsingle">
-													<include name="**/*.html" />
+												<fileset
+														dir="${basedir}/target/docbook/htmlsingle">
+													<include name="**/*.html"/>
 												</fileset>
 											</copy>
 											<copy todir="${basedir}/target/contents/reference/htmlsingle">
-												<fileset dir="${docs.resources.dir}/docbook">
-													<include name="**/*.css" />
-													<include name="**/*.png" />
-													<include name="**/*.gif" />
-													<include name="**/*.jpg" />
+												<fileset
+														dir="${docs.resources.dir}/docbook">
+													<include name="**/*.css"/>
+													<include name="**/*.png"/>
+													<include name="**/*.gif"/>
+													<include name="**/*.jpg"/>
 												</fileset>
 											</copy>
 										</postProcess>
@@ -845,23 +903,29 @@ limitations under the License.
 									</goals>
 									<phase>prepare-package</phase>
 									<configuration>
-										<htmlCustomization>${docs.resources.dir}/docbook/xsl/html-multipage.xsl</htmlCustomization>
-										<targetDirectory>${basedir}/target/docbook/html</targetDirectory>
+										<htmlCustomization>
+											${docs.resources.dir}/docbook/xsl/html-multipage.xsl
+										</htmlCustomization>
+										<targetDirectory>${basedir}/target/docbook/html
+										</targetDirectory>
 										<!-- By default `-` prefix is added to files and gh-pages don't render these files -->
-										<chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
+										<chunkedFilenamePrefix>multi_
+										</chunkedFilenamePrefix>
 										<chunkedOutput>true</chunkedOutput>
 										<postProcess>
 											<copy todir="${basedir}/target/contents/reference/html">
-												<fileset dir="${basedir}/target/docbook/html">
-													<include name="**/*.html" />
+												<fileset
+														dir="${basedir}/target/docbook/html">
+													<include name="**/*.html"/>
 												</fileset>
 											</copy>
 											<copy todir="${basedir}/target/contents/reference/html">
-												<fileset dir="${docs.resources.dir}/docbook">
-													<include name="**/*.css" />
-													<include name="**/*.png" />
-													<include name="**/*.gif" />
-													<include name="**/*.jpg" />
+												<fileset
+														dir="${docs.resources.dir}/docbook">
+													<include name="**/*.css"/>
+													<include name="**/*.png"/>
+													<include name="**/*.gif"/>
+													<include name="**/*.jpg"/>
 												</fileset>
 											</copy>
 										</postProcess>
@@ -921,7 +985,8 @@ limitations under the License.
 									</goals>
 									<configuration>
 										<target>
-											<java classname="org.jruby.Main" failonerror="yes">
+											<java classname="org.jruby.Main"
+												  failonerror="yes">
 												<arg value="${docs.resources.dir}/ruby/generate_readme.sh"/>
 												<arg value="-o"/>
 												<arg value="${main.basedir}/README.adoc"/>
@@ -938,10 +1003,13 @@ limitations under the License.
 									<configuration>
 										<target>
 											<copy todir="${basedir}/target/generated-docs/css">
-												<fileset dir="${docs.resources.dir}/docbook/css"/>
+												<fileset
+														dir="${docs.resources.dir}/docbook/css"/>
 											</copy>
-											<copy failonerror="false" todir="${basedir}/target/generated-docs/images">
-												<fileset dir="${docs.resources.dir}/docbook/images"/>
+											<copy failonerror="false"
+												  todir="${basedir}/target/generated-docs/images">
+												<fileset
+														dir="${docs.resources.dir}/docbook/images"/>
 											</copy>
 										</target>
 									</configuration>
@@ -955,19 +1023,21 @@ limitations under the License.
 									<configuration>
 										<target>
 											<echo file="${basedir}/target/generated-index/${docs.main}.adoc">
-:nofooter:
-:linkcss:
-:stylesdir: css
-:stylesheet: manual-singlepage.css
+												:nofooter:
+												:linkcss:
+												:stylesdir: css
+												:stylesheet: manual-singlepage.css
 
-= {docs-main}
+												= {docs-main}
 
-{spring-cloud-version}
+												{spring-cloud-version}
 
-== Pick The Documentation Option
+												== Pick The Documentation Option
 
-- link:single/{docs-main}.html[Single HTML]
-- link:multi/multi_{docs-main}.html[Multi HTML]
+												- link:single/{docs-main}.html[Single
+												HTML]
+												- link:multi/multi_{docs-main}.html[Multi
+												HTML]
 											</echo>
 										</target>
 									</configuration>
@@ -981,10 +1051,12 @@ limitations under the License.
 									<configuration>
 										<target>
 											<copy todir="${basedir}/target/generated-docs/single">
-												<fileset dir="${basedir}/target/contents/reference/htmlsingle"/>
+												<fileset
+														dir="${basedir}/target/contents/reference/htmlsingle"/>
 											</copy>
 											<copy todir="${basedir}/target/generated-docs/multi">
-												<fileset dir="${basedir}/target/contents/reference/html"/>
+												<fileset
+														dir="${basedir}/target/contents/reference/html"/>
 											</copy>
 										</target>
 									</configuration>
@@ -997,12 +1069,16 @@ limitations under the License.
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/contents/reference/" includes="**/*.html">
+											<fileset id="unresolved.file"
+													 dir="${basedir}/target/contents/reference/"
+													 includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
 											<fail message="[Unresolved] Found...failing">
 												<condition>
-													<resourcecount when="greater" count="0" refid="unresolved.file" />
+													<resourcecount when="greater"
+																   count="0"
+																   refid="unresolved.file"/>
 												</condition>
 											</fail>
 										</target>
@@ -1017,27 +1093,43 @@ limitations under the License.
 									<configuration>
 										<exportAntProperties>true</exportAntProperties>
 										<target>
-											<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
-											<taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask"/>
-											<var name="version-type" value="${project.version}"/>
+											<taskdef
+													resource="net/sf/antcontrib/antcontrib.properties"/>
+											<taskdef name="stringutil"
+													 classname="ise.antelope.tasks.StringUtilTask"/>
+											<var name="version-type"
+												 value="${project.version}"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp=".*\.(.*)"
-														   replace="\1" />
+														   override="true"
+														   input="${version-type}"
+														   regexp=".*\.(.*)"
+														   replace="\1"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp="(M)\d+"
-														   replace="MILESTONE" />
+														   override="true"
+														   input="${version-type}"
+														   regexp="(M)\d+"
+														   replace="MILESTONE"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp="(RC)\d+"
-														   replace="MILESTONE" />
+														   override="true"
+														   input="${version-type}"
+														   regexp="(RC)\d+"
+														   replace="MILESTONE"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp="BUILD-(.*)"
-														   replace="SNAPSHOT" />
-											<stringutil string="${version-type}" property="spring-cloud-repo">
+														   override="true"
+														   input="${version-type}"
+														   regexp="BUILD-(.*)"
+														   replace="SNAPSHOT"/>
+											<stringutil string="${version-type}"
+														property="spring-cloud-repo">
 												<lowercase/>
 											</stringutil>
-											<var name="github-tag" value="v${project.version}"/>
-											<propertyregex property="github-tag" override="true"
-														   input="${github-tag}" regexp=".*SNAPSHOT" replace="master" />
+											<var name="github-tag"
+												 value="v${project.version}"/>
+											<propertyregex property="github-tag"
+														   override="true"
+														   input="${github-tag}"
+														   regexp=".*SNAPSHOT"
+														   replace="master"/>
 										</target>
 									</configuration>
 								</execution>
@@ -1059,9 +1151,11 @@ limitations under the License.
 											<zip.type>docs</zip.type>
 										</deployProperties>
 										<publisher>
-											<contextUrl>https://repo.spring.io</contextUrl>
+											<contextUrl>https://repo.spring.io
+											</contextUrl>
 											<repoKey>libs-release-local</repoKey>
-											<snapshotRepoKey>libs-snapshots-local</snapshotRepoKey>
+											<snapshotRepoKey>libs-snapshots-local
+											</snapshotRepoKey>
 										</publisher>
 									</configuration>
 								</execution>

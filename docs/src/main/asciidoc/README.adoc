@@ -63,7 +63,7 @@ Spring Cloud Build comes with a set of checkstyle rules. You can find them in th
 
 === Checkstyle configuration
 
-Checkstyle rules are *disabled by deafult*. To add checkstyle to your project just define the following properties and plugins.
+Checkstyle rules are *disabled by default*. To add checkstyle to your project just define the following properties and plugins.
 
 .pom.xml
 ----
@@ -117,6 +117,8 @@ If you need to suppress some rules (e.g. line length needs to be longer), then i
 	<suppress files=".*ConfigClientWatch\.java" checks="LineLengthCheck"/>
 </suppressions>
 ----
+
+It's advisable to copy the `${spring-cloud-build.rootFolder}/.editorconfig` and `${spring-cloud-build.rootFolder}/.springformat` to your project. That way, some default formatting rules will be applied.
 
 
 == Contributing
