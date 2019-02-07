@@ -1,4 +1,4 @@
-<code_scheme name="Spring Boot Java Conventions" version="173">
+<code_scheme name="Spring Boot Java Conventions NEW" version="173">
   <option name="OTHER_INDENT_OPTIONS">
     <value>
       <option name="USE_TAB_CHARACTER" value="true" />
@@ -49,8 +49,10 @@
   </JavaCodeStyleSettings>
   <codeStyleSettings language="Groovy">
     <option name="ELSE_ON_NEW_LINE" value="true" />
+    <option name="WHILE_ON_NEW_LINE" value="true" />
     <option name="CATCH_ON_NEW_LINE" value="true" />
     <option name="FINALLY_ON_NEW_LINE" value="true" />
+    <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
     <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
     <indentOptions>
       <option name="USE_TAB_CHARACTER" value="true" />
