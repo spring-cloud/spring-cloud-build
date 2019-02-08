@@ -50,12 +50,29 @@
 		<option name="ENABLE_JAVADOC_FORMATTING" value="false"/>
 	</JavaCodeStyleSettings>
 	<codeStyleSettings language="Groovy">
+		<option name="RIGHT_MARGIN" value="120"/>
 		<option name="ELSE_ON_NEW_LINE" value="true"/>
 		<option name="WHILE_ON_NEW_LINE" value="true"/>
 		<option name="CATCH_ON_NEW_LINE" value="true"/>
 		<option name="FINALLY_ON_NEW_LINE" value="true"/>
 		<option name="ALIGN_MULTILINE_PARAMETERS" value="false"/>
+		<option name="IF_BRACE_FORCE" value="3"/>
+		<option name="WHILE_BRACE_FORCE" value="3"/>
+		<option name="FOR_BRACE_FORCE" value="3"/>
+		<option name="WRAP_ON_TYPING" value="0"/>
+		<option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1"/>
+		<option name="ELSE_ON_NEW_LINE" value="true"/>
+		<option name="WHILE_ON_NEW_LINE" value="true"/>
+		<option name="CATCH_ON_NEW_LINE" value="true"/>
+		<option name="FINALLY_ON_NEW_LINE" value="true"/>
+		<option name="INDENT_CASE_FROM_SWITCH" value="false"/>
+		<option name="ALIGN_MULTILINE_PARAMETERS" value="false"/>
+		<option name="SPACE_WITHIN_BRACES" value="true"/>
+		<option name="SPACE_BEFORE_ARRAY_INITIALIZER_LBRACE" value="true"/>
 		<option name="METHOD_CALL_CHAIN_WRAP" value="1"/>
+		<option name="BINARY_OPERATION_SIGN_ON_NEXT_LINE" value="true"/>
+		<option name="KEEP_SIMPLE_CLASSES_IN_ONE_LINE" value="true"/>
+		<option name="KEEP_MULTIPLE_EXPRESSIONS_IN_ONE_LINE" value="true"/>
 		<indentOptions>
 			<option name="USE_TAB_CHARACTER" value="true"/>
 			<option name="LABEL_INDENT_SIZE" value="4"/>
