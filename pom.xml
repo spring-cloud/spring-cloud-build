@@ -71,10 +71,10 @@
 		<spring-javaformat-checkstyle.version>0.0.6</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
 		<disable.checks>false</disable.checks>
-		<maven-checkstyle-plugin.failsOnError>false</maven-checkstyle-plugin.failsOnError>
-		<maven-checkstyle-plugin.failOnViolation>false
+		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
+		<maven-checkstyle-plugin.failOnViolation>true
 		</maven-checkstyle-plugin.failOnViolation>
-		<maven-checkstyle-plugin.includeTestSourceDirectory>false
+		<maven-checkstyle-plugin.includeTestSourceDirectory>true
 		</maven-checkstyle-plugin.includeTestSourceDirectory>
 		<spring-cloud-build-checkstyle.branch>master
 		</spring-cloud-build-checkstyle.branch>
