@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build</artifactId>
-	<version>2.1.0.BUILD-SNAPSHOT</version>
+	<version>2.2.0.BUILD-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Parent</name>
-	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring Cloud projects</description>
+	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring
+		Cloud projects
+	</description>
 	<modules>
 		<module>docs</module>
 		<module>spring-cloud-build-dependencies</module>
@@ -17,15 +20,16 @@
 	<url>https://spring.io/spring-cloud</url>
 	<properties>
 		<java.version>1.8</java.version>
-		<resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
+		<resource.delimiter>@
+		</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-		<spring-cloud-build.version>2.1.0.BUILD-SNAPSHOT</spring-cloud-build.version>
+		<spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+		<spring-cloud-build.version>2.2.0.BUILD-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<spring-doc-resources.version>0.1.0.RELEASE</spring-doc-resources.version>
 		<spring-asciidoctor-extensions.version>0.1.0.RELEASE
@@ -35,7 +39,8 @@
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec
+		</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
 
 		<!-- Plugins -->
@@ -66,6 +71,19 @@
 		<spring-javaformat-checkstyle.version>0.0.6</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
 		<disable.checks>false</disable.checks>
+		<maven-checkstyle-plugin.failsOnError>false</maven-checkstyle-plugin.failsOnError>
+		<maven-checkstyle-plugin.failOnViolation>false
+		</maven-checkstyle-plugin.failOnViolation>
+		<maven-checkstyle-plugin.includeTestSourceDirectory>false
+		</maven-checkstyle-plugin.includeTestSourceDirectory>
+		<spring-cloud-build-checkstyle.branch>master
+		</spring-cloud-build-checkstyle.branch>
+		<checkstyle.suppressions.file>
+			https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/checkstyle-suppressions.xml
+		</checkstyle.suppressions.file>
+		<checkstyle.additional.suppressions.file>
+			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
+		</checkstyle.additional.suppressions.file>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -107,8 +125,11 @@
 	</licenses>
 	<scm>
 		<url>https://github.com/spring-cloud/spring-cloud-build</url>
-		<connection>scm:git:git://github.com/spring-cloud/spring-cloud-build.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/spring-cloud/spring-cloud-build.git</developerConnection>
+		<connection>scm:git:git://github.com/spring-cloud/spring-cloud-build.git
+		</connection>
+		<developerConnection>
+			scm:git:ssh://git@github.com/spring-cloud/spring-cloud-build.git
+		</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<developers>
@@ -146,6 +167,16 @@
 			<id>rbaxter</id>
 			<name>Ryan Baxter</name>
 			<email>rbaxter at pivotal.io</email>
+			<organization>Pivotal Software, Inc.</organization>
+			<organizationUrl>http://www.spring.io</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>omaciaszeksharma</id>
+			<name>Olga Maciaszek-Sharma</name>
+			<email>omaciaszeksharma at pivotal.io</email>
 			<organization>Pivotal Software, Inc.</organization>
 			<organizationUrl>http://www.spring.io</organizationUrl>
 			<roles>
@@ -244,7 +275,8 @@
 						<archive>
 							<manifest>
 								<mainClass>${start-class}</mainClass>
-								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultImplementationEntries>true
+								</addDefaultImplementationEntries>
 							</manifest>
 						</archive>
 					</configuration>
@@ -277,7 +309,8 @@
 						<archive>
 							<manifest>
 								<mainClass>${start-class}</mainClass>
-								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultImplementationEntries>true
+								</addDefaultImplementationEntries>
 							</manifest>
 						</archive>
 					</configuration>
@@ -300,6 +333,23 @@
 						</delimiters>
 						<useDefaultDelimiters>false</useDefaultDelimiters>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>io.spring.javaformat</groupId>
+					<artifactId>spring-javaformat-maven-plugin</artifactId>
+					<version>${spring-javaformat.version}</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<configuration>
+								<skip>${disable.checks}</skip>
+							</configuration>
+							<goals>
+								<goal>apply</goal>
+								<goal>validate</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -328,34 +378,27 @@
 							<phase>validate</phase>
 							<inherited>true</inherited>
 							<configuration>
+								<skip>${disable.checks}</skip>
 								<configLocation>checkstyle.xml</configLocation>
 								<headerLocation>checkstyle-header.txt</headerLocation>
-								<propertyExpansion>checkstyle.build.directory=${project.build.directory}</propertyExpansion>
+								<propertyExpansion>
+									checkstyle.build.directory=${project.build.directory}
+									checkstyle.suppressions.file=${checkstyle.suppressions.file}
+									checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}
+								</propertyExpansion>
 								<consoleOutput>true</consoleOutput>
 								<!-- TODO: Start fixing the errors -->
-								<includeTestSourceDirectory>false</includeTestSourceDirectory>
-								<failsOnError>false</failsOnError>
-								<failOnViolation>false</failOnViolation>
+								<includeTestSourceDirectory>
+									${maven-checkstyle-plugin.includeTestSourceDirectory}
+								</includeTestSourceDirectory>
+								<failsOnError>${maven-checkstyle-plugin.failsOnError}
+								</failsOnError>
+								<failOnViolation>
+									${maven-checkstyle-plugin.failOnViolation}
+								</failOnViolation>
 							</configuration>
 							<goals>
 								<goal>check</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>io.spring.javaformat</groupId>
-					<artifactId>spring-javaformat-maven-plugin</artifactId>
-					<version>${spring-javaformat.version}</version>
-					<executions>
-						<execution>
-							<phase>validate</phase>
-							<configuration>
-								<skip>${disable.checks}</skip>
-							</configuration>
-							<goals>
-								<goal>apply</goal>
-								<goal>validate</goal>
 							</goals>
 						</execution>
 					</executions>
@@ -375,7 +418,9 @@
 						<verbose>true</verbose>
 						<dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
 						<generateGitPropertiesFile>true</generateGitPropertiesFile>
-						<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+						<generateGitPropertiesFilename>
+							${project.build.outputDirectory}/git.properties
+						</generateGitPropertiesFilename>
 					</configuration>
 				</plugin>
 				<!-- Support our own plugin -->
@@ -407,7 +452,8 @@
 						</dependency>
 					</dependencies>
 					<configuration>
-						<keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
+						<keepDependenciesWithProvidedScope>true
+						</keepDependenciesWithProvidedScope>
 						<createDependencyReducedPom>true</createDependencyReducedPom>
 						<filters>
 							<filter>
@@ -428,17 +474,22 @@
 							</goals>
 							<configuration>
 								<transformers>
-									<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 										<resource>META-INF/spring.handlers</resource>
 									</transformer>
-									<transformer implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+									<transformer
+											implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
 										<resource>META-INF/spring.factories</resource>
 									</transformer>
-									<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 										<resource>META-INF/spring.schemas</resource>
 									</transformer>
-									<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-									<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+									<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 										<mainClass>${start-class}</mainClass>
 									</transformer>
 								</transformers>
@@ -503,7 +554,9 @@
 		<downloadUrl>https://github.com/spring-cloud</downloadUrl>
 		<site>
 			<id>spring-docs</id>
-			<url>scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}</url>
+			<url>
+				scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}
+			</url>
 		</site>
 		<repository>
 			<id>sonatype-nexus-staging</id>
@@ -599,7 +652,9 @@
 				<repository>
 					<id>bintray</id>
 					<name>Jcenter Repository</name>
-					<url>https://api.bintray.com/maven/spring/jars/org.springframework.cloud:${bintray.package}</url>
+					<url>
+						https://api.bintray.com/maven/spring/jars/org.springframework.cloud:${bintray.package}
+					</url>
 				</repository>
 			</distributionManagement>
 		</profile>
@@ -709,13 +764,17 @@
 									<configuration>
 										<artifactItems>
 											<artifactItem>
-												<groupId>org.springframework.cloud</groupId>
-												<artifactId>spring-cloud-build-docs</artifactId>
-												<version>${spring-cloud-build.version}</version>
+												<groupId>org.springframework.cloud
+												</groupId>
+												<artifactId>spring-cloud-build-docs
+												</artifactId>
+												<version>${spring-cloud-build.version}
+												</version>
 												<classifier>sources</classifier>
 												<type>jar</type>
 												<overWrite>false</overWrite>
-												<outputDirectory>${docs.resources.dir}</outputDirectory>
+												<outputDirectory>${docs.resources.dir}
+												</outputDirectory>
 											</artifactItem>
 										</artifactItems>
 									</configuration>
@@ -869,7 +928,8 @@
 									</goals>
 									<configuration>
 										<target>
-											<java classname="org.jruby.Main" failonerror="yes">
+											<java classname="org.jruby.Main"
+												  failonerror="yes">
 												<arg value="${docs.resources.dir}/ruby/generate_readme.sh"/>
 												<arg value="-o"/>
 												<arg value="${main.basedir}/README.adoc"/>
@@ -890,7 +950,9 @@
 											</fileset>
 											<fail message="[Unresolved] Found...failing">
 												<condition>
-													<resourcecount when="greater" count="0" refid="unresolved.file" />
+													<resourcecount when="greater"
+																   count="0"
+																   refid="unresolved.file"/>
 												</condition>
 											</fail>
 										</target>
@@ -905,27 +967,43 @@
 									<configuration>
 										<exportAntProperties>true</exportAntProperties>
 										<target>
-											<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
-											<taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask"/>
-											<var name="version-type" value="${project.version}"/>
+											<taskdef
+													resource="net/sf/antcontrib/antcontrib.properties"/>
+											<taskdef name="stringutil"
+													 classname="ise.antelope.tasks.StringUtilTask"/>
+											<var name="version-type"
+												 value="${project.version}"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp=".*\.(.*)"
-														   replace="\1" />
+														   override="true"
+														   input="${version-type}"
+														   regexp=".*\.(.*)"
+														   replace="\1"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp="(M)\d+"
-														   replace="MILESTONE" />
+														   override="true"
+														   input="${version-type}"
+														   regexp="(M)\d+"
+														   replace="MILESTONE"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp="(RC)\d+"
-														   replace="MILESTONE" />
+														   override="true"
+														   input="${version-type}"
+														   regexp="(RC)\d+"
+														   replace="MILESTONE"/>
 											<propertyregex property="version-type"
-														   override="true" input="${version-type}" regexp="BUILD-(.*)"
-														   replace="SNAPSHOT" />
-											<stringutil string="${version-type}" property="spring-cloud-repo">
+														   override="true"
+														   input="${version-type}"
+														   regexp="BUILD-(.*)"
+														   replace="SNAPSHOT"/>
+											<stringutil string="${version-type}"
+														property="spring-cloud-repo">
 												<lowercase/>
 											</stringutil>
-											<var name="github-tag" value="v${project.version}"/>
-											<propertyregex property="github-tag" override="true"
-														   input="${github-tag}" regexp=".*SNAPSHOT" replace="master" />
+											<var name="github-tag"
+												 value="v${project.version}"/>
+											<propertyregex property="github-tag"
+														   override="true"
+														   input="${github-tag}"
+														   regexp=".*SNAPSHOT"
+														   replace="master"/>
 										</target>
 									</configuration>
 								</execution>
@@ -947,9 +1025,11 @@
 											<zip.type>docs</zip.type>
 										</deployProperties>
 										<publisher>
-											<contextUrl>https://repo.spring.io</contextUrl>
+											<contextUrl>https://repo.spring.io
+											</contextUrl>
 											<repoKey>libs-release-local</repoKey>
-											<snapshotRepoKey>libs-snapshots-local</snapshotRepoKey>
+											<snapshotRepoKey>libs-snapshots-local
+											</snapshotRepoKey>
 										</publisher>
 									</configuration>
 								</execution>
