@@ -196,7 +196,7 @@
 	</profiles>
 	<build>
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
 				<version>1.0.0</version>
@@ -211,7 +211,7 @@
 					</pomElements>
 				</configuration>
 				<executions>
-					<!-- enable flattening -->
+					&lt;!&ndash; enable flattening &ndash;&gt;
 					<execution>
 						<id>flatten</id>
 						<phase>process-resources</phase>
@@ -219,7 +219,7 @@
 							<goal>flatten</goal>
 						</goals>
 					</execution>
-					<!-- ensure proper cleanup -->
+					&lt;!&ndash; ensure proper cleanup &ndash;&gt;
 					<execution>
 						<id>flatten.clean</id>
 						<phase>clean</phase>
@@ -228,7 +228,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 		</plugins>
 		<pluginManagement>
 			<plugins>
