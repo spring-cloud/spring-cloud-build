@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build</artifactId>
@@ -12,7 +12,7 @@
 		<module>spring-cloud-dependencies-parent</module>
 		<module>spring-cloud-build-tools</module>
 	</modules>
-	<url>http://spring.io/spring-cloud</url>
+	<url>https://spring.io/spring-cloud</url>
 	<properties>
 		<java.version>1.7</java.version>
 		<resource.delimiter>@</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
@@ -33,12 +33,12 @@
 	</properties>
 	<organization>
 		<name>Pivotal Software, Inc.</name>
-		<url>http://www.spring.io</url>
+		<url>https://www.spring.io</url>
 	</organization>
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<comments>
 Copyright 2014-2015 the original author or authors.
 
@@ -46,7 +46,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -70,7 +70,7 @@ limitations under the License.
 			<name>Dave Syer</name>
 			<email>dsyer at pivotal.io</email>
 			<organization>Pivotal Software, Inc.</organization>
-			<organizationUrl>http://www.spring.io</organizationUrl>
+			<organizationUrl>https://www.spring.io</organizationUrl>
 			<roles>
 				<role>Project lead</role>
 			</roles>
@@ -80,7 +80,7 @@ limitations under the License.
 			<name>Spencer Gibb</name>
 			<email>sgibb at pivotal.io</email>
 			<organization>Pivotal Software, Inc.</organization>
-			<organizationUrl>http://www.spring.io</organizationUrl>
+			<organizationUrl>https://www.spring.io</organizationUrl>
 			<roles>
 				<role>Project lead</role>
 			</roles>
@@ -398,7 +398,7 @@ limitations under the License.
 				<repository>
 					<id>spring-snapshots</id>
 					<name>Spring Snapshots</name>
-					<url>http://repo.spring.io/libs-snapshot-local</url>
+					<url>https://repo.spring.io/libs-snapshot-local</url>
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
@@ -406,7 +406,7 @@ limitations under the License.
 				<repository>
 					<id>spring-milestones</id>
 					<name>Spring Milestones</name>
-					<url>http://repo.spring.io/libs-milestone-local</url>
+					<url>https://repo.spring.io/libs-milestone-local</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
@@ -414,7 +414,7 @@ limitations under the License.
 				<repository>
 					<id>spring-releases</id>
 					<name>Spring Releases</name>
-					<url>http://repo.spring.io/release</url>
+					<url>https://repo.spring.io/release</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
@@ -424,7 +424,7 @@ limitations under the License.
 				<pluginRepository>
 					<id>spring-snapshots</id>
 					<name>Spring Snapshots</name>
-					<url>http://repo.spring.io/libs-snapshot-local</url>
+					<url>https://repo.spring.io/libs-snapshot-local</url>
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
@@ -432,7 +432,7 @@ limitations under the License.
 				<pluginRepository>
 					<id>spring-milestones</id>
 					<name>Spring Milestones</name>
-					<url>http://repo.spring.io/libs-milestone-local</url>
+					<url>https://repo.spring.io/libs-milestone-local</url>
 					<snapshots>
 						<enabled>false</enabled>
 					</snapshots>
