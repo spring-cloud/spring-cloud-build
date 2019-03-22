@@ -64,7 +64,7 @@ you can import formatter settings using the
 <literal>eclipse-code-formatter.xml</literal> file from the
 <link xl:href="https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/spring-cloud-dependencies-parent/eclipse-code-formatter.xml">Spring
 Cloud Build</link> project. If using IntelliJ, you can use the
-<link xl:href="http://plugins.jetbrains.com/plugin/6546">Eclipse Code Formatter
+<link xl:href="https://plugins.jetbrains.com/plugin/6546">Eclipse Code Formatter
 Plugin</link> to import the same file.</simpara>
 </listitem>
 <listitem>
@@ -91,7 +91,7 @@ than cosmetic changes).</simpara>
 other target branch in the main project).</simpara>
 </listitem>
 <listitem>
-<simpara>When writing a commit message please follow <link xl:href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">these conventions</link>,
+<simpara>When writing a commit message please follow <link xl:href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">these conventions</link>,
 if you are fixing an existing issue please add <literal>Fixes gh-XXXX</literal> at the end of the commit
 message (where XXXX is the issue number).</simpara>
 </listitem>
@@ -184,7 +184,7 @@ message (where XXXX is the issue number).</simpara>
 <screen>&lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE suppressions PUBLIC
 		"-//Puppy Crawl//DTD Suppressions 1.1//EN"
-		"http://www.puppycrawl.com/dtds/suppressions_1_1.dtd"&gt;
+		"https://www.puppycrawl.com/dtds/suppressions_1_1.dtd"&gt;
 &lt;suppressions&gt;
 	&lt;suppress files=".*ConfigServerApplication\.java" checks="HideUtilityClassConstructor"/&gt;
 	&lt;suppress files=".*ConfigClientWatch\.java" checks="LineLengthCheck"/&gt;
