@@ -9,6 +9,7 @@ set -o pipefail
 
 ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="${ROOT_DIR}/../../.."
+echo "Root directory is [${ROOT_DIR}]"
 
 function usage {
     echo "usage: $0: <download-shellcheck|run-shellcheck|download-bats|run-bats|initialize-submodules>"
