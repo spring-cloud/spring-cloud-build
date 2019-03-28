@@ -219,14 +219,14 @@ export -f stubbed_git
 }
 
 @test "should retrieve the name of the current branch" {
-	export GIT_BIN="printing_git"
+	export GIT_BIN="stubbed_git"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	source "${SOURCE_DIR}"/ghpages.sh
 
 	run retrieve_current_branch
 
 	assert_success
-	assert_output --partial "git checkout git symbolic-ref -q HEAD"
+	assert_output --partial "git checkout master"
 }
 
 @test "should retrieve the name of the current branch when previous branch was set" {
