@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 c6d238085f11a086b62813da5d08cd90310da5ea Marcin Grzejszczak <marcin@grzejszczak.pl> 1549274693 +0100	clone: from git@github.com:spring-cloud/spring-cloud-stream
+c6d238085f11a086b62813da5d08cd90310da5ea a8cbf7779458bf72b4e2439136299c33eb797697 Marcin Grzejszczak <marcin@grzejszczak.pl> 1549292135 +0100	commit: Added checkstyle
+a8cbf7779458bf72b4e2439136299c33eb797697 070ab0adfa59e54951f6b759d930f5da1e9f218b Marcin Grzejszczak <marcin@grzejszczak.pl> 1553590477 +0100	pull --rebase origin master: Fast-forward
