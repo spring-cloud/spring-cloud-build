@@ -66,15 +66,17 @@ case $1 in
         ;;
     initialize-submodules)
         files="$( ls "${ROOT_DIR}/src/test/bats/test_helper/bats-assert/" || echo "" )"
-        if [ ! -z "${files}" ]; then
-            echo "Submodules already initialized";
-            git submodule foreach git pull origin master || echo "Failed to pull - continuing the script"
-        else
-            echo "Initilizing submodules"
-            git submodule init
-            git submodule update
-            git submodule foreach git pull origin master || echo "Failed to pull - continuing the script"
-        fi
+        pushd "${ROOT_DIR}/../"
+            if [ ! -z "${files}" ]; then
+                echo "Submodules already initialized";
+                git submodule foreach git pull origin master || echo "Failed to pull - continuing the script"
+            else
+                echo "Initilizing submodules"
+                git submodule init
+                git submodule update
+                git submodule foreach git pull origin master || echo "Failed to pull - continuing the script"
+            fi
+        popd
         ;;
     *)
         usage
