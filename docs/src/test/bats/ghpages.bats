@@ -194,6 +194,7 @@ export -f stubbed_git
 
 @test "should not add auth token to URL if token not present" {
 	export GIT_BIN="git_with_remotes"
+	export RELEASER_GIT_OAUTH_TOKEN=""
 	
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	source "${SOURCE_DIR}"/ghpages.sh
