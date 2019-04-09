@@ -43,13 +43,13 @@ case $1 in
             echo "It seems that automatic installation is not supported on your platform."
             echo "Please install shellcheck manually:"
             echo "    https://github.com/koalaman/shellcheck#installing"
-            exit 1
+            exit 0
         fi
         ;;
     run-shellcheck)
             echo "Running shellcheck"
             "${SHELLCHECK_BIN}" "${ROOT_DIR}"/src/main/asciidoc/*.sh
-            echo "Shellcheck passed sucesfully!"
+            echo "Shellcheck passed sucessfully!"
         ;;
     download-bats)
         if [[ -x "${ROOT_DIR}/../target/bats/bin/bats" ]]; then
