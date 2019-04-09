@@ -20,8 +20,19 @@ if [[ $# -ne 1 ]]; then
     usage
 fi
 
+function shellcheck_installed() {
+    shellcheck --version && return 0 || return 1
+}
+
 SHELLCHECK_VERSION="v0.4.6"
-SHELLCHECK_BIN="${ROOT_DIR}/../target/shellcheck-${SHELLCHECK_VERSION}/shellcheck"
+SHELLCHECK_INSTALLED="$( shellcheck_installed && echo "true" || echo "false" )"
+echo "Shellcheck installed? [${SHELLCHECK_INSTALLED}]"
+if [[ "${SHELLCHECK_INSTALLED}" != "false" ]]; then
+    SHELLCHECK_BIN="shellcheck"
+else
+    SHELLCHECK_BIN="${ROOT_DIR}/../target/shellcheck-${SHELLCHECK_VERSION}/shellcheck"
+fi
+echo "Shellcheck binary location [${SHELLCHECK_BIN}]"
 
 case $1 in
     download-shellcheck)
@@ -40,9 +51,7 @@ case $1 in
             rm -vf -- "${SHELLCHECK_ARCHIVE}"
             popd
         else
-            shellcheckInstalled="false"
-            shellcheck --version && shellcheckInstalled="true" || echo "No shellcheck installed"
-            if [[ "${shellcheckInstalled}" == "false" ]]; then
+            if [[ "${SHELLCHECK_INSTALLED}" == "false" ]]; then
                 echo "It seems that automatic installation is not supported on your platform."
                 echo "Please install shellcheck manually:"
                 echo "    https://github.com/koalaman/shellcheck#installing"
@@ -52,6 +61,9 @@ case $1 in
         ;;
     run-shellcheck)
             echo "Running shellcheck"
+            if [[ "${SHELLCHECK_INSTALLED}" != "false" ]]; then
+                SHELLCHECK_BIN="shellcheck"
+            fi
             "${SHELLCHECK_BIN}" "${ROOT_DIR}"/src/main/asciidoc/*.sh
             echo "Shellcheck passed sucessfully!"
         ;;
