@@ -38,7 +38,7 @@ case $1 in
     download-shellcheck)
         if [[ "${OSTYPE}" == linux* && ! -z "${SHELLCHECK_BIN}" && "${SHELLCHECK_INSTALLED}" == "false" ]]; then
             SHELLCHECK_ARCHIVE="shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz"
-            SHELLCHECK_ARCHIVE_SHA512SUM="d9ac3e4fb2383b2d6862415e8052459ce24fd5402806b9ce739990d5c1cccebe4121288df29de32dcef5daa115874ddf7f9730de256bf134ee11cd9704aaa64c"
+            SHELLCHECK_ARCHIVE_SHA512SUM="8bda5b4656d70de66f5bf01783ecb4aa76c961d86361b5772fbb9f75ee5f8c09a7eccbb2ee1b02ba9eec986c14903d11452f0fbf7473ffc7da53420e5ee8018c"
             if [[ -x "${ROOT_DIR}/../target/shellcheck-${SHELLCHECK_VERSION}/shellcheck" ]]; then
                 echo "shellcheck already downloaded - skipping..."
                 exit 0
