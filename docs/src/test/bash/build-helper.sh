@@ -40,10 +40,14 @@ case $1 in
             rm -vf -- "${SHELLCHECK_ARCHIVE}"
             popd
         else
-            echo "It seems that automatic installation is not supported on your platform."
-            echo "Please install shellcheck manually:"
-            echo "    https://github.com/koalaman/shellcheck#installing"
-            exit 0
+            shellcheckInstalled="false"
+            shellcheck --version && shellcheckInstalled="true" || echo "No shellcheck installed"
+            if [[ "${shellcheckInstalled}" == "false" ]]; then
+                echo "It seems that automatic installation is not supported on your platform."
+                echo "Please install shellcheck manually:"
+                echo "    https://github.com/koalaman/shellcheck#installing"
+                exit 1
+            fi
         fi
         ;;
     run-shellcheck)
