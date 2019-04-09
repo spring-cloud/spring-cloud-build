@@ -24,7 +24,7 @@ function shellcheck_installed() {
     shellcheck --version && return 0 || return 1
 }
 
-SHELLCHECK_VERSION="v0.4.6"
+SHELLCHECK_VERSION="v0.6.0"
 SHELLCHECK_INSTALLED="$( shellcheck_installed && echo "true" || echo "false" )"
 echo "Shellcheck installed? [${SHELLCHECK_INSTALLED}]"
 if [[ "${SHELLCHECK_INSTALLED}" != "false" ]]; then
@@ -36,7 +36,7 @@ echo "Shellcheck binary location [${SHELLCHECK_BIN}]"
 
 case $1 in
     download-shellcheck)
-        if [[ "${OSTYPE}" == linux* && ! -z "${SHELLCHECK_BIN}" ]]; then
+        if [[ "${OSTYPE}" == linux* && ! -z "${SHELLCHECK_BIN}" && "${SHELLCHECK_INSTALLED}" == "false" ]]; then
             SHELLCHECK_ARCHIVE="shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz"
             SHELLCHECK_ARCHIVE_SHA512SUM="d9ac3e4fb2383b2d6862415e8052459ce24fd5402806b9ce739990d5c1cccebe4121288df29de32dcef5daa115874ddf7f9730de256bf134ee11cd9704aaa64c"
             if [[ -x "${ROOT_DIR}/../target/shellcheck-${SHELLCHECK_VERSION}/shellcheck" ]]; then

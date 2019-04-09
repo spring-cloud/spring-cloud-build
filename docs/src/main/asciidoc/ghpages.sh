@@ -305,11 +305,11 @@ the script will work in the following manner:
 - if the version switch is passed (-v) then a tag with (v) prefix will be retrieved and a folder
     with that version number will be created in the gh-pages branch. WARNING! No whitelist verification will take place
 - if the destination switch is passed (-d) then the script will check if the provided dir is a git repo and then will
-    switch to gh-pages of that repo and copy the generated docs to `docs/<project-name>/<version>`
+    switch to gh-pages of that repo and copy the generated docs to [docs/<project-name>/<version>]
 - if the destination switch is passed (-d) then the script will check if the provided dir is a git repo and then will
-    switch to gh-pages of that repo and copy the generated docs to `docs/<project-name>/<version>`
+    switch to gh-pages of that repo and copy the generated docs to [docs/<project-name>/<version>]
 - if the release train switch is passed (-r) then the script will check if the provided dir is a git repo and then will
-    switch to gh-pages of that repo and copy the generated docs to `docs/<version>`
+    switch to gh-pages of that repo and copy the generated docs to [docs/<version>]
 
 USAGE:
 
