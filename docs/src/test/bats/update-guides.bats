@@ -97,7 +97,7 @@ export -f stubbed_git
 	run "${COPIED_SOURCES}"/update-guides.sh
 
 	assert_success
-	refute_output --partial "git"
+	refute_output --partial "git clone"
 }
 
 @test "should commit and push latest guides" {
