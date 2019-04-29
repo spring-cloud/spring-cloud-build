@@ -115,7 +115,6 @@ export -f stubbed_git
 	# commit and push
 	assert_output --partial "git commit -m Updating guides"
 	assert_output --partial "git push origin master"
-	tree ${TEMP_DIR}
 	# check the contents, old ones deleted, new ones present
 	assert [ -f "${TEMP_DIR}/target/gs-contract-rest/ONE.adoc" ]
 	assert [ -f "${TEMP_DIR}/target/gs-contract-rest/complete/COMPLETE.adoc" ]
