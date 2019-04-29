@@ -57,8 +57,8 @@ function iterate_over_guides() {
 
 function commit_and_push_new_guide_contents() {
     "${GIT_BIN}" add .
-    "${GIT_BIN}" commit -m "Updating guides"
-    "${GIT_BIN}" push origin master
+    "${GIT_BIN}" commit -m "Updating guides" || echo "Nothing to commit"
+    "${GIT_BIN}" push origin master || echo "Nothing to push"
 }
 
 function copy_new_guide() {
