@@ -35,6 +35,8 @@
 		<spring-asciidoctor-extensions.version>0.1.0.RELEASE
 		</spring-asciidoctor-extensions.version>
 		<asciidoctorj-pdf.version>1.5.0-alpha.16</asciidoctorj-pdf.version>
+		<guides-project.version>${project.version}</guides-project.version>
+		<guides-update.phase>deploy</guides-update.phase>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -757,7 +759,7 @@
 						<executions>
 							<execution>
 								<id>Run guides update</id>
-								<phase>deploy</phase>
+								<phase>${guides-update.phase}</phase>
 								<goals>
 									<goal>exec</goal>
 								</goals>
@@ -766,7 +768,7 @@
 									<workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
 									<executable>${docs.resources.dir}/asciidoc/update-guides.sh</executable>
 									<environmentVariables>
-										<PROJECT_VERSION>${project.version}</PROJECT_VERSION>
+										<PROJECT_VERSION>${guides-project.version}</PROJECT_VERSION>
 									</environmentVariables>
 								</configuration>
 							</execution>
