@@ -100,6 +100,7 @@ $(addBlockSwitches);
 </ul>
 </li>
 <li><a href="#_reusing_the_documentation">Reusing the documentation</a></li>
+<li><a href="#_updating_the_guides">Updating the guides</a></li>
 </ul>
 </div>
 </div>
@@ -537,6 +538,54 @@ The order of plugin declaration is important!
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_updating_the_guides"><a class="link" href="#_updating_the_guides">Updating the guides</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We assume that your project contains guides under the <code>guides</code> folder.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>.
+└── guides
+    ├── gs-guide1
+    ├── gs-guide2
+    └── gs-guide3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means that the project contains 3 guides that would
+correspond to the following guides in Spring Guides org.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/spring-guides/gs-guide1" class="bare">https://github.com/spring-guides/gs-guide1</a></p>
+</li>
+<li>
+<p><a href="https://github.com/spring-guides/gs-guide2" class="bare">https://github.com/spring-guides/gs-guide2</a></p>
+</li>
+<li>
+<p><a href="https://github.com/spring-guides/gs-guide3" class="bare">https://github.com/spring-guides/gs-guide3</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you deploy your project with the <code>-Pguides</code> profile like this</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ ./mvnw clean deploy -Pguides</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>what will happen is that for GA project versions, we will clone <code>gs-guide1</code>, <code>gs-guide2</code> and <code>gs-guide3</code> and update their contents with the ones being under your <code>guides</code> project.</p>
+</div>
+<div class="paragraph">
+<p>You can skip this by either not adding the <code>guides</code> profile, or passing the <code>-DskipGuides</code> system property when the profile is turned on.</p>
 </div>
 </div>
 </div>
