@@ -638,6 +638,10 @@
 					<name>Spring Maven Plugins Repository</name>
 					<url>https://repo.spring.io/plugins-release</url>
 				</repository>
+				<repository>
+					<id>jitpack.io</id>
+					<url>https://jitpack.io</url>
+				</repository>
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
@@ -706,6 +710,65 @@
 								<goals>
 									<goal>sign</goal>
 								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>guides</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>${maven-dependency-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>unpack-docs</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.springframework.cloud
+											</groupId>
+											<artifactId>spring-cloud-build-docs
+											</artifactId>
+											<version>${spring-cloud-build.version}
+											</version>
+											<classifier>sources</classifier>
+											<type>jar</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${docs.resources.dir}
+											</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>exec-maven-plugin</artifactId>
+						<groupId>org.codehaus.mojo</groupId>
+						<executions>
+							<execution>
+								<id>Run guides update</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<skip>${skipGuides}</skip>
+									<workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
+									<executable>${docs.resources.dir}/asciidoc/update-guides.sh</executable>
+									<environmentVariables>
+										<PROJECT_VERSION>${project.version}</PROJECT_VERSION>
+									</environmentVariables>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

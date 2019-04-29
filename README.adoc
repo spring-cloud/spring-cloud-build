@@ -266,3 +266,32 @@ approach of generating documentation just add these plugins to your `docs` modul
 <4> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
 
 IMPORTANT: The order of plugin declaration is important!
+
+== Updating the guides
+
+We assume that your project contains guides under the `guides` folder.
+
+```
+.
+└── guides
+    ├── gs-guide1
+    ├── gs-guide2
+    └── gs-guide3
+```
+
+This means that the project contains 3 guides that would
+correspond to the following guides in Spring Guides org.
+
+- https://github.com/spring-guides/gs-guide1
+- https://github.com/spring-guides/gs-guide2
+- https://github.com/spring-guides/gs-guide3
+
+If you deploy your project with the `-Pguides` profile like this
+
+```
+$ ./mvnw clean deploy -Pguides
+```
+
+what will happen is that for GA project versions, we will clone `gs-guide1`, `gs-guide2` and `gs-guide3` and update their contents with the ones being under your `guides` project.
+
+You can skip this by either not adding the `guides` profile, or passing the `-DskipGuides` system property when the profile is turned on.
