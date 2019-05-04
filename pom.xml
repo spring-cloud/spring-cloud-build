@@ -53,7 +53,7 @@
 		<puppycrawl-tools-checkstyle.version>8.18</puppycrawl-tools-checkstyle.version>
 		<spring-javaformat.version>0.0.9</spring-javaformat.version>
 		<maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
-		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
@@ -582,9 +582,50 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>aggregate</id>
+							<goals>
+								<goal>aggregate</goal>
+							</goals>
+							<phase>site</phase>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<id>non-aggregate</id>
+						<configuration>
+						</configuration>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+					<reportSet>
+						<id>aggregate</id>
+						<configuration>
+						</configuration>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 	<distributionManagement>
 		<downloadUrl>https://github.com/spring-cloud</downloadUrl>
 		<site>
@@ -639,10 +680,6 @@
 					<id>spring-plugins</id>
 					<name>Spring Maven Plugins Repository</name>
 					<url>https://repo.spring.io/plugins-release</url>
-				</repository>
-				<repository>
-					<id>jitpack.io</id>
-					<url>https://jitpack.io</url>
 				</repository>
 			</repositories>
 			<pluginRepositories>
@@ -1043,7 +1080,8 @@
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/generated-docs/" includes="**/*.html">
+											<fileset id="unresolved.file" dir="${basedir}/target/generated-docs/"
+													 includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
 											<fail message="[Unresolved] Found...failing">
