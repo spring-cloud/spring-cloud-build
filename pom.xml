@@ -83,9 +83,13 @@
 		<checkstyle.suppressions.file>
 			https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.suppressions.file>
+		<checkstyle.nohttp.file>
+			https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/nohttp-checkstyle.xml
+		</checkstyle.nohttp.file>
 		<checkstyle.additional.suppressions.file>
 			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.additional.suppressions.file>
+		<nohttp-checkstyle.version>0.0.1.BUILD-SNAPSHOT</nohttp-checkstyle.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -406,6 +410,11 @@
 							<artifactId>spring-cloud-build-tools</artifactId>
 							<version>${spring-cloud-build.version}</version>
 						</dependency>
+						<dependency>
+							<groupId>io.spring.nohttp</groupId>
+							<artifactId>nohttp-checkstyle</artifactId>
+							<version>${nohttp-checkstyle.version}</version>
+						</dependency>
 					</dependencies>
 					<executions>
 						<execution>
@@ -431,6 +440,21 @@
 								<failOnViolation>
 									${maven-checkstyle-plugin.failOnViolation}
 								</failOnViolation>
+							</configuration>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>no-http-checkstyle-validation</id>
+							<phase>validate</phase>
+							<inherited>true</inherited>
+							<configuration>
+								<skip>${disable.checks}</skip>
+								<configLocation>${checkstyle.nohttp.file}</configLocation>
+								<includes>**/*</includes>
+								<excludes>**/.git/**/*,**/target/**/*,**/*.log</excludes>
+								<sourceDirectories>./</sourceDirectories>
 							</configuration>
 							<goals>
 								<goal>check</goal>
