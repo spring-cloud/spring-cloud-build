@@ -159,8 +159,6 @@ export -f stubbed_git
 
 	assert_success
 	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
-	assert_output --partial "git remote set-branches --add origin gh-pages"
-	assert_output --partial "git fetch -q"
 	# Previous branch was [master]
 	assert_output --partial "git checkout master"
 	assert_output --partial "Extracted 'main.adoc' from Maven build [home]"

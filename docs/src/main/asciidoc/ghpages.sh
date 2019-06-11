@@ -55,7 +55,7 @@ function add_oauth_token_to_remote_url() {
 # Check if gh-pages exists and docs have been built
 function check_if_anything_to_sync() {
     add_oauth_token_to_remote_url
-    if ! ("${GIT_BIN}" remote set-branches --add origin gh-pages && "${GIT_BIN}" fetch -q) && [[ "${RELEASE_TRAIN}" != "yes" ]] ; then
+    if [[ "${RELEASE_TRAIN}" != "yes" ]] && ! ("${GIT_BIN}" remote set-branches --add origin gh-pages && "${GIT_BIN}" fetch -q) ; then
         echo "No gh-pages, so not syncing"
         exit 0
     fi
