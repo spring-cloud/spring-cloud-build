@@ -872,6 +872,7 @@ limitations under the License.
 									<goals>
 										<goal>run</goal>
 									</goals>
+									<!-- @formatter:off -->
 									<configuration>
 										<target>
 											<echo file="${basedir}/target/generated-index/${docs.main}.adoc">
@@ -890,6 +891,7 @@ limitations under the License.
 - link:multi/multi_{docs-main}.html[Multi HTML]
 											</echo>
 										</target>
+									<!-- @formatter:on -->
 									</configuration>
 								</execution>
 								<execution>
