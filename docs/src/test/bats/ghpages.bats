@@ -161,7 +161,6 @@ export -f stubbed_git
 	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
 	# Previous branch was [master]
 	assert_output --partial "git checkout master"
-	assert_output --partial "Extracted 'main.adoc' from Maven build [home]"
 	assert_output --partial "git stash"
 	assert_output --partial "git checkout gh-pages"
 	assert_output --partial "git pull origin gh-pages"

@@ -86,6 +86,8 @@ function retrieve_current_branch() {
 function switch_to_tag() {
     if [[ "${RELEASE_TRAIN}" != "yes" ]] ; then
         "${GIT_BIN}" checkout v"${VERSION}"
+    else
+        echo "Not switching to tag"
     fi
 }
 
@@ -93,6 +95,8 @@ function switch_to_tag() {
 function build_docs_if_applicable() {
     if [[ "${BUILD}" == "yes" ]] ; then
         ./mvnw clean install -P docs -pl docs -DskipTests
+    else
+       echo "Not building docs"
     fi
 }
 
@@ -100,6 +104,11 @@ function build_docs_if_applicable() {
 # Get whitelisted branches - assumes that a `docs` module is available under `docs` profile
 # shellcheck disable=SC2016
 function retrieve_doc_properties() {
+    if [[ "${RELEASE_TRAIN}" == "yes" ]]; then
+        echo "Will not extract any properties for release train"
+        return 
+    fi
+    echo "Extracting doc properties"
     MAIN_ADOC_VALUE=$("${MAVEN_EXEC}" -q \
         -Dexec.executable="echo" \
         -Dexec.args='${docs.main}' \
