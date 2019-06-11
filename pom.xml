@@ -89,7 +89,7 @@
 		<checkstyle.additional.suppressions.file>
 			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.additional.suppressions.file>
-		<nohttp-checkstyle.version>0.0.1.BUILD-SNAPSHOT</nohttp-checkstyle.version>
+		<nohttp-checkstyle.version>0.0.2.RELEASE</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 	</properties>
 	<dependencyManagement>
