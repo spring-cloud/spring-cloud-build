@@ -43,12 +43,12 @@ function add_oauth_token_to_remote_url() {
     remote="$( "${GIT_BIN}" config remote.origin.url | sed -e 's/^git:/https:/' )"
     echo "Current remote [${remote}]"
     if [[ "${RELEASER_GIT_OAUTH_TOKEN}" != "" && ${remote} != *"@"* ]]; then
-        echo "OAuth token found. Will reuse it to push the code"
         withToken=${remote/https:\/\//https://${RELEASER_GIT_OAUTH_TOKEN}@}
+        echo "OAuth token found. Will reuse it to push the code to [${withToken}]"
         "${GIT_BIN}" remote set-url --push origin "${withToken}"
     else
-        echo "No OAuth token found"
-        "${GIT_BIN}" remote set-url --push origin "$( "${GIT_BIN}" config remote.origin.url | sed -e 's/^git:/https:/' )"
+        echo "No OAuth token found. Will push to [${remote}]"
+        "${GIT_BIN}" remote set-url --push origin "${remote}"
     fi
 }
 
