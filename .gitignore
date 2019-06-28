@@ -18,3 +18,4 @@ _site/
 .factorypath
 .vscode/
 .flattened-pom.xml
+.DS_Store
