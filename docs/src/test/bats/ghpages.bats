@@ -15,6 +15,8 @@ setup() {
 	mv "${TEMP_DIR}/spring-cloud-static/git" "${TEMP_DIR}/spring-cloud-static/.git"
 
 	export SOURCE_FUNCTIONS="true"
+	export GITHUB_REPO_USERNAME_ENV="MY_REPO_USERNAME"
+	export GITHUB_REPO_PASSWORD_ENV="MY_REPO_PASSWORD"
 }
 
 teardown() {
@@ -469,8 +471,6 @@ export -f stubbed_git
 @test "should commit changes with username and password if commit flag set" {
 	export GIT_BIN="printing_git_with_remotes"
 	export COMMIT_CHANGES="yes"
-	export GITHUB_REPO_USERNAME_ENV="MY_REPO_USERNAME"
-	export GITHUB_REPO_PASSWORD_ENV="MY_REPO_PASSWORD"
 	export MY_REPO_USERNAME="username"
 	export MY_REPO_PASSWORD="password"
 
