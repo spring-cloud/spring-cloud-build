@@ -200,7 +200,8 @@ $ touch .springformat</programlisting>
 <title>IDE setup</title>
 <section xml:id="_intellij_idea">
 <title>Intellij IDEA</title>
-<simpara>In order to setup Intellij you should import our coding conventions, inspection profiles and set up the checkstyle plugin.</simpara>
+<simpara>In order to setup Intellij you should import our coding conventions, inspection profiles and set up the checkstyle plugin.
+The following files can be found in the <link xl:href="https://github.com/spring-cloud/spring-cloud-build/tree/master/spring-cloud-build-tools">Spring Cloud Build</link> project.</simpara>
 <formalpara>
 <title>spring-cloud-build-tools/</title>
 <para>
