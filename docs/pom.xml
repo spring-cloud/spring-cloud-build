@@ -76,8 +76,8 @@
 									<goal>exec</goal>
 								</goals>
 								<configuration>
-									<!--<skip>${skipTests}</skip>-->
-									<skip>true</skip>
+									<skip>${skipTests}</skip>
+									<!-- <skip>true</skip> -->
 									<executable>${basedir}/src/test/bash/run-bats.sh</executable>
 								</configuration>
 							</execution>
