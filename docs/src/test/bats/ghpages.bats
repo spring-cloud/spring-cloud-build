@@ -92,7 +92,7 @@ export -f stubbed_git
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	assert_output --partial "git fetch -q"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash"
@@ -101,7 +101,7 @@ export -f stubbed_git
 	# Current branch is master - will copy the current docs only to the root folder
 	assert_output --partial "git add -A ${TEMP_DIR}/spring-cloud-stream"
    	assert_output --partial "git commit -a -m Sync docs from master to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	assert_output --partial "git push origin gh-pages"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash pop"
@@ -122,7 +122,7 @@ export -f stubbed_git
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	assert_output --partial "git remote set-branches --add origin gh-pages"
 	assert_output --partial "git fetch -q"
 	# Previous branch was [master]
@@ -136,7 +136,7 @@ export -f stubbed_git
 	assert [ -f "${TEMP_DIR}/spring-cloud-static/spring-cloud-stream/${VERSION}/foo.html" ]
 	assert_output --partial "git add -A ${TEMP_DIR}/spring-cloud-static/spring-cloud-stream/${VERSION}"
    	assert_output --partial "git commit -a -m Sync docs from v1.0.0.RELEASE to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	assert_output --partial "git push origin gh-pages"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash pop"
@@ -158,7 +158,7 @@ export -f stubbed_git
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	# Previous branch was [master]
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash"
@@ -168,7 +168,7 @@ export -f stubbed_git
 	assert [ -f "${TEMP_DIR}/spring-cloud-static/${VERSION}/foo.html" ]
 	assert_output --partial "git add -A ${TEMP_DIR}/spring-cloud-static/${VERSION}"
    	assert_output --partial "git commit -a -m Sync docs from vGreenwich.SR2 to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	assert_output --partial "git push origin gh-pages"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash pop"
@@ -212,7 +212,7 @@ export -f stubbed_git
 	run add_oauth_token_to_remote_url
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 }
 
 @test "should retrieve the name of the current branch" {
@@ -462,7 +462,7 @@ export -f stubbed_git
 
 	assert_success
 	assert_output --partial "git commit -a -m Sync docs from to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken:@foo.bar/baz.git"
 	assert_output --partial "git push origin gh-pages"
 }
 

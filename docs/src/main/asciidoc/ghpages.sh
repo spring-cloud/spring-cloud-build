@@ -48,7 +48,7 @@ function add_oauth_token_to_remote_url() {
         echo "Remote with [.git] suffix: [${remote}]"
     fi
     if [[ "${RELEASER_GIT_OAUTH_TOKEN}" != "" && ${remote} != *"@"* ]]; then
-        withToken=${remote/https:\/\//https://${RELEASER_GIT_OAUTH_TOKEN}@}
+        withToken=${remote/https:\/\//https://${RELEASER_GIT_OAUTH_TOKEN}:@}
         echo "OAuth token found. Will reuse it to push the code to [${withToken}]"
         "${GIT_BIN}" remote set-url --push origin "${withToken}"
     else
