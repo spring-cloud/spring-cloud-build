@@ -295,5 +295,3 @@ $ ./mvnw clean deploy -Pguides
 what will happen is that for GA project versions, we will clone `gs-guide1`, `gs-guide2` and `gs-guide3` and update their contents with the ones being under your `guides` project.
 
 You can skip this by either not adding the `guides` profile, or passing the `-DskipGuides` system property when the profile is turned on.
-
-You can configure the project version passed to guides via the `guides-project.version` (defaults to `${project.version}`). The phase at which guides get updated can be configured by `guides-update.phase` (defaults to `deploy`).
