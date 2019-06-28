@@ -469,8 +469,10 @@ export -f stubbed_git
 @test "should commit changes with username and password if commit flag set" {
 	export GIT_BIN="printing_git_with_remotes"
 	export COMMIT_CHANGES="yes"
-	export GITHUB_REPO_USERNAME="username"
-	export GITHUB_REPO_PASSWORD="password"
+	export GITHUB_REPO_USERNAME_ENV="MY_REPO_USERNAME"
+	export GITHUB_REPO_PASSWORD_ENV="MY_REPO_PASSWORD"
+	export MY_REPO_USERNAME="username"
+	export MY_REPO_PASSWORD="password"
 
 	source "${SOURCE_DIR}"/ghpages.sh
 

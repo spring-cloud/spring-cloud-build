@@ -6,6 +6,10 @@ set -e
 
 export GIT_BIN ROOT_FOLDER COMMIT_CHANGES MAVEN_PATH MAVEN_EXEC REPO_NAME SPRING_CLOUD_STATIC_REPO
 export CURRENT_BRANCH PREVIOUS_BRANCH
+export GITHUB_REPO_USERNAME_ENV="${GITHUB_REPO_USERNAME_ENV:-GITHUB_REPO_USERNAME}"
+export GITHUB_REPO_PASSWORD_ENV="${GITHUB_REPO_PASSWORD_ENV:-GITHUB_REPO_PASSWORD}"
+REPO_USER="${!GITHUB_REPO_USERNAME_ENV}"
+REPO_PASS="${!GITHUB_REPO_PASSWORD_ENV}"
 
 GIT_BIN="${GIT_BIN:-git}"
 
@@ -47,8 +51,8 @@ function add_oauth_token_to_remote_url() {
         remote="${remote}.git"
         echo "Remote with [.git] suffix: [${remote}]"
     fi
-    if [[ "${GITHUB_REPO_USERNAME}" != "" && ${remote} != *"@"* ]]; then
-        withUserAndPass=${remote/https:\/\//https://${GITHUB_REPO_USERNAME}:${GITHUB_REPO_PASSWORD}@}
+    if [[ "${REPO_USER}" != "" && ${remote} != *"@"* ]]; then
+        withUserAndPass=${remote/https:\/\//https://${REPO_USER}:${REPO_PASS}@}
         echo "Username and password found. Will reuse it to push the code to [${withUserAndPass}]"
         "${GIT_BIN}" remote set-url --push origin "${withUserAndPass}"
     elif [[ "${RELEASER_GIT_OAUTH_TOKEN}" != "" && ${remote} != *"@"* ]]; then
