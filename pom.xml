@@ -35,6 +35,7 @@
 		<spring-asciidoctor-extensions.version>0.1.0.RELEASE
 		</spring-asciidoctor-extensions.version>
 		<asciidoctorj-pdf.version>1.5.0-alpha.16</asciidoctorj-pdf.version>
+		<asciidoctorj-diagram.version>1.5.18</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 
@@ -999,10 +1000,17 @@
 									<artifactId>asciidoctorj-pdf</artifactId>
 									<version>${asciidoctorj-pdf.version}</version>
 								</dependency>
+								<dependency>
+									<groupId>org.asciidoctor</groupId>
+									<artifactId>asciidoctorj-diagram</artifactId>
+									<version>${asciidoctorj-diagram.version}</version>
+								</dependency>
 							</dependencies>
 							<configuration>
 								<sourceDirectory>${project.build.directory}/refdocs/</sourceDirectory>
-								<sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+								<requires>
+									<require>asciidoctor-diagram</require>
+								</requires>
 							</configuration>
 							<executions>
 								<execution>
@@ -1031,7 +1039,6 @@
 											<spring-cloud-version>${project.version}</spring-cloud-version>
 											<sectlinks>true</sectlinks>
 										</attributes>
-										<outputFile>${docs.main}.html</outputFile>
 									</configuration>
 								</execution>
 							</executions>
