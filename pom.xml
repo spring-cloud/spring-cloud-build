@@ -66,7 +66,7 @@
 		<maven-war-plugin.version>3.2.2</maven-war-plugin.version>
 		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-		<git-commit-id-plugin.version>2.2.4</git-commit-id-plugin.version>
+		<git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
@@ -486,6 +486,7 @@
 						<generateGitPropertiesFilename>
 							${project.build.outputDirectory}/git.properties
 						</generateGitPropertiesFilename>
+						<skipPoms>false</skipPoms>
 					</configuration>
 				</plugin>
 				<!-- Support our own plugin -->
@@ -1023,9 +1024,23 @@
 								<attributes>
 									<sources-root>${project.basedir}/src</sources-root>
 									<asciidoc-sources-root>${project.basedir}/src/main/asciidoc</asciidoc-sources-root>
-									<generated-resources-root>${project.basedir}/target/generated-resources</generated-resources-root>
+									<generated-resources-root>${project.basedir}/target/generated-resources
+									</generated-resources-root>
+									<github-repo>${docs.main}</github-repo>
+									<github-raw>https://raw.github.com/${docs.main}/${github-tag}</github-raw>
+									<github-code>https://github.com/${docs.main}/tree/${github-tag}</github-code>
+									<github-issues>https://github.com/${docs.main}/issues/</github-issues>
+									<github-wiki>https://github.com/${docs.main}/wiki</github-wiki>
+									<github-master-code>https://github.com/${docs.main}/tree/master</github-master-code>
+
+									<!-- Spring Cloud specific -->
+									<allow-uri-read>true</allow-uri-read>
+									<nofooter/>
+									<project-version>${project.version}</project-version>
 									<github-tag>${github-tag}</github-tag>
 									<version-type>${version-type}</version-type>
+									<docs-url>${docs-url}</docs-url>
+									<raw-docs-url>${raw-docs-url}</raw-docs-url>
 									<version>${project.version}</version>
 								</attributes>
 								<requires>
@@ -1045,7 +1060,8 @@
 											<sourceDocumentExtension>adoc</sourceDocumentExtension>
 											<sourceDocumentExtension>htmladoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
-										<outputDirectory>${project.build.directory}/generated-docs/reference/html</outputDirectory>
+										<outputDirectory>${project.build.directory}/generated-docs/reference/html
+										</outputDirectory>
 										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
 										<attributes>
@@ -1057,19 +1073,11 @@
 											<stylesdir>css/</stylesdir>
 											<stylesheet>spring.css</stylesheet>
 											<attribute-missing>warn</attribute-missing>
-
-											<!-- Spring Cloud specific -->
-											<allow-uri-read>true</allow-uri-read>
-											<nofooter/>
-											<spring-cloud-version>${project.version}</spring-cloud-version>
-											<project-docs-version>${revision}</project-docs-version>
-											<project-version>${project.version}</project-version>
-											<github-tag>${github-tag}</github-tag>
 										</attributes>
 										<logHandler>
 											<outputToConsole>true</outputToConsole>
 											<failIf>
-<!--												<severity>DEBUG</severity>-->
+												<!--												<severity>DEBUG</severity>-->
 											</failIf>
 										</logHandler>
 									</configuration>
@@ -1085,7 +1093,9 @@
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>htmlsingleadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
-										<outputDirectory>${project.build.directory}/generated-docs/reference/htmlsingle</outputDirectory>
+										<outputDirectory>
+											${project.build.directory}/generated-docs/reference/htmlsingle
+										</outputDirectory>
 										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
 										<attributes>
@@ -1096,14 +1106,6 @@
 											<icons>font</icons>
 											<stylesdir>css/</stylesdir>
 											<stylesheet>spring.css</stylesheet>
-
-											<!-- Spring Cloud specific -->
-											<allow-uri-read>true</allow-uri-read>
-											<nofooter/>
-											<spring-cloud-version>${project.version}</spring-cloud-version>
-											<project-docs-version>${revision}</project-docs-version>
-											<project-version>${project.version}</project-version>
-											<github-tag>${github-tag}</github-tag>
 										</attributes>
 									</configuration>
 								</execution>
@@ -1118,7 +1120,8 @@
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>pdfadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
-										<outputDirectory>${project.build.directory}/generated-docs/reference/pdf</outputDirectory>
+										<outputDirectory>${project.build.directory}/generated-docs/reference/pdf
+										</outputDirectory>
 										<resources>
 											<resource>
 												<directory>${refdocs.build.directory}</directory>
@@ -1221,7 +1224,7 @@
 												<!--<zipfileset
 														src="${project.build.directory}/${project.artifactId}-${revision}-javadoc.jar"
 														prefix="api" />-->
-<!--												<fileset dir="${project.build.directory}/contents"/>-->
+												<!--												<fileset dir="${project.build.directory}/contents"/>-->
 												<fileset dir="${project.build.directory}/generated-docs"/>
 											</zip>
 										</target>
@@ -1252,9 +1255,58 @@
 											<stringutil string="${version-type}" property="spring-boot-repo">
 												<lowercase/>
 											</stringutil>
-											<var name="github-tag" value="v${revision}"/>
-											<propertyregex property="github-tag" override="true"
-														   input="${github-tag}" regexp=".*SNAPSHOT" replace="master"/>
+											<var name="github-tag" value="${git.branch}"/>
+											<condition property="docs-url"
+													   value="https://cloud.spring.io/${docs.main}/">
+												<and>
+													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													<equals arg1="${git.branch}" arg2="master"/>
+												</and>
+											</condition>
+											<condition property="docs-url"
+													   value="https://cloud.spring.io/${docs.main}/${git.branch}/">
+												<and>
+													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													<not>
+														<equals arg1="${git.branch}" arg2="master"/>
+													</not>
+												</and>
+											</condition>
+											<condition property="docs-url"
+													   value="https://cloud.spring.io/spring-cloud-static/${docs.main}/${project.version}">
+												<and>
+													<not>
+														<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													</not>
+												</and>
+											</condition>
+											<condition property="docs-url"
+													   value="https://cloud.spring.io/${docs.main}/">
+												<and>
+													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													<equals arg1="${git.branch}" arg2="master"/>
+												</and>
+											</condition>
+											<condition property="docs-url"
+													   value="https://cloud.spring.io/${docs.main}/${git.branch}/">
+												<and>
+													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													<not>
+														<equals arg1="${git.branch}" arg2="master"/>
+													</not>
+												</and>
+											</condition>
+											<condition property="docs-url"
+													   value="https://cloud.spring.io/spring-cloud-static/${docs.main}/${project.version}">
+												<and>
+													<not>
+														<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													</not>
+												</and>
+											</condition>
+											<propertyregex property="raw-docs-url" override="true"
+														   input="${docs-url}" regexp="https://cloud.spring.io/(.*)"
+														   replace="https://raw.githubusercontent.com/\1"/>
 										</target>
 									</configuration>
 								</execution>
