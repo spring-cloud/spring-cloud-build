@@ -1032,6 +1032,7 @@
 									<github-issues>https://github.com/${docs.main}/issues/</github-issues>
 									<github-wiki>https://github.com/${docs.main}/wiki</github-wiki>
 									<github-master-code>https://github.com/${docs.main}/tree/master</github-master-code>
+									<index-link>${index-link}</index-link>
 
 									<!-- Spring Cloud specific -->
 									<allow-uri-read>true</allow-uri-read>
@@ -1041,7 +1042,8 @@
 									<version-type>${version-type}</version-type>
 									<docs-url>${docs-url}</docs-url>
 									<raw-docs-url>${raw-docs-url}</raw-docs-url>
-									<version>${project.version}</version>
+									<project-version>${project.version}</project-version>
+									<project-name>${docs.main}</project-name>
 								</attributes>
 								<requires>
 									<require>asciidoctor-diagram</require>
@@ -1263,8 +1265,24 @@
 													<equals arg1="${git.branch}" arg2="master"/>
 												</and>
 											</condition>
+											<condition property="index-link"
+													   value="${docs.main}/">
+												<and>
+													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													<equals arg1="${git.branch}" arg2="master"/>
+												</and>
+											</condition>
 											<condition property="docs-url"
 													   value="https://cloud.spring.io/${docs.main}/${git.branch}/">
+												<and>
+													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
+													<not>
+														<equals arg1="${git.branch}" arg2="master"/>
+													</not>
+												</and>
+											</condition>
+											<condition property="index-link"
+													   value="index.html">
 												<and>
 													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
 													<not>
@@ -1280,24 +1298,8 @@
 													</not>
 												</and>
 											</condition>
-											<condition property="docs-url"
-													   value="https://cloud.spring.io/${docs.main}/">
-												<and>
-													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<equals arg1="${git.branch}" arg2="master"/>
-												</and>
-											</condition>
-											<condition property="docs-url"
-													   value="https://cloud.spring.io/${docs.main}/${git.branch}/">
-												<and>
-													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<not>
-														<equals arg1="${git.branch}" arg2="master"/>
-													</not>
-												</and>
-											</condition>
-											<condition property="docs-url"
-													   value="https://cloud.spring.io/spring-cloud-static/${docs.main}/${project.version}">
+											<condition property="index-link"
+													   value="index.html">
 												<and>
 													<not>
 														<equals arg1="${version-type}" arg2="SNAPSHOT"/>
