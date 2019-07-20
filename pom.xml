@@ -1059,8 +1059,8 @@
 									<configuration>
 										<backend>html5</backend>
 										<sourceDocumentExtensions>
-											<sourceDocumentExtension>adoc</sourceDocumentExtension>
-											<sourceDocumentExtension>htmladoc</sourceDocumentExtension>
+											<sourceDocumentExtension>.adoc</sourceDocumentExtension>
+											<sourceDocumentExtension>.htmladoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
 										<outputDirectory>${project.build.directory}/generated-docs/reference/html
 										</outputDirectory>
@@ -1093,7 +1093,7 @@
 									<configuration>
 										<backend>html5</backend>
 										<sourceDocumentExtensions>
-											<sourceDocumentExtension>htmlsingleadoc</sourceDocumentExtension>
+											<sourceDocumentExtension>.htmlsingleadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
 										<outputDirectory>
 											${project.build.directory}/generated-docs/reference/htmlsingle
@@ -1120,7 +1120,7 @@
 									<configuration>
 										<backend>pdf</backend>
 										<sourceDocumentExtensions>
-											<sourceDocumentExtension>pdfadoc</sourceDocumentExtension>
+											<sourceDocumentExtension>.pdfadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
 										<outputDirectory>${project.build.directory}/generated-docs/reference/pdf
 										</outputDirectory>
