@@ -1029,11 +1029,11 @@
 									<generated-resources-root>${project.basedir}/target/generated-resources
 									</generated-resources-root>
 									<github-repo>${docs.main}</github-repo>
-									<github-raw>https://raw.github.com/${docs.main}/${github-tag}</github-raw>
-									<github-code>https://github.com/${docs.main}/tree/${github-tag}</github-code>
-									<github-issues>https://github.com/${docs.main}/issues/</github-issues>
-									<github-wiki>https://github.com/${docs.main}/wiki</github-wiki>
-									<github-master-code>https://github.com/${docs.main}/tree/master</github-master-code>
+									<github-raw>https://raw.github.com/spring-cloud/${docs.main}/${github-tag}</github-raw>
+									<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}</github-code>
+									<github-issues>https://github.com/spring-cloud/${docs.main}/issues/</github-issues>
+									<github-wiki>https://github.com/spring-cloud/${docs.main}/wiki</github-wiki>
+									<github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master</github-master-code>
 									<index-link>${index-link}</index-link>
 
 									<!-- Spring Cloud specific -->
