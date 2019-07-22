@@ -96,6 +96,8 @@
 		</checkstyle.additional.suppressions.file>
 		<nohttp-checkstyle.version>0.0.2.RELEASE</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
+		<antelopetasks.version>3.2.10</antelopetasks.version>
+		<ant-nodeps.version>1.8.1</ant-nodeps.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1155,12 +1157,12 @@
 								<dependency>
 									<groupId>org.apache.ant</groupId>
 									<artifactId>ant-nodeps</artifactId>
-									<version>1.8.1</version>
+									<version>${ant-nodeps.version}</version>
 								</dependency>
 								<dependency>
 									<groupId>org.tigris.antelope</groupId>
 									<artifactId>antelopetasks</artifactId>
-									<version>3.2.10</version>
+									<version>${antelopetasks.version}</version>
 								</dependency>
 								<dependency>
 									<groupId>org.jruby</groupId>
@@ -1265,13 +1267,6 @@
 													<equals arg1="${git.branch}" arg2="master"/>
 												</and>
 											</condition>
-											<condition property="index-link"
-													   value="${docs.main}/">
-												<and>
-													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<equals arg1="${git.branch}" arg2="master"/>
-												</and>
-											</condition>
 											<condition property="docs-url"
 													   value="https://cloud.spring.io/${docs.main}/${git.branch}/">
 												<and>
@@ -1281,25 +1276,8 @@
 													</not>
 												</and>
 											</condition>
-											<condition property="index-link"
-													   value="index.html">
-												<and>
-													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<not>
-														<equals arg1="${git.branch}" arg2="master"/>
-													</not>
-												</and>
-											</condition>
 											<condition property="docs-url"
 													   value="https://cloud.spring.io/spring-cloud-static/${docs.main}/${project.version}">
-												<and>
-													<not>
-														<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													</not>
-												</and>
-											</condition>
-											<condition property="index-link"
-													   value="index.html">
 												<and>
 													<not>
 														<equals arg1="${version-type}" arg2="SNAPSHOT"/>

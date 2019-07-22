@@ -88,7 +88,6 @@ export -f stubbed_git
 	export RELEASER_GIT_OAUTH_TOKEN="mytoken"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
 	touch docs/target/generated-docs/foo.html
 
 	run "${SOURCE_DIR}"/ghpages.sh
@@ -118,7 +117,6 @@ export -f stubbed_git
 
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
 	touch docs/target/generated-docs/foo.html
 
 	run "${SOURCE_DIR}"/ghpages.sh
@@ -130,7 +128,6 @@ export -f stubbed_git
 	# Previous branch was [master]
 	assert_output --partial "git checkout master"
 	assert_output --partial "git checkout v1.0.0.RELEASE"
-	assert_output --partial "Extracted 'main.adoc' from Maven build [home]"
 	assert_output --partial "git stash"
 	assert_output --partial "git checkout gh-pages"
 	assert_output --partial "git pull origin gh-pages"
@@ -154,7 +151,6 @@ export -f stubbed_git
 
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
 	touch docs/target/generated-docs/foo.html
 
 	run "${SOURCE_DIR}"/ghpages.sh
@@ -308,7 +304,6 @@ export -f stubbed_git
 	retrieve_doc_properties
 
 	assert_success
-	assert [ "${MAIN_ADOC_VALUE}" == "home" ]
 	assert [ "${WHITELISTED_BRANCHES_VALUE}" == "0.1.1.RELEASE" ]
 }
 
@@ -341,7 +336,6 @@ export -f stubbed_git
 	export CURRENT_BRANCH="master"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
 	touch docs/target/generated-docs/foo.html
 
 	source "${SOURCE_DIR}"/ghpages.sh
@@ -356,10 +350,9 @@ export -f stubbed_git
 	export GIT_BIN="printing_git"
 	export CURRENT_BRANCH="present"
 	export WHITELISTED_BRANCHES_VALUE="present"
-	export MAIN_ADOC_VALUE="my_doc"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
+	touch docs/target/generated-docs/my_doc.html
 	touch docs/target/generated-docs/foo.html
 
 	source "${SOURCE_DIR}"/ghpages.sh
@@ -372,7 +365,7 @@ export -f stubbed_git
 	run copy_docs_for_current_version
 
 	assert_success
-	assert_output --partial "add -A ${ROOT_FOLDER}/present/index.html"
+	assert_output --partial "add -A ${ROOT_FOLDER}/present/my_doc.html"
 	assert_output --partial "add -A ${ROOT_FOLDER}/present/foo.html"
 }
 
@@ -387,58 +380,6 @@ export -f stubbed_git
 
 	assert_success
 	assert [ "${COMMIT_CHANGES}" != "yes" ]
-}
-
-@test "should reuse main adoc value as new index.html" {
-	export GIT_BIN="printing_git"
-	export DESTINATION_REPO_FOLDER="${TEMP_DIR}/spring-cloud-static"
-	export VERSION="1.0.0.RELEASE"
-	export MAIN_ADOC_VALUE="my_doc"
-	cd "${TEMP_DIR}/spring-cloud-stream/"
-	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
-
-	source "${SOURCE_DIR}"/ghpages.sh
-
-	copy_docs_for_provided_version
-
-	assert_success
-	assert [ "${COMMIT_CHANGES}" == "yes" ]
-	assert [ "${CURRENT_BRANCH}" == "v${VERSION}" ]
-
-	run copy_docs_for_provided_version
-
-	assert_success
-	assert_output --partial "add -A ${DESTINATION_REPO_FOLDER}/${VERSION}"
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/index.html" ]
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/foo.html" ]
-}
-
-@test "should reuse repo name as new index.html" {
-	export GIT_BIN="printing_git"
-	export DESTINATION_REPO_FOLDER="${TEMP_DIR}/spring-cloud-static"
-	export VERSION="1.0.0.RELEASE"
-	export REPO_NAME="spring-cloud-stream"
-	cd "${TEMP_DIR}/spring-cloud-stream/"
-	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${REPO_NAME}.html
-	touch docs/target/generated-docs/foo.html
-
-	source "${SOURCE_DIR}"/ghpages.sh
-
-	copy_docs_for_provided_version
-
-	assert_success
-	assert [ "${COMMIT_CHANGES}" == "yes" ]
-	assert [ "${CURRENT_BRANCH}" == "v${VERSION}" ]
-
-	run copy_docs_for_provided_version
-
-	assert_success
-	assert_output --partial "add -A ${DESTINATION_REPO_FOLDER}/${VERSION}"
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/index.html" ]
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/foo.html" ]
 }
 
 @test "should not do anything if commit flag not set" {
