@@ -1028,6 +1028,7 @@
 									<asciidoc-sources-root>${project.basedir}/src/main/asciidoc</asciidoc-sources-root>
 									<generated-resources-root>${project.basedir}/target/generated-resources
 									</generated-resources-root>
+									<project-root>${maven.multiModuleProjectDirectory}</project-root>
 									<github-repo>${docs.main}</github-repo>
 									<github-raw>https://raw.github.com/spring-cloud/${docs.main}/${github-tag}</github-raw>
 									<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}</github-code>
