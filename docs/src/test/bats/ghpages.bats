@@ -130,7 +130,6 @@ export -f stubbed_git
 	# Previous branch was [master]
 	assert_output --partial "git checkout master"
 	assert_output --partial "git checkout v1.0.0.RELEASE"
-	assert_output --partial "Extracted 'main.adoc' from Maven build [home]"
 	assert_output --partial "git stash"
 	assert_output --partial "git checkout gh-pages"
 	assert_output --partial "git pull origin gh-pages"
@@ -295,21 +294,6 @@ export -f stubbed_git
 
 	assert_success
 	assert_output --partial "clean install"
-}
-
-@test "should retrieve maven properties for docs" {
-	export WHITELIST_PROPERTY="spring-doc-resources.version"
-	export MAVEN_EXEC="./mvnw"
-
-	cd "${TEMP_DIR}/spring-cloud-stream/"
-
-	source "${SOURCE_DIR}"/ghpages.sh
-
-	retrieve_doc_properties
-
-	assert_success
-	assert [ "${MAIN_ADOC_VALUE}" == "home" ]
-	assert [ "${WHITELISTED_BRANCHES_VALUE}" == "0.1.1.RELEASE" ]
 }
 
 @test "should stash changes if dirty" {
