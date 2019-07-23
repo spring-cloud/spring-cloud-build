@@ -293,20 +293,6 @@ export -f stubbed_git
 	assert_output --partial "clean install"
 }
 
-@test "should retrieve maven properties for docs" {
-	export WHITELIST_PROPERTY="spring-doc-resources.version"
-	export MAVEN_EXEC="./mvnw"
-
-	cd "${TEMP_DIR}/spring-cloud-stream/"
-
-	source "${SOURCE_DIR}"/ghpages.sh
-
-	retrieve_doc_properties
-
-	assert_success
-	assert [ "${WHITELISTED_BRANCHES_VALUE}" == "0.1.1.RELEASE" ]
-}
-
 @test "should stash changes if dirty" {
 	export GIT_BIN="printing_git_failing_with_diff_index"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
