@@ -1024,6 +1024,12 @@
 									</resource>
 								</resources>
 								<attributes>
+									<docinfo>shared</docinfo>
+									<allow-uri-read>true</allow-uri-read>
+									<nofooter/>
+									<toc>left</toc>
+									<toc-levels>4</toc-levels>
+									<sectlinks>true</sectlinks>
 									<sources-root>${project.basedir}/src</sources-root>
 									<asciidoc-sources-root>${project.basedir}/src/main/asciidoc</asciidoc-sources-root>
 									<generated-resources-root>${project.basedir}/target/generated-resources
@@ -1038,8 +1044,6 @@
 									<index-link>${index-link}</index-link>
 
 									<!-- Spring Cloud specific -->
-									<allow-uri-read>true</allow-uri-read>
-									<nofooter/>
 									<project-version>${project.version}</project-version>
 									<github-tag>${github-tag}</github-tag>
 									<version-type>${version-type}</version-type>
