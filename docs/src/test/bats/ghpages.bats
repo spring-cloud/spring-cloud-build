@@ -36,7 +36,7 @@ function git_with_remotes {
 	if [[ "$*" == *"set-url"* ]]; then
 		echo "git $*"
 	elif [[ "$*" == *"config remote.origin.url"* ]]; then
-		echo "git://foo.bar/baz.git"
+		echo "git://example1.example2/example3.git"
 	else 
 		git $*
 	fi
@@ -56,7 +56,7 @@ function printing_git_failing_with_diff_index {
 
 function printing_git_with_remotes {
 	if [[ "$*" == *"config remote.origin.url"* ]]; then
-		echo "git://foo.bar/baz.git"
+		echo "git://example1.example2/example3.git"
 	else 
 		printing_git $*
 	fi
@@ -64,7 +64,7 @@ function printing_git_with_remotes {
 
 function stubbed_git {
 	if [[ "$*" == *"config remote.origin.url"* ]]; then
-		echo "git://foo.bar/baz.git"
+		echo "git://example1.example2/example3.git"
 	elif [[ "$*" == *"diff-index"* ]]; then
 		return 1
 	elif [[ "$*" == *"symbolic-ref"* ]]; then
@@ -88,13 +88,12 @@ export -f stubbed_git
 	export RELEASER_GIT_OAUTH_TOKEN="mytoken"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
+	touch docs/target/generated-docs/example1.html
 
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git fetch -q"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash"
@@ -103,7 +102,7 @@ export -f stubbed_git
 	# Current branch is master - will copy the current docs only to the root folder
 	assert_output --partial "git add -A ${TEMP_DIR}/spring-cloud-stream"
    	assert_output --partial "git commit -a -m Sync docs from master to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git push origin gh-pages"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash pop"
@@ -118,13 +117,12 @@ export -f stubbed_git
 
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
+	touch docs/target/generated-docs/example1.html
 
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git remote set-branches --add origin gh-pages"
 	assert_output --partial "git fetch -q"
 	# Previous branch was [master]
@@ -134,10 +132,10 @@ export -f stubbed_git
 	assert_output --partial "git checkout gh-pages"
 	assert_output --partial "git pull origin gh-pages"
 	# Current branch is master - will copy the current docs only to the root folder
-	assert [ -f "${TEMP_DIR}/spring-cloud-static/spring-cloud-stream/${VERSION}/foo.html" ]
+	assert [ -f "${TEMP_DIR}/spring-cloud-static/spring-cloud-stream/${VERSION}/example1.html" ]
 	assert_output --partial "git add -A ${TEMP_DIR}/spring-cloud-static/spring-cloud-stream/${VERSION}"
    	assert_output --partial "git commit -a -m Sync docs from v1.0.0.RELEASE to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git push origin gh-pages"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash pop"
@@ -153,23 +151,22 @@ export -f stubbed_git
 
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
+	touch docs/target/generated-docs/example1.html
 
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	# Previous branch was [master]
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash"
 	assert_output --partial "git checkout gh-pages"
 	assert_output --partial "git pull origin gh-pages"
 	# Current branch is master - will copy the current docs only to the root folder
-	assert [ -f "${TEMP_DIR}/spring-cloud-static/${VERSION}/foo.html" ]
+	assert [ -f "${TEMP_DIR}/spring-cloud-static/${VERSION}/example1.html" ]
 	assert_output --partial "git add -A ${TEMP_DIR}/spring-cloud-static/${VERSION}"
    	assert_output --partial "git commit -a -m Sync docs from vGreenwich.SR2 to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git push origin gh-pages"
 	assert_output --partial "git checkout master"
 	assert_output --partial "git stash pop"
@@ -200,7 +197,7 @@ export -f stubbed_git
 	run add_oauth_token_to_remote_url
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://example1.example2/example3.git"
 }
 
 @test "should add auth token to URL if token is present" {
@@ -213,7 +210,7 @@ export -f stubbed_git
 	run add_oauth_token_to_remote_url
 
 	assert_success
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 }
 
 @test "should retrieve the name of the current branch" {
@@ -325,8 +322,7 @@ export -f stubbed_git
 	export CURRENT_BRANCH="master"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
+	touch docs/target/generated-docs/example1.html
 
 	source "${SOURCE_DIR}"/ghpages.sh
 
@@ -340,11 +336,10 @@ export -f stubbed_git
 	export GIT_BIN="printing_git"
 	export CURRENT_BRANCH="present"
 	export WHITELISTED_BRANCHES_VALUE="present"
-	export MAIN_ADOC_VALUE="my_doc"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
+	touch docs/target/generated-docs/my_doc.html
+	touch docs/target/generated-docs/example1.html
 
 	source "${SOURCE_DIR}"/ghpages.sh
 
@@ -356,8 +351,8 @@ export -f stubbed_git
 	run copy_docs_for_current_version
 
 	assert_success
-	assert_output --partial "add -A ${ROOT_FOLDER}/present/index.html"
-	assert_output --partial "add -A ${ROOT_FOLDER}/present/foo.html"
+	assert_output --partial "add -A ${ROOT_FOLDER}/present/my_doc.html"
+	assert_output --partial "add -A ${ROOT_FOLDER}/present/example1.html"
 }
 
 @test "should do nothing if current branch is not whitelisted" {
@@ -371,58 +366,6 @@ export -f stubbed_git
 
 	assert_success
 	assert [ "${COMMIT_CHANGES}" != "yes" ]
-}
-
-@test "should reuse main adoc value as new index.html" {
-	export GIT_BIN="printing_git"
-	export DESTINATION_REPO_FOLDER="${TEMP_DIR}/spring-cloud-static"
-	export VERSION="1.0.0.RELEASE"
-	export MAIN_ADOC_VALUE="my_doc"
-	cd "${TEMP_DIR}/spring-cloud-stream/"
-	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${MAIN_ADOC_VALUE}.html
-	touch docs/target/generated-docs/foo.html
-
-	source "${SOURCE_DIR}"/ghpages.sh
-
-	copy_docs_for_provided_version
-
-	assert_success
-	assert [ "${COMMIT_CHANGES}" == "yes" ]
-	assert [ "${CURRENT_BRANCH}" == "v${VERSION}" ]
-
-	run copy_docs_for_provided_version
-
-	assert_success
-	assert_output --partial "add -A ${DESTINATION_REPO_FOLDER}/${VERSION}"
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/index.html" ]
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/foo.html" ]
-}
-
-@test "should reuse repo name as new index.html" {
-	export GIT_BIN="printing_git"
-	export DESTINATION_REPO_FOLDER="${TEMP_DIR}/spring-cloud-static"
-	export VERSION="1.0.0.RELEASE"
-	export REPO_NAME="spring-cloud-stream"
-	cd "${TEMP_DIR}/spring-cloud-stream/"
-	mkdir -p docs/target/generated-docs/
-	touch docs/target/generated-docs/${REPO_NAME}.html
-	touch docs/target/generated-docs/foo.html
-
-	source "${SOURCE_DIR}"/ghpages.sh
-
-	copy_docs_for_provided_version
-
-	assert_success
-	assert [ "${COMMIT_CHANGES}" == "yes" ]
-	assert [ "${CURRENT_BRANCH}" == "v${VERSION}" ]
-
-	run copy_docs_for_provided_version
-
-	assert_success
-	assert_output --partial "add -A ${DESTINATION_REPO_FOLDER}/${VERSION}"
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/index.html" ]
-	assert [ -f "${DESTINATION_REPO_FOLDER}/${VERSION}/foo.html" ]
 }
 
 @test "should not do anything if commit flag not set" {
@@ -448,7 +391,7 @@ export -f stubbed_git
 
 	assert_success
 	assert_output --partial "git commit -a -m Sync docs from to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git push origin gh-pages"
 }
 
@@ -464,7 +407,7 @@ export -f stubbed_git
 
 	assert_success
 	assert_output --partial "git commit -a -m Sync docs from to gh-pages"
-	assert_output --partial "git remote set-url --push origin https://username:password@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://username:password@example1.example2/example3.git"
 	assert_output --partial "git push origin gh-pages"
 }
 

@@ -33,7 +33,7 @@ function git_with_remotes {
 	if [[ "$*" == *"set-url"* ]]; then
 		echo "git $*"
 	elif [[ "$*" == *"config remote.origin.url"* ]]; then
-		echo "git://foo.bar/baz.git"
+		echo "git://example1.example2/example3.git"
 	else 
 		git $*
 	fi
@@ -45,7 +45,7 @@ function printing_git {
 
 function printing_git_with_remotes {
 	if [[ "$*" == *"config remote.origin.url"* ]]; then
-		echo "git://foo.bar/baz.git"
+		echo "git://example1.example2/example3.git"
 	else 
 		printing_git $*
 	fi
@@ -53,7 +53,7 @@ function printing_git_with_remotes {
 
 function stubbed_git {
  	if [[ "$*" == *"config remote.origin.url"* ]]; then
- 		echo "git://foo.bar/baz.git"
+ 		echo "git://example1.example2/example3.git"
  	elif [[ "$*" == *"commit"* ]]; then
  		printing_git $*
  	elif [[ "$*" == *"push"* ]]; then
@@ -111,7 +111,7 @@ export -f stubbed_git
 
 	assert_success
 	# change remote
-	assert_output --partial "git remote set-url --push origin https://mytoken@foo.bar/baz.git"
+	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	# commit and push
 	assert_output --partial "git commit -m Updating guides"
 	assert_output --partial "git push origin master"

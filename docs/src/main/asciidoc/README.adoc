@@ -57,30 +57,35 @@ approach of generating documentation just add these plugins to your `docs` modul
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId> <1>
+						<groupId>pl.project13.maven</groupId>
+						<artifactId>git-commit-id-plugin</artifactId> <1>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-resources-plugin</artifactId> <2>
+						<artifactId>maven-dependency-plugin</artifactId> <2>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId> <3>
 					</plugin>
 					<plugin>
 						<groupId>org.asciidoctor</groupId>
-						<artifactId>asciidoctor-maven-plugin</artifactId> <3>
+						<artifactId>asciidoctor-maven-plugin</artifactId> <4>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-antrun-plugin</artifactId> <4>
+						<artifactId>maven-antrun-plugin</artifactId> <5>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
 ----
-<1> This plugin downloads the resources of the `spring-cloud-build-docs` module
-<2> This plugin unpacks the resources of the `spring-cloud-build-docs` module
-<3> This plugin is required to parse the Asciidoctor documentation
-<4> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
+<2> This plugin downloads sets up all the git information of the project
+<2> This plugin downloads the resources of the `spring-cloud-build-docs` module
+<3> This plugin unpacks the resources of the `spring-cloud-build-docs` module
+<4> This plugin is required to parse the Asciidoctor documentation
+<5> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
 
 IMPORTANT: The order of plugin declaration is important!
 

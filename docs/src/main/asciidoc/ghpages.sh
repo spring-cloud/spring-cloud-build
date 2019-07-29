@@ -121,14 +121,6 @@ function retrieve_doc_properties() {
         echo "Will not extract any properties for release train"
         return 
     fi
-    echo "Extracting doc properties"
-    MAIN_ADOC_VALUE=$("${MAVEN_EXEC}" -q \
-        -Dexec.executable="echo" \
-        -Dexec.args='${docs.main}' \
-        org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
-        -P docs \
-        -pl docs | tail -1 )
-    echo "Extracted 'main.adoc' from Maven build [${MAIN_ADOC_VALUE}]"
 
 
     WHITELIST_PROPERTY=${WHITELIST_PROPERTY:-"docs.whitelisted.branches"}
@@ -226,15 +218,8 @@ function copy_docs_for_current_version() {
                     echo "The file [${file}] shouldn't be ignored"
                     # Not ignored...
                     # We want users to access 1.0.0.RELEASE/ instead of 1.0.0.RELEASE/spring-cloud.sleuth.html
-                    if [[ "${file}" == "${MAIN_ADOC_VALUE}.html" ]] ; then
-                        # We don't want to copy the spring-cloud-sleuth.html
-                        # we want it to be converted to index.html
-                        cp -rf "${f}" "${ROOT_FOLDER}/${CURRENT_BRANCH}/index.html"
-                        "${GIT_BIN}" add -A "${ROOT_FOLDER}/${CURRENT_BRANCH}/index.html"
-                    else
-                        cp -rf "${f}" "${ROOT_FOLDER}/${CURRENT_BRANCH}"
+                     cp -rf "${f}" "${ROOT_FOLDER}/${CURRENT_BRANCH}"
                         "${GIT_BIN}" add -A "${ROOT_FOLDER}/${CURRENT_BRANCH}/${file}" || echo "Failed to add the file [${file}]"
-                    fi
                 fi
             done
             COMMIT_CHANGES="yes"
@@ -268,14 +253,7 @@ function copy_docs_for_branch() {
     echo "Copying file [${file}] to destination [${destination}]"
     if ! "${GIT_BIN}" ls-files -i -o --exclude-standard --directory | grep -q ^"${file}"$; then
         # Not ignored...
-        # We want users to access 1.0.0.RELEASE/ instead of 1.0.0.RELEASE/spring-cloud.sleuth.html
-        if [[ ("${file}" == "${MAIN_ADOC_VALUE}.html") || ("${file}" == "${REPO_NAME}.html") ]] ; then
-            # We don't want to copy the spring-cloud-sleuth.html
-            # we want it to be converted to index.html
-            cp -rf "${f}" "${destination}"/index.html
-        else
-            cp -rf "${f}" "${destination}"
-        fi
+        cp -rf "${f}" "${destination}"
         "${GIT_BIN}" add -A "${destination}"
     fi
 }
