@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<title>Basic Compile and Test</title>
+<link rel="stylesheet" href="css/spring.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+.hidden {
+	display: none;
+}
+
+.switch {
+	border-width: 1px 1px 0 1px;
+	border-style: solid;
+	border-color: #7a2518;
+	display: inline-block;
+}
+
+.switch--item {
+	padding: 10px;
+	background-color: #ffffff;
+	color: #7a2518;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.switch--item:not(:first-child) {
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: #7a2518;
+}
+
+.switch--item.selected {
+	background-color: #7a2519;
+	color: #ffffff;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script type="text/javascript">
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+</script>
+
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_basic_compile_and_test">Basic Compile and Test</a></li>
+<li><a href="#_documentation">Documentation</a></li>
+<li><a href="#_working_with_the_code">Working with the code</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="_basic_compile_and_test"><a class="link" href="#_basic_compile_and_test">Basic Compile and Test</a></h3>
+<div class="paragraph">
+<p>To build the source you will need to install JDK 1.8.</p>
+</div>
+<div class="paragraph">
+<p>Spring Cloud uses Maven for most build-related activities, and you
+should be able to get off the ground quite quickly by cloning the
+project you are interested in and typing</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./mvnw install</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also install Maven (&gt;=3.3.3) yourself and run the <code>mvn</code> command
+in place of <code>./mvnw</code> in the examples below. If you do that you also
+might need to add <code>-P spring</code> if your local Maven settings do not
+contain repository declarations for spring pre-release artifacts.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Be aware that you might need to increase the amount of memory
+available to Maven by setting a <code>MAVEN_OPTS</code> environment variable with
+a value like <code>-Xmx512m -XX:MaxPermSize=128m</code>. We try to cover this in
+the <code>.mvn</code> configuration, so if you find you have to do it to make a
+build succeed, please raise a ticket to get the settings added to
+source control.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For hints on how to build the project look in <code>.travis.yml</code> if there
+is one. There should be a "script" and maybe "install" command. Also
+look at the "services" section to see if any services need to be
+running locally (e.g. mongo or rabbit).  Ignore the git-related bits
+that you might find in "before_install" since they&#8217;re related to setting git
+credentials and you already have those.</p>
+</div>
+<div class="paragraph">
+<p>The projects that require middleware generally include a
+<code>docker-compose.yml</code>, so consider using
+<a href="https://docs.docker.com/compose/">Docker Compose</a> to run the middeware servers
+in Docker containers. See the README in the
+<a href="https://github.com/spring-cloud-samples/scripts">scripts demo
+repository</a> for specific instructions about the common cases of mongo,
+rabbit and redis.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If all else fails, build with the command from <code>.travis.yml</code> (usually
+<code>./mvnw install</code>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation"><a class="link" href="#_documentation">Documentation</a></h3>
+<div class="paragraph">
+<p>The spring-cloud-build module has a "docs" profile, and if you switch
+that on it will try to build asciidoc sources from
+<code>src/main/asciidoc</code>. As part of that process it will look for a
+<code>README.adoc</code> and process it by loading all the includes, but not
+parsing or rendering it, just copying it to <code>${main.basedir}</code>
+(defaults to <code>${basedir}</code>, i.e. the root of the project). If there are
+any changes in the README it will then show up after a Maven build as
+a modified file in the correct place. Just commit it and push the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_working_with_the_code"><a class="link" href="#_working_with_the_code">Working with the code</a></h3>
+<div class="paragraph">
+<p>If you don&#8217;t have an IDE preference we would recommend that you use
+<a href="https://www.springsource.com/developer/sts">Spring Tools Suite</a> or
+<a href="https://eclipse.org">Eclipse</a> when working with the code. We use the
+<a href="https://eclipse.org/m2e/">m2eclipse</a> eclipse plugin for maven support. Other IDEs and tools
+should also work without issue as long as they use Maven 3.3.3 or better.</p>
+</div>
+<div class="sect3">
+<h4 id="_importing_into_eclipse_with_m2eclipse"><a class="link" href="#_importing_into_eclipse_with_m2eclipse">Importing into eclipse with m2eclipse</a></h4>
+<div class="paragraph">
+<p>We recommend the <a href="https://eclipse.org/m2e/">m2eclipse</a> eclipse plugin when working with
+eclipse. If you don&#8217;t already have m2eclipse installed it is available from the "eclipse
+marketplace".</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Older versions of m2e do not support Maven 3.3, so once the
+projects are imported into Eclipse you will also need to tell
+m2eclipse to use the right profile for the projects.  If you
+see many different errors related to the POMs in the projects, check
+that you have an up to date installation.  If you can&#8217;t upgrade m2e,
+add the "spring" profile to your <code>settings.xml</code>. Alternatively you can
+copy the repository settings from the "spring" profile of the parent
+pom into your <code>settings.xml</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_importing_into_eclipse_without_m2eclipse"><a class="link" href="#_importing_into_eclipse_without_m2eclipse">Importing into eclipse without m2eclipse</a></h4>
+<div class="paragraph">
+<p>If you prefer not to use m2eclipse you can generate eclipse project metadata using the
+following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./mvnw eclipse:eclipse</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The generated eclipse projects can be imported by selecting <code>import existing projects</code>
+from the <code>file</code> menu.</p>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="js/tocbot/tocbot.min.js"></script>
+<script type="text/javascript" src="js/toc.js"></script>
+<link rel="stylesheet" href="js/highlight/styles/atom-one-dark-reasonable.min.css">
+<script src="js/highlight/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
