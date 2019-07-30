@@ -1,9 +1,5 @@
 image:https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg[link="https://travis-ci.org/spring-cloud/spring-cloud-build"]
 
-project-name:spring-cloud-build
-github-tag:master
-github-raw:https://raw.github.com/spring-cloud/{project-name}/{github-tag}
-
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
 
@@ -97,7 +93,7 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
 
 [source,xml]
 ----
-include::{github-raw}/pom.xml[tags=attributes,indent=0]
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/pom.xml[tags=attributes,indent=0]
 ----
 
 == Updating the guides

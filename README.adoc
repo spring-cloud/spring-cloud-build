@@ -6,10 +6,6 @@ Edit the files in the src/main/asciidoc/ directory instead.
 
 image:https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg[link="https://travis-ci.org/spring-cloud/spring-cloud-build"]
 
-project-name:spring-cloud-build
-github-tag:master
-github-raw:https://raw.github.com/spring-cloud/{project-name}/{github-tag}
-
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
 
@@ -281,7 +277,37 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
 
 [source,xml]
 ----
-Unresolved directive in README.adoc - include::{github-raw}/pom.xml[tags=attributes,indent=0]
+<attributes>
+	<docinfo>shared</docinfo>
+	<allow-uri-read>true</allow-uri-read>
+	<nofooter/>
+	<toc>left</toc>
+	<toc-levels>4</toc-levels>
+	<sectlinks>true</sectlinks>
+	<sources-root>${project.basedir}/src</sources-root>
+	<asciidoc-sources-root>${project.basedir}/src/main/asciidoc</asciidoc-sources-root>
+	<generated-resources-root>${project.basedir}/target/generated-resources
+	</generated-resources-root>
+	<!-- Use this attribute the reference code from another module -->
+	<project-root>${maven.multiModuleProjectDirectory}</project-root>
+	<!-- It's mandatory for you to pass the docs.main property -->
+	<github-repo>${docs.main}</github-repo>
+	<github-raw>https://raw.github.com/spring-cloud/${docs.main}/${github-tag}</github-raw>
+	<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}</github-code>
+	<github-issues>https://github.com/spring-cloud/${docs.main}/issues/</github-issues>
+	<github-wiki>https://github.com/spring-cloud/${docs.main}/wiki</github-wiki>
+	<github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master</github-master-code>
+	<index-link>${index-link}</index-link>
+
+	<!-- Spring Cloud specific -->
+	<project-version>${project.version}</project-version>
+	<github-tag>${github-tag}</github-tag>
+	<version-type>${version-type}</version-type>
+	<docs-url>${docs-url}</docs-url>
+	<raw-docs-url>${raw-docs-url}</raw-docs-url>
+	<project-version>${project.version}</project-version>
+	<project-name>${docs.main}</project-name>
+</attributes>
 ----
 
 == Updating the guides
