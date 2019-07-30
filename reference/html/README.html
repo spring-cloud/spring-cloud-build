@@ -117,11 +117,6 @@ $(addBlockSwitches);
 <p><span class="image"><a class="image" href="https://travis-ci.org/spring-cloud/spring-cloud-build"><img src="https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg" alt="spring cloud build"></a></span></p>
 </div>
 <div class="paragraph">
-<p>project-name:spring-cloud-build
-github-tag:master
-github-raw:https://raw.github.com/spring-cloud/spring-cloud-build/origin/master</p>
-</div>
-<div class="paragraph">
 <p>Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.</p>
 </div>
@@ -564,7 +559,37 @@ The order of plugin declaration is important!
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">Unresolved directive in README.adoc - include::https://raw.github.com/spring-cloud/spring-cloud-build/origin/master/pom.xml[tags=attributes,indent=0]</code></pre>
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;attributes&gt;
+	&lt;docinfo&gt;shared&lt;/docinfo&gt;
+	&lt;allow-uri-read&gt;true&lt;/allow-uri-read&gt;
+	&lt;nofooter/&gt;
+	&lt;toc&gt;left&lt;/toc&gt;
+	&lt;toc-levels&gt;4&lt;/toc-levels&gt;
+	&lt;sectlinks&gt;true&lt;/sectlinks&gt;
+	&lt;sources-root&gt;${project.basedir}/src&lt;/sources-root&gt;
+	&lt;asciidoc-sources-root&gt;${project.basedir}/src/main/asciidoc&lt;/asciidoc-sources-root&gt;
+	&lt;generated-resources-root&gt;${project.basedir}/target/generated-resources
+	&lt;/generated-resources-root&gt;
+	&lt;!-- Use this attribute the reference code from another module --&gt;
+	&lt;project-root&gt;${maven.multiModuleProjectDirectory}&lt;/project-root&gt;
+	&lt;!-- It's mandatory for you to pass the docs.main property --&gt;
+	&lt;github-repo&gt;${docs.main}&lt;/github-repo&gt;
+	&lt;github-raw&gt;https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}&lt;/github-raw&gt;
+	&lt;github-code&gt;https://github.com/spring-cloud/${docs.main}/tree/${github-tag}&lt;/github-code&gt;
+	&lt;github-issues&gt;https://github.com/spring-cloud/${docs.main}/issues/&lt;/github-issues&gt;
+	&lt;github-wiki&gt;https://github.com/spring-cloud/${docs.main}/wiki&lt;/github-wiki&gt;
+	&lt;github-master-code&gt;https://github.com/spring-cloud/${docs.main}/tree/master&lt;/github-master-code&gt;
+	&lt;index-link&gt;${index-link}&lt;/index-link&gt;
+
+	&lt;!-- Spring Cloud specific --&gt;
+	&lt;project-version&gt;${project.version}&lt;/project-version&gt;
+	&lt;github-tag&gt;${github-tag}&lt;/github-tag&gt;
+	&lt;version-type&gt;${version-type}&lt;/version-type&gt;
+	&lt;docs-url&gt;${docs-url}&lt;/docs-url&gt;
+	&lt;raw-docs-url&gt;${raw-docs-url}&lt;/raw-docs-url&gt;
+	&lt;project-version&gt;${project.version}&lt;/project-version&gt;
+	&lt;project-name&gt;${docs.main}&lt;/project-name&gt;
+&lt;/attributes&gt;</code></pre>
 </div>
 </div>
 </div>
