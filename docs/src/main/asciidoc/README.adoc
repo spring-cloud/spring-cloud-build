@@ -1,5 +1,9 @@
 image:https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg[link="https://travis-ci.org/spring-cloud/spring-cloud-build"]
 
+project-name:spring-cloud-build
+github-tag:master
+github-raw:https://raw.github.com/spring-cloud/{project-name}/{github-tag}
+
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
 
@@ -88,6 +92,13 @@ approach of generating documentation just add these plugins to your `docs` modul
 <5> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
 
 IMPORTANT: The order of plugin declaration is important!
+
+Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.
+
+[source,xml]
+----
+include::{github-raw}/pom.xml[tags=attributes,indent=0]
+----
 
 == Updating the guides
 

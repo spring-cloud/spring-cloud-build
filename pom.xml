@@ -1023,6 +1023,7 @@
 										</excludes>
 									</resource>
 								</resources>
+								<!-- tag::attributes[] -->
 								<attributes>
 									<docinfo>shared</docinfo>
 									<allow-uri-read>true</allow-uri-read>
@@ -1034,7 +1035,9 @@
 									<asciidoc-sources-root>${project.basedir}/src/main/asciidoc</asciidoc-sources-root>
 									<generated-resources-root>${project.basedir}/target/generated-resources
 									</generated-resources-root>
+									<!-- Use this attribute the reference code from another module -->
 									<project-root>${maven.multiModuleProjectDirectory}</project-root>
+									<!-- It's mandatory for you to pass the docs.main property -->
 									<github-repo>${docs.main}</github-repo>
 									<github-raw>https://raw.github.com/spring-cloud/${docs.main}/${github-tag}</github-raw>
 									<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}</github-code>
@@ -1052,6 +1055,7 @@
 									<project-version>${project.version}</project-version>
 									<project-name>${docs.main}</project-name>
 								</attributes>
+								<!-- end::attributes[] -->
 								<requires>
 									<require>asciidoctor-diagram</require>
 								</requires>
