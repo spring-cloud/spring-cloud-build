@@ -1047,6 +1047,8 @@
 									<index-link>${index-link}</index-link>
 
 									<!-- Spring Cloud specific -->
+									<!-- for backward compatibility -->
+									<spring-cloud-version>${project.version}</spring-cloud-version>
 									<project-version>${project.version}</project-version>
 									<github-tag>${github-tag}</github-tag>
 									<version-type>${version-type}</version-type>
