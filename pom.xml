@@ -1267,15 +1267,21 @@
 											<propertyregex property="version-type" override="true"
 														   input="${version-type}" regexp="BUILD-(.*)"
 														   replace="SNAPSHOT"/>
-											<stringutil string="${version-type}" property="spring-boot-repo">
+											<stringutil string="${version-type}" property="spring-cloud-repo">
 												<lowercase/>
 											</stringutil>
+											<propertyregex property="git.branch" override="true"
+														   input="${git.branch}" regexp="origin/(.*)"
+														   replace="\1"/>
 											<var name="github-tag" value="${git.branch}"/>
 											<condition property="docs-url"
 													   value="https://cloud.spring.io/${docs.main}/">
 												<and>
 													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<equals arg1="${git.branch}" arg2="master"/>
+													<or>
+														<equals arg1="${git.branch}" arg2="master"/>
+														<equals arg1="${git.branch}" arg2="origin/master"/>
+													</or>
 												</and>
 											</condition>
 											<condition property="docs-url"
@@ -1283,7 +1289,10 @@
 												<and>
 													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
 													<not>
-														<equals arg1="${git.branch}" arg2="master"/>
+														<or>
+															<equals arg1="${git.branch}" arg2="master"/>
+															<equals arg1="${git.branch}" arg2="origin/master"/>
+														</or>
 													</not>
 												</and>
 											</condition>
