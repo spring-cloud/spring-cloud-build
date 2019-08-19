@@ -4,18 +4,20 @@
 
 set -e
 
-export GIT_BIN ROOT_FOLDER COMMIT_CHANGES MAVEN_PATH MAVEN_EXEC REPO_NAME SPRING_CLOUD_STATIC_REPO
+export GIT_BIN ROOT_FOLDER COMMIT_CHANGES MAVEN_PATH MAVEN_EXEC REPO_NAME SPRING_CLOUD_STATIC_REPO SPRING_CLOUD_STATIC_REPO_DESTINATION
 export CURRENT_BRANCH PREVIOUS_BRANCH
 export GITHUB_REPO_USERNAME_ENV="${GITHUB_REPO_USERNAME_ENV:-GITHUB_REPO_USERNAME}"
 export GITHUB_REPO_PASSWORD_ENV="${GITHUB_REPO_PASSWORD_ENV:-GITHUB_REPO_PASSWORD}"
 REPO_USER="${!GITHUB_REPO_USERNAME_ENV}"
 REPO_PASS="${!GITHUB_REPO_PASSWORD_ENV}"
+export SPRING_CLOUD_STATIC_REPO_DESTINATION="${SPRING_CLOUD_STATIC_REPO_DESTINATION:-$( dirname "$(mktemp)")/}"
 
 GIT_BIN="${GIT_BIN:-git}"
 
 # The script should be executed from the root folder
 ROOT_FOLDER="$( pwd )"
-echo "Current folder is ${ROOT_FOLDER}"
+echo "Current folder is [${ROOT_FOLDER}]"
+echo "Spring Cloud Static repo is [${SPRING_CLOUD_STATIC_REPO_DESTINATION}]"
 
 # Set default props like MAVEN_PATH, ROOT_FOLDER etc.
 function set_default_props() {
@@ -151,7 +153,7 @@ function add_docs_from_target() {
         DESTINATION_REPO_FOLDER="${ROOT_FOLDER}"
     elif [[ "${CLONE}" == "yes" ]]; then
         mkdir -p "${ROOT_FOLDER}"/target
-        local clonedStatic="${ROOT_FOLDER}"/target/spring-cloud-static
+        local clonedStatic="${SPRING_CLOUD_STATIC_REPO_DESTINATION}"/spring-cloud-static
         if [[ ! -e "${clonedStatic}/.git" ]]; then
             echo "Cloning Spring Cloud Static to target"
             "${GIT_BIN}" clone "${SPRING_CLOUD_STATIC_REPO}" "${clonedStatic}" && cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages
