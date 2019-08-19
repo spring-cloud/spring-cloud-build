@@ -94,6 +94,7 @@ export -f stubbed_git
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
+	assert_output --partial "Spring Cloud Static repo is [${TEMP_DIR}]"
 	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git fetch -q"
 	assert_output --partial "git checkout master"
@@ -123,6 +124,7 @@ export -f stubbed_git
 	run "${SOURCE_DIR}"/ghpages.sh
 
 	assert_success
+	assert_output --partial "Spring Cloud Static repo is [${TEMP_DIR}]"
 	assert_output --partial "git remote set-url --push origin https://mytoken@example1.example2/example3.git"
 	assert_output --partial "git remote set-branches --add origin gh-pages"
 	assert_output --partial "git fetch -q"
