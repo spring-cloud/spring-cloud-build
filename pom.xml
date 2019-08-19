@@ -1275,7 +1275,7 @@
 														   replace="\1"/>
 											<var name="github-tag" value="${git.branch}"/>
 											<condition property="docs-url"
-													   value="https://cloud.spring.io/${docs.main}/">
+													   value="https://cloud.spring.io/${docs.main}">
 												<and>
 													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
 													<or>
@@ -1285,7 +1285,7 @@
 												</and>
 											</condition>
 											<condition property="docs-url"
-													   value="https://cloud.spring.io/${docs.main}/${git.branch}/">
+													   value="https://cloud.spring.io/${docs.main}/${git.branch}">
 												<and>
 													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
 													<not>
