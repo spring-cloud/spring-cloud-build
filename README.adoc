@@ -278,7 +278,9 @@ approach of generating documentation just add these plugins to your `docs` modul
 
 IMPORTANT: The order of plugin declaration is important!
 
-In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to `${docsModule}/src/main/asciidoc/_configprops.adoc` file.
+In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to `${docsModule}/src/main/asciidoc/configprops.adoc` file (configurable via the `configprops.path` property).
+
+If you want to modify which of the configuration properties are put in the table, you can tweak the `configprops.inclusionPattern` pattern to include only a subset of the properties (e.g. `<configprops.inclusionPattern>spring.sleuth.*</configprops.inclusionPattern>`).
 
 Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.
 
@@ -299,11 +301,15 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
 	<project-root>${maven.multiModuleProjectDirectory}</project-root>
 	<!-- It's mandatory for you to pass the docs.main property -->
 	<github-repo>${docs.main}</github-repo>
-	<github-raw>https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}</github-raw>
-	<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}</github-code>
+	<github-raw>
+		https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}
+	</github-raw>
+	<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}
+	</github-code>
 	<github-issues>https://github.com/spring-cloud/${docs.main}/issues/</github-issues>
 	<github-wiki>https://github.com/spring-cloud/${docs.main}/wiki</github-wiki>
-	<github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master</github-master-code>
+	<github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master
+	</github-master-code>
 	<index-link>${index-link}</index-link>
 
 	<!-- Spring Cloud specific -->

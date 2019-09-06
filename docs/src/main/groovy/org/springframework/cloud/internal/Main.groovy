@@ -55,9 +55,8 @@ class Main {
 		new File(outputFile).text = """\
 |===
 |Name | Default | Description
+
 ${names.collect { it -> return descriptions[it] }.join("\n")}
-
-
 
 |===
 """
