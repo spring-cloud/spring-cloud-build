@@ -505,12 +505,16 @@ approach of generating documentation just add these plugins to your <code>docs</
 						&lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt; <i class="conum" data-value="3"></i><b>(3)</b>
 					&lt;/plugin&gt;
 					&lt;plugin&gt;
+						&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+						&lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+					&lt;/plugin&gt;
+					&lt;plugin&gt;
 						&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
-						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="5"></i><b>(5)</b>
 					&lt;/plugin&gt;
 					&lt;plugin&gt;
 						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <i class="conum" data-value="6"></i><b>(6)</b>
 					&lt;/plugin&gt;
 				&lt;/plugins&gt;
 			&lt;/build&gt;
@@ -534,10 +538,14 @@ approach of generating documentation just add these plugins to your <code>docs</
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This plugin is required to parse the Asciidoctor documentation</td>
+<td>This plugin generates an <code>adoc</code> file with all the configuration properties from the classpath</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>This plugin is required to parse the Asciidoctor documentation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links</td>
 </tr>
 </table>
@@ -553,6 +561,9 @@ The order of plugin declaration is important!
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>In order for the build to generate the <code>adoc</code> file with all your configuration properties, your <code>docs</code> module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to <code>${docsModule}/src/main/asciidoc/configprops.adoc</code> file.</p>
 </div>
 <div class="paragraph">
 <p>Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.</p>
@@ -574,11 +585,15 @@ The order of plugin declaration is important!
 	&lt;project-root&gt;${maven.multiModuleProjectDirectory}&lt;/project-root&gt;
 	&lt;!-- It's mandatory for you to pass the docs.main property --&gt;
 	&lt;github-repo&gt;${docs.main}&lt;/github-repo&gt;
-	&lt;github-raw&gt;https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}&lt;/github-raw&gt;
-	&lt;github-code&gt;https://github.com/spring-cloud/${docs.main}/tree/${github-tag}&lt;/github-code&gt;
+	&lt;github-raw&gt;
+		https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}
+	&lt;/github-raw&gt;
+	&lt;github-code&gt;https://github.com/spring-cloud/${docs.main}/tree/${github-tag}
+	&lt;/github-code&gt;
 	&lt;github-issues&gt;https://github.com/spring-cloud/${docs.main}/issues/&lt;/github-issues&gt;
 	&lt;github-wiki&gt;https://github.com/spring-cloud/${docs.main}/wiki&lt;/github-wiki&gt;
-	&lt;github-master-code&gt;https://github.com/spring-cloud/${docs.main}/tree/master&lt;/github-master-code&gt;
+	&lt;github-master-code&gt;https://github.com/spring-cloud/${docs.main}/tree/master
+	&lt;/github-master-code&gt;
 	&lt;index-link&gt;${index-link}&lt;/index-link&gt;
 
 	&lt;!-- Spring Cloud specific --&gt;
