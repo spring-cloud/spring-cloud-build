@@ -1,5 +1,7 @@
 package org.springframework.cloud.internal
 
+import java.util.regex.Pattern
+
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 
@@ -14,10 +16,11 @@ class Main {
 	@CompileStatic
 	static void main(String... args) {
 		String outputFile = args[0]
-		new Main().generate(outputFile)
+		String inclusionPattern = args.length > 0 ? args[1] : ".*"
+		new Main().generate(outputFile, inclusionPattern)
 	}
 
-	void generate(String outputFile) {
+	void generate(String outputFile, String inclusionPattern) {
 		println "Parsing all configuration metadata"
 		Resource[] resources = new PathMatchingResourcePatternResolver()
 				.getResources("classpath*:/META-INF/spring-configuration-metadata.json")
@@ -25,17 +28,25 @@ class Main {
 		TreeSet names = new TreeSet()
 		def descriptions = [:]
 		int count = 0
+		int matchingPropertyCount = 0
+		int propertyCount = 0
+		Pattern pattern = Pattern.compile(inclusionPattern)
 		resources.each { Resource resource ->
 			if (resource.url.toString().contains("cloud")) {
 				count++
 				def slurper = new JsonSlurper()
 				slurper.parseText(resource.inputStream.text).properties.each { val ->
+					propertyCount++
+					if (!pattern.matcher(val.name).matches()) {
+						return
+					}
+					matchingPropertyCount++
 					names.add val.name
 					descriptions[val.name] = new ConfigValue(val.name, val.description, val.defaultValue)
 				}
 			}
 		}
-		println "Found [${count}] Cloud projects configuration metadata jsons"
+		println "Found [${count}] Cloud projects configuration metadata jsons. [${matchingPropertyCount}/${propertyCount}] were matching the pattern [${inclusionPattern}]"
 		println "Successfully built the description table"
 		if (names.empty) {
 			println("Will not update the table, since no configuration properties were found!")

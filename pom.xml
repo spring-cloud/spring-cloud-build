@@ -99,6 +99,7 @@
 		<antelopetasks.version>3.2.10</antelopetasks.version>
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
 		<configprops.path>${project.basedir}/src/main/asciidoc/_configprops.adoc</configprops.path>
+		<configprops.inclusionPattern>.*</configprops.inclusionPattern>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1024,6 +1025,7 @@
 								<mainClass>org.springframework.cloud.internal.Main</mainClass>
 								<arguments>
 									<argument>${configprops.path}</argument>
+									<argument>${configprops.inclusionPattern}</argument>
 								</arguments>
 							</configuration>
 						</plugin>
