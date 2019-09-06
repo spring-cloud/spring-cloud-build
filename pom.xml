@@ -98,6 +98,7 @@
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<antelopetasks.version>3.2.10</antelopetasks.version>
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
+		<configprops.path>${project.basedir}/src/main/asciidoc/_configprops.adoc</configprops.path>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1022,7 +1023,7 @@
 								</includePluginDependencies>
 								<mainClass>org.springframework.cloud.internal.Main</mainClass>
 								<arguments>
-									<argument>${project.basedir}/src/main/asciidoc/configprops.adoc</argument>
+									<argument>${configprops.path}</argument>
 								</arguments>
 							</configuration>
 						</plugin>

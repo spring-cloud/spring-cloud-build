@@ -278,7 +278,7 @@ approach of generating documentation just add these plugins to your `docs` modul
 
 IMPORTANT: The order of plugin declaration is important!
 
-In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to `${docsModule}/src/main/asciidoc/configprops.adoc` file.
+In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to `${docsModule}/src/main/asciidoc/_configprops.adoc` file.
 
 Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.
 
