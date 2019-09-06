@@ -563,7 +563,10 @@ The order of plugin declaration is important!
 </table>
 </div>
 <div class="paragraph">
-<p>In order for the build to generate the <code>adoc</code> file with all your configuration properties, your <code>docs</code> module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to <code>${docsModule}/src/main/asciidoc/configprops.adoc</code> file.</p>
+<p>In order for the build to generate the <code>adoc</code> file with all your configuration properties, your <code>docs</code> module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to <code>${docsModule}/src/main/asciidoc/configprops.adoc</code> file (configurable via the <code>configprops.path</code> property).</p>
+</div>
+<div class="paragraph">
+<p>If you want to modify which of the configuration properties are put in the table, you can tweak the <code>configprops.inclusionPattern</code> pattern to include only a subset of the properties (e.g. <code>&lt;configprops.inclusionPattern&gt;spring.sleuth.*&lt;/configprops.inclusionPattern&gt;</code>).</p>
 </div>
 <div class="paragraph">
 <p>Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.</p>
