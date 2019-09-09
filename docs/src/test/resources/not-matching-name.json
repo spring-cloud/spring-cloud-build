@@ -1,0 +1,16 @@
+{
+  "properties": [
+    {
+      "defaultValue": "false",
+      "name": "example1.first-property",
+      "description": "First Description",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "defaultValue": "true",
+      "name": "example2.second-property",
+      "description": "Second Description",
+      "type": "java.lang.Boolean"
+    }
+  ]
+}
