@@ -159,7 +159,15 @@ function add_docs_from_target() {
             "${GIT_BIN}" clone "${SPRING_CLOUD_STATIC_REPO}" "${clonedStatic}" && cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages
         else
             echo "Spring Cloud Static already cloned - will pull changes"
-            cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages && "${GIT_BIN}" pull origin gh-pages
+            local pullSuccessful="false"
+            cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages && "${GIT_BIN}" pull origin gh-pages && pullSuccessful="true" || echo "Failed to clone and pull versions - will remove the folder and clone it again"
+            if [[ "${pullSuccessful}" == "false" ]]; then
+              cd "${ROOT_FOLDER}"
+              echo "Removing the [${clonedStatic}] folder"
+              rm -rf "${clonedStatic}"
+              echo "Cloning Spring Cloud Static again"
+              "${GIT_BIN}" clone "${SPRING_CLOUD_STATIC_REPO}" "${clonedStatic}" && cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages
+            fi
         fi
         if [[ -z "${RELEASE_TRAIN}" ]] ; then
             DESTINATION_REPO_FOLDER="${clonedStatic}/${REPO_NAME}"
