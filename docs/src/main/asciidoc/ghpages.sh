@@ -155,10 +155,10 @@ function add_docs_from_target() {
         mkdir -p "${ROOT_FOLDER}"/target
         local clonedStatic="${SPRING_CLOUD_STATIC_REPO_DESTINATION}"/spring-cloud-static
         if [[ ! -e "${clonedStatic}/.git" ]]; then
-            echo "Cloning Spring Cloud Static to target"
+            echo "Cloning Spring Cloud Static to [${clonedStatic}]"
             "${GIT_BIN}" clone "${SPRING_CLOUD_STATIC_REPO}" "${clonedStatic}" && cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages
         else
-            echo "Spring Cloud Static already cloned - will pull changes"
+            echo "Spring Cloud Static already cloned to [${clonedStatic}] - will pull changes"
             local pullSuccessful="false"
             cd "${clonedStatic}" && "${GIT_BIN}" checkout gh-pages && "${GIT_BIN}" pull origin gh-pages && pullSuccessful="true" || echo "Failed to clone and pull versions - will remove the folder and clone it again"
             if [[ "${pullSuccessful}" == "false" ]]; then
