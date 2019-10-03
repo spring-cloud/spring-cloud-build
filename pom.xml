@@ -101,6 +101,7 @@
 		<configprops.path>${project.basedir}/src/main/asciidoc/_configprops.adoc</configprops.path>
 		<configprops.inclusionPattern>.*</configprops.inclusionPattern>
 		<maven-dependency-plugin-for-docs.phase>generate-resources</maven-dependency-plugin-for-docs.phase>
+		<maven-dependency-plugin-for-guides.phase>generate-resources</maven-dependency-plugin-for-guides.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -802,7 +803,7 @@
 						<executions>
 							<execution>
 								<id>unpack-docs</id>
-								<phase>${maven-dependency-plugin-for-docs.phase}</phase>
+								<phase>${maven-dependency-plugin-for-guides.phase}</phase>
 								<goals>
 									<goal>unpack</goal>
 								</goals>
@@ -928,7 +929,7 @@
 							<executions>
 								<execution>
 									<id>unpack-docs</id>
-									<phase>generate-resources</phase>
+									<phase>${maven-dependency-plugin-for-docs.phase}</phase>
 									<goals>
 										<goal>unpack</goal>
 									</goals>
