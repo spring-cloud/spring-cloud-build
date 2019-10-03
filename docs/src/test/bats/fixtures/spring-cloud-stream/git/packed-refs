@@ -1,0 +1,66 @@
+# pack-refs with: peeled fully-peeled sorted 
+0cd12064355a96f3064a91fa39d59c8fb8b35cea refs/remotes/origin/1.0.M1-docker
+6eb007cdfc2b0ac7d491acf09c38c7078067c8a5 refs/remotes/origin/1.0.x
+339617cb364317560329bb4c7add5abc9397dc35 refs/remotes/origin/1.1.x
+16448a86b95e1a030389698d42713430c29c24ba refs/remotes/origin/1.2.x
+1c47daa6863a96676468a2d1b0919c7cc80d3d93 refs/remotes/origin/1.3.x
+b9fee7f86361f6a7aac44927441648530c8e6540 refs/remotes/origin/2.0.x
+5b39e57ac9086d19e53851eb4558fe0a83ad3357 refs/remotes/origin/2.2.x
+7b980d7644c03e913963daf46d74476ee881eea6 refs/remotes/origin/gh-pages
+c6d238085f11a086b62813da5d08cd90310da5ea refs/remotes/origin/master
+b1bf785c3078ad0559960662df61d1890c0d38b0 refs/remotes/origin/snicoll-patch-1
+9f3dac58e610826154c7c6a5631a71d229c27e9e refs/tags/v1.0.0.M1
+^83f762a31e5dfe033e11bdd8ca530a39da20f60a
+7e5ddd3e7bfb63e38c89617cfc7e98d1f73ab353 refs/tags/v1.0.0.M2
+^bd22e119c88a7f57013326189b57310901e566bb
+2edb94b6567acea491c06928c71414d7b5911555 refs/tags/v1.0.0.M3
+^f3d46fc120684c1bf80a94fb7950b2398f015111
+8f18455a6a5a6668421afe3fa352e14a8fafe825 refs/tags/v1.0.0.M4
+^082e5e733057d7154b779dd3cac81e8115ce5d3c
+70a6abbc6177bef81ac006b46481c38bb3136141 refs/tags/v1.0.0.RC1
+b837d5b5c03c6111ce7a9a836699995907fcce24 refs/tags/v1.0.0.RC2
+^727434b732fe1c711599071500516b441040dd55
+53f1839a82ee5e58cf8f20a61d70fb2e0186d2aa refs/tags/v1.0.0.RELEASE
+b51e3b14af010a6ef168a3d2e96f0cd65321a0c9 refs/tags/v1.0.1.RELEASE
+f9aa3d7f8100ec8f665974e6884000191fd0fcb0 refs/tags/v1.0.2.RELEASE
+7dc210312225e6b1104fd193672cfb16e1e838d0 refs/tags/v1.0.3.RELEASE
+^962db72bbcebf688aa4165765150bad91f2eac8d
+7b71e07c3ad3e4454258dbcdd9a8f9157ca41724 refs/tags/v1.1.0.M1
+ef8d3fde03bbc8e7add909b94dcc7bbb1a092e93 refs/tags/v1.1.0.RC1
+d739052c55896e3f4f5ba7407a1e58a3a097b062 refs/tags/v1.1.0.RELEASE
+702fe0fdefd194c5a16e39c7862691c076fc976a refs/tags/v1.1.1.RELEASE
+6b675848cbf4d2eb0c62177edbcbc5beb3f4dce6 refs/tags/v1.1.2.RELEASE
+f602ae838c93928cd0c5311b9c894511f42679b6 refs/tags/v1.2.0.M1
+33f54fc75879153c3c17ee8728f5fab8d912a42b refs/tags/v1.2.0.M2
+23a738d3f917938664306dc5fc3b9d329a8d06e7 refs/tags/v1.2.0.RC1
+9cc591a079e14cc0c64895ab0c89261ae5ded825 refs/tags/v1.2.0.RELEASE
+^54678571df906c987ee86518c5a73e048135d997
+a33b9bfbe474e4adffe9350eb6171bbeb64003bc refs/tags/v1.2.1.RELEASE
+43352fa8507eb87d5b221057b7580a7aa6cc9e12 refs/tags/v1.2.2.RELEASE
+f9b111afb5f3c53914a3ea8b819849473436bd54 refs/tags/v1.3.0.M1
+cc31d826aac960a7e77ace8187af93c904702cd0 refs/tags/v1.3.0.M2
+7b41c2df60e1020a505664e3d7dafd9cb6cd48c3 refs/tags/v1.3.0.RC1
+^5722f5af0653da8aee20f79ecf249b84c7511f39
+9e46ec00a08e28282e4989a96549f97856ccb698 refs/tags/v1.3.0.RELEASE
+3f7925429325b57cb73e88799578c598f44ac29d refs/tags/v1.3.1.RELEASE
+950c3e0ac338fb44f610e5033e82014bed6cd5e5 refs/tags/v1.3.2.RELEASE
+6300fb69714e7ca50e2bc9e9e00822b9ddcf99e7 refs/tags/v1.3.3.RELEASE
+f5952f561754f4459bc42a22f119127af92bc973 refs/tags/v2.0.0.M1
+061d6bed5cda969ab6b07e848be06445df96c393 refs/tags/v2.0.0.M2
+03b7b0d612087c802533fd7bd9fd4f6389142676 refs/tags/v2.0.0.M3
+5a622155144a8dd5c77ebe7ffc0d4f1e6e59b1a2 refs/tags/v2.0.0.M4
+388345e2f53c6fadd88bb41db2e494a5884e65e4 refs/tags/v2.0.0.RC1
+9e1930e1fdfabb5dc6ad68aed94eb2def4ba21fa refs/tags/v2.0.0.RC2
+1bcfb8cd4adf5450a6d67f32ab2a1db6cf5e4808 refs/tags/v2.0.0.RC3
+e6cff0c6e63916058925d726f86ada48a36bf0a0 refs/tags/v2.0.0.RELEASE
+ff32173e9fff75cbdaeb02b36247afc16e28d9c2 refs/tags/v2.0.1.RELEASE
+56be7d16b0a0543da2f8971a52fb7f18844e39bd refs/tags/v2.0.2.RELEASE
+79a09791cd77daf28bc86782a85dcd696105e592 refs/tags/v2.1.0.M1
+7ce25617d2ed2ba3cccf7524408bacdc35a5804a refs/tags/v2.1.0.M2
+f498323f61edee146cddfd27484e6f913cd8564a refs/tags/v2.1.0.M3
+be67c92f0785408fa7634ccf3a42ab3da486e7cf refs/tags/v2.1.0.M4
+a83bdb7f34d7362ce67434b26f8966565e744e97 refs/tags/v2.1.0.RC1
+4775defbf048eee482a9eda4a6b72acb1d3c00ca refs/tags/v2.1.0.RC2
+5d07afc956248a62ffc0275a57a90c97fbefa7a4 refs/tags/v2.1.0.RC3
+953de7f02e249dea8fa5cf459739b54fc90d221a refs/tags/v2.1.0.RC4
+1535f37e16990ff48b68476c94ee7d27ab600d59 refs/tags/v2.1.0.RELEASE

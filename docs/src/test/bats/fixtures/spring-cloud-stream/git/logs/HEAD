@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 c6d238085f11a086b62813da5d08cd90310da5ea Marcin Grzejszczak <marcin@grzejszczak.pl> 1549274693 +0100	clone: from git@github.com:spring-cloud/spring-cloud-stream
+c6d238085f11a086b62813da5d08cd90310da5ea a8cbf7779458bf72b4e2439136299c33eb797697 Marcin Grzejszczak <marcin@grzejszczak.pl> 1549292135 +0100	commit: Added checkstyle
+a8cbf7779458bf72b4e2439136299c33eb797697 070ab0adfa59e54951f6b759d930f5da1e9f218b Marcin Grzejszczak <marcin@grzejszczak.pl> 1553590477 +0100	pull --rebase origin master: Fast-forward
+070ab0adfa59e54951f6b759d930f5da1e9f218b 7b980d7644c03e913963daf46d74476ee881eea6 Marcin Grzejszczak <marcin@grzejszczak.pl> 1553590489 +0100	checkout: moving from master to gh-pages
+7b980d7644c03e913963daf46d74476ee881eea6 6b970b1d0ed73ee4da171c19ee2d004c629570df Marcin Grzejszczak <marcin@grzejszczak.pl> 1553590494 +0100	pull --rebase origin gh-pages: Fast-forward
+6b970b1d0ed73ee4da171c19ee2d004c629570df 070ab0adfa59e54951f6b759d930f5da1e9f218b Marcin Grzejszczak <marcin@grzejszczak.pl> 1553619375 +0100	checkout: moving from gh-pages to master
+070ab0adfa59e54951f6b759d930f5da1e9f218b 6b970b1d0ed73ee4da171c19ee2d004c629570df Marcin Grzejszczak <marcin@grzejszczak.pl> 1553619382 +0100	checkout: moving from master to gh-pages
+6b970b1d0ed73ee4da171c19ee2d004c629570df 3e7f960197e196ec9a2f536711a97cc7cfc7e45d Marcin Grzejszczak <marcin@grzejszczak.pl> 1553619390 +0100	pull --rebase origin gh-pages: Fast-forward
+3e7f960197e196ec9a2f536711a97cc7cfc7e45d 070ab0adfa59e54951f6b759d930f5da1e9f218b Marcin Grzejszczak <marcin@grzejszczak.pl> 1553619397 +0100	checkout: moving from gh-pages to master
