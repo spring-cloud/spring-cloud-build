@@ -100,6 +100,7 @@
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
 		<configprops.path>${project.basedir}/src/main/asciidoc/_configprops.adoc</configprops.path>
 		<configprops.inclusionPattern>.*</configprops.inclusionPattern>
+		<maven-dependency-plugin-for-docs.phase>generate-resources</maven-dependency-plugin-for-docs.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -801,7 +802,7 @@
 						<executions>
 							<execution>
 								<id>unpack-docs</id>
-								<phase>generate-resources</phase>
+								<phase>${maven-dependency-plugin-for-docs.phase}</phase>
 								<goals>
 									<goal>unpack</goal>
 								</goals>
