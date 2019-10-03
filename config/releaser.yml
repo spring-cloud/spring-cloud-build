@@ -1,0 +1,4 @@
+releaser:
+  maven:
+    buildCommand: ./scripts/build.sh  {{systemProps}}
+    deployCommand: echo "skip deploy"
