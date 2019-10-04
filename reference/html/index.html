@@ -586,7 +586,8 @@ The order of plugin declaration is important!
 	&lt;generated-resources-root&gt;${project.basedir}/target/generated-resources
 	&lt;/generated-resources-root&gt;
 	&lt;!-- Use this attribute the reference code from another module --&gt;
-	&lt;project-root&gt;${maven.multiModuleProjectDirectory}&lt;/project-root&gt;
+	&lt;!-- Note the @ at the end, lowering the precedence of the attribute --&gt;
+	&lt;project-root&gt;${maven.multiModuleProjectDirectory}@&lt;/project-root&gt;
 	&lt;!-- It's mandatory for you to pass the docs.main property --&gt;
 	&lt;github-repo&gt;${docs.main}&lt;/github-repo&gt;
 	&lt;github-raw&gt;
