@@ -29,28 +29,6 @@
 				<inherited>false</inherited>
 				<executions>
 					<execution>
-						<!-- Create an effective POM (with versions expanded) for the CLI and
-							documentation -->
-						<id>flatten-effective-pom</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>flatten</goal>
-						</goals>
-						<configuration>
-							<updatePomFile>false</updatePomFile>
-							<outputDirectory>${project.build.directory}/effective-pom</outputDirectory>
-							<flattenedPomFilename>spring-cloud-build-dependencies.xml</flattenedPomFilename>
-							<flattenMode>oss</flattenMode>
-							<pomElements>
-								<parent>expand</parent>
-								<dependencyManagement>expand</dependencyManagement>
-								<pluginManagement>expand</pluginManagement>
-								<properties>remove</properties>
-								<repositories>remove</repositories>
-							</pomElements>
-						</configuration>
-					</execution>
-					<execution>
 						<!-- Flatten and simplify our own POM for install/deploy -->
 						<id>flatten</id>
 						<phase>process-resources</phase>
