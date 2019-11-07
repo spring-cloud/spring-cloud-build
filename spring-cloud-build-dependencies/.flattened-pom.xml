@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-dependencies</artifactId>
+    <version>2.2.1.RELEASE</version>
+    <relativePath></relativePath>
+  </parent>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-build-dependencies</artifactId>
+  <version>2.2.0.BUILD-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>spring-cloud-build-dependencies</name>
+  <description>Spring Cloud Build Dependencies: an internal BOM for use with Spring
+		Cloud projects. Use as a BOM or by inheriting from the spring-cloud build parent.</description>
+  <url>https://projects.spring.io/spring-boot/#/spring-cloud-build-dependencies</url>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Pivotal</name>
+      <email>info@pivotal.io</email>
+      <organization>Pivotal Software, Inc.</organization>
+      <organizationUrl>https://www.spring.io</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <url>https://github.com/spring-projects/spring-boot/spring-cloud-build-dependencies</url>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>repo.spring.io</id>
+      <name>Spring Release Repository</name>
+      <url>https://repo.spring.io/libs-release-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>repo.spring.io</id>
+      <name>Spring Snapshot Repository</name>
+      <url>https://repo.spring.io/libs-snapshot-local</url>
+    </snapshotRepository>
+    <site>
+      <id>spring-docs</id>
+      <url>scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/spring-cloud-build-dependencies/2.2.0.BUILD-SNAPSHOT</url>
+    </site>
+    <downloadUrl>https://github.com/spring-cloud</downloadUrl>
+  </distributionManagement>
+  <properties>
+    <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <profiles>
+    <profile>
+      <id>spring</id>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <id>spring-snapshots</id>
+          <name>Spring Snapshots</name>
+          <url>https://repo.spring.io/libs-snapshot-local</url>
+        </repository>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>spring-milestones</id>
+          <name>Spring Milestones</name>
+          <url>https://repo.spring.io/libs-milestone-local</url>
+        </repository>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>spring-releases</id>
+          <name>Spring Releases</name>
+          <url>https://repo.spring.io/release</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+</project>

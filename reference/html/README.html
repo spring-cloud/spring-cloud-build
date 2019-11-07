@@ -105,6 +105,7 @@ $(addBlockSwitches);
 <li><a href="#_ide_setup">IDE setup</a></li>
 </ul>
 </li>
+<li><a href="#_flattening_the_poms">Flattening the POMs</a></li>
 <li><a href="#_reusing_the_documentation">Reusing the documentation</a></li>
 <li><a href="#_updating_the_guides">Updating the guides</a></li>
 </ul>
@@ -472,6 +473,29 @@ Remember to set the <code>Scan Scope</code> to <code>All sources</code> since we
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_flattening_the_poms"><a class="link" href="#_flattening_the_poms">Flattening the POMs</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To avoid propagating build setup that is required to build a Spring Cloud project, we&#8217;re using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.</p>
+</div>
+<div class="paragraph">
+<p>In order to add it, add the <code>org.codehaus.mojo:flatten-maven-plugin</code> to your <code>pom.xml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+            &lt;artifactId&gt;flatten-maven-plugin&lt;/artifactId&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
 </div>
 </div>
 </div>
