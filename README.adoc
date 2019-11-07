@@ -226,6 +226,24 @@ Go to `File` -> `Settings` -> `Other settings` -> `Checkstyle`. There click on t
 
 IMPORTANT: Remember to set the `Scan Scope` to `All sources` since we apply checkstyle rules for production and test sources.
 
+== Flattening the POMs
+
+To avoid propagating build setup that is required to build a Spring Cloud project, we're using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.
+
+In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `pom.xml`.
+
+[source,xml]
+----
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+----
+
 == Reusing the documentation
 
 Spring Cloud Build publishes its `spring-cloud-build-docs` module that contains

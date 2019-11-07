@@ -42,6 +42,24 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/docs/src/main/asciidoc/contributing.adoc[]
 
+== Flattening the POMs
+
+To avoid propagating build setup that is required to build a Spring Cloud project, we're using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.
+
+In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `pom.xml`.
+
+[source,xml]
+----
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+----
+
 == Reusing the documentation
 
 Spring Cloud Build publishes its `spring-cloud-build-docs` module that contains
