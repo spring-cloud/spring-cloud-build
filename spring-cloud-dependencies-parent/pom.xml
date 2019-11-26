@@ -150,6 +150,7 @@
 										<pluginManagement>keep</pluginManagement>
 										<properties>keep</properties>
 										<repositories>remove</repositories>
+										<profiles>keep</profiles>
 									</pomElements>
 								</configuration>
 							</execution>
