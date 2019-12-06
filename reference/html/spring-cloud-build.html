@@ -605,15 +605,15 @@ The order of plugin declaration is important!
 	&lt;toc&gt;left&lt;/toc&gt;
 	&lt;toc-levels&gt;4&lt;/toc-levels&gt;
 	&lt;sectlinks&gt;true&lt;/sectlinks&gt;
-	&lt;sources-root&gt;${project.basedir}/src&lt;/sources-root&gt;
-	&lt;asciidoc-sources-root&gt;${project.basedir}/src/main/asciidoc&lt;/asciidoc-sources-root&gt;
-	&lt;generated-resources-root&gt;${project.basedir}/target/generated-resources
+	&lt;sources-root&gt;${project.basedir}/src@&lt;/sources-root&gt;
+	&lt;asciidoc-sources-root&gt;${project.basedir}/src/main/asciidoc@&lt;/asciidoc-sources-root&gt;
+	&lt;generated-resources-root&gt;${project.basedir}/target/generated-resources@
 	&lt;/generated-resources-root&gt;
 	&lt;!-- Use this attribute the reference code from another module --&gt;
 	&lt;!-- Note the @ at the end, lowering the precedence of the attribute --&gt;
 	&lt;project-root&gt;${maven.multiModuleProjectDirectory}@&lt;/project-root&gt;
 	&lt;!-- It's mandatory for you to pass the docs.main property --&gt;
-	&lt;github-repo&gt;${docs.main}&lt;/github-repo&gt;
+	&lt;github-repo&gt;${docs.main}@&lt;/github-repo&gt;
 	&lt;github-raw&gt;
 		https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}@
 	&lt;/github-raw&gt;
@@ -621,7 +621,7 @@ The order of plugin declaration is important!
 	&lt;/github-code&gt;
 	&lt;github-issues&gt;https://github.com/spring-cloud/${docs.main}/issues/@&lt;/github-issues&gt;
 	&lt;github-wiki&gt;https://github.com/spring-cloud/${docs.main}/wiki@&lt;/github-wiki&gt;
-	&lt;github-master-code&gt;https://github.com/spring-cloud/${docs.main}/tree/master
+	&lt;github-master-code&gt;https://github.com/spring-cloud/${docs.main}/tree/master@
 	&lt;/github-master-code&gt;
 	&lt;index-link&gt;${index-link}@&lt;/index-link&gt;
 
