@@ -859,6 +859,23 @@
 			</build>
 		</profile>
 		<profile>
+			<id>java11</id>
+			<activation>
+				<jdk>[1.11,)</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<!-- https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8212233 -->
+							<source>8</source>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
 			<!-- TODO: remove this (it's covered with checkstyle, but not all projects use that yet -->
 			<id>imports</id>
 			<activation>
