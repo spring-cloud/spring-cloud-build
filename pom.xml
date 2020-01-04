@@ -102,6 +102,9 @@
 		<configprops.inclusionPattern>.*</configprops.inclusionPattern>
 		<maven-dependency-plugin-for-docs.phase>generate-resources</maven-dependency-plugin-for-docs.phase>
 		<maven-dependency-plugin-for-guides.phase>generate-resources</maven-dependency-plugin-for-guides.phase>
+		<generated-docs-multipage-output.dir>${project.build.directory}/generated-docs/reference/html</generated-docs-multipage-output.dir>
+		<generated-docs-singlepage-output.dir>${project.build.directory}/generated-docs/reference/htmlsingle</generated-docs-singlepage-output.dir>
+		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1127,7 +1130,7 @@
 											<sourceDocumentExtension>.adoc</sourceDocumentExtension>
 											<sourceDocumentExtension>.htmladoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
-										<outputDirectory>${project.build.directory}/generated-docs/reference/html
+										<outputDirectory>${generated-docs-multipage-output.dir}
 										</outputDirectory>
 										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
@@ -1161,7 +1164,7 @@
 											<sourceDocumentExtension>.htmlsingleadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
 										<outputDirectory>
-											${project.build.directory}/generated-docs/reference/htmlsingle
+											${generated-docs-singlepage-output.dir}
 										</outputDirectory>
 										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
@@ -1187,7 +1190,7 @@
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>.pdfadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
-										<outputDirectory>${project.build.directory}/generated-docs/reference/pdf
+										<outputDirectory>${generated-docs-pdf-output.dir}
 										</outputDirectory>
 										<resources>
 											<resource>
