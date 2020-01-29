@@ -18,7 +18,7 @@
 		<docs.whitelisted.branches>1.2.x,1.3.x,2.0.x,2.1.x</docs.whitelisted.branches>
 		<main.basedir>${basedir}/..</main.basedir>
 		<gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
-		<groovy.version>2.5.8</groovy.version>
+		<groovy.version>2.5.9</groovy.version>
 		<!-- We don't want to downloaded sources of our own project-->
 		<maven-dependency-plugin-for-docs.phase>none</maven-dependency-plugin-for-docs.phase>
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
@@ -173,7 +173,7 @@
 								</goals>
 								<configuration>
 									<skip>${skipTests}</skip>
-									<!-- <skip>true</skip> -->
+									<skip>true</skip>
 									<executable>${basedir}/src/test/bash/run-bats.sh</executable>
 								</configuration>
 							</execution>
