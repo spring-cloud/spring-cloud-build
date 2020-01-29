@@ -19,6 +19,8 @@
 		<main.basedir>${basedir}/..</main.basedir>
 		<gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
 		<groovy.version>2.5.9</groovy.version>
+		<!-- For the Groovy plugin -->
+		<groovyVersion>${groovy.version}</groovyVersion>
 		<!-- We don't want to downloaded sources of our own project-->
 		<maven-dependency-plugin-for-docs.phase>none</maven-dependency-plugin-for-docs.phase>
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
@@ -38,29 +40,63 @@
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>${groovy.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
+			<version>${groovy.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-xml</artifactId>
+			<version>${groovy.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-datetime</artifactId>
+			<version>${groovy.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-nio</artifactId>
+			<version>${groovy.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-json</artifactId>
+			<version>${groovy.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
+			<artifactId>groovy-jsr223</artifactId>
 			<version>${groovy.version}</version>
-			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-macro</artifactId>
+			<version>${groovy.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-sql</artifactId>
+			<version>${groovy.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-swing</artifactId>
+			<version>${groovy.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
