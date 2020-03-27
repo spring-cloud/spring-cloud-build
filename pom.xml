@@ -1515,6 +1515,8 @@
 							<outputFormats><value>XML</value></outputFormats>
 							<!-- and write reports where report-aggregate-module expects to find it -->
 							<timestampedReports>false</timestampedReports>
+							<!-- There are modules that don't have tests -->
+							<failWhenNoMutations>false</failWhenNoMutations>
 						</configuration>
 						<executions>
 							<execution>
