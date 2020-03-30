@@ -107,6 +107,7 @@
 		<generated-docs-multipage-output.dir>${project.build.directory}/generated-docs/reference/html</generated-docs-multipage-output.dir>
 		<generated-docs-singlepage-output.dir>${project.build.directory}/generated-docs/reference/htmlsingle</generated-docs-singlepage-output.dir>
 		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
+		<javadoc.failOnError>false</javadoc.failOnError>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -240,8 +241,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<!-- TODO: We need to patch the javadocs instead of disabling this -->
-					<failOnError>false</failOnError>
+					<failOnError>>${javadoc.failOnError}</failOnError>
 					<quiet>true</quiet>
 				</configuration>
 			</plugin>
