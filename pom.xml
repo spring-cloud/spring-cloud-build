@@ -108,7 +108,7 @@
 		<generated-docs-singlepage-output.dir>${project.build.directory}/generated-docs/reference/htmlsingle</generated-docs-singlepage-output.dir>
 		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
 		<javadoc.failOnError>false</javadoc.failOnError>
-		<javadoc.failOnWarning>false</javadoc.failOnWarning>
+		<javadoc.failOnWarnings>false</javadoc.failOnWarnings>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -243,7 +243,7 @@
 				</executions>
 				<configuration>
 					<failOnError>${javadoc.failOnError}</failOnError>
-					<failOnWarning>${javadoc.failOnWarning}</failOnWarning>
+					<failOnWarnings>${javadoc.failOnWarnings}</failOnWarnings>
 				</configuration>
 			</plugin>
 			<plugin>
