@@ -108,6 +108,7 @@
 		<generated-docs-singlepage-output.dir>${project.build.directory}/generated-docs/reference/htmlsingle</generated-docs-singlepage-output.dir>
 		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
 		<javadoc.failOnError>false</javadoc.failOnError>
+		<javadoc.failOnWarning>false</javadoc.failOnWarning>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -241,8 +242,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<failOnError>>${javadoc.failOnError}</failOnError>
-					<quiet>true</quiet>
+					<failOnError>${javadoc.failOnError}</failOnError>
+					<failOnWarning>${javadoc.failOnWarning}</failOnWarning>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -439,7 +440,6 @@
 									checkstyle.additional.suppressions.file=${checkstyle.additional.suppressions.file}
 								</propertyExpansion>
 								<consoleOutput>true</consoleOutput>
-								<!-- TODO: Start fixing the errors -->
 								<includeTestSourceDirectory>
 									${maven-checkstyle-plugin.includeTestSourceDirectory}
 								</includeTestSourceDirectory>
