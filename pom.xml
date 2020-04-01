@@ -32,8 +32,8 @@
 		<spring-cloud-build.version>3.0.0.BUILD-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
-		<spring-doc-resources.version>0.1.0.RELEASE</spring-doc-resources.version>
-		<spring-asciidoctor-extensions.version>0.1.3.RELEASE
+		<spring-doc-resources.version>0.2.0.RELEASE</spring-doc-resources.version>
+		<spring-asciidoctor-extensions.version>0.2.0.RELEASE
 		</spring-asciidoctor-extensions.version>
 		<asciidoctorj-pdf.version>1.5.0-alpha.18</asciidoctorj-pdf.version>
 		<asciidoctorj-diagram.version>1.5.18</asciidoctorj-diagram.version>
