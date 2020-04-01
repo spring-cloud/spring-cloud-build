@@ -1373,10 +1373,10 @@
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>build-helper-maven-plugin</artifactId>
 							<version>${build-helper-maven-plugin.version}</version>
-							<inherited>false</inherited>
 							<executions>
 								<execution>
 									<id>attach-zip</id>
+									<phase>package</phase>
 									<goals>
 										<goal>attach-artifact</goal>
 									</goals>
