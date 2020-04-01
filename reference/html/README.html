@@ -540,6 +540,10 @@ approach of generating documentation just add these plugins to your <code>docs</
 						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
 						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <i class="conum" data-value="6"></i><b>(6)</b>
 					&lt;/plugin&gt;
+                                        &lt;plugin&gt;
+                                                &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+                                                &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="7"></i><b>(7)</b>
+                                        &lt;/plugin&gt;
 				&lt;/plugins&gt;
 			&lt;/build&gt;
 		&lt;/profile&gt;
@@ -571,6 +575,10 @@ approach of generating documentation just add these plugins to your <code>docs</
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>This plugin ensures that the generated zip docs are attached as an artifact and will get published</td>
 </tr>
 </table>
 </div>
