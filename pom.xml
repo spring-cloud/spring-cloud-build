@@ -1137,13 +1137,14 @@
 										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
 										<attributes>
-											<highlightjsdir>js/highlight</highlightjsdir>
-											<highlightjs-theme>atom-one-dark-reasonable</highlightjs-theme>
-											<linkcss>true</linkcss>
-											<imagesdir>./images</imagesdir>
-											<icons>font</icons>
+											<docinfo>shared</docinfo>
 											<stylesdir>css/</stylesdir>
 											<stylesheet>spring.css</stylesheet>
+											<linkcss>true</linkcss>
+											<icons>font</icons>
+											<highlightjsdir>js/highlight</highlightjsdir>
+											<highlightjs-theme>github</highlightjs-theme>
+											<imagesdir>./images</imagesdir>
 											<attribute-missing>warn</attribute-missing>
 										</attributes>
 										<logHandler>
@@ -1171,13 +1172,14 @@
 										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
 										<attributes>
-											<highlightjsdir>js/highlight</highlightjsdir>
-											<highlightjs-theme>atom-one-dark-reasonable</highlightjs-theme>
-											<linkcss>true</linkcss>
-											<imagesdir>./images</imagesdir>
-											<icons>font</icons>
+											<docinfo>shared</docinfo>
 											<stylesdir>css/</stylesdir>
 											<stylesheet>spring.css</stylesheet>
+											<linkcss>true</linkcss>
+											<icons>font</icons>
+											<highlightjsdir>js/highlight</highlightjsdir>
+											<highlightjs-theme>github</highlightjs-theme>
+											<imagesdir>./images</imagesdir>
 										</attributes>
 									</configuration>
 								</execution>
