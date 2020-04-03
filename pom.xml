@@ -769,6 +769,18 @@
 		</profile>
 		<profile>
 			<id>central</id>
+			<distributionManagement>
+				<repository>
+					<id>repo.spring.io</id>
+					<name>Spring Release Repository</name>
+					<url>https://repo.spring.io/libs-release-local</url>
+				</repository>
+				<repository>
+					<id>sonatype-nexus-staging</id>
+					<name>Nexus Release Repository</name>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
 			<build>
 				<plugins>
 					<plugin>
