@@ -122,6 +122,11 @@
 			<property name="excludeScope" value="package"/>
 			<property name="authorFormat" value=".+\s.+"/>
 		</module>
+		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck">
+			<property name="scope" value="public"/>
+			<property name="excludeScope" value="package"/>
+			<property name="allowMissingJavadoc" value="true"/>
+		</module>
 		<module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck">
 			<property name="scope" value="public"/>
 		</module>
