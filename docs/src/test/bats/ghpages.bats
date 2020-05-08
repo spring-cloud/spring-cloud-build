@@ -84,7 +84,7 @@ export -f printing_git_with_remotes
 export -f stubbed_git
 
 @test "should upload the built docs to the root of gh-pages for snapshot versions" {
-	export CURRENT_BRANCH=master
+	export BRANCH=master
 	export GIT_BIN="stubbed_git"
 	export SOURCE_FUNCTIONS=""
 	export RELEASER_GIT_OAUTH_TOKEN="mytoken"
