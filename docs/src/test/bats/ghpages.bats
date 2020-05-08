@@ -1,8 +1,8 @@
 #!/usr/bin/env bats
 
 load 'test_helper'
-load 'test_helper/bats-support/load'
-load 'test_helper/bats-assert/load'
+load '../../../target/test_helper/bats-support/load'
+load '../../../target/test_helper/bats-assert/load'
 
 setup() {
 	export TEMP_DIR="$( mktemp -d )"

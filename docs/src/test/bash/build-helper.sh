@@ -59,6 +59,8 @@ case $1 in
             exit 0
         fi
         git clone https://github.com/bats-core/bats-core.git "${ROOT_DIR}/../target/bats"
+        git clone https://github.com/ztombol/bats-support.git "${ROOT_DIR}/target/test_helper/bats-support"
+        git clone https://github.com/ztombol/bats-assert "${ROOT_DIR}/target/test_helper/bats-assert"
         ;;
     run-bats)
             echo "Running bats"
