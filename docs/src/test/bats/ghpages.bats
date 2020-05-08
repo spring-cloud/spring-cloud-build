@@ -1,8 +1,8 @@
 #!/usr/bin/env bats
 
 load 'test_helper'
-load 'test_helper/bats-support/load'
-load 'test_helper/bats-assert/load'
+load '../../../target/test_helper/bats-support/load'
+load '../../../target/test_helper/bats-assert/load'
 
 setup() {
 	export TEMP_DIR="$( mktemp -d )"
@@ -84,6 +84,7 @@ export -f printing_git_with_remotes
 export -f stubbed_git
 
 @test "should upload the built docs to the root of gh-pages for snapshot versions" {
+	export BRANCH=master
 	export GIT_BIN="stubbed_git"
 	export SOURCE_FUNCTIONS=""
 	export RELEASER_GIT_OAUTH_TOKEN="mytoken"
@@ -111,6 +112,7 @@ export -f stubbed_git
 }
 
 @test "should upload the built docs to spring-cloud-static gh-pages branch for non-snapshot versions" {
+	export BRANCH=master
 	export GIT_BIN="stubbed_git"
 	export SOURCE_FUNCTIONS=""
 	export RELEASER_GIT_OAUTH_TOKEN="mytoken"
@@ -145,6 +147,7 @@ export -f stubbed_git
 }
 
 @test "should upload the release train docs to spring-cloud-static under the release train folder" {
+	export BRANCH=master
 	export GIT_BIN="stubbed_git"
 	export SOURCE_FUNCTIONS=""
 	export RELEASER_GIT_OAUTH_TOKEN="mytoken"
@@ -217,6 +220,7 @@ export -f stubbed_git
 }
 
 @test "should retrieve the name of the current branch" {
+	export BRANCH=master
 	export GIT_BIN="stubbed_git"
 	cd "${TEMP_DIR}/spring-cloud-stream/"
 	source "${SOURCE_DIR}"/ghpages.sh

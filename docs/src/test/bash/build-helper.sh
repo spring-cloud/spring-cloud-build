@@ -20,13 +20,17 @@ if [[ $# -ne 1 ]]; then
     usage
 fi
 
-SHELLCHECK_VERSION="v0.6.0"
+SHELLCHECK_VERSION="v0.7.0"
+ARCH="x86_64"
+if [ "$(uname -m)" == aarch64 ]; then
+    ARCH="aarch64"
+fi
 SHELLCHECK_BIN="${ROOT_DIR}/../target/shellcheck-${SHELLCHECK_VERSION}/shellcheck"
 
 case $1 in
     download-shellcheck)
         if [[ "${OSTYPE}" == linux* && ! -z "${SHELLCHECK_BIN}" ]]; then
-            SHELLCHECK_ARCHIVE="shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz"
+            SHELLCHECK_ARCHIVE="shellcheck-${SHELLCHECK_VERSION}.linux.${ARCH}.tar.xz"
             if [[ -x "${ROOT_DIR}/../target/shellcheck-${SHELLCHECK_VERSION}/shellcheck" ]]; then
                 echo "shellcheck already downloaded - skipping..."
                 exit 0
@@ -55,6 +59,8 @@ case $1 in
             exit 0
         fi
         git clone https://github.com/bats-core/bats-core.git "${ROOT_DIR}/../target/bats"
+        git clone https://github.com/ztombol/bats-support.git "${ROOT_DIR}/target/test_helper/bats-support"
+        git clone https://github.com/ztombol/bats-assert "${ROOT_DIR}/target/test_helper/bats-assert"
         ;;
     run-bats)
             echo "Running bats"
