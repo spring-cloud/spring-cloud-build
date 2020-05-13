@@ -18,7 +18,7 @@
 		<docs.whitelisted.branches>2.1.x,2.2.x</docs.whitelisted.branches>
 		<main.basedir>${basedir}/..</main.basedir>
 		<gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
-		<groovy.version>2.5.9</groovy.version>
+		<groovy.version>2.5.10</groovy.version>
 		<!-- For the Groovy plugin -->
 		<groovyVersion>${groovy.version}</groovyVersion>
 		<!-- We don't want to downloaded sources of our own project-->
