@@ -509,12 +509,12 @@ Remember to set the <code>Scan Scope</code> to <code>All sources</code> since we
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-            &lt;artifactId&gt;flatten-maven-plugin&lt;/artifactId&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
+	&lt;plugins&gt;
+		&lt;plugin&gt;
+			&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+			&lt;artifactId&gt;flatten-maven-plugin&lt;/artifactId&gt;
+		&lt;/plugin&gt;
+	&lt;/plugins&gt;
 &lt;/build&gt;</code></pre>
 </div>
 </div>
@@ -531,45 +531,45 @@ approach of generating documentation just add these plugins to your <code>docs</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;profiles&gt;
-		&lt;profile&gt;
-			&lt;id&gt;docs&lt;/id&gt;
-			&lt;properties&gt;
-				&lt;upload-docs-zip.phase&gt;deploy&lt;/upload-docs-zip.phase&gt;
-			&lt;/properties&gt;
-			&lt;build&gt;
-				&lt;plugins&gt;
-					&lt;plugin&gt;
-						&lt;groupId&gt;pl.project13.maven&lt;/groupId&gt;
-						&lt;artifactId&gt;git-commit-id-plugin&lt;/artifactId&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
-						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
-						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt; <i class="conum" data-value="3"></i><b>(3)</b>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
-						&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-						&lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="4"></i><b>(4)</b>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
-						&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
-						&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="5"></i><b>(5)</b>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
-						&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-						&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <i class="conum" data-value="6"></i><b>(6)</b>
-					&lt;/plugin&gt;
-					&lt;plugin&gt;
-						&lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt; <i class="conum" data-value="7"></i><b>(7)</b>
-					&lt;/plugin&gt;
-				&lt;/plugins&gt;
-			&lt;/build&gt;
-		&lt;/profile&gt;
-	&lt;/profiles&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;properties&gt;
+	&lt;upload-docs-zip.phase&gt;deploy&lt;/upload-docs-zip.phase&gt; <i class="conum" data-value="8"></i><b>(8)</b>
+&lt;/properties&gt;
+&lt;profiles&gt;
+	&lt;profile&gt;
+		&lt;id&gt;docs&lt;/id&gt;
+		&lt;build&gt;
+			&lt;plugins&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;pl.project13.maven&lt;/groupId&gt;
+					&lt;artifactId&gt;git-commit-id-plugin&lt;/artifactId&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+					&lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+					&lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+					&lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+					&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+					&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt; <i class="conum" data-value="6"></i><b>(6)</b>
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt; <i class="conum" data-value="7"></i><b>(7)</b>
+				&lt;/plugin&gt;
+			&lt;/plugins&gt;
+		&lt;/build&gt;
+	&lt;/profile&gt;
+&lt;/profiles&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -601,6 +601,10 @@ approach of generating documentation just add these plugins to your <code>docs</
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
 <td>This plugin ensures that the generated zip docs will get published</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>This property turns on the "deploy" phase for &lt;7&gt;</td>
 </tr>
 </table>
 </div>
@@ -681,9 +685,9 @@ The order of plugin declaration is important!
 <div class="content">
 <pre class="highlightjs highlight"><code>.
 └── guides
-    ├── gs-guide1
-    ├── gs-guide2
-    └── gs-guide3</code></pre>
+	├── gs-guide1
+	├── gs-guide2
+	└── gs-guide3</code></pre>
 </div>
 </div>
 <div class="paragraph">
