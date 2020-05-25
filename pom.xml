@@ -1387,6 +1387,7 @@
 										<goal>deploy-file</goal>
 									</goals>
 									<configuration>
+										<generatePom>false</generatePom>
 										<groupId>${project.groupId}</groupId>
 										<artifactId>${project.artifactId}</artifactId>
 										<version>${project.version}</version>
