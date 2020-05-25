@@ -534,6 +534,9 @@ approach of generating documentation just add these plugins to your <code>docs</
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;profiles&gt;
 		&lt;profile&gt;
 			&lt;id&gt;docs&lt;/id&gt;
+			&lt;properties&gt;
+				&lt;upload-docs-zip.phase&gt;deploy&lt;/upload-docs-zip.phase&gt;
+			&lt;/properties&gt;
 			&lt;build&gt;
 				&lt;plugins&gt;
 					&lt;plugin&gt;
