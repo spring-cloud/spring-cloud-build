@@ -275,6 +275,10 @@
 					</plugin>
 					<plugin>
 						<artifactId>maven-deploy-plugin</artifactId>
+						<goals>
+							<goal>deploy</goal>
+							<goal>deploy-file</goal>
+						</goals>
 					</plugin>
 				</plugins>
 			</build>
