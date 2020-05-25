@@ -72,6 +72,9 @@ approach of generating documentation just add these plugins to your `docs` modul
 <profiles>
 		<profile>
 			<id>docs</id>
+			<properties>
+				<upload-docs-zip.phase>deploy</upload-docs-zip.phase>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>

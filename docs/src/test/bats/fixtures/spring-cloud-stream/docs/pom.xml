@@ -23,6 +23,9 @@
 	<profiles>
 		<profile>
 			<id>docs</id>
+			<properties>
+				<upload-docs-zip.phase>deploy</upload-docs-zip.phase>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
