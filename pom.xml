@@ -112,6 +112,7 @@
 		<maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
 		<maven-deploy-plugin.deployZipRepositoryId>repo.spring.io</maven-deploy-plugin.deployZipRepositoryId>
 		<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-snapshot-local</maven-deploy-plugin.deployZipUrl>
+		<upload-docs-zip.phase>none</upload-docs-zip.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1381,7 +1382,7 @@
 							<executions>
 								<execution>
 									<id>upload-docs-zip</id>
-									<phase>deploy</phase>
+									<phase>${upload-docs-zip.phase}</phase>
 									<goals>
 										<goal>deploy-file</goal>
 									</goals>
