@@ -98,22 +98,21 @@ approach of generating documentation just add these plugins to your `docs` modul
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-antrun-plugin</artifactId> <6>
 					</plugin>
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>build-helper-maven-plugin</artifactId> <7>
-                                        </plugin>
+					<plugin>
+						<artifactId>maven-deploy-plugin</artifactId> <7>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
 ----
-<2> This plugin downloads sets up all the git information of the project
+<1> This plugin downloads sets up all the git information of the project
 <2> This plugin downloads the resources of the `spring-cloud-build-docs` module
 <3> This plugin unpacks the resources of the `spring-cloud-build-docs` module
 <4> This plugin generates an `adoc` file with all the configuration properties from the classpath
 <5> This plugin is required to parse the Asciidoctor documentation
 <6> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
-<7> This plugin ensures that the generated zip docs are attached as an artifact and will get published
+<7> This plugin ensures that the generated zip docs will get published
 
 IMPORTANT: The order of plugin declaration is important!
 

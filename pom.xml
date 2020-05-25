@@ -109,6 +109,9 @@
 		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
 		<javadoc.failOnError>false</javadoc.failOnError>
 		<javadoc.failOnWarnings>false</javadoc.failOnWarnings>
+		<maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
+		<maven-deploy-plugin.deployZipRepositoryId>repo.spring.io</maven-deploy-plugin.deployZipRepositoryId>
+		<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-snapshot-local</maven-deploy-plugin.deployZipUrl>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -754,6 +757,9 @@
 					<url>https://repo.spring.io/libs-milestone-local</url>
 				</repository>
 			</distributionManagement>
+			<properties>
+				<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-milestone-local</maven-deploy-plugin.deployZipUrl>
+			</properties>
 		</profile>
 		<profile>
 			<id>bintray</id>
@@ -787,6 +793,9 @@
 					</plugin>
 				</plugins>
 			</build>
+			<properties>
+				<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-release-local</maven-deploy-plugin.deployZipUrl>
+			</properties>
 		</profile>
 		<profile>
 			<id>guides</id>
@@ -1111,8 +1120,8 @@
 									<version-type>${version-type}@</version-type>
 									<!-- Once we go to docs.spring.io should be changed to -->
 									<!-- https://docs.spring.io/${docs.main}/${project.version} -->
-									<docs-url>${docs-url}@</docs-url>
-									<raw-docs-url>${raw-docs-url}@</raw-docs-url>
+									<docs-url>https://docs.spring.io/${docs.main}/${project.version}@</docs-url>
+									<raw-docs-url>${github-raw}@</raw-docs-url>
 									<project-version>${project.version}@</project-version>
 									<project-name>${docs.main}@</project-name>
 								</attributes>
@@ -1335,64 +1344,7 @@
 														   input="${git.branch}" regexp="origin/(.*)"
 														   replace="\1"/>
 											<var name="github-tag" value="${git.branch}"/>
-											<condition property="docs-url"
-													   value="https://cloud.spring.io/${docs.main}">
-												<and>
-													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<or>
-														<equals arg1="${git.branch}" arg2="master"/>
-														<equals arg1="${git.branch}" arg2="origin/master"/>
-													</or>
-												</and>
-											</condition>
-											<condition property="docs-url"
-													   value="https://cloud.spring.io/${docs.main}/${git.branch}">
-												<and>
-													<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													<not>
-														<or>
-															<equals arg1="${git.branch}" arg2="master"/>
-															<equals arg1="${git.branch}" arg2="origin/master"/>
-														</or>
-													</not>
-												</and>
-											</condition>
-											<condition property="docs-url"
-													   value="https://cloud.spring.io/spring-cloud-static/${docs.main}/${project.version}">
-												<and>
-													<not>
-														<equals arg1="${version-type}" arg2="SNAPSHOT"/>
-													</not>
-												</and>
-											</condition>
-											<propertyregex property="raw-docs-url" override="true"
-														   input="${docs-url}" regexp="https://cloud.spring.io/(.*)"
-														   replace="https://raw.githubusercontent.com/\1"/>
 										</target>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>build-helper-maven-plugin</artifactId>
-							<version>${build-helper-maven-plugin.version}</version>
-							<executions>
-								<execution>
-									<id>attach-zip</id>
-									<phase>package</phase>
-									<goals>
-										<goal>attach-artifact</goal>
-									</goals>
-									<configuration>
-										<artifacts>
-											<artifact>
-												<file>
-													${project.build.directory}/${project.artifactId}-${project.version}.zip
-												</file>
-												<type>zip;zip.type=docs;zip.deployed=false;</type>
-											</artifact>
-										</artifacts>
 									</configuration>
 								</execution>
 							</executions>
@@ -1419,6 +1371,28 @@
 											<snapshotRepoKey>libs-snapshots-local
 											</snapshotRepoKey>
 										</publisher>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<artifactId>maven-deploy-plugin</artifactId>
+							<version>${maven-deploy-plugin.version}</version>
+							<executions>
+								<execution>
+									<id>upload-docs-zip</id>
+									<phase>deploy</phase>
+									<goals>
+										<goal>deploy-file</goal>
+									</goals>
+									<configuration>
+										<groupId>${project.groupId}</groupId>
+										<artifactId>${project.artifactId}</artifactId>
+										<version>${project.version}</version>
+										<repositoryId>${maven-deploy-plugin.deployZipRepositoryId}</repositoryId>
+										<url>${maven-deploy-plugin.deployZipUrl}</url>
+										<file>${project.build.directory}/${project.artifactId}-${project.version}.zip</file>
+										<packaging>zip;zip.type=docs;zip.deployed=false;</packaging>
 									</configuration>
 								</execution>
 							</executions>
