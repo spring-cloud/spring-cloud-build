@@ -24,6 +24,7 @@
 		<!-- We don't want to downloaded sources of our own project-->
 		<maven-dependency-plugin-for-docs.phase>none</maven-dependency-plugin-for-docs.phase>
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
+		<upload-docs-zip.phase>deploy</upload-docs-zip.phase>
 	</properties>
 	<dependencies>
 		<!-- Script -->
@@ -246,9 +247,6 @@
 	<profiles>
 		<profile>
 			<id>docs</id>
-			<properties>
-				<upload-docs-zip.phase>deploy</upload-docs-zip.phase>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
