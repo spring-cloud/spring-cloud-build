@@ -17,10 +17,6 @@
 		<!-- Comma separated list of whitelisted branches -->
 		<docs.whitelisted.branches>2.1.x,2.2.x</docs.whitelisted.branches>
 		<main.basedir>${basedir}/..</main.basedir>
-		<gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
-		<groovy.version>2.5.10</groovy.version>
-		<!-- For the Groovy plugin -->
-		<groovyVersion>${groovy.version}</groovyVersion>
 		<!-- We don't want to downloaded sources of our own project-->
 		<maven-dependency-plugin-for-docs.phase>none</maven-dependency-plugin-for-docs.phase>
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
@@ -40,142 +36,9 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>${groovy.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy</artifactId>
-			<version>${groovy.version}</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-xml</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-datetime</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-nio</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-json</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-jsr223</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-macro</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-sql</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-swing</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-cli-picocli</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-ant</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- <dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-astbuilder</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency> -->
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-console</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-docgenerator</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-groovydoc</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-groovysh</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-jmx</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-servlet</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-templates</artifactId>
-			<version>${groovy.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-test</artifactId>
-			<version>${groovy.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-test-junit5</artifactId>
-			<version>${groovy.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-testng</artifactId>
-			<version>${groovy.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -184,60 +47,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main</directory>
-				<excludes>
-					<exclude>groovy/**/*.*</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>${build-helper-maven-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/main/groovy</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.gmavenplus</groupId>
-				<artifactId>gmavenplus-plugin</artifactId>
-				<version>${gmavenplus-plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>addSources</goal>
-							<goal>generateStubs</goal>
-							<goal>generateTestStubs</goal>
-							<goal>groovydoc-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.codehaus.groovy</groupId>
-						<artifactId>groovy-all</artifactId>
-						<!-- any version of Groovy \>= 1.5.0 should work here -->
-						<version>${groovy.version}</version>
-						<scope>runtime</scope>
-						<type>pom</type>
-					</dependency>
-				</dependencies>
-			</plugin>
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.8.2</version>
