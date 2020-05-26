@@ -22,7 +22,7 @@ import org.springframework.util.StreamUtils;
  */
 public class Main {
 
-	static void main(String... args) {
+	public static void main(String... args) {
 		String outputFile = args[0];
 		String inclusionPattern = args.length > 1 ? args[1] : ".*";
 		File parent = new File(outputFile).getParentFile();
@@ -55,12 +55,12 @@ public class Main {
 						List<Map<String, Object>> properties = (List<Map<String, Object>>) response.get("properties");
 						properties.forEach(val -> {
 							propertyCount.incrementAndGet();
-							String name = (String) val.get("name");
+							String name = String.valueOf(val.get("name"));
 							if (!pattern.matcher(name).matches()) {
 								return;
 							}
-							String description = (String) val.get("description");
-							String defaultValue = (String) val.get("defaultValue");
+							String description = String.valueOf(val.get("description"));
+							String defaultValue = String.valueOf(val.get("defaultValue"));
 							matchingPropertyCount.incrementAndGet();
 							names.add(name);
 							descriptions.put(name, new ConfigValue(name, description, defaultValue));

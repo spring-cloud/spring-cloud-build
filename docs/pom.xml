@@ -47,6 +47,14 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main</directory>
+				<excludes>
+					<exclude>java/**/*.*</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
