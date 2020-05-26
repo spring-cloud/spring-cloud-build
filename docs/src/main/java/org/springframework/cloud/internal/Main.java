@@ -76,8 +76,8 @@ public class Main {
 					return;
 				}
 				Files.write(new File(outputFile).toPath(),
-						("|===\n\n"
-								+ "|Name | Default | Description\n" + names.stream()
+						("|===\n"
+								+ "|Name | Default | Description\n\n" + names.stream()
 										.map(it -> descriptions.get(it).toString()).collect(Collectors.joining("\n"))
 								+ "\n\n" + "|===").getBytes());
 				System.out.println("Successfully stored the output file");
