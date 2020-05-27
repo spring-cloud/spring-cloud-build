@@ -1119,9 +1119,7 @@
 									<project-version>${project.version}@</project-version>
 									<github-tag>${github-tag}@</github-tag>
 									<version-type>${version-type}@</version-type>
-									<!-- Once we go to docs.spring.io should be changed to -->
-									<!-- https://docs.spring.io/${docs.main}/${project.version} -->
-									<docs-url>https://docs.spring.io/${docs.main}/${project.version}@</docs-url>
+									<docs-url>https://docs.spring.io/${docs.main}/docs/${project.version}@</docs-url>
 									<raw-docs-url>${github-raw}@</raw-docs-url>
 									<project-version>${project.version}@</project-version>
 									<project-name>${docs.main}@</project-name>
