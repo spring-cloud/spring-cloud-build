@@ -60,7 +60,7 @@ public class Main {
 								return;
 							}
 							String description = String.valueOf(val.get("description"));
-							String defaultValue = String.valueOf(val.get("defaultValue"));
+							Object defaultValue = val.get("defaultValue");
 							matchingPropertyCount.incrementAndGet();
 							names.add(name);
 							descriptions.put(name, new ConfigValue(name, description, defaultValue));
