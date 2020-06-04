@@ -1,0 +1,165 @@
+image:https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg[link="https://travis-ci.org/spring-cloud/spring-cloud-build"]
+
+Spring Cloud Build is a common utility project for Spring Cloud
+to use for plugin and dependency management.
+
+== Building and Deploying
+
+To install locally:
+
+----
+
+$ mvn install -s .settings.xml
+----
+
+and to deploy snapshots to repo.spring.io:
+
+----
+$ mvn deploy -DaltSnapshotDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-snapshot-local
+----
+
+for a RELEASE build use
+
+----
+$ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-release-local
+----
+
+and for jcenter use
+
+----
+$ mvn deploy -DaltReleaseDeploymentRepository=bintray::default::https://api.bintray.com/maven/spring/jars/org.springframework.cloud:build
+----
+
+and for Maven Central use
+
+----
+$ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging::default::https://oss.sonatype.org/service/local/staging/deploy/maven2
+----
+
+(the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).
+
+== Contributing
+
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/docs/src/main/asciidoc/contributing.adoc[]
+
+== Flattening the POMs
+
+To avoid propagating build setup that is required to build a Spring Cloud project, we're using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.
+
+In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `pom.xml`.
+
+[source,xml]
+----
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>flatten-maven-plugin</artifactId>
+		</plugin>
+	</plugins>
+</build>
+----
+
+== Reusing the documentation
+
+Spring Cloud Build publishes its `spring-cloud-build-docs` module that contains
+helpful scripts (e.g. README generation ruby script) and css, xslt and images
+for the Spring Cloud documentation. If you want to follow the same convention
+approach of generating documentation just add these plugins to your `docs` module
+
+[source,xml]
+----
+<properties>
+	<upload-docs-zip.phase>deploy</upload-docs-zip.phase> <8>
+</properties>
+<profiles>
+	<profile>
+		<id>docs</id>
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>pl.project13.maven</groupId>
+					<artifactId>git-commit-id-plugin</artifactId> <1>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId> <2>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId> <3>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId> <4>
+				</plugin>
+				<plugin>
+					<groupId>org.asciidoctor</groupId>
+					<artifactId>asciidoctor-maven-plugin</artifactId> <5>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId> <6>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId> <7>
+				</plugin>
+			</plugins>
+		</build>
+	</profile>
+</profiles>
+----
+<1> This plugin downloads sets up all the git information of the project
+<2> This plugin downloads the resources of the `spring-cloud-build-docs` module
+<3> This plugin unpacks the resources of the `spring-cloud-build-docs` module
+<4> This plugin generates an `adoc` file with all the configuration properties from the classpath
+<5> This plugin is required to parse the Asciidoctor documentation
+<6> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
+<7> This plugin ensures that the generated zip docs will get published
+<8> This property turns on the "deploy" phase for <7>
+
+IMPORTANT: The order of plugin declaration is important!
+
+In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to `${docsModule}/src/main/asciidoc/_configprops.adoc` file (configurable via the `configprops.path` property).
+
+If you want to modify which of the configuration properties are put in the table, you can tweak the `configprops.inclusionPattern` pattern to include only a subset of the properties (e.g. `<configprops.inclusionPattern>spring.sleuth.*</configprops.inclusionPattern>`).
+
+Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.
+
+[source,xml]
+----
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/pom.xml[tags=attributes,indent=0]
+----
+
+== Updating the guides
+
+We assume that your project contains guides under the `guides` folder.
+
+```
+.
+└── guides
+	├── gs-guide1
+	├── gs-guide2
+	└── gs-guide3
+```
+
+This means that the project contains 3 guides that would
+correspond to the following guides in Spring Guides org.
+
+- https://github.com/spring-guides/gs-guide1
+- https://github.com/spring-guides/gs-guide2
+- https://github.com/spring-guides/gs-guide3
+
+If you deploy your project with the `-Pguides` profile like this
+
+```
+$ ./mvnw clean deploy -Pguides
+```
+
+what will happen is that for GA project versions, we will clone `gs-guide1`, `gs-guide2` and `gs-guide3` and update their contents with the ones being under your `guides` project.
+
+You can skip this by either not adding the `guides` profile, or passing the `-DskipGuides` system property when the profile is turned on.
+
+You can configure the project version passed to guides via the `guides-project.version` (defaults to `${project.version}`). The phase at which guides get updated can be configured by `guides-update.phase` (defaults to `deploy`).
+
+include::included.adoc[]

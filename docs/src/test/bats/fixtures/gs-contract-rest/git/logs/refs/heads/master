@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 f0bd0f6aaabf6cc795d48fa1cc7fb02b6bffab5e Marcin Grzejszczak <marcin@grzejszczak.pl> 1545049294 +0100	clone: from git@github.com:spring-guides/gs-contract-rest.git
-f0bd0f6aaabf6cc795d48fa1cc7fb02b6bffab5e 06e323583eeda1364779d80eef55110256411426 Marcin Grzejszczak <marcin@grzejszczak.pl> 1545050508 +0100	commit: Updated contract to the latest version; fixes gh-2
-06e323583eeda1364779d80eef55110256411426 1d776d21deba9bd58877220abd802e8794ddb6a3 Marcin Grzejszczak <marcin@grzejszczak.pl> 1556531881 +0400	pull --rebase origin master: Fast-forward
-1d776d21deba9bd58877220abd802e8794ddb6a3 9918bc61b3b4ba0b5005e9ed7debdd50c9838393 Marcin Grzejszczak <marcin@grzejszczak.pl> 1556532308 +0400	commit: Updated to latest

@@ -4,6 +4,7 @@ Manual changes to this file will be lost when it is generated again.
 Edit the files in the src/main/asciidoc/ directory instead.
 ////
 
+
 image:https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg[link="https://travis-ci.org/spring-cloud/spring-cloud-build"]
 
 Spring Cloud Build is a common utility project for Spring Cloud
@@ -235,12 +236,12 @@ In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `po
 [source,xml]
 ----
 <build>
-	<plugins>
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>flatten-maven-plugin</artifactId>
-		</plugin>
-	</plugins>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
 </build>
 ----
 
@@ -254,43 +255,43 @@ approach of generating documentation just add these plugins to your `docs` modul
 [source,xml]
 ----
 <properties>
-	<upload-docs-zip.phase>deploy</upload-docs-zip.phase> <8>
+    <upload-docs-zip.phase>deploy</upload-docs-zip.phase> <8>
 </properties>
 <profiles>
-	<profile>
-		<id>docs</id>
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>pl.project13.maven</groupId>
-					<artifactId>git-commit-id-plugin</artifactId> <1>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId> <2>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId> <3>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId> <4>
-				</plugin>
-				<plugin>
-					<groupId>org.asciidoctor</groupId>
-					<artifactId>asciidoctor-maven-plugin</artifactId> <5>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId> <6>
-				</plugin>
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId> <7>
-				</plugin>
-			</plugins>
-		</build>
-	</profile>
+    <profile>
+        <id>docs</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId> <1>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId> <2>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId> <3>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId> <4>
+                </plugin>
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId> <5>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId> <6>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId> <7>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
 </profiles>
 ----
 <1> This plugin downloads sets up all the git information of the project
@@ -313,42 +314,42 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
 [source,xml]
 ----
 <attributes>
-	<docinfo>shared</docinfo>
-	<allow-uri-read>true</allow-uri-read>
-	<nofooter/>
-	<toc>left</toc>
-	<toc-levels>4</toc-levels>
-	<sectlinks>true</sectlinks>
-	<sources-root>${project.basedir}/src@</sources-root>
-	<asciidoc-sources-root>${project.basedir}/src/main/asciidoc@</asciidoc-sources-root>
-	<generated-resources-root>${project.basedir}/target/generated-resources@
-	</generated-resources-root>
-	<!-- Use this attribute the reference code from another module -->
-	<!-- Note the @ at the end, lowering the precedence of the attribute -->
-	<project-root>${maven.multiModuleProjectDirectory}@</project-root>
-	<!-- It's mandatory for you to pass the docs.main property -->
-	<github-repo>${docs.main}@</github-repo>
-	<github-raw>
-		https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}@
-	</github-raw>
-	<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}@
-	</github-code>
-	<github-issues>https://github.com/spring-cloud/${docs.main}/issues/@</github-issues>
-	<github-wiki>https://github.com/spring-cloud/${docs.main}/wiki@</github-wiki>
-	<github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master@
-	</github-master-code>
-	<index-link>${index-link}@</index-link>
+    <docinfo>shared</docinfo>
+    <allow-uri-read>true</allow-uri-read>
+    <nofooter/>
+    <toc>left</toc>
+    <toc-levels>4</toc-levels>
+    <sectlinks>true</sectlinks>
+    <sources-root>${project.basedir}/src@</sources-root>
+    <asciidoc-sources-root>${project.basedir}/src/main/asciidoc@</asciidoc-sources-root>
+    <generated-resources-root>${project.basedir}/target/generated-resources@
+    </generated-resources-root>
+    <!-- Use this attribute the reference code from another module -->
+    <!-- Note the @ at the end, lowering the precedence of the attribute -->
+    <project-root>${maven.multiModuleProjectDirectory}@</project-root>
+    <!-- It's mandatory for you to pass the docs.main property -->
+    <github-repo>${docs.main}@</github-repo>
+    <github-raw>
+        https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}@
+    </github-raw>
+    <github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}@
+    </github-code>
+    <github-issues>https://github.com/spring-cloud/${docs.main}/issues/@</github-issues>
+    <github-wiki>https://github.com/spring-cloud/${docs.main}/wiki@</github-wiki>
+    <github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master@
+    </github-master-code>
+    <index-link>${index-link}@</index-link>
 
-	<!-- Spring Cloud specific -->
-	<!-- for backward compatibility -->
-	<spring-cloud-version>${project.version}@</spring-cloud-version>
-	<project-version>${project.version}@</project-version>
-	<github-tag>${github-tag}@</github-tag>
-	<version-type>${version-type}@</version-type>
-	<docs-url>https://docs.spring.io/${docs.main}/docs/${project.version}@</docs-url>
-	<raw-docs-url>${github-raw}@</raw-docs-url>
-	<project-version>${project.version}@</project-version>
-	<project-name>${docs.main}@</project-name>
+    <!-- Spring Cloud specific -->
+    <!-- for backward compatibility -->
+    <spring-cloud-version>${project.version}@</spring-cloud-version>
+    <project-version>${project.version}@</project-version>
+    <github-tag>${github-tag}@</github-tag>
+    <version-type>${version-type}@</version-type>
+    <docs-url>https://docs.spring.io/${docs.main}/docs/${project.version}@</docs-url>
+    <raw-docs-url>${github-raw}@</raw-docs-url>
+    <project-version>${project.version}@</project-version>
+    <project-name>${docs.main}@</project-name>
 </attributes>
 ----
 

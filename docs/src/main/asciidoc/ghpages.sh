@@ -14,6 +14,25 @@ export SPRING_CLOUD_STATIC_REPO_DESTINATION="${SPRING_CLOUD_STATIC_REPO_DESTINAT
 
 GIT_BIN="${GIT_BIN:-git}"
 
+cat <<EOF
+
+
+
+
+!!! WARNING !!!
+
+THIS SCRIPT IS DEPRECATED!!
+We're migrating away from using gh-pages at all. We're moving to using docs.spring.io and the zipped documentation.
+Please migrate to the new approach as soon as possible since this script will be removed soon.
+
+!!! WARNING !!!
+
+
+
+
+EOF
+
+
 # The script should be executed from the root folder
 ROOT_FOLDER="$( pwd )"
 echo "Current folder is [${ROOT_FOLDER}]"
