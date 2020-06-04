@@ -75,7 +75,7 @@ public class Main {
 							if (!pattern.matcher(name).matches()) {
 								return;
 							}
-							String description = String.valueOf(val.get("description"));
+							Object description = val.get("description");
 							Object defaultValue = val.get("defaultValue");
 							matchingPropertyCount.incrementAndGet();
 							names.add(name);
@@ -132,7 +132,7 @@ public class Main {
 		ConfigValue() {
 		}
 
-		ConfigValue(String name, String description, Object defaultValue) {
+		ConfigValue(String name, Object description, Object defaultValue) {
 			this.name = name;
 			this.description = escapedValue(description);
 			this.defaultValue = escapedValue(defaultValue);
