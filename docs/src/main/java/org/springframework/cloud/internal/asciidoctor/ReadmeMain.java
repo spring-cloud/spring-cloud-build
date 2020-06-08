@@ -30,6 +30,10 @@ public class ReadmeMain {
 		File inputFile = new File(args[0]);
 		File outputFile = new File(args[1]);
 		System.out.println("Will do the Readme conversion from [" + inputFile + "] to [" + outputFile + "]");
+		if (!inputFile.exists()) {
+			System.out.println("There's no file [" + inputFile + "], skipping readme generation");
+			return;
+		}
 		new ReadmeMain().convert(inputFile, outputFile);
 	}
 
