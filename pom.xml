@@ -68,7 +68,7 @@
 		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 		<git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
-		<maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
