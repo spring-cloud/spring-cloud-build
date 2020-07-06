@@ -1128,6 +1128,7 @@
 									<project-root>${maven.multiModuleProjectDirectory}@</project-root>
 									<!-- It's mandatory for you to pass the docs.main property -->
 									<github-repo>${docs.main}@</github-repo>
+									<github-project>https://github.com/spring-cloud/${docs.main}@</github-project>
 									<github-raw>
 										https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}@
 									</github-raw>
