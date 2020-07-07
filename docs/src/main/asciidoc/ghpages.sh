@@ -253,7 +253,7 @@ function copy_docs_for_current_version() {
             done
             COMMIT_CHANGES="yes"
         else
-            echo -e "Branch [${CURRENT_BRANCH}] is not on the white list! Check out the Maven [${ALLOW_PROPERTY}] property in
+            echo -e "Branch [${CURRENT_BRANCH}] is not on the allow list! Check out the Maven [${ALLOW_PROPERTY}] property in
              [docs] module available under [docs] profile. Won't commit any changes to gh-pages for this branch."
         fi
     fi
