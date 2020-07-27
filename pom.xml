@@ -52,7 +52,7 @@
 		<sonar.language>java</sonar.language>
 
 		<!-- Plugins -->
-		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
