@@ -97,7 +97,7 @@
 		<checkstyle.additional.suppressions.file>
 			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.additional.suppressions.file>
-		<nohttp-checkstyle.version>0.0.2.RELEASE</nohttp-checkstyle.version>
+		<nohttp-checkstyle.version>0.0.5.RELEASE</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<antelopetasks.version>3.2.10</antelopetasks.version>
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
