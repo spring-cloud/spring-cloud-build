@@ -15,13 +15,13 @@ $ mvn install -s .settings.xml
 and to deploy snapshots to repo.spring.io:
 
 ----
-$ mvn deploy -DaltSnapshotDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-snapshot-local
+$ mvn deploy -DaltSnapshotDeploymentRepository=repo.spring.io::default::https://repo.spring.io/snapshot
 ----
 
 for a RELEASE build use
 
 ----
-$ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://repo.spring.io/libs-release-local
+$ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://repo.spring.io/release
 ----
 
 and for jcenter use
