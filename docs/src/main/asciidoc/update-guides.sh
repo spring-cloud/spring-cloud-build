@@ -10,7 +10,7 @@ if [[ "${PROJECT_VERSION}" != *"RELEASE"* ]];then
     exit 0
 fi
 
-# The script should be executed from the root folder
+# The script should be run from the root folder
 [[ -z "${ROOT_FOLDER}" ]] && ROOT_FOLDER="$( pwd )"
 echo "Current folder is ${ROOT_FOLDER}"
 
@@ -146,4 +146,3 @@ else
 
     iterate_over_guides
 fi
-
