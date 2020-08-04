@@ -71,7 +71,7 @@
 		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+		<maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
