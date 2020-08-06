@@ -76,7 +76,7 @@
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>1.16</license-maven-plugin.version>
-		<spring-javaformat-checkstyle.version>0.0.7</spring-javaformat-checkstyle.version>
+		<spring-javaformat-checkstyle.version>0.0.24</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
 		<pitest-maven.version>1.5.2</pitest-maven.version>
 		<pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
