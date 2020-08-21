@@ -57,7 +57,7 @@
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
 		<puppycrawl-tools-checkstyle.version>8.29</puppycrawl-tools-checkstyle.version>
-		<spring-javaformat.version>0.0.9</spring-javaformat.version>
+		<spring-javaformat.version>0.0.25</spring-javaformat.version>
 		<maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
 		<maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
