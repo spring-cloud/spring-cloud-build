@@ -75,7 +75,7 @@
 		<maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.0.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
-		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
+		<artifactory-maven-plugin.version>3.0.0</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>1.16</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.25</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
