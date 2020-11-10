@@ -1192,7 +1192,6 @@
 										</sourceDocumentExtensions>
 										<outputDirectory>${generated-docs-multipage-output.dir}
 										</outputDirectory>
-										<sourceHighlighter>highlight.js</sourceHighlighter>
 										<doctype>book</doctype>
 										<attributes>
 											<docinfo>shared</docinfo>
@@ -1204,6 +1203,7 @@
 											<highlightjs-theme>github</highlightjs-theme>
 											<imagesdir>./images</imagesdir>
 											<attribute-missing>warn</attribute-missing>
+											<sourceHighlighter>highlight.js</sourceHighlighter>
 										</attributes>
 										<logHandler>
 											<outputToConsole>true</outputToConsole>
