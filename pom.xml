@@ -39,7 +39,7 @@
 		<spring-asciidoctor-extensions-block.version>0.5.0
 		</spring-asciidoctor-extensions-block.version>
 		<asciidoctorj-pdf.version>1.5.3</asciidoctorj-pdf.version>
-		<asciidoctorj-diagram.version>2.0.2</asciidoctorj-diagram.version>
+		<asciidoctorj-diagram.version>2.0.5</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
