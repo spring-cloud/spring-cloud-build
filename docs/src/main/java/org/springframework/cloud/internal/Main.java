@@ -143,7 +143,7 @@ public class Main {
 		}
 
 		public String toString() {
-			return "|" + name + " | " + defaultValue + " | " + description;
+			return "|" + name + " | `" + defaultValue + "` | " + description;
 		}
 
 	}
