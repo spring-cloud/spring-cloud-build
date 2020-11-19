@@ -32,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.util.StreamUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * @author Marcin Grzejszczak
@@ -127,7 +128,7 @@ public class Main {
 
 		public String description;
 
-		public Object defaultValue;
+		public String defaultValue;
 
 		ConfigValue() {
 		}
@@ -143,7 +144,7 @@ public class Main {
 		}
 
 		public String toString() {
-			return "|" + name + " | `" + defaultValue + "` | " + description;
+			return "|" + name + " | " + (StringUtils.hasText(defaultValue) ? ("`" + defaultValue + "`") : "") + " | " + description;
 		}
 
 	}
