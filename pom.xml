@@ -718,7 +718,7 @@
 				<repository>
 					<id>spring-plugins</id>
 					<name>Spring Maven Plugins Repository</name>
-					<url>https://repo.spring.io/plugins-release</url>
+					<url>https://repo.spring.io/plugins</url>
 				</repository>
 			</repositories>
 			<pluginRepositories>
