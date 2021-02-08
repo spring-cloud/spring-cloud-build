@@ -13,7 +13,7 @@
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-stream-parent</artifactId>
-		<version>Horsham.SR6</version>
+		<version>Horsham.SR11</version>
 	</parent>
 
 	<dependencies>

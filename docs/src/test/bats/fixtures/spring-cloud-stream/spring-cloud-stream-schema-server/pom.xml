@@ -8,7 +8,7 @@
 	<parent>
 		<artifactId>spring-cloud-stream-parent</artifactId>
 		<groupId>org.springframework.cloud</groupId>
-		<version>Horsham.SR6</version>
+		<version>Horsham.SR11</version>
 	</parent>
 
 	<dependencies>
