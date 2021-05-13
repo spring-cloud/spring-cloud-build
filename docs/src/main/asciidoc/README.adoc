@@ -1,4 +1,4 @@
-image:https://circleci.com/gh/spring-cloud/spring-cloud-build.svg?style=svg[link="https://travis-ci.org/spring-cloud/spring-cloud-build"]
+image::https://github.com/spring-cloud/spring-cloud-build/workflows/Build/badge.svg?branch=main&style=svg["Build",link="https://github.com/spring-cloud/spring-cloud-build/actions"]
 
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
