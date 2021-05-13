@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build</artifactId>
-	<version>3.0.3-SNAPSHOT</version>
+	<version>3.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Parent</name>
 	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring
@@ -28,23 +28,23 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>2.4.6-SNAPSHOT</spring-boot.version>
-		<spring-cloud-build.version>3.0.3-SNAPSHOT</spring-cloud-build.version>
+		<spring-boot.version>2.5.0-SNAPSHOT</spring-boot.version>
+		<spring-cloud-build.version>3.1.0-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
 		<spring-doc-resources.version>0.2.2.RELEASE</spring-doc-resources.version>
-		<spring-asciidoctor-extensions-boot.version>0.5.0
+		<spring-asciidoctor-extensions-boot.version>0.5.1
 		</spring-asciidoctor-extensions-boot.version>
-		<spring-asciidoctor-extensions-block.version>0.5.0
+		<spring-asciidoctor-extensions-block.version>0.5.1
 		</spring-asciidoctor-extensions-block.version>
-		<asciidoctorj-pdf.version>1.5.3</asciidoctorj-pdf.version>
-		<asciidoctorj-diagram.version>2.0.2</asciidoctorj-diagram.version>
+		<asciidoctorj-pdf.version>1.5.4</asciidoctorj-pdf.version>
+		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
-		<asciidoctorj.version>2.4.1</asciidoctorj.version>
-		<jruby-complete.version>9.2.7.0</jruby-complete.version>
+		<asciidoctorj.version>2.5.1</asciidoctorj.version>
+		<jruby-complete.version>9.2.17.0</jruby-complete.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -59,8 +59,8 @@
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
 		<puppycrawl-tools-checkstyle.version>8.29</puppycrawl-tools-checkstyle.version>
-		<spring-javaformat.version>0.0.25</spring-javaformat.version>
-		<maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
+		<spring-javaformat.version>0.0.26</spring-javaformat.version>
+		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
 		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -68,21 +68,21 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version><!-- @releaser:version-check-off -->
 		<maven-war-plugin.version>3.3.1</maven-war-plugin.version>
-		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-		<git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
+		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+		<git-commit-id-plugin.version>4.0.4</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
-		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
-		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
+		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
-		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
-		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
-		<license-maven-plugin.version>1.16</license-maven-plugin.version>
-		<spring-javaformat-checkstyle.version>0.0.25</spring-javaformat-checkstyle.version>
-		<maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-		<pitest-maven.version>1.5.2</pitest-maven.version>
-		<pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
+		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
+		<artifactory-maven-plugin.version>3.2.0</artifactory-maven-plugin.version>
+		<license-maven-plugin.version>4.1</license-maven-plugin.version>
+		<spring-javaformat-checkstyle.version>0.0.26</spring-javaformat-checkstyle.version>
+		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+		<pitest-maven.version>1.6.6</pitest-maven.version>
+		<pitest-junit5-plugin.version>0.14</pitest-junit5-plugin.version>
 		<disable.checks>false</disable.checks>
 		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
 		<maven-checkstyle-plugin.failOnViolation>true
@@ -100,7 +100,7 @@
 		<checkstyle.additional.suppressions.file>
 			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.additional.suppressions.file>
-		<nohttp-checkstyle.version>0.0.5.RELEASE</nohttp-checkstyle.version>
+		<nohttp-checkstyle.version>0.0.7</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<antelopetasks.version>3.2.10</antelopetasks.version>
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
@@ -114,7 +114,7 @@
 		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
 		<javadoc.failOnError>false</javadoc.failOnError>
 		<javadoc.failOnWarnings>false</javadoc.failOnWarnings>
-		<maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-deploy-plugin.deployZipRepositoryId>repo.spring.io</maven-deploy-plugin.deployZipRepositoryId>
 		<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-snapshot-local</maven-deploy-plugin.deployZipUrl>
 		<upload-docs-zip.phase>none</upload-docs-zip.phase>
@@ -141,7 +141,7 @@
 			<name>Apache License, Version 2.0</name>
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<comments>
-				Copyright 2014-2015 the original author or authors.
+				Copyright 2014-2021 the original author or authors.
 
 				Licensed under the Apache License, Version 2.0 (the "License");
 				you may not use this file except in compliance with the License.
