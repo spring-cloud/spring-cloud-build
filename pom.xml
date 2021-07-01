@@ -34,16 +34,16 @@
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
 		<spring-doc-resources.version>0.2.2.RELEASE</spring-doc-resources.version>
-		<spring-asciidoctor-extensions-boot.version>0.5.0
+		<spring-asciidoctor-extensions-boot.version>0.6.0
 		</spring-asciidoctor-extensions-boot.version>
-		<spring-asciidoctor-extensions-block.version>0.5.0
+		<spring-asciidoctor-extensions-block.version>0.6.0
 		</spring-asciidoctor-extensions-block.version>
-		<asciidoctorj-pdf.version>1.5.3</asciidoctorj-pdf.version>
-		<asciidoctorj-diagram.version>2.0.2</asciidoctorj-diagram.version>
+		<asciidoctorj-pdf.version>1.6.0</asciidoctorj-pdf.version>
+		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
-		<asciidoctorj.version>2.4.1</asciidoctorj.version>
+		<asciidoctorj.version>2.5.1</asciidoctorj.version>
 		<jruby-complete.version>9.2.7.0</jruby-complete.version>
 
 		<!-- Sonar -->

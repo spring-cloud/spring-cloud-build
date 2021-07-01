@@ -7,7 +7,6 @@ import java.nio.file.Files;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.registerCustomDateFormat;
 import static org.assertj.core.api.BDDAssertions.then;
 
 class ReadmeMainTests {
