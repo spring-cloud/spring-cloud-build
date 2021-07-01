@@ -51,15 +51,17 @@ public class ReadmeMain {
 	}
 
 	private Options options(File input, File output) {
-		Attributes attributes = new Attributes();
-		attributes.setAllowUriRead(true);
-		attributes.setAttribute("project-root", output.getParent());
-		Options options = new Options();
-		options.setSourceDir(input.getParent());
-		options.setBaseDir(input.getParent());
-		options.setAttributes(attributes);
-		options.setSafe(SafeMode.UNSAFE);
-		options.setParseHeaderOnly(true);
-		return options;
+		Attributes attributes = Attributes.builder()
+				.allowUriRead(true)
+				.attribute("project-root", output.getParent())
+				.build();
+
+		return Options.builder()
+				.sourceDir(input.getParentFile())
+				.baseDir(input.getParentFile())
+				.attributes(attributes)
+				.safe(SafeMode.UNSAFE)
+				.parseHeaderOnly(true)
+				.build();
 	}
 }
