@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-build</artifactId>
-		<version>3.0.4-SNAPSHOT</version>
+		<version>3.1.0-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<docs.main>spring-cloud-build</docs.main>
@@ -85,7 +85,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
+				<version>${maven-deploy-plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
