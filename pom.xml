@@ -44,7 +44,7 @@
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
 		<asciidoctorj.version>2.5.1</asciidoctorj.version>
-		<jruby-complete.version>9.2.17.0</jruby-complete.version>
+		<jruby-complete.version>9.2.19.0</jruby-complete.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -58,30 +58,30 @@
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
-		<puppycrawl-tools-checkstyle.version>8.29</puppycrawl-tools-checkstyle.version>
+		<puppycrawl-tools-checkstyle.version>8.43</puppycrawl-tools-checkstyle.version>
 		<spring-javaformat.version>0.0.26</spring-javaformat.version>
-		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+		<maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version><!-- @releaser:version-check-off -->
+		<maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
 		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
 		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version><!-- @releaser:version-check-off -->
 		<maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version><!-- @releaser:version-check-off -->
 		<maven-war-plugin.version>3.3.1</maven-war-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-		<git-commit-id-plugin.version>4.0.4</git-commit-id-plugin.version>
+		<git-commit-id-plugin.version>4.0.5</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
 		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-		<maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+		<maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>3.2.0</artifactory-maven-plugin.version>
-		<license-maven-plugin.version>4.1</license-maven-plugin.version>
+		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.26</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-		<pitest-maven.version>1.6.6</pitest-maven.version>
+		<pitest-maven.version>1.6.7</pitest-maven.version>
 		<pitest-junit5-plugin.version>0.14</pitest-junit5-plugin.version>
 		<disable.checks>false</disable.checks>
 		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
