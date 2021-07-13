@@ -120,6 +120,7 @@
 		<upload-docs-zip.phase>none</upload-docs-zip.phase>
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
+		<sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1479,7 +1480,7 @@
 				<dependency>
 					<groupId>org.sonarsource.java</groupId>
 					<artifactId>sonar-jacoco-listeners</artifactId>
-					<version>3.8</version>
+					<version>${sonar-jacoco-listeners.version}</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
