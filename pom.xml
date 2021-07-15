@@ -65,8 +65,8 @@
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
 		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
 		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version><!-- @releaser:version-check-off -->
-		<maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version><!-- @releaser:version-check-off -->
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version><!-- @releaser:version-check-off -->
+		<maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version><!-- @releaser:version-check-off -->
 		<maven-war-plugin.version>3.3.1</maven-war-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
