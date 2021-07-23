@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build</artifactId>
-	<version>3.1.0-SNAPSHOT</version>
+	<version>3.1.0-M1</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Parent</name>
 	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring
@@ -29,7 +29,7 @@
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
 		<spring-boot.version>2.6.0-M1</spring-boot.version>
-		<spring-cloud-build.version>3.1.0-SNAPSHOT</spring-cloud-build.version>
+		<spring-cloud-build.version>3.1.0-M1</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
