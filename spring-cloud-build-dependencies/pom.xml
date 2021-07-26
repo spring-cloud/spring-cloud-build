@@ -14,12 +14,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-dependencies</artifactId>
-		<version>2.4.8</version>
+		<version>2.4.9</version>
 		<relativePath/>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>2.4.8</spring-boot.version>
+		<spring-boot.version>2.4.9</spring-boot.version>
 	</properties>
 	<build>
 		<plugins>
