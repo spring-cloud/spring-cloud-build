@@ -786,8 +786,9 @@
 						<version>1.6.8</version>
 						<extensions>true</extensions>
 						<configuration>
-							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>							
 							<serverId>sonatype-nexus-staging</serverId>
+							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 						</configuration>
 						<executions>
 							<execution>

@@ -162,6 +162,7 @@
 						<configuration>
 							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 							<serverId>sonatype-nexus-staging</serverId>
+							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 						</configuration>
 						<executions>
 							<execution>
