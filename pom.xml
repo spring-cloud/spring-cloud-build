@@ -120,6 +120,7 @@
 		<upload-docs-zip.phase>none</upload-docs-zip.phase>
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
+		<maven.deploy.skip>false</maven.deploy.skip>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -692,7 +693,7 @@
 		<repository>
 			<id>sonatype-nexus-staging</id>
 			<name>Nexus Release Repository</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 		<snapshotRepository>
 			<id>repo.spring.io</id>
@@ -780,6 +781,25 @@
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+							<serverId>sonatype-nexus-staging</serverId>
+						</configuration>
+						<executions>
+							<execution>
+							  <id>default-deploy</id>
+							  <phase>deploy</phase>
+							  <goals>
+								<goal>deploy</goal>
+							  </goals>
+							</execution>
+						  </executions>
+					</plugin>
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 						<version>${maven-gpg-plugin.version}</version>
@@ -796,6 +816,7 @@
 				</plugins>
 			</build>
 			<properties>
+				<maven.deploy.skip>true</maven.deploy.skip>
 				<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-release-local</maven-deploy-plugin.deployZipUrl>
 			</properties>
 		</profile>

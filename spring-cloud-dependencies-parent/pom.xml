@@ -76,7 +76,7 @@
 		<site>
 			<id>spring-docs</id>
 			<url>
-				scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}
+				https:/docs.spring.io/${project.artifactId}/docs/${project.version}/reference/html/
 			</url>
 		</site>
 		<repository>
@@ -102,29 +102,20 @@
 			</distributionManagement>
 		</profile>
 		<profile>
-			<id>bintray</id>
-			<distributionManagement>
-				<repository>
-					<id>bintray</id>
-					<name>Jcenter Repository</name>
-					<url>
-						https://api.bintray.com/maven/spring/jars/org.springframework.cloud:${bintray.package}
-					</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-		<profile>
 			<id>central</id>
+			<properties>
+				<maven.deploy.skip>true</maven.deploy.skip>
+			</properties>
 			<distributionManagement>
 				<snapshotRepository>
 					<id>sonatype-nexus-snapshots</id>
 					<name>Sonatype Nexus Snapshots</name>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+					<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 				</snapshotRepository>
 				<repository>
 					<id>sonatype-nexus-staging</id>
 					<name>Nexus Release Repository</name>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+					<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
 					</url>
 				</repository>
 			</distributionManagement>
@@ -162,6 +153,25 @@
 								</goals>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+							<serverId>sonatype-nexus-staging</serverId>
+						</configuration>
+						<executions>
+							<execution>
+							  <id>default-deploy</id>
+							  <phase>deploy</phase>
+							  <goals>
+								<goal>deploy</goal>
+							  </goals>
+							</execution>
+						  </executions>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
