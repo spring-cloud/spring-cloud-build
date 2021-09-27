@@ -23,9 +23,7 @@ build succeed, please raise a ticket to get the settings added to
 source control.
 
 The projects that require middleware (i.e. Redis) for testing generally
-require that a local instance of Docker is installed and running.
-https://www.docker.com/products/docker-desktop[Docker Desktop] is a common
-tool to satisfy this requirement.
+require that a local instance of [Docker](https://www.docker.com/get-started) is installed and running.
 
 
 === Documentation
