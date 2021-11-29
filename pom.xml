@@ -28,7 +28,7 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>2.6.0</spring-boot.version>
+		<spring-boot.version>2.6.1</spring-boot.version>
 		<spring-cloud-build.version>3.1.0-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
@@ -121,6 +121,24 @@
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
 		<sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
+		<duplicate-finder-maven-plugin.version>1.5.0</duplicate-finder-maven-plugin.version>
+		<duplicate-finder-maven-plugin.printEqualFiles>false</duplicate-finder-maven-plugin.printEqualFiles>
+		<duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>
+		<duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict>
+		<duplicate-finder-maven-plugin.failBuildInCaseOfConflict>true</duplicate-finder-maven-plugin.failBuildInCaseOfConflict>
+		<duplicate-finder-maven-plugin.checkCompileClasspath>true</duplicate-finder-maven-plugin.checkCompileClasspath>
+		<duplicate-finder-maven-plugin.checkRuntimeClasspath>true</duplicate-finder-maven-plugin.checkRuntimeClasspath>
+		<duplicate-finder-maven-plugin.checkTestClasspath>true</duplicate-finder-maven-plugin.checkTestClasspath>
+		<duplicate-finder-maven-plugin.skip>false</duplicate-finder-maven-plugin.skip>
+		<duplicate-finder-maven-plugin.quiet>false</duplicate-finder-maven-plugin.quiet>
+		<duplicate-finder-maven-plugin.preferLocal>true</duplicate-finder-maven-plugin.preferLocal>
+		<duplicate-finder-maven-plugin.useResultFile>true</duplicate-finder-maven-plugin.useResultFile>
+		<duplicate-finder-maven-plugin.resultFileMinClasspathCount>2</duplicate-finder-maven-plugin.resultFileMinClasspathCount>
+		<duplicate-finder-maven-plugin.resultFile>${project.build.directory}/duplicate-finder-result.xml</duplicate-finder-maven-plugin.resultFile>
+		<duplicate-finder-maven-plugin.includeBootClasspath>false</duplicate-finder-maven-plugin.includeBootClasspath>
+		<duplicate-finder-maven-plugin.bootClasspathProperty>sun.boot.class.path</duplicate-finder-maven-plugin.bootClasspathProperty>
+		<duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>true</duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>
+		<duplicate-finder-maven-plugin.includePomProjects>false</duplicate-finder-maven-plugin.includePomProjects>
 		<maven.deploy.skip>false</maven.deploy.skip>
 	</properties>
 	<dependencyManagement>
@@ -643,6 +661,40 @@
 						</execution>
 					</executions>
 				</plugin>
+				<plugin>
+					<groupId>org.basepom.maven</groupId>
+					<artifactId>duplicate-finder-maven-plugin</artifactId>
+					<version>${duplicate-finder-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>duplicate-validation</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+					<printEqualFiles>${duplicate-finder-maven-plugin.printEqualFiles}</printEqualFiles>
+					<failBuildInCaseOfDifferentContentConflict>${duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict}</failBuildInCaseOfDifferentContentConflict>
+					<failBuildInCaseOfEqualContentConflict>${duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict}</failBuildInCaseOfEqualContentConflict>
+					<failBuildInCaseOfConflict>${duplicate-finder-maven-plugin.failBuildInCaseOfConflict}</failBuildInCaseOfConflict>
+					<checkCompileClasspath>${duplicate-finder-maven-plugin.checkCompileClasspath}</checkCompileClasspath>
+					<checkRuntimeClasspath>${duplicate-finder-maven-plugin.checkRuntimeClasspath}</checkRuntimeClasspath>
+					<checkTestClasspath>${duplicate-finder-maven-plugin.checkTestClasspath}</checkTestClasspath>
+					<skip>${duplicate-finder-maven-plugin.skip}</skip>
+					<quiet>${duplicate-finder-maven-plugin.quiet}</quiet>
+					<preferLocal>${duplicate-finder-maven-plugin.preferLocal}</preferLocal>
+					<useResultFile>${duplicate-finder-maven-plugin.useResultFile}</useResultFile>
+					<resultFileMinClasspathCount>${duplicate-finder-maven-plugin.resultFileMinClasspathCount}</resultFileMinClasspathCount>
+					<resultFile>${duplicate-finder-maven-plugin.resultFile}</resultFile>
+					<includeBootClasspath>${duplicate-finder-maven-plugin.includeBootClasspath}</includeBootClasspath>
+					<bootClasspathProperty>${duplicate-finder-maven-plugin.bootClasspathProperty}</bootClasspathProperty>
+					<useDefaultResourceIgnoreList>${duplicate-finder-maven-plugin.useDefaultResourceIgnoreList}</useDefaultResourceIgnoreList>
+					<includePomProjects>${duplicate-finder-maven-plugin.includePomProjects}</includePomProjects>
+					</configuration>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
