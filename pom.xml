@@ -139,7 +139,6 @@
 		<duplicate-finder-maven-plugin.bootClasspathProperty>sun.boot.class.path</duplicate-finder-maven-plugin.bootClasspathProperty>
 		<duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>true</duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>
 		<duplicate-finder-maven-plugin.includePomProjects>false</duplicate-finder-maven-plugin.includePomProjects>
-		<maven.deploy.skip>false</maven.deploy.skip>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -834,26 +833,6 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.8</version>
-						<extensions>true</extensions>
-						<configuration>
-							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-							<serverId>sonatype-nexus-staging</serverId>
-							<autoReleaseAfterClose>false</autoReleaseAfterClose>
-						</configuration>
-						<executions>
-							<execution>
-							  <id>default-deploy</id>
-							  <phase>deploy</phase>
-							  <goals>
-								<goal>deploy</goal>
-							  </goals>
-							</execution>
-						  </executions>
-					</plugin>
-					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 						<version>${maven-gpg-plugin.version}</version>
@@ -870,7 +849,6 @@
 				</plugins>
 			</build>
 			<properties>
-				<maven.deploy.skip>true</maven.deploy.skip>
 				<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-release-local</maven-deploy-plugin.deployZipUrl>
 			</properties>
 		</profile>
