@@ -38,8 +38,8 @@
 		</spring-asciidoctor-extensions-boot.version>
 		<spring-asciidoctor-extensions-block.version>0.6.0
 		</spring-asciidoctor-extensions-block.version>
-		<asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
-		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
+		<asciidoctorj-pdf.version>1.6.0</asciidoctorj-pdf.version>
+		<asciidoctorj-diagram.version>2.2.1</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
