@@ -14,16 +14,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        java: ["8", "11", "16"]
-
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 17
       - name: Cache local Maven repository
         uses: actions/cache@v2
         with:
