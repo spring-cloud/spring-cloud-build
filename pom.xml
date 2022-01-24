@@ -28,22 +28,22 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>3.0.0-SNAPSHOT</spring-boot.version>
+		<spring-boot.version>3.0.0-M1</spring-boot.version>
 		<spring-cloud-build.version>4.0.0-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
-		<spring-doc-resources.version>0.2.2.RELEASE</spring-doc-resources.version>
+		<spring-doc-resources.version>0.2.4</spring-doc-resources.version>
 		<spring-asciidoctor-extensions-boot.version>0.6.0
 		</spring-asciidoctor-extensions-boot.version>
 		<spring-asciidoctor-extensions-block.version>0.6.0
 		</spring-asciidoctor-extensions-block.version>
-		<asciidoctorj-pdf.version>1.6.0</asciidoctorj-pdf.version>
+		<asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
 		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
-		<asciidoctorj.version>2.5.1</asciidoctorj.version>
+		<asciidoctorj.version>2.5.3</asciidoctorj.version>
 		<jruby-complete.version>9.2.19.0</jruby-complete.version>
 
 		<!-- Sonar -->
@@ -54,35 +54,35 @@
 		<sonar.language>java</sonar.language>
 
 		<!-- Plugins -->
-		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
-		<puppycrawl-tools-checkstyle.version>8.43</puppycrawl-tools-checkstyle.version>
-		<spring-javaformat.version>0.0.26</spring-javaformat.version>
+		<puppycrawl-tools-checkstyle.version>9.2.1</puppycrawl-tools-checkstyle.version>
+		<spring-javaformat.version>0.0.29</spring-javaformat.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-		<maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
 		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
-		<maven-war-plugin.version>3.3.1</maven-war-plugin.version>
-		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-		<git-commit-id-plugin.version>4.0.5</git-commit-id-plugin.version>
+		<git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
-		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
+		<maven-gpg-plugin.version>3.2.0</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
-		<artifactory-maven-plugin.version>3.2.0</artifactory-maven-plugin.version>
+		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
-		<spring-javaformat-checkstyle.version>0.0.26</spring-javaformat-checkstyle.version>
+		<spring-javaformat-checkstyle.version>0.0.29</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-		<pitest-maven.version>1.6.7</pitest-maven.version>
-		<pitest-junit5-plugin.version>0.14</pitest-junit5-plugin.version>
+		<pitest-maven.version>1.7.3</pitest-maven.version>
+		<pitest-junit5-plugin.version>0.15</pitest-junit5-plugin.version>
 		<disable.checks>false</disable.checks>
 		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
 		<maven-checkstyle-plugin.failOnViolation>true
@@ -100,7 +100,7 @@
 		<checkstyle.additional.suppressions.file>
 			${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.additional.suppressions.file>
-		<nohttp-checkstyle.version>0.0.7</nohttp-checkstyle.version>
+		<nohttp-checkstyle.version>0.0.10</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<antelopetasks.version>3.2.10</antelopetasks.version>
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
@@ -121,7 +121,7 @@
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
 		<sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
-		<duplicate-finder-maven-plugin.version>1.5.0</duplicate-finder-maven-plugin.version>
+		<duplicate-finder-maven-plugin.version>1.5.1</duplicate-finder-maven-plugin.version>
 		<duplicate-finder-maven-plugin.printEqualFiles>false</duplicate-finder-maven-plugin.printEqualFiles>
 		<duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>
 		<duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict>
