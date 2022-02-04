@@ -20,8 +20,8 @@
 	<url>https://spring.io/spring-cloud</url>
 	<properties>
 		<java.version>17</java.version>
-		<resource.delimiter>@
-		</resource.delimiter> <!-- delimiter that doesn't clash with Spring ${} placeholders -->
+		<!-- delimiter that doesn't clash with Spring ${} placeholders -->
+		<resource.delimiter>@</resource.delimiter>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
