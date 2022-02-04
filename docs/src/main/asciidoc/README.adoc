@@ -40,7 +40,7 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 == Contributing
 
-include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/docs/src/main/asciidoc/contributing.adoc[]
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/3.1.x/docs/src/main/asciidoc/contributing.adoc[]
 
 == Flattening the POMs
 
@@ -128,7 +128,7 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
 
 [source,xml]
 ----
-include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/pom.xml[tags=attributes,indent=0]
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/3.1.x/pom.xml[tags=attributes,indent=0]
 ----
 
 == Updating the guides
