@@ -19,7 +19,7 @@
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>2.6.6</spring-boot.version>
+		<spring-boot.version>2.6.7</spring-boot.version>
 		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 	</properties>
 	<build>
