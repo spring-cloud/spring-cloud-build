@@ -144,7 +144,7 @@ public class Main {
 		}
 
 		public String toString() {
-			return "|" + name + " | " + (StringUtils.hasText(defaultValue) ? ("`" + defaultValue + "`") : "") + " | " + description;
+			return "|" + name + " | " + (StringUtils.hasText(defaultValue) ? ("`+++" + defaultValue + "+++`") : "") + " | " + description;
 		}
 
 	}
