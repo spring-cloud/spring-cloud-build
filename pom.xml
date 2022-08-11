@@ -376,6 +376,7 @@
 						<excludes>
 							<exclude>**/Abstract*.java</exclude>
 						</excludes>
+						<argLine>--add-opens=java.base/java.net=ALL-UNNAMED</argLine>
 					</configuration>
 				</plugin>
 				<plugin>
