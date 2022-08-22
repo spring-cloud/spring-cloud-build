@@ -114,6 +114,7 @@
 		<generated-docs-pdf-output.dir>${project.build.directory}/generated-docs/reference/pdf</generated-docs-pdf-output.dir>
 		<javadoc.failOnError>false</javadoc.failOnError>
 		<javadoc.failOnWarnings>false</javadoc.failOnWarnings>
+		<maven-deploy-plugin-default.phase>deploy</maven-deploy-plugin-default.phase>
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-deploy-plugin.deployZipRepositoryId>repo.spring.io</maven-deploy-plugin.deployZipRepositoryId>
 		<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-snapshot-local</maven-deploy-plugin.deployZipUrl>
@@ -1468,6 +1469,13 @@
 							<artifactId>maven-deploy-plugin</artifactId>
 							<version>${maven-deploy-plugin.version}</version>
 							<executions>
+								<execution>
+									<id>default-deploy</id>
+									<phase>${maven-deploy-plugin-default.phase}</phase>
+									<goals>
+										<goal>deploy</goal>
+									</goals>
+								</execution>
 								<execution>
 									<id>upload-docs-zip</id>
 									<phase>${upload-docs-zip.phase}</phase>
