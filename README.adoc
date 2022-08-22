@@ -402,6 +402,7 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
     <raw-docs-url>${github-raw}@</raw-docs-url>
     <project-version>${project.version}@</project-version>
     <project-name>${docs.main}@</project-name>
+    <source-highlighter>highlight.js</source-highlighter>
 </attributes>
 ----
 
