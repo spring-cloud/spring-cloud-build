@@ -33,11 +33,7 @@
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
-		<spring-doc-resources.version>0.2.4</spring-doc-resources.version>
-		<spring-asciidoctor-extensions-boot.version>0.6.0
-		</spring-asciidoctor-extensions-boot.version>
-		<spring-asciidoctor-extensions-block.version>0.6.0
-		</spring-asciidoctor-extensions-block.version>
+		<spring-asciidoctor-backends.version>0.0.3</spring-asciidoctor-backends.version>
 		<asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
 		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
@@ -1054,25 +1050,6 @@
 										</artifactItems>
 									</configuration>
 								</execution>
-								<execution>
-									<id>unpack-docs-resources</id>
-									<phase>generate-resources</phase>
-									<goals>
-										<goal>unpack</goal>
-									</goals>
-									<configuration>
-										<artifactItems>
-											<artifactItem>
-												<groupId>io.spring.docresources</groupId>
-												<artifactId>spring-doc-resources</artifactId>
-												<version>${spring-doc-resources.version}</version>
-												<type>zip</type>
-												<overWrite>true</overWrite>
-												<outputDirectory>${refdocs.build.directory}</outputDirectory>
-											</artifactItem>
-										</artifactItems>
-									</configuration>
-								</execution>
 							</executions>
 						</plugin>
 						<plugin>
@@ -1140,14 +1117,9 @@
 							<version>${asciidoctor-maven-plugin.version}</version>
 							<dependencies>
 								<dependency>
-									<groupId>io.spring.asciidoctor</groupId>
-									<artifactId>spring-asciidoctor-extensions-spring-boot</artifactId>
-									<version>${spring-asciidoctor-extensions-boot.version}</version>
-								</dependency>
-								<dependency>
-									<groupId>io.spring.asciidoctor</groupId>
-									<artifactId>spring-asciidoctor-extensions-block-switch</artifactId>
-									<version>${spring-asciidoctor-extensions-block.version}</version>
+									<groupId>io.spring.asciidoctor.backends</groupId>
+									<artifactId>spring-asciidoctor-backends</artifactId>
+									<version>${spring-asciidoctor-backends.version}</version>
 								</dependency>
 								<dependency>
 									<groupId>org.asciidoctor</groupId>
@@ -1224,7 +1196,7 @@
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<backend>html5</backend>
+										<backend>spring-html</backend>
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>.adoc</sourceDocumentExtension>
 											<sourceDocumentExtension>.htmladoc</sourceDocumentExtension>
@@ -1235,7 +1207,7 @@
 										<attributes>
 											<docinfo>shared</docinfo>
 											<stylesdir>css/</stylesdir>
-											<stylesheet>spring.css</stylesheet>
+											<stylesheet>site.css</stylesheet>
 											<linkcss>true</linkcss>
 											<icons>font</icons>
 											<highlightjsdir>js/highlight</highlightjsdir>
@@ -1259,7 +1231,7 @@
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<backend>html5</backend>
+										<backend>spring-html</backend>
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>.htmlsingleadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
@@ -1271,7 +1243,7 @@
 											<source-highlighter>highlight.js</source-highlighter>
 											<docinfo>shared</docinfo>
 											<stylesdir>css/</stylesdir>
-											<stylesheet>spring.css</stylesheet>
+											<stylesheet>site.css</stylesheet>
 											<linkcss>true</linkcss>
 											<icons>font</icons>
 											<highlightjsdir>js/highlight</highlightjsdir>
