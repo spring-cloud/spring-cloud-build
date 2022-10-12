@@ -55,7 +55,7 @@
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
 		<puppycrawl-tools-checkstyle.version>9.2.1</puppycrawl-tools-checkstyle.version>
-		<spring-javaformat.version>0.0.34</spring-javaformat.version>
+		<spring-javaformat.version>0.0.35</spring-javaformat.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
@@ -75,7 +75,7 @@
 		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
-		<spring-javaformat-checkstyle.version>0.0.29</spring-javaformat-checkstyle.version>
+		<spring-javaformat-checkstyle.version>0.0.35</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
 		<pitest-maven.version>1.7.3</pitest-maven.version>
 		<pitest-junit5-plugin.version>0.15</pitest-junit5-plugin.version>
