@@ -136,6 +136,7 @@
 		<duplicate-finder-maven-plugin.bootClasspathProperty>sun.boot.class.path</duplicate-finder-maven-plugin.bootClasspathProperty>
 		<duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>true</duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>
 		<duplicate-finder-maven-plugin.includePomProjects>false</duplicate-finder-maven-plugin.includePomProjects>
+		<maven-gpg-plugin.phase>verify</maven-gpg-plugin.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -837,7 +838,7 @@
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
-								<phase>verify</phase>
+								<phase>${maven-gpg-plugin.phase}</phase>
 								<goals>
 									<goal>sign</goal>
 								</goals>
