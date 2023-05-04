@@ -1367,14 +1367,9 @@
 									</goals>
 									<configuration>
 										<target>
-											<if>
-												<available file="${project.build.directory}/generated-docs/reference/htmlsingle" type="dir" />
-												<then>
-													<copy tofile="${project.build.directory}/generated-docs/reference/htmlsingle/index.html">
-														<fileset dir="${project.build.directory}/generated-docs/reference/htmlsingle" includes="${docs.main}.html" />
-													</copy>
-												</then>
-											</if>
+											<copy tofile="${project.build.directory}/generated-docs/reference/htmlsingle/index.html" failonerror="false">
+												<fileset dir="${project.build.directory}/generated-docs/reference/htmlsingle" includes="${docs.main}.html" />
+											</copy>
 											<zip
 													destfile="${project.build.directory}/${project.artifactId}-${revision}.zip">
 												<!--<zipfileset
