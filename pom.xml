@@ -1394,6 +1394,9 @@
 									</goals>
 									<configuration>
 										<target>
+											<copy tofile="${project.build.directory}/generated-docs/reference/htmlsingle/index.html">
+												<fileset dir="${project.build.directory}/generated-docs/reference/htmlsingle" includes="${docs.main}.html" />
+											</copy>
 											<zip
 													destfile="${project.build.directory}/${project.artifactId}-${revision}.zip">
 												<!--<zipfileset
