@@ -1387,6 +1387,21 @@
 									</configuration>
 								</execution>
 								<execution>
+									<id>copy-missing-html-files</id>
+									<phase>package</phase>
+									<goals>
+										<goal>run</goal>
+									</goals>
+									<configuration>
+										<failOnError>false</failOnError>
+										<target>
+											<copy tofile="${project.build.directory}/generated-docs/reference/htmlsingle/index.html">
+												<fileset dir="${project.build.directory}/generated-docs/reference/htmlsingle" includes="${docs.main}.html" />
+											</copy>
+										</target>
+									</configuration>
+								</execution>
+								<execution>
 									<id>package-and-attach-docs-zip</id>
 									<phase>package</phase>
 									<goals>
@@ -1394,9 +1409,6 @@
 									</goals>
 									<configuration>
 										<target>
-											<copy tofile="${project.build.directory}/generated-docs/reference/htmlsingle/index.html" failonerror="false">
-												<fileset dir="${project.build.directory}/generated-docs/reference/htmlsingle" includes="${docs.main}.html" />
-											</copy>
 											<zip
 													destfile="${project.build.directory}/${project.artifactId}-${revision}.zip">
 												<!--<zipfileset
