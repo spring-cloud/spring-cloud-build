@@ -50,29 +50,29 @@
 		<sonar.language>java</sonar.language>
 
 		<!-- Plugins -->
-		<maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
 		<puppycrawl-tools-checkstyle.version>9.2.1</puppycrawl-tools-checkstyle.version>
 		<spring-javaformat.version>0.0.35</spring-javaformat.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-		<maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
+		<maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+		<maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+		<maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
+		<maven-surefire-report-plugin.version>3.1.0</maven-surefire-report-plugin.version>
 		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
 		<git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
-		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
-		<maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
+		<maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
+		<maven-enforcer-plugin.version>3.3.0</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
 		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-		<maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+		<maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
-		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
+		<build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.35</spring-javaformat-checkstyle.version>
@@ -111,7 +111,7 @@
 		<javadoc.failOnError>false</javadoc.failOnError>
 		<javadoc.failOnWarnings>false</javadoc.failOnWarnings>
 		<maven-deploy-plugin-default.phase>deploy</maven-deploy-plugin-default.phase>
-		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
 		<maven-deploy-plugin.deployZipRepositoryId>repo.spring.io</maven-deploy-plugin.deployZipRepositoryId>
 		<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-snapshot-local</maven-deploy-plugin.deployZipUrl>
 		<upload-docs-zip.phase>none</upload-docs-zip.phase>
