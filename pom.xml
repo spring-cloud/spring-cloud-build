@@ -29,7 +29,7 @@
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
 		<spring-boot.version>3.2.0-SNAPSHOT</spring-boot.version>
-		<spring-cloud-build.version>4.0.4-SNAPSHOT</spring-cloud-build.version>
+		<spring-cloud-build.version>4.1.0-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
@@ -143,7 +143,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-build-dependencies</artifactId>
-				<version>${project.version}</version>
+				<version>${spring-cloud-build.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
