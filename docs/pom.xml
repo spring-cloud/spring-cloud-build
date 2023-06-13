@@ -21,7 +21,8 @@
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
 		<upload-docs-zip.phase>deploy</upload-docs-zip.phase>
 		<!-- Don't upload docs jar to central / repo.spring.io -->
-		<maven-deploy-plugin-default.phase>none</maven-deploy-plugin-default.phase>
+		<!-- TODO: temporary, don't want it to central? -->
+		<maven-deploy-plugin-default.phase>deploy</maven-deploy-plugin-default.phase>
 		<!-- We don't want to reference plugin classpath of ourselves -->
 		<readme.class.path>maven.compile.classpath</readme.class.path>
 	</properties>
