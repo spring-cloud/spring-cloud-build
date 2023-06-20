@@ -33,7 +33,7 @@
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
-		<spring-asciidoctor-backends.version>0.0.3</spring-asciidoctor-backends.version>
+		<spring-asciidoctor-backends.version>0.0.5</spring-asciidoctor-backends.version>
 		<asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
 		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
