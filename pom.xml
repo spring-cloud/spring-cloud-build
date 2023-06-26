@@ -91,6 +91,7 @@
 		</maven-checkstyle-plugin.includeTestSourceDirectory>
 		<spring-cloud-build-checkstyle.branch>master
 		</spring-cloud-build-checkstyle.branch>
+		<spring-cloud-build-docs-classifier>jar-with-dependencies</spring-cloud-build-docs-classifier>
 		<checkstyle.suppressions.file>
 			https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/${spring-cloud-build-checkstyle.branch}/spring-cloud-build-tools/src/checkstyle/checkstyle-suppressions.xml
 		</checkstyle.suppressions.file>
@@ -1120,6 +1121,7 @@
 									</artifactId>
 									<version>${spring-cloud-build.version}
 									</version>
+									<classifier>${spring-cloud-build-docs-classifier}</classifier>
 									<type>jar</type>
 								</dependency>
 							</dependencies>
