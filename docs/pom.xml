@@ -25,6 +25,7 @@
 		<maven-deploy-plugin-default.phase>deploy</maven-deploy-plugin-default.phase>
 		<!-- We don't want to reference plugin classpath of ourselves -->
 		<readme.class.path>maven.compile.classpath</readme.class.path>
+		<spring-cloud-build-docs-classifier></spring-cloud-build-docs-classifier>
 	</properties>
 	<dependencies>
 		<!-- Script -->
