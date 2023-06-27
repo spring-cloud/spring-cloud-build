@@ -143,6 +143,7 @@
 		<duplicate-finder-maven-plugin.includePomProjects>false</duplicate-finder-maven-plugin.includePomProjects>
 		<maven-gpg-plugin.phase>verify</maven-gpg-plugin.phase>
 		<unpack-docs-resources.phase>generate-resources</unpack-docs-resources.phase>
+		<generate-docs.phase>prepare-package</generate-docs.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1222,7 +1223,7 @@
 							<executions>
 								<execution>
 									<id>generate-html-documentation</id>
-									<phase>prepare-package</phase>
+									<phase>${generate-docs.phase}</phase>
 									<goals>
 										<goal>process-asciidoc</goal>
 									</goals>
@@ -1257,7 +1258,7 @@
 								</execution>
 								<execution>
 									<id>generate-htmlsingle-documentation</id>
-									<phase>prepare-package</phase>
+									<phase>${generate-docs.phase}</phase>
 									<goals>
 										<goal>process-asciidoc</goal>
 									</goals>
@@ -1285,7 +1286,7 @@
 								</execution>
 								<execution>
 									<id>generate-pdf-documentation</id>
-									<phase>prepare-package</phase>
+									<phase>${generate-docs.phase}</phase>
 									<goals>
 										<goal>process-asciidoc</goal>
 									</goals>
@@ -1369,7 +1370,7 @@
 								</execution>
 								<execution>
 									<id>assert-no-unresolved-links</id>
-									<phase>prepare-package</phase>
+									<phase>${generate-docs.phase}</phase>
 									<goals>
 										<goal>run</goal>
 									</goals>
@@ -1671,6 +1672,8 @@
 			<properties>
 				<!-- This jar requires authentication, we don't need anything css related in a PR -->
 				<unpack-docs-resources.phase>none</unpack-docs-resources.phase>
+				<!-- Because of this we will not be catching broken docs in the PRs -->
+				<generate-docs.phase>none</generate-docs.phase>
 			</properties>
 		</profile>
 	</profiles>
