@@ -142,6 +142,7 @@
 		<duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>true</duplicate-finder-maven-plugin.useDefaultResourceIgnoreList>
 		<duplicate-finder-maven-plugin.includePomProjects>false</duplicate-finder-maven-plugin.includePomProjects>
 		<maven-gpg-plugin.phase>verify</maven-gpg-plugin.phase>
+		<unpack-docs-resources.phase>generate-resources</unpack-docs-resources.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1057,7 +1058,7 @@
 								</execution>
 								<execution>
 									<id>unpack-docs-resources</id>
-									<phase>generate-resources</phase>
+									<phase>${unpack-docs-resources.phase}</phase>
 									<goals>
 										<goal>unpack</goal>
 									</goals>
@@ -1658,6 +1659,19 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>CI</id>
+			<activation>
+				<property>
+					<name>CI</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<!-- This jar requires authentication, we don't need anything css related in a PR -->
+				<unpack-docs-resources.phase>none</unpack-docs-resources.phase>
+			</properties>
 		</profile>
 	</profiles>
 </project>
