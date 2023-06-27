@@ -1667,8 +1667,7 @@
 			<id>CI</id>
 			<activation>
 				<property>
-					<name>env.CI</name>
-					<value>true</value>
+					<name>env.GITHUB_API_URL</name>
 				</property>
 			</activation>
 			<properties>
@@ -1678,6 +1677,7 @@
 				<generate-docs.phase>none</generate-docs.phase>
 				<copy-missing-html-files.phase>none</copy-missing-html-files.phase>
 				<package-and-attach-docs-zip.phase>none</package-and-attach-docs-zip.phase>
+				<upload-docs-zip.phase>none</upload-docs-zip.phase>
 			</properties>
 		</profile>
 	</profiles>
