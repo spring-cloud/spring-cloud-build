@@ -1664,7 +1664,7 @@
 			<id>CI</id>
 			<activation>
 				<property>
-					<name>CI</name>
+					<name>env.CI</name>
 					<value>true</value>
 				</property>
 			</activation>
