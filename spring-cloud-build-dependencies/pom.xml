@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build-dependencies</artifactId>
-	<version>4.0.5-SNAPSHOT</version>
+	<version>4.0.4-SNAPSHOT</version>
 	<name>spring-cloud-build-dependencies</name>
 	<packaging>pom</packaging>
 	<description>Spring Cloud Build Dependencies: an internal BOM for use with Spring
@@ -14,12 +14,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-dependencies</artifactId>
-		<version>3.0.8</version>
+		<version>3.0.7</version>
 		<relativePath/>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>3.0.8</spring-boot.version>
+		<spring-boot.version>3.0.7</spring-boot.version>
 		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 	</properties>
 	<build>
