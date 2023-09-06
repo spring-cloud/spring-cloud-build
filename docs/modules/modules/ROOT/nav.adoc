@@ -1,0 +1,8 @@
+* xref:index.adoc[]
+* xref:spring-cloud-build.adoc[]
+* xref:README.adoc[]
+* xref:building-jdk8.adoc[]
+* xref:building.adoc[]
+* xref:code-of-conduct.adoc[]
+* xref:contributing-docs.adoc[]
+* xref:contributing.adoc[]
