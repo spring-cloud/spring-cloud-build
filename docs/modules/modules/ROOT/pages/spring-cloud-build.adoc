@@ -1,3 +1,4 @@
 [[spring-cloud-build]]
 = Spring Cloud Build
+:page-section-summary-toc: 1
 
