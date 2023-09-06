@@ -3,6 +3,7 @@ image::https://github.com/spring-cloud/spring-cloud-build/workflows/Build/badge.
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
 
+[[building-and-deploying]]
 == Building and Deploying
 
 To install locally:
@@ -38,10 +39,12 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 (the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).
 
+[[contributing]]
 == Contributing
 
 include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/src/main/asciidoc/contributing.adoc[]
 
+[[flattening-the-poms]]
 == Flattening the POMs
 
 To avoid propagating build setup that is required to build a Spring Cloud project, we're using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.
@@ -60,6 +63,7 @@ In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `po
 </build>
 ----
 
+[[reusing-the-documentation]]
 == Reusing the documentation
 
 Spring Cloud Build publishes its `spring-cloud-build-docs` module that contains
@@ -131,6 +135,7 @@ Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you 
 include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/pom.xml[tags=attributes,indent=0]
 ----
 
+[[updating-the-guides]]
 == Updating the guides
 
 We assume that your project contains guides under the `guides` folder.

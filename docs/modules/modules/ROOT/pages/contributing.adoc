@@ -6,6 +6,7 @@ tracker for issues and merging pull requests into master. If you want
 to contribute even something trivial please do not hesitate, but
 follow the guidelines below.
 
+[[sign-the-contributor-license-agreement]]
 === Sign the Contributor License Agreement
 Before we accept a non-trivial patch or pull request we will need you to sign the
 https://cla.pivotal.io/sign/spring[Contributor License Agreement].
@@ -14,11 +15,13 @@ repository, but it does mean that we can accept your contributions, and you will
 author credit if we do.  Active contributors might be asked to join the core team, and
 given the ability to merge pull requests.
 
+[[code-of-conduct]]
 === Code of Conduct
 This project adheres to the Contributor Covenant https://github.com/spring-cloud/spring-cloud-build/blob/master/docs/src/main/asciidoc/code-of-conduct.adoc[code of
 conduct]. By participating, you  are expected to uphold this code. Please report
 unacceptable behavior to spring-code-of-conduct@pivotal.io.
 
+[[code-conventions-and-housekeeping]]
 === Code Conventions and Housekeeping
 None of these is essential for a pull request, but they will all help.  They can also be
 added after the original pull request but before a merge.
@@ -45,6 +48,7 @@ added after the original pull request but before a merge.
   if you are fixing an existing issue please add `Fixes gh-XXXX` at the end of the commit
   message (where XXXX is the issue number).
 
+[[checkstyle]]
 === Checkstyle
 
 Spring Cloud Build comes with a set of checkstyle rules. You can find them in the `spring-cloud-build-tools` module. The most notable files under the module are:
@@ -63,6 +67,7 @@ Spring Cloud Build comes with a set of checkstyle rules. You can find them in th
 <2> File header setup
 <3> Default suppression rules
 
+[[checkstyle-configuration]]
 ==== Checkstyle configuration
 
 Checkstyle rules are *disabled by default*. To add checkstyle to your project just define the following properties and plugins.
@@ -126,8 +131,10 @@ $ curl https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/master/
 $ touch .springformat
 ```
 
+[[ide-setup]]
 === IDE setup
 
+[[intellij-idea]]
 ==== Intellij IDEA
 
 In order to setup Intellij you should import our coding conventions, inspection profiles and set up the checkstyle plugin.
@@ -178,10 +185,12 @@ Go to `File` -> `Settings` -> `Other settings` -> `Checkstyle`. There click on t
 
 IMPORTANT: Remember to set the `Scan Scope` to `All sources` since we apply checkstyle rules for production and test sources.
 
+[[duplicate-finder]]
 === Duplicate Finder
 
 Spring Cloud Build brings along the  `basepom:duplicate-finder-maven-plugin`, that enables flagging duplicate and conflicting classes and resources on the java classpath.
 
+[[duplicate-finder-configuration]]
 ==== Duplicate Finder configuration
 
 Duplicate finder is *enabled by default* and will run in the `verify` phase of your Maven build, but it will only take effect in your project if you add the `duplicate-finder-maven-plugin` to the `build` section of the projecst's `pom.xml`.
