@@ -141,6 +141,7 @@
 		<generate-docs.phase>prepare-package</generate-docs.phase>
 		<copy-missing-html-files.phase>package</copy-missing-html-files.phase>
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
+		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -297,6 +298,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>flatten-maven-plugin</artifactId>
+					<version>1.5.0</version>
 					<inherited>true</inherited>
 					<executions>
 						<execution>
@@ -1058,28 +1060,22 @@
 							</executions>
 						</plugin>
 						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-resources-plugin</artifactId>
+							<groupId>io.spring.maven.antora</groupId>
+							<artifactId>antora-component-version-maven-plugin</artifactId>
+							<version>${antora-maven-plugin.version}</version>
 							<executions>
 								<execution>
-									<id>copy-asciidoc-resources</id>
-									<phase>generate-resources</phase>
 									<goals>
-										<goal>copy-resources</goal>
+										<goal>antora-component-version</goal>
 									</goals>
-									<configuration>
-										<outputDirectory>${project.build.directory}/refdocs/</outputDirectory>
-										<resources>
-											<resource>
-												<directory>src/main/asciidoc</directory>
-												<excludes>
-													<exclude>ghpages.sh</exclude>
-												</excludes>
-											</resource>
-										</resources>
-									</configuration>
 								</execution>
 							</executions>
+						</plugin>
+						<plugin>
+							<groupId>io.spring.maven.antora</groupId>
+							<artifactId>antora-maven-plugin</artifactId>
+							<version>${antora-maven-plugin.version}</version>
+							<extensions>true</extensions>
 						</plugin>
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
@@ -1116,172 +1112,6 @@
 									<argument>${configprops.inclusionPattern}</argument>
 								</arguments>
 							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.asciidoctor</groupId>
-							<artifactId>asciidoctor-maven-plugin</artifactId>
-							<version>${asciidoctor-maven-plugin.version}</version>
-							<dependencies>
-								<dependency>
-									<groupId>io.spring.asciidoctor.backends</groupId>
-									<artifactId>spring-asciidoctor-backends</artifactId>
-									<version>${spring-asciidoctor-backends.version}</version>
-								</dependency>
-								<dependency>
-									<groupId>org.asciidoctor</groupId>
-									<artifactId>asciidoctorj-pdf</artifactId>
-									<version>${asciidoctorj-pdf.version}</version>
-								</dependency>
-								<dependency>
-									<groupId>org.asciidoctor</groupId>
-									<artifactId>asciidoctorj-diagram</artifactId>
-									<version>${asciidoctorj-diagram.version}</version>
-								</dependency>
-							</dependencies>
-							<configuration>
-								<sourceDirectory>${refdocs.build.directory}</sourceDirectory>
-								<resources>
-									<resource>
-										<directory>${refdocs.build.directory}</directory>
-										<excludes>
-											<exclude>**/*.*adoc</exclude>
-										</excludes>
-									</resource>
-								</resources>
-								<!-- tag::attributes[] -->
-								<attributes>
-									<docinfo>shared</docinfo>
-									<allow-uri-read>true</allow-uri-read>
-									<nofooter/>
-									<toc>left</toc>
-									<toc-levels>4</toc-levels>
-									<sectlinks>true</sectlinks>
-									<sources-root>${project.basedir}/src@</sources-root>
-									<asciidoc-sources-root>${project.basedir}/src/main/asciidoc@</asciidoc-sources-root>
-									<generated-resources-root>${project.basedir}/target/generated-resources@
-									</generated-resources-root>
-									<!-- Use this attribute the reference code from another module -->
-									<!-- Note the @ at the end, lowering the precedence of the attribute -->
-									<project-root>${maven.multiModuleProjectDirectory}@</project-root>
-									<!-- It's mandatory for you to pass the docs.main property -->
-									<github-repo>${docs.main}@</github-repo>
-									<github-project>https://github.com/spring-cloud/${docs.main}@</github-project>
-									<github-raw>
-										https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}@
-									</github-raw>
-									<github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}@
-									</github-code>
-									<github-issues>https://github.com/spring-cloud/${docs.main}/issues/@</github-issues>
-									<github-wiki>https://github.com/spring-cloud/${docs.main}/wiki@</github-wiki>
-									<github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master@
-									</github-master-code>
-									<index-link>${index-link}@</index-link>
-
-									<!-- Spring Cloud specific -->
-									<!-- for backward compatibility -->
-									<spring-cloud-version>${project.version}@</spring-cloud-version>
-									<project-version>${project.version}@</project-version>
-									<github-tag>${github-tag}@</github-tag>
-									<version-type>${version-type}@</version-type>
-									<docs-url>https://docs.spring.io/${docs.main}/docs/${project.version}@</docs-url>
-									<raw-docs-url>${github-raw}@</raw-docs-url>
-									<project-version>${project.version}@</project-version>
-									<project-name>${docs.main}@</project-name>
-									<source-highlighter>highlight.js</source-highlighter>
-								</attributes>
-								<!-- end::attributes[] -->
-								<requires>
-									<require>asciidoctor-diagram</require>
-								</requires>
-							</configuration>
-							<executions>
-								<execution>
-									<id>generate-html-documentation</id>
-									<phase>${generate-docs.phase}</phase>
-									<goals>
-										<goal>process-asciidoc</goal>
-									</goals>
-									<configuration>
-										<backend>spring-html</backend>
-										<sourceDocumentExtensions>
-											<sourceDocumentExtension>.adoc</sourceDocumentExtension>
-											<sourceDocumentExtension>.htmladoc</sourceDocumentExtension>
-										</sourceDocumentExtensions>
-										<outputDirectory>${generated-docs-multipage-output.dir}
-										</outputDirectory>
-										<doctype>book</doctype>
-										<attributes>
-											<docinfo>shared</docinfo>
-											<stylesdir>css/</stylesdir>
-											<stylesheet>site.css</stylesheet>
-											<linkcss>true</linkcss>
-											<icons>font</icons>
-											<highlightjsdir>js/highlight</highlightjsdir>
-											<highlightjs-theme>github</highlightjs-theme>
-											<imagesdir>./images</imagesdir>
-											<attribute-missing>warn</attribute-missing>
-											<source-highlighter>highlight.js</source-highlighter>
-										</attributes>
-										<logHandler>
-											<outputToConsole>true</outputToConsole>
-											<failIf>
-												<!--												<severity>DEBUG</severity>-->
-											</failIf>
-										</logHandler>
-									</configuration>
-								</execution>
-								<execution>
-									<id>generate-htmlsingle-documentation</id>
-									<phase>${generate-docs.phase}</phase>
-									<goals>
-										<goal>process-asciidoc</goal>
-									</goals>
-									<configuration>
-										<backend>spring-html</backend>
-										<sourceDocumentExtensions>
-											<sourceDocumentExtension>.htmlsingleadoc</sourceDocumentExtension>
-										</sourceDocumentExtensions>
-										<outputDirectory>
-											${generated-docs-singlepage-output.dir}
-										</outputDirectory>
-										<doctype>book</doctype>
-										<attributes>
-											<source-highlighter>highlight.js</source-highlighter>
-											<docinfo>shared</docinfo>
-											<stylesdir>css/</stylesdir>
-											<stylesheet>site.css</stylesheet>
-											<linkcss>true</linkcss>
-											<icons>font</icons>
-											<highlightjsdir>js/highlight</highlightjsdir>
-											<highlightjs-theme>github</highlightjs-theme>
-											<imagesdir>./images</imagesdir>
-										</attributes>
-									</configuration>
-								</execution>
-								<execution>
-									<id>generate-pdf-documentation</id>
-									<phase>${generate-docs.phase}</phase>
-									<goals>
-										<goal>process-asciidoc</goal>
-									</goals>
-									<configuration>
-										<backend>pdf</backend>
-										<sourceDocumentExtensions>
-											<sourceDocumentExtension>.pdfadoc</sourceDocumentExtension>
-										</sourceDocumentExtensions>
-										<outputDirectory>${generated-docs-pdf-output.dir}
-										</outputDirectory>
-										<resources>
-											<resource>
-												<directory>${refdocs.build.directory}</directory>
-												<excludes>
-													<exclude>**/*</exclude>
-												</excludes>
-											</resource>
-										</resources>
-									</configuration>
-								</execution>
-							</executions>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1350,7 +1180,7 @@
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/generated-docs/"
+											<fileset id="unresolved.file" dir="${basedir}/target/antora/site/"
 													 includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
@@ -1361,21 +1191,6 @@
 																   refid="unresolved.file"/>
 												</condition>
 											</fail>
-										</target>
-									</configuration>
-								</execution>
-								<execution>
-									<id>copy-missing-html-files</id>
-									<phase>${copy-missing-html-files.phase}</phase>
-									<goals>
-										<goal>run</goal>
-									</goals>
-									<configuration>
-										<failOnError>false</failOnError>
-										<target>
-											<copy tofile="${project.build.directory}/generated-docs/reference/htmlsingle/index.html">
-												<fileset dir="${project.build.directory}/generated-docs/reference/htmlsingle" includes="${docs.main}.html" />
-											</copy>
 										</target>
 									</configuration>
 								</execution>
@@ -1411,7 +1226,7 @@
 											<taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask"/>
 											<var name="version-type" value="${revision}"/>
 											<propertyregex property="version-type" override="true"
-														   input="${version-type}" regexp=".*\.(.*)" replace="\1"/>
+														   input="${version-type}" regexp=".*\-(.*)" replace="\1"/>
 											<propertyregex property="version-type" override="true"
 														   input="${version-type}" regexp="(M)\d+" replace="MILESTONE"/>
 											<propertyregex property="version-type" override="true"
@@ -1428,32 +1243,6 @@
 														   replace="\1"/>
 											<var name="github-tag" value="${git.branch}"/>
 										</target>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-						<plugin>
-							<groupId>org.jfrog.buildinfo</groupId>
-							<artifactId>artifactory-maven-plugin</artifactId>
-							<version>${artifactory-maven-plugin.version}</version>
-							<executions>
-								<execution>
-									<id>build-info</id>
-									<goals>
-										<goal>publish</goal>
-									</goals>
-									<configuration>
-										<deployProperties>
-											<zip.deployed>true</zip.deployed>
-											<zip.type>docs</zip.type>
-										</deployProperties>
-										<publisher>
-											<contextUrl>https://repo.spring.io
-											</contextUrl>
-											<repoKey>libs-release-local</repoKey>
-											<snapshotRepoKey>libs-snapshots-local
-											</snapshotRepoKey>
-										</publisher>
 									</configuration>
 								</execution>
 							</executions>
