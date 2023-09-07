@@ -1195,25 +1195,6 @@
 									</configuration>
 								</execution>
 								<execution>
-									<id>package-and-attach-docs-zip</id>
-									<phase>${package-and-attach-docs-zip.phase}</phase>
-									<goals>
-										<goal>run</goal>
-									</goals>
-									<configuration>
-										<target>
-											<zip
-													destfile="${project.build.directory}/${project.artifactId}-${revision}.zip">
-												<!--<zipfileset
-														src="${project.build.directory}/${project.artifactId}-${revision}-javadoc.jar"
-														prefix="api" />-->
-												<!--												<fileset dir="${project.build.directory}/contents"/>-->
-												<fileset dir="${project.build.directory}/generated-docs"/>
-											</zip>
-										</target>
-									</configuration>
-								</execution>
-								<execution>
 									<id>setup-maven-properties</id>
 									<phase>initialize</phase>
 									<goals>
@@ -1257,23 +1238,6 @@
 									<goals>
 										<goal>deploy</goal>
 									</goals>
-								</execution>
-								<execution>
-									<id>upload-docs-zip</id>
-									<phase>${upload-docs-zip.phase}</phase>
-									<goals>
-										<goal>deploy-file</goal>
-									</goals>
-									<configuration>
-										<generatePom>false</generatePom>
-										<groupId>${project.groupId}</groupId>
-										<artifactId>${project.artifactId}</artifactId>
-										<version>${project.version}</version>
-										<repositoryId>${maven-deploy-plugin.deployZipRepositoryId}</repositoryId>
-										<url>${maven-deploy-plugin.deployZipUrl}</url>
-										<file>${project.build.directory}/${project.artifactId}-${project.version}.zip</file>
-										<packaging>zip;zip.type=docs;zip.deployed=false;</packaging>
-									</configuration>
 								</execution>
 							</executions>
 						</plugin>
