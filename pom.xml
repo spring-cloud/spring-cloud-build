@@ -101,7 +101,7 @@
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<antelopetasks.version>3.2.10</antelopetasks.version>
 		<ant-nodeps.version>1.8.1</ant-nodeps.version>
-		<configprops.path>${project.basedir}/src/main/asciidoc/_configprops.adoc</configprops.path>
+		<configprops.path>${project.basedir}/docs/modules/ROOT/pages/partials/target/_configprops.adoc</configprops.path>
 		<configprops.inclusionPattern>.*</configprops.inclusionPattern>
 		<maven-dependency-plugin-for-docs.phase>generate-resources</maven-dependency-plugin-for-docs.phase>
 		<maven-dependency-plugin-for-docs-classes.phase>generate-resources</maven-dependency-plugin-for-docs-classes.phase>
