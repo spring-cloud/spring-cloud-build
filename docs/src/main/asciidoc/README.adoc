@@ -73,54 +73,12 @@ approach of generating documentation just add these plugins to your `docs` modul
 
 [source,xml]
 ----
-<profiles>
-	<profile>
-		<id>docs</id>
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>pl.project13.maven</groupId>
-					<artifactId>git-commit-id-plugin</artifactId> <1>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId> <2>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId> <3>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId> <4>
-				</plugin>
-				<plugin>
-					<groupId>org.asciidoctor</groupId>
-					<artifactId>asciidoctor-maven-plugin</artifactId> <5>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId> <6>
-				</plugin>
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId> <7>
-				</plugin>
-			</plugins>
-		</build>
-	</profile>
-</profiles>
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/pom.xml[indent=0,tags=docs]
 ----
-<1> This plugin downloads sets up all the git information of the project
-<2> This plugin downloads the resources of the `spring-cloud-build-docs` module
-<3> This plugin unpacks the resources of the `spring-cloud-build-docs` module
-<4> This plugin generates an `adoc` file with all the configuration properties from the classpath
-<5> This plugin is required to parse the Asciidoctor documentation
-<6> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
-<7> This plugin ensures that the generated zip docs will get published
 
 IMPORTANT: The order of plugin declaration is important!
 
-In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties. The file will be output to `${docsModule}/src/main/asciidoc/_configprops.adoc` file (configurable via the `configprops.path` property).
+In order for the build to generate the `adoc` file with all your configuration properties, your `docs` module should contain all the dependencies on the classpath, that you would want to scan for configuration properties.
 
 If you want to modify which of the configuration properties are put in the table, you can tweak the `configprops.inclusionPattern` pattern to include only a subset of the properties (e.g. `<configprops.inclusionPattern>spring.sleuth.*</configprops.inclusionPattern>`).
 

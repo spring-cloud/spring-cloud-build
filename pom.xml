@@ -139,6 +139,7 @@
 		<copy-missing-html-files.phase>package</copy-missing-html-files.phase>
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
+		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1066,7 +1067,14 @@
 							<groupId>io.spring.maven.antora</groupId>
 							<artifactId>antora-maven-plugin</artifactId>
 							<version>${antora-maven-plugin.version}</version>
-							<extensions>true</extensions>
+							<executions>
+								<execution>
+									<phase>${antora-maven-plugin.phase}</phase>
+									<goals>
+										<goal>antora</goal>
+									</goals>
+								</execution>
+							</executions>
 						</plugin>
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
