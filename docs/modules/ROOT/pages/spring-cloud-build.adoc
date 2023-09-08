@@ -1,4 +1,3 @@
 [[spring-cloud-build]]
 = Spring Cloud Build
 
-include::README.adoc[]
