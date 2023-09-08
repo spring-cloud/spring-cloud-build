@@ -113,9 +113,6 @@
 		<javadoc.failOnWarnings>false</javadoc.failOnWarnings>
 		<maven-deploy-plugin-default.phase>deploy</maven-deploy-plugin-default.phase>
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-		<maven-deploy-plugin.deployZipRepositoryId>repo.spring.io</maven-deploy-plugin.deployZipRepositoryId>
-		<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-snapshot-local</maven-deploy-plugin.deployZipUrl>
-		<upload-docs-zip.phase>none</upload-docs-zip.phase>
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
 		<sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
@@ -829,9 +826,6 @@
 					<url>https://repo.spring.io/libs-milestone-local</url>
 				</repository>
 			</distributionManagement>
-			<properties>
-				<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-milestone-local</maven-deploy-plugin.deployZipUrl>
-			</properties>
 		</profile>
 		<profile>
 			<id>central</id>
@@ -853,9 +847,6 @@
 					</plugin>
 				</plugins>
 			</build>
-			<properties>
-				<maven-deploy-plugin.deployZipUrl>https://repo.spring.io/libs-release-local</maven-deploy-plugin.deployZipUrl>
-			</properties>
 		</profile>
 		<profile>
 			<id>guides</id>
@@ -1400,7 +1391,6 @@
 				<generate-docs.phase>none</generate-docs.phase>
 				<copy-missing-html-files.phase>none</copy-missing-html-files.phase>
 				<package-and-attach-docs-zip.phase>none</package-and-attach-docs-zip.phase>
-				<upload-docs-zip.phase>none</upload-docs-zip.phase>
 			</properties>
 		</profile>
 	</profiles>

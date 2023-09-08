@@ -19,7 +19,6 @@
 		<maven-dependency-plugin-for-docs.phase>none</maven-dependency-plugin-for-docs.phase>
 		<maven-dependency-plugin-for-docs-classes.phase>none</maven-dependency-plugin-for-docs-classes.phase>
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
-		<upload-docs-zip.phase>deploy</upload-docs-zip.phase>
 		<!-- Don't upload docs jar to central / repo.spring.io -->
 		<!-- TODO: temporary, don't want it to central? -->
 		<maven-deploy-plugin-default.phase>deploy</maven-deploy-plugin-default.phase>

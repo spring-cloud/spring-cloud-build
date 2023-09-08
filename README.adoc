@@ -309,9 +309,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 
 [source,xml]
 ----
-<properties>
-    <upload-docs-zip.phase>deploy</upload-docs-zip.phase> <8>
-</properties>
 <profiles>
     <profile>
         <id>docs</id>
@@ -355,8 +352,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 <4> This plugin generates an `adoc` file with all the configuration properties from the classpath
 <5> This plugin is required to parse the Asciidoctor documentation
 <6> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
-<7> This plugin ensures that the generated zip docs will get published
-<8> This property turns on the "deploy" phase for <7>
 
 IMPORTANT: The order of plugin declaration is important!
 
