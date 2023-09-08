@@ -1,0 +1,12 @@
+name: cloud-build
+version: true
+title: Spring Cloud Build
+nav:
+  - modules/ROOT/nav.adoc
+ext:
+  collector:
+    run:
+      command: ./mvnw validate process-resources -Pdocs -pl docs
+      local: true
+    scan:
+      dir: ./target/classes/antora-resources/

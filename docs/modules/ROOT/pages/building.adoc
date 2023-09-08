@@ -1,0 +1,4 @@
+[[building]]
+= Building
+
+include::partial$building.adoc[]

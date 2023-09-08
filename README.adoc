@@ -10,7 +10,8 @@ image::https://github.com/spring-cloud/spring-cloud-build/workflows/Build/badge.
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
 
-== Building and Deploying
+[[building-and-deploying]]
+= Building and Deploying
 
 To install locally:
 
@@ -45,7 +46,8 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 (the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).
 
-== Contributing
+[[contributing]]
+= Contributing
 
 :spring-cloud-build-branch: master
 
@@ -278,7 +280,8 @@ If you need to add `ignoredClassPatterns` or `ignoredResourcePatterns` to your s
 ----
 
 
-== Flattening the POMs
+[[flattening-the-poms]]
+= Flattening the POMs
 
 To avoid propagating build setup that is required to build a Spring Cloud project, we're using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.
 
@@ -296,7 +299,8 @@ In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `po
 </build>
 ----
 
-== Reusing the documentation
+[[reusing-the-documentation]]
+= Reusing the documentation
 
 Spring Cloud Build publishes its `spring-cloud-build-docs` module that contains
 helpful scripts (e.g. README generation ruby script) and css, xslt and images
@@ -305,9 +309,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 
 [source,xml]
 ----
-<properties>
-    <upload-docs-zip.phase>deploy</upload-docs-zip.phase> <8>
-</properties>
 <profiles>
     <profile>
         <id>docs</id>
@@ -351,8 +352,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 <4> This plugin generates an `adoc` file with all the configuration properties from the classpath
 <5> This plugin is required to parse the Asciidoctor documentation
 <6> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
-<7> This plugin ensures that the generated zip docs will get published
-<8> This property turns on the "deploy" phase for <7>
 
 IMPORTANT: The order of plugin declaration is important!
 
@@ -362,51 +361,13 @@ If you want to modify which of the configuration properties are put in the table
 
 Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.
 
-[source,xml]
+[source,yml]
 ----
-<attributes>
-    <docinfo>shared</docinfo>
-    <allow-uri-read>true</allow-uri-read>
-    <nofooter/>
-    <toc>left</toc>
-    <toc-levels>4</toc-levels>
-    <sectlinks>true</sectlinks>
-    <sources-root>${project.basedir}/src@</sources-root>
-    <asciidoc-sources-root>${project.basedir}/src/main/asciidoc@</asciidoc-sources-root>
-    <generated-resources-root>${project.basedir}/target/generated-resources@
-    </generated-resources-root>
-    <!-- Use this attribute the reference code from another module -->
-    <!-- Note the @ at the end, lowering the precedence of the attribute -->
-    <project-root>${maven.multiModuleProjectDirectory}@</project-root>
-    <!-- It's mandatory for you to pass the docs.main property -->
-    <github-repo>${docs.main}@</github-repo>
-    <github-project>https://github.com/spring-cloud/${docs.main}@</github-project>
-    <github-raw>
-        https://raw.githubusercontent.com/spring-cloud/${docs.main}/${github-tag}@
-    </github-raw>
-    <github-code>https://github.com/spring-cloud/${docs.main}/tree/${github-tag}@
-    </github-code>
-    <github-issues>https://github.com/spring-cloud/${docs.main}/issues/@</github-issues>
-    <github-wiki>https://github.com/spring-cloud/${docs.main}/wiki@</github-wiki>
-    <github-master-code>https://github.com/spring-cloud/${docs.main}/tree/master@
-    </github-master-code>
-    <index-link>${index-link}@</index-link>
-
-    <!-- Spring Cloud specific -->
-    <!-- for backward compatibility -->
-    <spring-cloud-version>${project.version}@</spring-cloud-version>
-    <project-version>${project.version}@</project-version>
-    <github-tag>${github-tag}@</github-tag>
-    <version-type>${version-type}@</version-type>
-    <docs-url>https://docs.spring.io/${docs.main}/docs/${project.version}@</docs-url>
-    <raw-docs-url>${github-raw}@</raw-docs-url>
-    <project-version>${project.version}@</project-version>
-    <project-name>${docs.main}@</project-name>
-    <source-highlighter>highlight.js</source-highlighter>
-</attributes>
+Unresolved directive in <stdin> - include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/src/main/antora/resources/antora-resources/antora.yml[indent=0]
 ----
 
-== Updating the guides
+[[updating-the-guides]]
+= Updating the guides
 
 We assume that your project contains guides under the `guides` folder.
 

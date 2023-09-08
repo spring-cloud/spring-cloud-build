@@ -19,3 +19,11 @@ _site/
 .vscode/
 .flattened-pom.xml
 .DS_Store
+node_modules
+node
+_configprops.adoc
+_spans.adoc
+_metrics.adoc
+_conventions.adoc
+package.json
+package-lock.json

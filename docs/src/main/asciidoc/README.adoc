@@ -3,7 +3,8 @@ image::https://github.com/spring-cloud/spring-cloud-build/workflows/Build/badge.
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
 
-== Building and Deploying
+[[building-and-deploying]]
+= Building and Deploying
 
 To install locally:
 
@@ -38,11 +39,13 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 (the "central" profile is available for all projects in Spring Cloud and it sets up the gpg jar signing, and the repository has to be specified separately for this project because it is a parent of the starter parent which users in turn have as their own parent).
 
-== Contributing
+[[contributing]]
+= Contributing
 
 include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/src/main/asciidoc/contributing.adoc[]
 
-== Flattening the POMs
+[[flattening-the-poms]]
+= Flattening the POMs
 
 To avoid propagating build setup that is required to build a Spring Cloud project, we're using the maven flatten plugin. It has the advantage of letting you use whatever features you need while publishing "clean" pom to the repository.
 
@@ -60,7 +63,8 @@ In order to add it, add the `org.codehaus.mojo:flatten-maven-plugin` to your `po
 </build>
 ----
 
-== Reusing the documentation
+[[reusing-the-documentation]]
+= Reusing the documentation
 
 Spring Cloud Build publishes its `spring-cloud-build-docs` module that contains
 helpful scripts (e.g. README generation ruby script) and css, xslt and images
@@ -69,9 +73,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 
 [source,xml]
 ----
-<properties>
-	<upload-docs-zip.phase>deploy</upload-docs-zip.phase> <8>
-</properties>
 <profiles>
 	<profile>
 		<id>docs</id>
@@ -116,7 +117,6 @@ approach of generating documentation just add these plugins to your `docs` modul
 <5> This plugin is required to parse the Asciidoctor documentation
 <6> This plugin is required to copy resources into proper final destinations and to generate main README.adoc and to assert that no files use unresolved links
 <7> This plugin ensures that the generated zip docs will get published
-<8> This property turns on the "deploy" phase for <7>
 
 IMPORTANT: The order of plugin declaration is important!
 
@@ -126,12 +126,13 @@ If you want to modify which of the configuration properties are put in the table
 
 Spring Cloud Build Docs comes with a set of attributes for asciidoctor that you can reuse.
 
-[source,xml]
+[source,yml]
 ----
-include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/pom.xml[tags=attributes,indent=0]
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/src/main/antora/resources/antora-resources/antora.yml[indent=0]
 ----
 
-== Updating the guides
+[[updating-the-guides]]
+= Updating the guides
 
 We assume that your project contains guides under the `guides` folder.
 
