@@ -140,6 +140,7 @@
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
+		<generate-readme.phase>prepare-package</generate-readme.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1152,7 +1153,7 @@
 							<executions>
 								<execution>
 									<id>readme</id>
-									<phase>prepare-package</phase>
+									<phase>${generate-readme.phase}</phase>
 									<goals>
 										<goal>run</goal>
 									</goals>
