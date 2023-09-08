@@ -141,6 +141,7 @@
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
+		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1084,7 +1085,7 @@
 							<executions>
 								<execution>
 									<id>generate-configprops</id>
-									<phase>generate-resources</phase>
+									<phase>${generate-cloud-resources.phase}</phase>
 									<goals>
 										<goal>java</goal>
 									</goals>
