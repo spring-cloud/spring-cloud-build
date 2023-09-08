@@ -1,5 +1,6 @@
 :jdkversion: 17
 
+[[basic-compile-and-test]]
 === Basic Compile and Test
 
 To build the source you will need to install JDK {jdkversion}.
@@ -28,6 +29,7 @@ The projects that require middleware (i.e. Redis) for testing generally
 require that a local instance of [Docker](https://www.docker.com/get-started) is installed and running.
 
 
+[[documentation]]
 === Documentation
 
 The spring-cloud-build module has a "docs" profile, and if you switch
@@ -39,6 +41,7 @@ parsing or rendering it, just copying it to `${main.basedir}`
 any changes in the README it will then show up after a Maven build as
 a modified file in the correct place. Just commit it and push the change.
 
+[[working-with-the-code]]
 === Working with the code
 If you don't have an IDE preference we would recommend that you use
 https://www.springsource.com/developer/sts[Spring Tools Suite] or
@@ -46,11 +49,13 @@ https://eclipse.org[Eclipse] when working with the code. We use the
 https://eclipse.org/m2e/[m2eclipse] eclipse plugin for maven support. Other IDEs and tools
 should also work without issue as long as they use Maven 3.3.3 or better.
 
+[[activate-the-spring-maven-profile]]
 ==== Activate the Spring Maven profile
 Spring Cloud projects require the 'spring' Maven profile to be activated to resolve
 the spring milestone and snapshot repositories. Use your preferred IDE to set this
 profile to be active, or you may experience build errors.
 
+[[importing-into-eclipse-with-m2eclipse]]
 ==== Importing into eclipse with m2eclipse
 We recommend the https://eclipse.org/m2e/[m2eclipse] eclipse plugin when working with
 eclipse. If you don't already have m2eclipse installed it is available from the "eclipse
@@ -65,6 +70,7 @@ add the "spring" profile to your `settings.xml`. Alternatively you can
 copy the repository settings from the "spring" profile of the parent
 pom into your `settings.xml`.
 
+[[importing-into-eclipse-without-m2eclipse]]
 ==== Importing into eclipse without m2eclipse
 If you prefer not to use m2eclipse you can generate eclipse project metadata using the
 following command:
