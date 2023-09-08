@@ -40,7 +40,7 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 == Contributing
 
-include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/src/main/asciidoc/contributing.adoc[]
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/modules/ROOT/partials/contributing.adoc[]
 
 == Flattening the POMs
 
