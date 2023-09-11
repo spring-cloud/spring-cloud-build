@@ -1069,6 +1069,12 @@
 							<groupId>io.spring.maven.antora</groupId>
 							<artifactId>antora-maven-plugin</artifactId>
 							<version>${antora-maven-plugin.version}</version>
+							<configuration>
+								<!-- TODO: remove when CI upgrades past ubuntu 1804 -->
+								<node>
+									<version>v16.16.0</version>
+								</node>
+							</configuration>
 							<executions>
 								<execution>
 									<phase>${antora-maven-plugin.phase}</phase>
