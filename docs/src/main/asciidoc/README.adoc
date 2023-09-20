@@ -1,4 +1,4 @@
-image::https://github.com/spring-cloud/spring-cloud-build/workflows/Build/badge.svg?branch=main&style=svg["Build",link="https://github.com/spring-cloud/spring-cloud-build/actions"]
+image::https://github.com/spring-cloud/spring-cloud-build/workflows/Build/badge.svg?branch=4.0.x&style=svg["Build",link="https://github.com/spring-cloud/spring-cloud-build/actions"]
 
 Spring Cloud Build is a common utility project for Spring Cloud
 to use for plugin and dependency management.
@@ -40,7 +40,7 @@ $ mvn deploy -P central -DaltReleaseDeploymentRepository=sonatype-nexus-staging:
 
 == Contributing
 
-include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/docs/src/main/asciidoc/contributing.adoc[]
+include::https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/4.0.x/docs/src/main/asciidoc/contributing.adoc[]
 
 == Flattening the POMs
 
