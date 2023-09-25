@@ -33,7 +33,7 @@
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
-		<spring-doc-resources.version>0.2.2.RELEASE</spring-doc-resources.version>
+		<spring-asciidoctor-backends.version>0.0.7</spring-asciidoctor-backends.version>
 		<spring-asciidoctor-extensions-boot.version>0.6.0
 		</spring-asciidoctor-extensions-boot.version>
 		<spring-asciidoctor-extensions-block.version>0.6.0
@@ -89,7 +89,7 @@
 		</maven-checkstyle-plugin.failOnViolation>
 		<maven-checkstyle-plugin.includeTestSourceDirectory>true
 		</maven-checkstyle-plugin.includeTestSourceDirectory>
-		<spring-cloud-build-checkstyle.branch>master
+		<spring-cloud-build-checkstyle.branch>main
 		</spring-cloud-build-checkstyle.branch>
 		<spring-cloud-build-docs-classifier>jar-with-dependencies</spring-cloud-build-docs-classifier>
 		<checkstyle.suppressions.file>
@@ -1059,25 +1059,6 @@
 										</artifactItems>
 									</configuration>
 								</execution>
-								<execution>
-									<id>unpack-docs-resources</id>
-									<phase>${unpack-docs-resources.phase}</phase>
-									<goals>
-										<goal>unpack</goal>
-									</goals>
-									<configuration>
-										<artifactItems>
-											<artifactItem>
-												<groupId>io.spring.docresources</groupId>
-												<artifactId>spring-doc-resources</artifactId>
-												<version>${spring-doc-resources.version}</version>
-												<type>zip</type>
-												<overWrite>true</overWrite>
-												<outputDirectory>${refdocs.build.directory}</outputDirectory>
-											</artifactItem>
-										</artifactItems>
-									</configuration>
-								</execution>
 							</executions>
 						</plugin>
 						<plugin>
@@ -1165,6 +1146,11 @@
 									<artifactId>asciidoctorj-diagram</artifactId>
 									<version>${asciidoctorj-diagram.version}</version>
 								</dependency>
+								<dependency>
+									<groupId>io.spring.asciidoctor.backends</groupId>
+									<artifactId>spring-asciidoctor-backends</artifactId>
+									<version>${spring-asciidoctor-backends.version}</version>
+								</dependency>
 							</dependencies>
 							<configuration>
 								<sourceDirectory>${refdocs.build.directory}</sourceDirectory>
@@ -1230,7 +1216,7 @@
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<backend>html5</backend>
+										<backend>spring-html</backend>
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>.adoc</sourceDocumentExtension>
 											<sourceDocumentExtension>.htmladoc</sourceDocumentExtension>
@@ -1265,7 +1251,7 @@
 										<goal>process-asciidoc</goal>
 									</goals>
 									<configuration>
-										<backend>html5</backend>
+										<backend>spring-html</backend>
 										<sourceDocumentExtensions>
 											<sourceDocumentExtension>.htmlsingleadoc</sourceDocumentExtension>
 										</sourceDocumentExtensions>
