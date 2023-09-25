@@ -34,10 +34,6 @@
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
 		<spring-asciidoctor-backends.version>0.0.7</spring-asciidoctor-backends.version>
-		<spring-asciidoctor-extensions-boot.version>0.6.0
-		</spring-asciidoctor-extensions-boot.version>
-		<spring-asciidoctor-extensions-block.version>0.6.0
-		</spring-asciidoctor-extensions-block.version>
 		<asciidoctorj-pdf.version>1.6.0</asciidoctorj-pdf.version>
 		<asciidoctorj-diagram.version>2.1.2</asciidoctorj-diagram.version>
 		<guides-project.version>${project.version}</guides-project.version>
@@ -1126,16 +1122,6 @@
 							<artifactId>asciidoctor-maven-plugin</artifactId>
 							<version>${asciidoctor-maven-plugin.version}</version>
 							<dependencies>
-								<dependency>
-									<groupId>io.spring.asciidoctor</groupId>
-									<artifactId>spring-asciidoctor-extensions-spring-boot</artifactId>
-									<version>${spring-asciidoctor-extensions-boot.version}</version>
-								</dependency>
-								<dependency>
-									<groupId>io.spring.asciidoctor</groupId>
-									<artifactId>spring-asciidoctor-extensions-block-switch</artifactId>
-									<version>${spring-asciidoctor-extensions-block.version}</version>
-								</dependency>
 								<dependency>
 									<groupId>org.asciidoctor</groupId>
 									<artifactId>asciidoctorj-pdf</artifactId>
