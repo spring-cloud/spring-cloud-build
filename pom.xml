@@ -85,7 +85,7 @@
 		</maven-checkstyle-plugin.failOnViolation>
 		<maven-checkstyle-plugin.includeTestSourceDirectory>true
 		</maven-checkstyle-plugin.includeTestSourceDirectory>
-		<spring-cloud-build-checkstyle.branch>master
+		<spring-cloud-build-checkstyle.branch>main
 		</spring-cloud-build-checkstyle.branch>
 		<spring-cloud-build-docs-classifier>jar-with-dependencies</spring-cloud-build-docs-classifier>
 		<checkstyle.suppressions.file>
@@ -1136,6 +1136,11 @@
 									<groupId>org.asciidoctor</groupId>
 									<artifactId>asciidoctorj-diagram</artifactId>
 									<version>${asciidoctorj-diagram.version}</version>
+								</dependency>
+								<dependency>
+									<groupId>io.spring.asciidoctor.backends</groupId>
+									<artifactId>spring-asciidoctor-backends</artifactId>
+									<version>${spring-asciidoctor-backends.version}</version>
 								</dependency>
 							</dependencies>
 							<configuration>
