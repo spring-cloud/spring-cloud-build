@@ -18,6 +18,7 @@
 		<!-- We don't want to downloaded sources of our own project-->
 		<maven-dependency-plugin-for-docs.phase>none</maven-dependency-plugin-for-docs.phase>
 		<maven-dependency-plugin-for-docs-classes.phase>none</maven-dependency-plugin-for-docs-classes.phase>
+		<generate-cloud-resources.phase>none</generate-cloud-resources.phase>
 		<docs.resources.dir>${project.basedir}/src/main/</docs.resources.dir>
 		<!-- Don't upload docs jar to central / repo.spring.io -->
 		<!-- TODO: temporary, don't want it to central? -->
