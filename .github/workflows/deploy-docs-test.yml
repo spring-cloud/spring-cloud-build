@@ -19,7 +19,7 @@ jobs:
          env:
            GITHUB_CONTEXT: ${{ toJson(github) }}
   deploy-doocs:
-    uses: spring-cloud/spring-cloud-build/.github/workflows/spring-cloud-deploy-docs.yml@main
+    uses: spring-cloud/spring-cloud-build/.github/workflows/spring-cloud-deploy-docs.yml@deploy-docs
     with:
       build-refname: ${{ github.event.inputs.build-refname }}
     secrets:
