@@ -7,9 +7,9 @@ on:
         type: string
         description: Enter git refname to build (e.g., 5.7.x).
         required: false
-    secrets:
-      GRADLE_ENTERPRISE_SECRET_ACCESS_KEY:
-        required: true
+    # secrets:
+    #   GRADLE_ENTERPRISE_SECRET_ACCESS_KEY:
+    #     required: true
 env:
   GRADLE_ENTERPRISE_SECRET_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_SECRET_ACCESS_KEY }}
 permissions:
