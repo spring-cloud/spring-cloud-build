@@ -22,5 +22,4 @@ jobs:
     uses: ./.github/workflows/spring-cloud-deploy-docs.yml
     with:
       build-refname: ${{ github.event.inputs.build-refname }}
-    secrets:
-      GRADLE_ENTERPRISE_SECRET_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_SECRET_ACCESS_KEY }}
+    secrets: inherit
