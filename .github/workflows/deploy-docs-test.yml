@@ -12,6 +12,4 @@ on:
 jobs:
   deploy-docs:
     uses: spring-cloud/spring-cloud-build/.github/workflows/spring-cloud-deploy-docs.yml@main
-    with:
-      build-refname: ${{ github.event.inputs.build-refname }}
     secrets: inherit
