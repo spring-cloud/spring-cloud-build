@@ -2,6 +2,12 @@ name: Deploy Docs Test
 
 on:
   workflow_dispatch:
+    inputs:
+      build-refname:
+        description: Enter git refname to build (e.g., 5.7.x).
+        required: false
+  push:
+    branches: docs-build
 
 jobs:
   context:
@@ -14,3 +20,7 @@ jobs:
            GITHUB_CONTEXT: ${{ toJson(github) }}
   deploy-doocs:
     uses: spring-cloud/spring-cloud-build/.github/workflows/spring-cloud-deploy-docs.yml@v1
+    with:
+      build-refname: ${{ github.event.inputs.build-refname }}
+    secrets:
+      GRADLE_ENTERPRISE_SECRET_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_SECRET_ACCESS_KEY }}
