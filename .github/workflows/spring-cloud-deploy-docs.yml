@@ -2,10 +2,6 @@ name: Spring Cloud Deploy Docs
 
 on:
   workflow_call:
-    inputs:
-      input1:
-        required: false
-        type: string
 
 permissions:
   actions: write
