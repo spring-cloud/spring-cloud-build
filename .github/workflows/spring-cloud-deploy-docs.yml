@@ -16,6 +16,12 @@ jobs:
         with:
           ref: docs-build
           fetch-depth: 1
+      - name: Dump github context
+        run:   echo ${{ github.ref_name }}
+        shell: bash
+      - name: Dump github context
+        run:   echo $(git rev-parse --abbrev-ref HEAD)
+        shell: bash  
       - name: Dispatch (partial build)
         if: github.ref_type == 'branch'
         env:
