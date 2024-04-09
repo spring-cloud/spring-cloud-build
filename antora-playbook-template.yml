@@ -1,0 +1,46 @@
+antora:
+  extensions:
+    - '@springio/antora-extensions/partial-build-extension'
+    # atlas-extension must be before latest-version-extension so latest versions are applied to imported versions
+    - '@antora/atlas-extension'
+    - require: '@springio/antora-extensions/latest-version-extension'
+    - require: '@springio/antora-extensions/inject-collector-cache-config-extension'
+    - '@antora/collector-extension'
+    - require: '@springio/antora-extensions/root-component-extension'
+      root_component_name: 'cloud-build'
+    - '@springio/antora-extensions/static-page-extension'
+site:
+  title: {{ .site_title }}
+  url: {{ .site_url }}
+  robots: allow
+git:
+  ensure_git_suffix: false
+content:
+  sources:
+    - url: {{ .content_sources_url}}
+      # Refname matching:
+      # https://docs.antora.org/antora/latest/playbook/content-refname-matching/
+      branches: {{ .content_sources_branches }}
+      tags: {{ .content_sources_tags }}
+      start_path: docs
+asciidoc:
+  attributes:
+    page-stackoverflow-url: https://stackoverflow.com/tags/spring-cloud
+    page-pagination: ''
+    hide-uri-scheme: '@'
+    tabs-sync-option: '@'
+  extensions:
+    - '@asciidoctor/tabs'
+    - '@springio/asciidoctor-extensions'
+urls:
+  latest_version_segment_strategy: redirect:to
+  latest_version_segment: ''
+  redirect_facility: httpd
+ui:
+  bundle:
+    url: https://github.com/spring-io/antora-ui-spring/releases/download/v0.4.11/ui-bundle.zip
+    snapshot: true
+runtime:
+  log:
+    failure_level: warn
+    format: pretty
