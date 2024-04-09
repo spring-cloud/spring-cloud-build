@@ -1,5 +1,5 @@
-name: Deploy Docs
-run-name: ${{ format('{0} ({1})', github.workflow, github.event.inputs.build-refname || 'all') }}
+name: Spring Cloud Deploy Docs
+run-name: Spring Cloud ${{ format('{0} ({1})', github.workflow, github.event.inputs.build-refname || 'all') }}
 on:
   workflow_call:
     inputs:
