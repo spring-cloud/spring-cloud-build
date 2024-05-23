@@ -18,5 +18,4 @@ src/ant/.ant-targets-upload-dist.xml
 node_modules
 node/
 package-lock.json
-package.json
 .flattened-pom.xml
