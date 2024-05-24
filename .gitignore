@@ -17,5 +17,6 @@ src/ant/.ant-targets-upload-dist.xml
 *.graphml
 node_modules
 node/
+docs/package.json
 package-lock.json
 .flattened-pom.xml
