@@ -139,6 +139,7 @@
 		<copy-missing-html-files.phase>package</copy-missing-html-files.phase>
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
+		<org-antora-maven-plugin.version>1.0.0-alpha.4</org-antora-maven-plugin.version>
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
 		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
@@ -1066,22 +1067,14 @@
 							</executions>
 						</plugin>
 						<plugin>
-							<groupId>io.spring.maven.antora</groupId>
+							<groupId>org.antora</groupId>
 							<artifactId>antora-maven-plugin</artifactId>
-							<version>${antora-maven-plugin.version}</version>
+							<version>${org-antora-maven-plugin.version}</version>
 							<configuration>
 								<!-- TODO: remove when CI upgrades past ubuntu 1804 -->
 								<node>
 									<version>v16.16.0</version>
 								</node>
-								<packages>
-									<package>@antora/atlas-extension@1.0.0-alpha.1</package>
-									<package>@antora/collector-extension@1.0.0-alpha.3</package>
-									<package>@asciidoctor/tabs@1.0.0-beta.3</package>
-									<package>@springio/antora-extensions@1.6.0</package>
-									<package>@springio/asciidoctor-extensions@1.0.0-alpha.9</package>
-									<package>asciidoctor-kroki@0.17.0</package>
-								</packages>
 							</configuration>
 							<executions>
 								<execution>
