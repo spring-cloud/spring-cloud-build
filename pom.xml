@@ -1187,7 +1187,7 @@
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/antora/site/"
+											<fileset id="unresolved.file" dir="${basedir}/target/site/"
 													 includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
