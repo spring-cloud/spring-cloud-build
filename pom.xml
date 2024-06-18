@@ -1074,6 +1074,11 @@
 							<configuration>
 								<!-- TODO: remove when CI upgrades past ubuntu 1804 -->
 								<nodeVersion>${node.version}</nodeVersion>
+								<options>
+									<option>--to-dir=target/antora/site</option>
+									<option>--stacktrace</option>
+									<option>--fetch</option>
+								</options>
 							</configuration>
 							<executions>
 								<execution>
@@ -1187,7 +1192,7 @@
 									</goals>
 									<configuration>
 										<target>
-											<fileset id="unresolved.file" dir="${basedir}/target/site/"
+											<fileset id="unresolved.file" dir="${basedir}/target/antora/site/"
 													 includes="**/*.html">
 												<contains text="Unresolved"/>
 											</fileset>
