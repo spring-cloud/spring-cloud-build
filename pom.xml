@@ -140,6 +140,7 @@
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
 		<org-antora-maven-plugin.version>1.0.0-alpha.4</org-antora-maven-plugin.version>
+		<node.version>v16.20.2</node.version>
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
 		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
@@ -1072,9 +1073,7 @@
 							<version>${org-antora-maven-plugin.version}</version>
 							<configuration>
 								<!-- TODO: remove when CI upgrades past ubuntu 1804 -->
-								<node>
-									<version>v16.16.0</version>
-								</node>
+								<nodeVersion>${node.version}</nodeVersion>
 							</configuration>
 							<executions>
 								<execution>
