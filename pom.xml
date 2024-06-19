@@ -1071,6 +1071,7 @@
 							<groupId>org.antora</groupId>
 							<artifactId>antora-maven-plugin</artifactId>
 							<version>${org-antora-maven-plugin.version}</version>
+							<extensions>true</extensions>
 							<configuration>
 								<!-- TODO: remove when CI upgrades past ubuntu 1804 -->
 								<nodeVersion>${node.version}</nodeVersion>
