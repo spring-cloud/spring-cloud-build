@@ -26,18 +26,6 @@ and to deploy snapshots to repo.spring.io:
 $ mvn deploy -DaltSnapshotDeploymentRepository=repo.spring.io::default::https://repo.spring.io/snapshot
 ----
 
-for a RELEASE build use
-
-----
-$ mvn deploy -DaltReleaseDeploymentRepository=repo.spring.io::default::https://repo.spring.io/release
-----
-
-and for jcenter use
-
-----
-$ mvn deploy -DaltReleaseDeploymentRepository=bintray::default::https://api.bintray.com/maven/spring/jars/org.springframework.cloud:build
-----
-
 and for Maven Central use
 
 ----
