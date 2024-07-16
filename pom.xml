@@ -74,7 +74,7 @@
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version>
-		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
+		<license-maven-plugin.version>2.4.0</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.35</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
 		<pitest-maven.version>1.7.3</pitest-maven.version>
