@@ -77,7 +77,7 @@
 		<license-maven-plugin.version>2.4.0</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.42</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.4.0</maven-checkstyle-plugin.version>
-		<pitest-maven.version>1.7.3</pitest-maven.version>
+		<pitest-maven.version>1.16.1</pitest-maven.version>
 		<pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
 		<disable.checks>false</disable.checks>
 		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
