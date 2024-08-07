@@ -64,7 +64,7 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
 		<maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-		<exec-maven-plugin.version>3.3.0</exec-maven-plugin.version>
+		<exec-maven-plugin.version>3.4.0</exec-maven-plugin.version>
 		<maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
 		<git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
