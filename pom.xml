@@ -116,7 +116,7 @@
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
 		<sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
-		<duplicate-finder-maven-plugin.version>1.5.1</duplicate-finder-maven-plugin.version>
+		<duplicate-finder-maven-plugin.version>2.0.0</duplicate-finder-maven-plugin.version>
 		<duplicate-finder-maven-plugin.printEqualFiles>false</duplicate-finder-maven-plugin.printEqualFiles>
 		<duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>
 		<duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfEqualContentConflict>
