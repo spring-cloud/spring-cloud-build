@@ -39,7 +39,7 @@
 		<guides-project.version>${project.version}</guides-project.version>
 		<guides-update.phase>deploy</guides-update.phase>
 		<revision>${project.version}</revision>
-		<asciidoctorj.version>2.5.13</asciidoctorj.version>
+		<asciidoctorj.version>3.0.0</asciidoctorj.version>
 		<jruby-complete.version>9.4.8.0</jruby-complete.version>
 
 		<!-- Sonar -->
