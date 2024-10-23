@@ -20,8 +20,21 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-boot.version>3.4.0-SNAPSHOT</spring-boot.version>
+		<okhttp.version>4.12.0</okhttp.version>
 		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<!-- removed from spring-boot-dependencies in 3.4.0 -->
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp-bom</artifactId>
+				<version>${okhttp.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>
