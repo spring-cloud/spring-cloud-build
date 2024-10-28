@@ -76,7 +76,7 @@
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>2.4.0</license-maven-plugin.version>
 		<spring-javaformat-checkstyle.version>0.0.43</spring-javaformat-checkstyle.version>
-		<maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
+		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
 		<disable.checks>false</disable.checks>
 		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
