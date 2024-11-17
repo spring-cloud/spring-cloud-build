@@ -135,6 +135,7 @@
 		<duplicate-finder-maven-plugin.includePomProjects>false</duplicate-finder-maven-plugin.includePomProjects>
 		<maven-gpg-plugin.phase>verify</maven-gpg-plugin.phase>
 		<generate-docs.phase>prepare-package</generate-docs.phase>
+		<antrun-plugin-setup-maven-properties.phase>initialize</antrun-plugin-setup-maven-properties.phase>
 		<copy-missing-html-files.phase>package</copy-missing-html-files.phase>
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
@@ -1208,7 +1209,7 @@
 								</execution>
 								<execution>
 									<id>setup-maven-properties</id>
-									<phase>initialize</phase>
+									<phase>${antrun-plugin-setup-maven-properties.phase}</phase>
 									<goals>
 										<goal>run</goal>
 									</goals>
