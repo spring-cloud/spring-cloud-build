@@ -4,8 +4,7 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
-ignore:
-  - dependency-name: "org.jruby:jruby-complete"
+
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -22,6 +21,13 @@ updates:
     target-branch: "4.1.x"
     schedule:
       interval: "weekly"
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: daily
+    ignore:
+      # JRuby updates are causing docs generation to fail
+      - dependency-name: "org.jruby:jruby-complete"    
   - package-ecosystem: maven
     directory: /
     schedule:
