@@ -139,7 +139,7 @@
 		<copy-missing-html-files.phase>package</copy-missing-html-files.phase>
 		<package-and-attach-docs-zip.phase>package</package-and-attach-docs-zip.phase>
 		<antora-maven-plugin.version>0.0.4</antora-maven-plugin.version>
-		<org-antora-maven-plugin.version>1.0.0-alpha.4</org-antora-maven-plugin.version>
+		<org-antora-maven-plugin.version>1.0.0-alpha.5</org-antora-maven-plugin.version>
 		<node.version>v16.20.2</node.version>
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
