@@ -4,6 +4,9 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
+ignore:
+  # Updated to JRuby are causing doc generation failures
+  - dependency-name: "org.jruby:jruby-complete"
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
