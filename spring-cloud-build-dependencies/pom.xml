@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build-dependencies</artifactId>
-	<version>4.2.1-SNAPSHOT</version>
+	<version>4.2.1</version>
 	<name>spring-cloud-build-dependencies</name>
 	<packaging>pom</packaging>
 	<description>Spring Cloud Build Dependencies: an internal BOM for use with Spring
