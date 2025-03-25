@@ -26,6 +26,8 @@ updates:
     schedule:
       interval: daily
     ignore:
+      # IDE specific dependency
+      - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
       # JRuby updates are causing docs generation to fail
       - dependency-name: "org.jruby:jruby-complete"    
   - package-ecosystem: maven
