@@ -36,8 +36,6 @@ updates:
       interval: daily
     target-branch: main
     ignore:
-      # IDE specific dependency
-      - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
       # only upgrade by minor or patch
       - dependency-name: "*"
         update-types:
@@ -48,8 +46,6 @@ updates:
       interval: daily
     target-branch: 4.1.x
     ignore:
-      # IDE specific dependency
-      - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
       # only upgrade by minor or patch
       - dependency-name: "*"
         update-types:
@@ -61,8 +57,6 @@ updates:
       interval: daily
     target-branch: 4.2.x
     ignore:
-      # IDE specific dependency
-      - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
       # only upgrade by minor or patch
       - dependency-name: "*"
         update-types:
