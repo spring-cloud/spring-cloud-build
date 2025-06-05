@@ -13,6 +13,11 @@ updates:
       interval: "weekly"
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "4.3.x"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
     target-branch: "4.2.x"
     schedule:
       interval: "weekly"
@@ -53,12 +58,27 @@ updates:
     directory: /
     schedule:
       interval: daily
-    target-branch: 4.2.x
+    target-branch: 4.3.x
     ignore:
       # IDE specific dependency
       - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
       # JRuby updates are causing docs generation to fail
       - dependency-name: "org.jruby:jruby-complete"  
+      # only upgrade by minor or patch
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+          - version-update:semver-minor
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: daily
+    target-branch: 4.2.x
+    ignore:
+      # IDE specific dependency
+      - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
+      # JRuby updates are causing docs generation to fail
+      - dependency-name: "org.jruby:jruby-complete"
       # only upgrade by minor or patch
       - dependency-name: "*"
         update-types:
@@ -71,6 +91,11 @@ updates:
       interval: weekly
   - package-ecosystem: npm
     target-branch: main
+    directory: /docs
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    target-branch: 4.3.x
     directory: /docs
     schedule:
       interval: weekly
