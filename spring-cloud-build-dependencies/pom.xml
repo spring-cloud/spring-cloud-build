@@ -20,7 +20,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-boot.version>2.6.15</spring-boot.version>
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
 	</properties>
 	<build>
 		<plugins>
@@ -118,6 +118,12 @@
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
