@@ -69,7 +69,7 @@
 		<git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
@@ -736,7 +736,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>3.6.0</version>
+				<version>3.4.0</version>
 			</plugin>
 		</plugins>
 	</reporting>
@@ -848,6 +848,12 @@
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -1362,6 +1368,43 @@
 			<properties>
 				<checkstyle.skip>true</checkstyle.skip>
 			</properties>
+		</profile>
+		<profile>
+			<id>mutation</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-maven</artifactId>
+						<version>${pitest-maven.version}</version>
+						<configuration>
+							<!-- generate line coverage -->
+							<exportLineCoverage>true</exportLineCoverage>
+							<!-- in the "right" format -->
+							<outputFormats><value>XML</value></outputFormats>
+							<!-- and write reports where report-aggregate-module expects to find it -->
+							<timestampedReports>false</timestampedReports>
+							<!-- There are modules that don't have tests -->
+							<failWhenNoMutations>false</failWhenNoMutations>
+						</configuration>
+						<executions>
+							<execution>
+								<id>mutationCoverage</id>
+								<goals>
+									<goal>mutationCoverage</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.pitest</groupId>
+								<artifactId>pitest-junit5-plugin</artifactId>
+								<version>${pitest-junit5-plugin.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<profile>
 			<id>CI</id>
