@@ -123,10 +123,11 @@ If you need to suppress some rules (e.g. line length needs to be longer), then i
 
 It's advisable to copy the `${spring-cloud-build.rootFolder}/.editorconfig` and `${spring-cloud-build.rootFolder}/.springformat` to your project. That way, some default formatting rules will be applied. You can do so by running this script:
 
-```bash
+[source,bash]
+----
 $ curl https://raw.githubusercontent.com/spring-cloud/spring-cloud-build/main/.editorconfig -o .editorconfig
 $ touch .springformat
-```
+----
 
 [[ide-setup]]
 == IDE setup
