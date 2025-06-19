@@ -14,12 +14,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-dependencies</artifactId>
-		<version>3.5.1-SNAPSHOT</version>
+		<version>3.5.2</version>
 		<relativePath/>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>3.5.1-SNAPSHOT</spring-boot.version>
+		<spring-boot.version>3.5.2</spring-boot.version>
 		<okhttp.version>4.12.0</okhttp.version>
 		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
 	</properties>
