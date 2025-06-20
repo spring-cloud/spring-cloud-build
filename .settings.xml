@@ -22,6 +22,11 @@
 			<username>${env.CI_DEPLOY_USERNAME}</username>
 			<password>${env.CI_DEPLOY_PASSWORD}</password>
 		</server>
+		<server>
+			<id>cental</id>
+			<username>${env.CENTRAL_USER}</username>
+			<password>${env.CENTRAL_PASSWORD}</password>
+		</server>
 	</servers>
 	<profiles>
 		<profile>
