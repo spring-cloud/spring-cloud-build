@@ -70,6 +70,7 @@
 	</developers>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
 	</properties>
 	<distributionManagement>
 		<downloadUrl>https://github.com/spring-cloud</downloadUrl>
@@ -109,12 +110,6 @@
 					<name>Sonatype Nexus Snapshots</name>
 					<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 				</snapshotRepository>
-				<repository>
-					<id>sonatype-nexus-staging</id>
-					<name>Nexus Release Repository</name>
-					<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
-					</url>
-				</repository>
 			</distributionManagement>
 			<build>
 				<plugins>
@@ -170,6 +165,12 @@
 								<arg>loopback</arg>
 							</gpgArguments>
 						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>${central-publishing-maven-plugin.version}</version>
+						<extensions>true</extensions>
 					</plugin>
 				</plugins>
 			</build>
