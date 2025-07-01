@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build-dependencies</artifactId>
-	<version>4.1.6-SNAPSHOT</version>
+	<version>4.1.7-SNAPSHOT</version>
 	<name>spring-cloud-build-dependencies</name>
 	<packaging>pom</packaging>
 	<description>Spring Cloud Build Dependencies: an internal BOM for use with Spring
@@ -14,13 +14,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-dependencies</artifactId>
-		<version>3.2.12</version>
+		<version>3.3.13</version>
 		<relativePath/>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>3.2.12</spring-boot.version>
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<spring-boot.version>3.3.13</spring-boot.version>
+		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+		<central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
 	</properties>
 	<build>
 		<plugins>
@@ -96,12 +97,6 @@
 					<name>Sonatype Nexus Snapshots</name>
 					<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 				</snapshotRepository>
-				<repository>
-					<id>sonatype-nexus-staging</id>
-					<name>Nexus Release Repository</name>
-					<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
-					</url>
-				</repository>
 			</distributionManagement>
 			<build>
 				<plugins>
@@ -118,6 +113,18 @@
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>${central-publishing-maven-plugin.version}</version>
+						<extensions>true</extensions>
 					</plugin>
 				</plugins>
 			</build>

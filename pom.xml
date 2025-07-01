@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-build</artifactId>
-	<version>4.1.6-SNAPSHOT</version>
+	<version>4.1.7-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Parent</name>
 	<description>Spring Cloud parent pom, managing plugins and dependencies for Spring
@@ -28,8 +28,8 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
 		<docs.main>${project.artifactId}</docs.main>
-		<spring-boot.version>3.2.12</spring-boot.version>
-		<spring-cloud-build.version>4.1.6-SNAPSHOT</spring-cloud-build.version>
+		<spring-boot.version>3.3.13</spring-boot.version>
+		<spring-cloud-build.version>4.1.7-SNAPSHOT</spring-cloud-build.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
@@ -55,7 +55,7 @@
 		<!-- for backwards compatibility, use maven-checkstyle-plugin.version -->
 		<checkstyle.version>${maven-checkstyle-plugin.version}</checkstyle.version>
 		<puppycrawl-tools-checkstyle.version>9.3</puppycrawl-tools-checkstyle.version>
-		<spring-javaformat.version>0.0.43</spring-javaformat.version>
+		<spring-javaformat.version>0.0.47</spring-javaformat.version>
 		<maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
 		<maven-javadoc-plugin.version>3.8.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
@@ -69,13 +69,13 @@
 		<git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
 		<maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version><!-- @releaser:version-check-off -->
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
 		<maven-dependency-plugin.version>3.7.1</maven-dependency-plugin.version>
 		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
 		<build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version>
 		<license-maven-plugin.version>2.4.0</license-maven-plugin.version>
-		<spring-javaformat-checkstyle.version>0.0.43</spring-javaformat-checkstyle.version>
+		<spring-javaformat-checkstyle.version>0.0.47</spring-javaformat-checkstyle.version>
 		<maven-checkstyle-plugin.version>3.4.0</maven-checkstyle-plugin.version>
 		<pitest-maven.version>1.16.3</pitest-maven.version>
 		<pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
@@ -144,6 +144,7 @@
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
 		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
+		<central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -700,7 +701,12 @@
 					<includePomProjects>${duplicate-finder-maven-plugin.includePomProjects}</includePomProjects>
 					</configuration>
 				</plugin>
-
+				<plugin>
+					<groupId>org.sonatype.central</groupId>
+					<artifactId>central-publishing-maven-plugin</artifactId>
+					<version>${central-publishing-maven-plugin.version}</version>
+					<extensions>true</extensions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -749,11 +755,6 @@
 				scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/${project.artifactId}/${project.version}
 			</url>
 		</site>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
 		<snapshotRepository>
 			<id>repo.spring.io</id>
 			<name>Spring Snapshot Repository</name>
@@ -849,6 +850,19 @@
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<configuration>
+							<publishingServerId>central</publishingServerId>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>

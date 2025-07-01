@@ -4,7 +4,7 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud</groupId>
-	<version>4.1.6-SNAPSHOT</version>
+	<version>4.1.7-SNAPSHOT</version>
 	<artifactId>spring-cloud-dependencies-parent</artifactId>
 	<packaging>pom</packaging>
 	<name>spring-cloud-dependencies-parent</name>
@@ -70,6 +70,7 @@
 	</developers>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
 	</properties>
 	<distributionManagement>
 		<downloadUrl>https://github.com/spring-cloud</downloadUrl>
@@ -109,12 +110,6 @@
 					<name>Sonatype Nexus Snapshots</name>
 					<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 				</snapshotRepository>
-				<repository>
-					<id>sonatype-nexus-staging</id>
-					<name>Nexus Release Repository</name>
-					<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
-					</url>
-				</repository>
 			</distributionManagement>
 			<build>
 				<plugins>
@@ -154,7 +149,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
+						<version>3.2.7</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -164,6 +159,18 @@
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>${central-publishing-maven-plugin.version}</version>
+						<extensions>true</extensions>
 					</plugin>
 				</plugins>
 			</build>
