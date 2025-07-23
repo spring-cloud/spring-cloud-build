@@ -823,16 +823,6 @@
 			</pluginRepositories>
 		</profile>
 		<profile>
-			<id>milestone</id>
-			<distributionManagement>
-				<repository>
-					<id>repo.spring.io</id>
-					<name>Spring Milestone Repository</name>
-					<url>https://repo.spring.io/libs-milestone-local</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-		<profile>
 			<id>central</id>
 			<build>
 				<plugins>
