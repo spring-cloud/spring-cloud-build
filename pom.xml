@@ -143,7 +143,7 @@
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
 		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
-		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
+		<central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
