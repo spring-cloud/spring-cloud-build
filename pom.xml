@@ -335,36 +335,9 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<release>${java.version}</release>
-						<compilerArgs>
-							<compilerArg>-parameters</compilerArg>
-							<!-- https://errorprone.info/docs/installation#maven -->
-							<compilerArg>-XDcompilePolicy=simple</compilerArg>
-							<compilerArg>--should-stop=ifError=FLOW</compilerArg>
-							<compilerArg>
-								-Xplugin:ErrorProne
-								<!-- Check JSpecify annotations -->
-								-Xep:NullAway:ERROR
-								-XepOpt:NullAway:OnlyNullMarked
-								<!-- FIXME Remove once https://github.com/uber/NullAway/pull/1295 is released -->
-								-XepOpt:NullAway:CustomContractAnnotations=org.springframework.lang.Contract
-								-XepOpt:NullAway:SuppressionNameAliases=DataFlowIssue
-								<!-- https://github.com/uber/NullAway/issues/162 -->
-								-XepExcludedPaths:.*/src/test/java/.*
-							</compilerArg>
-						</compilerArgs>
-						<annotationProcessorPaths>
-							<path>
-								<groupId>com.google.errorprone</groupId>
-								<artifactId>error_prone_core</artifactId>
-								<version>${error-prone.version}</version>
-							</path>
-							<path>
-								<groupId>com.uber.nullaway</groupId>
-								<artifactId>nullaway</artifactId>
-								<version>${nullaway.version}</version>
-							</path>
-						</annotationProcessorPaths>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+						<compilerArgument>-parameters</compilerArgument>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -975,6 +948,61 @@
 						</configuration>
 					</plugin>
 				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jspecify</id>
+			<activation>
+				<jdk>[25,)</jdk>
+				<property>
+					<name>jspecify.enabled</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${maven-compiler-plugin.version}</version>
+							<configuration>
+								<source>${maven.compiler.source}</source>
+								<target>${maven.compiler.target}</target>
+								<release>${java.version}</release>
+								<compilerArgs>
+									<compilerArg>-parameters</compilerArg>
+									<!-- https://errorprone.info/docs/installation#maven -->
+									<compilerArg>-XDcompilePolicy=simple</compilerArg>
+									<compilerArg>--should-stop=ifError=FLOW</compilerArg>
+									<compilerArg>
+										-Xplugin:ErrorProne
+										<!-- Check JSpecify annotations -->
+										-Xep:NullAway:ERROR
+										-XepOpt:NullAway:OnlyNullMarked
+										<!-- FIXME Remove once https://github.com/uber/NullAway/pull/1295 is released -->
+										-XepOpt:NullAway:CustomContractAnnotations=org.springframework.lang.Contract
+										-XepOpt:NullAway:SuppressionNameAliases=DataFlowIssue
+										<!-- https://github.com/uber/NullAway/issues/162 -->
+										-XepExcludedPaths:.*/src/test/java/.*
+									</compilerArg>
+								</compilerArgs>
+								<annotationProcessorPaths>
+									<path>
+										<groupId>com.google.errorprone</groupId>
+										<artifactId>error_prone_core</artifactId>
+										<version>${error-prone.version}</version>
+									</path>
+									<path>
+										<groupId>com.uber.nullaway</groupId>
+										<artifactId>nullaway</artifactId>
+										<version>${nullaway.version}</version>
+									</path>
+								</annotationProcessorPaths>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
 			</build>
 		</profile>
 		<profile>
