@@ -41,6 +41,8 @@
 		<revision>${project.version}</revision>
 		<asciidoctorj.version>2.5.13</asciidoctorj.version>
 		<jruby-complete.version>9.4.9.0</jruby-complete.version>
+		<error-prone.version>2.42.0</error-prone.version>
+		<nullaway.version>0.12.10</nullaway.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -333,9 +335,36 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<source>${maven.compiler.source}</source>
-						<target>${maven.compiler.target}</target>
-						<compilerArgument>-parameters</compilerArgument>
+						<release>${java.version}</release>
+						<compilerArgs>
+							<compilerArg>-parameters</compilerArg>
+							<!-- https://errorprone.info/docs/installation#maven -->
+							<compilerArg>-XDcompilePolicy=simple</compilerArg>
+							<compilerArg>--should-stop=ifError=FLOW</compilerArg>
+							<compilerArg>
+								-Xplugin:ErrorProne
+								<!-- Check JSpecify annotations -->
+								-Xep:NullAway:ERROR
+								-XepOpt:NullAway:OnlyNullMarked
+								<!-- FIXME Remove once https://github.com/uber/NullAway/pull/1295 is released -->
+								-XepOpt:NullAway:CustomContractAnnotations=org.springframework.lang.Contract
+								-XepOpt:NullAway:SuppressionNameAliases=DataFlowIssue
+								<!-- https://github.com/uber/NullAway/issues/162 -->
+								-XepExcludedPaths:.*/src/test/java/.*
+							</compilerArg>
+						</compilerArgs>
+						<annotationProcessorPaths>
+							<path>
+								<groupId>com.google.errorprone</groupId>
+								<artifactId>error_prone_core</artifactId>
+								<version>${error-prone.version}</version>
+							</path>
+							<path>
+								<groupId>com.uber.nullaway</groupId>
+								<artifactId>nullaway</artifactId>
+								<version>${nullaway.version}</version>
+							</path>
+						</annotationProcessorPaths>
 					</configuration>
 				</plugin>
 				<plugin>
