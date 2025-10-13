@@ -101,7 +101,7 @@
 		<nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<antelopetasks.version>3.2.10</antelopetasks.version>
-		<ant-nodeps.version>1.8.1</ant-nodeps.version>
+		<ant.version>1.10.15</ant.version>
 		<configprops.path>${project.basedir}/modules/ROOT/partials/_configprops.adoc</configprops.path>
 		<configprops.inclusionPattern>.*</configprops.inclusionPattern>
 		<maven-dependency-plugin-for-docs.phase>generate-resources</maven-dependency-plugin-for-docs.phase>
@@ -1204,8 +1204,8 @@
 								</dependency>
 								<dependency>
 									<groupId>org.apache.ant</groupId>
-									<artifactId>ant-nodeps</artifactId>
-									<version>${ant-nodeps.version}</version>
+									<artifactId>ant</artifactId>
+									<version>${ant.version}</version>
 								</dependency>
 								<dependency>
 									<groupId>org.tigris.antelope</groupId>
