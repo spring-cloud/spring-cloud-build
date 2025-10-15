@@ -41,6 +41,8 @@
 		<revision>${project.version}</revision>
 		<asciidoctorj.version>2.5.13</asciidoctorj.version>
 		<jruby-complete.version>9.4.9.0</jruby-complete.version>
+		<error-prone.version>2.42.0</error-prone.version>
+		<nullaway.version>0.12.10</nullaway.version>
 
 		<!-- Sonar -->
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -917,36 +919,76 @@
 			</build>
 		</profile>
 		<profile>
-			<id>java8</id>
+			<id>java17</id>
 			<activation>
-				<jdk>[1.8,)</jdk>
+				<jdk>[17,)</jdk>
 			</activation>
 			<build>
 				<plugins>
 					<plugin>
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
-							<additionalparam>-Xdoclint:none</additionalparam>
+							<doclint>none</doclint>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
 		<profile>
-			<id>java11</id>
+			<id>jspecify</id>
 			<activation>
-				<jdk>[1.11,)</jdk>
+				<jdk>[25,)</jdk>
+				<property>
+					<name>jspecify.enabled</name>
+					<value>true</value>
+				</property>
 			</activation>
 			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<!-- https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8212233 -->
-							<source>8</source>
-						</configuration>
-					</plugin>
-				</plugins>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${maven-compiler-plugin.version}</version>
+							<configuration>
+								<source>${maven.compiler.source}</source>
+								<target>${maven.compiler.target}</target>
+								<release>${java.version}</release>
+								<compilerArgs>
+									<compilerArg>-parameters</compilerArg>
+									<!-- https://errorprone.info/docs/installation#maven -->
+									<compilerArg>-XDcompilePolicy=simple</compilerArg>
+									<compilerArg>--should-stop=ifError=FLOW</compilerArg>
+									<compilerArg>
+										-Xplugin:ErrorProne
+										<!-- JSpecify mode https://github.com/uber/NullAway/wiki/JSpecify-Support -->
+										-XepOpt:NullAway:JSpecifyMode=true
+										<!-- Check JSpecify annotations -->
+										-Xep:NullAway:ERROR
+										-XepOpt:NullAway:OnlyNullMarked
+										<!-- FIXME Remove once https://github.com/uber/NullAway/pull/1295 is released -->
+										-XepOpt:NullAway:CustomContractAnnotations=org.springframework.lang.Contract
+										-XepOpt:NullAway:SuppressionNameAliases=DataFlowIssue
+										<!-- https://github.com/uber/NullAway/issues/162 -->
+										-XepExcludedPaths:.*/src/test/java/.*
+									</compilerArg>
+								</compilerArgs>
+								<annotationProcessorPaths>
+									<path>
+										<groupId>com.google.errorprone</groupId>
+										<artifactId>error_prone_core</artifactId>
+										<version>${error-prone.version}</version>
+									</path>
+									<path>
+										<groupId>com.uber.nullaway</groupId>
+										<artifactId>nullaway</artifactId>
+										<version>${nullaway.version}</version>
+									</path>
+								</annotationProcessorPaths>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
 			</build>
 		</profile>
 		<profile>
