@@ -59,7 +59,7 @@
 		<puppycrawl-tools-checkstyle.version>9.3</puppycrawl-tools-checkstyle.version>
 		<spring-javaformat.version>0.0.47</spring-javaformat.version>
 		<maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
-		<maven-javadoc-plugin.version>3.11.3</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
 		<maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
 		<maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
@@ -918,33 +918,16 @@
 			</build>
 		</profile>
 		<profile>
-			<id>java8</id>
+			<id>java17</id>
 			<activation>
-				<jdk>[1.8,)</jdk>
+				<jdk>[17,)</jdk>
 			</activation>
 			<build>
 				<plugins>
 					<plugin>
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
-							<additionalparam>-Xdoclint:none</additionalparam>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>java11</id>
-			<activation>
-				<jdk>[1.11,)</jdk>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<!-- https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8212233 -->
-							<source>8</source>
+							<doclint>none</doclint>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -977,6 +960,8 @@
 									<compilerArg>--should-stop=ifError=FLOW</compilerArg>
 									<compilerArg>
 										-Xplugin:ErrorProne
+										<!-- JSpecify mode https://github.com/uber/NullAway/wiki/JSpecify-Support -->
+										-XepOpt:NullAway:JSpecifyMode=true
 										<!-- Check JSpecify annotations -->
 										-Xep:NullAway:ERROR
 										-XepOpt:NullAway:OnlyNullMarked
