@@ -306,12 +306,12 @@
 					<artifactId>kotlin-maven-plugin</artifactId>
 					<version>${kotlin.version}</version>
 					<configuration>
-						<!-- https://github.com/spring-projects/spring-framework/blob/6.2.x/buildSrc/src/main/java/org/springframework/build/KotlinConventions.java#L38-L39 -->
-						<apiVersion>1.7</apiVersion>
-						<languageVersion>1.7</languageVersion>
+						<!--https://github.com/spring-projects/spring-framework/blob/main/buildSrc/src/main/java/org/springframework/build/KotlinConventions.java#L47-L58 -->
+						<apiVersion>2.2</apiVersion>
+						<languageVersion>2.2</languageVersion>
 						<jvmTarget>17</jvmTarget>
 						<javaParameters>true</javaParameters>
-						<args>-Xjsr305=strict -opt-in=kotlin.RequiresOptIn</args>
+						<args>-Xjsr305=strict -opt-in=kotlin.RequiresOptIn -Xjdk-release=17 -Xannotation-default-target=param-property</args>
 					</configuration>
 					<executions>
 						<execution>
