@@ -30,6 +30,7 @@
 		<docs.main>${project.artifactId}</docs.main>
 		<spring-boot.version>3.5.8-SNAPSHOT</spring-boot.version>
 		<spring-cloud-build.version>4.3.2-SNAPSHOT</spring-cloud-build.version>
+		<kotlin.version>1.9.25</kotlin.version>
 		<docs.resources.dir>${project.build.directory}/build-docs</docs.resources.dir>
 		<docs.classes.dir>${project.build.directory}/build-docs-classes</docs.classes.dir>
 		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
@@ -297,6 +298,31 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.jetbrains.kotlin</groupId>
+					<artifactId>kotlin-maven-plugin</artifactId>
+					<version>${kotlin.version}</version>
+					<executions>
+						<execution>
+							<id>compile</id>
+							<goals>
+								<goal>compile</goal>
+							</goals>
+							<configuration>
+								<!-- https://github.com/spring-projects/spring-framework/blob/6.2.x/buildSrc/src/main/java/org/springframework/build/KotlinConventions.java#L38-L39 -->
+								<apiVersion>1.7</apiVersion>
+								<languageVersion>1.7</languageVersion>
+								<jvmTarget>17</jvmTarget>
+								<javaParameters>true</javaParameters>
+								<args>-Xjsr305=strict -opt-in=kotlin.RequiresOptIn</args>
+								<sourceDirs>
+									<sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+									<sourceDir>${project.basedir}/src/main/java</sourceDir>
+								</sourceDirs>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>flatten-maven-plugin</artifactId>
