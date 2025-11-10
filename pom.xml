@@ -42,7 +42,7 @@
 		<revision>${project.version}</revision>
 		<asciidoctorj.version>2.5.13</asciidoctorj.version>
 		<jruby-complete.version>9.4.9.0</jruby-complete.version>
-		<error-prone.version>2.43.0</error-prone.version>
+		<error-prone.version>2.44.0</error-prone.version>
 		<nullaway.version>0.12.12</nullaway.version>
 
 		<!-- Sonar -->
