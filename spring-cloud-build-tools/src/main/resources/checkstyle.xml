@@ -172,6 +172,14 @@
 					  value="Please use AssertJ imports."/>
 			<property name="ignoreComments" value="true"/>
 		</module>
+		<module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck">
+			<property name="maximum" value="0"/>
+			<property name="format"
+					  value="org\.assertj\.core\.api\.AssertionsForClassTypes"/>
+			<property name="message"
+					  value="Please use org.assertj.core.api.Assertions instead of AssertionsForClassTypes."/>
+			<property name="ignoreComments" value="true"/>
+		</module>
 		<module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck">
 			<property name="format" value="[ \t]+$"/>
 			<property name="illegalPattern" value="true"/>
