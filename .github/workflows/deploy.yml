@@ -26,24 +26,67 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      java-versions: ${{ steps.set-matrix.outputs.versions }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Determine JDK versions based on branch
+      - name: Determine branches and JDK versions
         id: set-matrix
         run: |
-          BRANCH="${{ env.BRANCH }}"
-          # Define JDK versions for each branch
-          # Main branch supports all versions
-          if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == "4.3.x" ]]; then
-            echo 'versions=["17","21","25"]' >> $GITHUB_OUTPUT
-          elif [[ "$BRANCH" == "4.2.x" ]] || [[ "$BRANCH" == "4.1.x" ]]; then
-            echo 'versions=["17","21"]' >> $GITHUB_OUTPUT
-          elif [[ "$BRANCH" == "3.1.x" ]]; then
-            echo 'versions=["8","11","17"]' >> $GITHUB_OUTPUT
-          # Default: use all versions if branch not specified
+          echo "=== Workflow Debug Information ==="
+          echo "Event name: ${{ github.event_name }}"
+          echo "Ref name: ${{ github.ref_name }}"
+          echo "Branch from env: ${{ env.BRANCH }}"
+          echo ""
+          
+          # Function to get JDK versions for a branch (returns space-separated list)
+          get_jdk_versions() {
+            local branch=$1
+            if [[ "$branch" == "main" ]] || [[ "$branch" == "4.3.x" ]]; then
+              echo "17 21 25"
+            elif [[ "$branch" == "4.2.x" ]] || [[ "$branch" == "4.1.x" ]]; then
+              echo "17 21"
+            elif [[ "$branch" == "3.1.x" ]]; then
+              echo "8 11 17"
+            else
+              echo "17 21 25"
+            fi
+          }
+          
+          # Determine which branches to build
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            BRANCHES=("main" "4.3.x")
+            echo "Trigger: Scheduled run - building multiple branches"
           else
-            echo 'versions=["17","21","25"]' >> $GITHUB_OUTPUT
+            BRANCHES=("${{ env.BRANCH }}")
+            echo "Trigger: ${{ github.event_name }} - building single branch"
           fi
+          
+          echo ""
+          echo "=== Branches to Build ==="
+          for BRANCH in "${BRANCHES[@]}"; do
+            echo "  - $BRANCH"
+          done
+          
+          echo ""
+          echo "=== Java Versions per Branch ==="
+          # Build matrix by iterating over branches and their JDK versions
+          MATRIX_ENTRIES=()
+          for BRANCH in "${BRANCHES[@]}"; do
+            JDK_VERSIONS=$(get_jdk_versions "$BRANCH")
+            echo "  $BRANCH: $JDK_VERSIONS"
+            for VERSION in $JDK_VERSIONS; do
+              MATRIX_ENTRIES+=("{\"branch\":\"$BRANCH\",\"java-version\":\"$VERSION\"}")
+            done
+          done
+          
+          # Join entries with comma and wrap in array
+          MATRIX_JSON="[$(IFS=,; echo "${MATRIX_ENTRIES[*]}")]"
+          
+          echo ""
+          echo "=== Generated Matrix ==="
+          echo "$MATRIX_JSON" | python3 -m json.tool || echo "$MATRIX_JSON"
+          echo ""
+          
+          echo "matrix=$MATRIX_JSON" >> $GITHUB_OUTPUT
 
   build:
     needs: setup
@@ -51,13 +94,13 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        java-version: ${{ fromJson(needs.setup.outputs.java-versions) }}
+        include: ${{ fromJson(needs.setup.outputs.matrix) }}
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          ref: ${{ env.BRANCH }}
+          ref: ${{ matrix.branch }}
           clean: true  # Equivalent to WipeWorkspace extension
       
       - name: Set up JDK ${{ matrix.java-version }}
