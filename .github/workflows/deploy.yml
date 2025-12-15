@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 4.3.x
   
   # Equivalent to Timer Trigger (H H * * * = once daily)
   schedule:
@@ -90,5 +91,10 @@ jobs:
         env:
           REPO_SPRING_IO_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
           REPO_SPRING_IO_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-        run: ./mvnw clean deploy -Pdocs,deploy,spring -B -U
+        run: |
+          if [[ "${{ matrix.java-version }}" == "17" ]]; then
+            ./mvnw clean deploy -Pdocs,deploy,spring -B -U
+          else
+            ./mvnw clean deploy -Pdeploy,spring -B -U
+          fi
       
