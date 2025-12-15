@@ -36,7 +36,7 @@ jobs:
           if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == "4.3.x" ]]; then
             echo 'versions=["17","21","25"]' >> $GITHUB_OUTPUT
           if [[ "$BRANCH" == "4.2.x" ]] || [[ "$BRANCH" == "4.1.x" ]]; then
-            echo 'versions=["17","21",]' >> $GITHUB_OUTPUT
+            echo 'versions=["17","21"]' >> $GITHUB_OUTPUT
           if [[ "$BRANCH" == "3.1.x" ]]; then
             echo 'versions=["8","11","17"]' >> $GITHUB_OUTPUT
           # Default: use all versions if branch not specified
