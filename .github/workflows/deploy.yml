@@ -22,9 +22,35 @@ env:
   BRANCH: ${{ github.event.inputs.branch || github.ref_name }}
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      java-versions: ${{ steps.set-matrix.outputs.versions }}
+    steps:
+      - name: Determine JDK versions based on branch
+        id: set-matrix
+        run: |
+          BRANCH="${{ env.BRANCH }}"
+          # Define JDK versions for each branch
+          # Main branch supports all versions
+          if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == "4.3.x" ]]; then
+            echo 'versions=["17","21","25"]' >> $GITHUB_OUTPUT
+          if [[ "$BRANCH" == "4.2.x" ]] || [[ "$BRANCH" == "4.1.x" ]]; then
+            echo 'versions=["17","21",]' >> $GITHUB_OUTPUT
+          if [[ "$BRANCH" == "3.1.x" ]]; then
+            echo 'versions=["8","11","17"]' >> $GITHUB_OUTPUT
+          # Default: use all versions if branch not specified
+          else
+            echo 'versions=["17","21","25"]' >> $GITHUB_OUTPUT
+          fi
+
   build:
+    needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    strategy:
+      matrix:
+        java-version: ${{ fromJson(needs.setup.outputs.java-versions) }}
     
     steps:
       - name: Checkout code
@@ -33,10 +59,10 @@ jobs:
           ref: ${{ env.BRANCH }}
           clean: true  # Equivalent to WipeWorkspace extension
       
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: ${{ matrix.java-version }}
           distribution: 'temurin'  # OpenJDK distribution
           cache: 'maven'
           server-id: repo.spring.io
