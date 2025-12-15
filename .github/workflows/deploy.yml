@@ -1,7 +1,6 @@
 name: Spring Cloud Build Deploy
 
 on:
-  # Equivalent to GitHub Push Trigger
   push:
     branches:
       - main
@@ -25,7 +24,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60  # Adjust based on your needs
+    timeout-minutes: 60
     
     steps:
       - name: Checkout code
