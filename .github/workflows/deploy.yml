@@ -40,6 +40,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'  # OpenJDK distribution
           cache: 'maven'
+          server-id: repo.spring.io
+          server-username: REPO_SPRING_IO_USERNAME
+          server-password: REPO_SPRING_IO_PASSWORD
           
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -55,31 +58,12 @@ jobs:
             timeout 10s docker ps -a -q | xargs -n 1 -P 8 -I {} docker stop {} || echo "Failed to stop docker... Hopefully you know what you're doing"
           fi
       
-      - name: Create Maven settings.xml
-        run: |
-          mkdir -p $HOME/.m2
-          cat > $HOME/.m2/settings.xml << 'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <settings>
-            <servers>
-              <server>
-                <id>artifactory</id>
-                <username>${env.ARTIFACTORY_USERNAME}</username>
-                <password>${env.ARTIFACTORY_PASSWORD}</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
-        env:
-          ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
-          ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-      
       - name: Verify Maven installation
         run: ./mvnw --version
       
       - name: Build and deploy
         env:
-          ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
-          ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          REPO_SPRING_IO_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+          REPO_SPRING_IO_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
         run: ./mvnw clean deploy -Pdocs,deploy,spring -B -U
       
