@@ -1,4 +1,4 @@
-name: Spring Cloud Build
+name: Spring Cloud Build Deploy
 
 on:
   # Equivalent to GitHub Push Trigger
