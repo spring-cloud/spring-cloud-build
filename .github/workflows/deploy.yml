@@ -5,12 +5,12 @@ on:
     branches:
       - main
       - 4.3.x
-  
-  # Equivalent to Timer Trigger (H H * * * = once daily)
+
+  # Scheduled builds run daily at midnight UTC
   schedule:
-    - cron: '0 0 * * *'  # Runs at midnight UTC daily
-  
-  # Manual trigger to replicate the BRANCH parameter
+    - cron: '0 0 * * *'
+
+  # Manual trigger with optional branch override
   workflow_dispatch:
     inputs:
       branch:
@@ -19,126 +19,13 @@ on:
         default: 'main'
         type: string
 
-env:
-  BRANCH: ${{ github.event.inputs.branch || github.ref_name }}
-
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - name: Determine branches and JDK versions
-        id: set-matrix
-        run: |
-          echo "=== Workflow Debug Information ==="
-          echo "Event name: ${{ github.event_name }}"
-          echo "Ref name: ${{ github.ref_name }}"
-          echo "Branch from env: ${{ env.BRANCH }}"
-          echo ""
-          
-          # Function to get JDK versions for a branch (returns space-separated list)
-          get_jdk_versions() {
-            local branch=$1
-            if [[ "$branch" == "main" ]] || [[ "$branch" == "4.3.x" ]]; then
-              echo "17 21 25"
-            elif [[ "$branch" == "4.2.x" ]] || [[ "$branch" == "4.1.x" ]]; then
-              echo "17 21"
-            elif [[ "$branch" == "3.1.x" ]]; then
-              echo "8 11 17"
-            else
-              echo "17 21 25"
-            fi
-          }
-          
-          # Determine which branches to build
-          if [[ "${{ github.event_name }}" == "schedule" ]]; then
-            BRANCHES=("main" "4.3.x")
-            echo "Trigger: Scheduled run - building multiple branches"
-          else
-            BRANCHES=("${{ env.BRANCH }}")
-            echo "Trigger: ${{ github.event_name }} - building single branch"
-          fi
-          
-          echo ""
-          echo "=== Branches to Build ==="
-          for BRANCH in "${BRANCHES[@]}"; do
-            echo "  - $BRANCH"
-          done
-          
-          echo ""
-          echo "=== Java Versions per Branch ==="
-          # Build matrix by iterating over branches and their JDK versions
-          MATRIX_ENTRIES=()
-          for BRANCH in "${BRANCHES[@]}"; do
-            JDK_VERSIONS=$(get_jdk_versions "$BRANCH")
-            echo "  $BRANCH: $JDK_VERSIONS"
-            for VERSION in $JDK_VERSIONS; do
-              MATRIX_ENTRIES+=("{\"branch\":\"$BRANCH\",\"java-version\":\"$VERSION\"}")
-            done
-          done
-          
-          # Join entries with comma and wrap in array
-          MATRIX_JSON="[$(IFS=,; echo "${MATRIX_ENTRIES[*]}")]"
-          
-          echo ""
-          echo "=== Generated Matrix ==="
-          echo "$MATRIX_JSON" | python3 -m json.tool || echo "$MATRIX_JSON"
-          echo ""
-          
-          echo "matrix=$MATRIX_JSON" >> $GITHUB_OUTPUT
-
-  build:
-    name: Build ${{ matrix.branch }} (JDK ${{ matrix.java-version }})
-    needs: setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    strategy:
-      matrix:
-        include: ${{ fromJson(needs.setup.outputs.matrix) }}
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ matrix.branch }}
-          clean: true  # Equivalent to WipeWorkspace extension
-      
-      - name: Set up JDK ${{ matrix.java-version }}
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'temurin'  # OpenJDK distribution
-          cache: 'maven'
-          server-id: repo.spring.io
-          server-username: REPO_SPRING_IO_USERNAME
-          server-password: REPO_SPRING_IO_PASSWORD
-          
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-      - name: Stop running Docker containers
-        continue-on-error: true
-        run: |
-          #!/bin/bash
-          if command -v timeout &> /dev/null; then
-            timeout 10s docker ps -a -q | xargs -n 1 -P 8 -I {} docker stop {} || echo "Failed to stop docker... Hopefully you know what you're doing"
-          fi
-      
-      - name: Verify Maven installation
-        run: ./mvnw --version
-      
-      - name: Build and deploy
-        env:
-          REPO_SPRING_IO_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
-          REPO_SPRING_IO_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-        run: |
-          if [[ "${{ matrix.java-version }}" == "17" ]]; then
-            ./mvnw clean deploy -Pdocs,deploy,spring -B -U
-          else
-            ./mvnw clean deploy -Pdeploy,spring -B -U
-          fi
-      
+  deploy:
+    uses: spring-cloud/spring-cloud-github-actions/.github/workflows/deploy.yml@main
+    with:
+      branch: ${{ inputs.branch }}
+    secrets:
+      ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+      ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
