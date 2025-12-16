@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Which branch should be built'
+        description: "Which branch should be built"
         required: true
         default: 'main'
         type: string
