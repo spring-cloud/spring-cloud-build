@@ -13,8 +13,8 @@ on:
   # Manual trigger with optional branch override
   workflow_dispatch:
     inputs:
-      branch:
-        description: "Which branch should be built"
+      branches:
+        description: "Which branch should be built (can be a comma-separated list of branches)"
         required: true
         default: 'main'
         type: string
@@ -23,7 +23,7 @@ jobs:
   deploy:
     uses: spring-cloud/spring-cloud-github-actions/.github/workflows/deploy.yml@main
     with:
-      branch: ${{ inputs.branch }}
+      branches: ${{ inputs.branches }}
     secrets:
       ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
       ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
