@@ -145,6 +145,7 @@
 		<generate-readme.phase>prepare-package</generate-readme.phase>
 		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
 		<central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+		<node-download-url>https://nodejs.org/dist</node-download-url>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -1129,6 +1130,12 @@
 							<configuration>
 								<!-- TODO: remove when CI upgrades past ubuntu 1804 -->
 								<nodeVersion>${node.version}</nodeVersion>
+								<!-- The default value for node-download-url is set in the properties of this POM -->
+								<!-- This can be overriden in the Maven settings.xml or via the command line -->
+								<!-- On Jenkins we override this property in Maven settings.xml to point to USW1 to download Node -->
+								<!-- When pointing to USW1 we use the serverId spring-commercial-release in settings.xml to authenticate with USW1 -->
+								<nodeDownloadUrl>${node-download-url}</nodeDownloadUrl>
+								<nodeDownloadServerId>spring-commercial-release</nodeDownloadServerId>
 								<options>
 									<option>--to-dir=target/antora/site</option>
 									<option>--stacktrace</option>
