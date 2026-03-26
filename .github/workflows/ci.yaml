@@ -21,7 +21,7 @@ on:
 
 jobs:
   deploy:
-    uses: spring-cloud/spring-cloud-github-actions/.github/workflows/deploy.yml@main
+    uses: spring-cloud/spring-cloud-github-actions/.github/workflows/deploy.yml@run-workflow-for-other-branch-when-schedule
     with:
       branches: ${{ inputs.branches }}
     secrets:
