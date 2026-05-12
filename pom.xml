@@ -306,6 +306,13 @@
 					<groupId>org.jetbrains.kotlin</groupId>
 					<artifactId>kotlin-maven-plugin</artifactId>
 					<version>${kotlin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.jetbrains.kotlin</groupId>
+							<artifactId>kotlin-maven-allopen</artifactId>
+							<version>${kotlin.version}</version>
+						</dependency>
+					</dependencies>
 					<configuration>
 						<!--https://github.com/spring-projects/spring-framework/blob/main/buildSrc/src/main/java/org/springframework/build/KotlinConventions.java#L47-L58 -->
 						<apiVersion>2.2</apiVersion>
