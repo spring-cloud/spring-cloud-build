@@ -319,7 +319,12 @@
 						<languageVersion>2.2</languageVersion>
 						<jvmTarget>17</jvmTarget>
 						<javaParameters>true</javaParameters>
-						<args>-Xjsr305=strict -opt-in=kotlin.RequiresOptIn -Xjdk-release=17 -Xannotation-default-target=param-property</args>
+						<args>
+							<arg>-Xjsr305=strict</arg>
+							<arg>-opt-in=kotlin.RequiresOptIn</arg>
+							<arg>-Xjdk-release=17</arg>
+							<arg>-Xannotation-default-target=param-property</arg>
+						</args>
 					</configuration>
 					<executions>
 						<execution>
