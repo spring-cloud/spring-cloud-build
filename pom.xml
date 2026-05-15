@@ -26,6 +26,10 @@
 		<url>https://github.com/spring-cloud/spring-cloud-build/issues</url>
 	</issueManagement>
 
+	<properties>
+		<node.version>v22.22.0</node.version>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
