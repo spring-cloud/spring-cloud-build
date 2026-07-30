@@ -765,6 +765,10 @@
 					<version>${central-publishing-maven-plugin.version}</version>
 					<extensions>true</extensions>
 				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven-deploy-plugin.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
