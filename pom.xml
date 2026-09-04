@@ -24,6 +24,10 @@
 		<resource.delimiter>@</resource.delimiter>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Reproducible builds. Inherited by every project that uses spring-cloud-build
+			 as its parent, so it does not need to be repeated downstream.
+			 Fixed constant, deliberately not tied to release time: it never needs to change. -->
+		<project.build.outputTimestamp>1980-02-01T00:00:00Z</project.build.outputTimestamp>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<main.basedir>${basedir}</main.basedir>
@@ -580,6 +584,16 @@
 					<configuration>
 						<verbose>true</verbose>
 						<dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
+						<!-- Reproducible builds: render all timestamps in UTC, otherwise git.properties
+							 differs between build machines in different timezones. -->
+						<dateFormatTimeZone>UTC</dateFormatTimeZone>
+						<!-- Reproducible builds: these vary by build machine and user, and nothing
+							 reads them. Keeping them would leak the builder's identity into the jar. -->
+						<excludeProperties>
+							<excludeProperty>git.build.host</excludeProperty>
+							<excludeProperty>git.build.user.name</excludeProperty>
+							<excludeProperty>git.build.user.email</excludeProperty>
+						</excludeProperties>
 						<generateGitPropertiesFile>true</generateGitPropertiesFile>
 						<generateGitPropertiesFilename>
 							${project.build.outputDirectory}/git.properties
