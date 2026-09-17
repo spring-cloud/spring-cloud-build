@@ -1248,6 +1248,20 @@
 									</version>
 									<classifier>${spring-cloud-build-docs-classifier}</classifier>
 									<type>jar</type>
+									<!-- The jar-with-dependencies classifier above already bundles a
+										 matched logback-classic/logback-core pair. Without this
+										 exclusion, exec-maven-plugin's includePluginDependencies
+										 classpath merge also resolves spring-cloud-build-docs' own
+										 unversioned logback-classic dependency separately, landing an
+										 old, incompatible logback-classic/logback-core split across the
+										 two jars and failing with a NoSuchMethodError depending on
+										 classpath ordering. -->
+									<exclusions>
+										<exclusion>
+											<groupId>ch.qos.logback</groupId>
+											<artifactId>logback-classic</artifactId>
+										</exclusion>
+									</exclusions>
 								</dependency>
 							</dependencies>
 							<configuration>
