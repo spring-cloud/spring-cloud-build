@@ -23,11 +23,10 @@ updates:
       - dependency-name: "org.eclipse.m2e:lifecycle-mapping"
       # JRuby updates are causing docs generation to fail
       - dependency-name: "org.jruby:jruby-complete"
-      # only upgrade by minor or patch
+      # ignore major updates
       - dependency-name: "*"
         update-types:
           - version-update:semver-major
-          - version-update:semver-minor
   - package-ecosystem: npm
     target-branch: docs-build
     directory: /
