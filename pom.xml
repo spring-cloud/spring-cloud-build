@@ -150,7 +150,7 @@
 		<antora-maven-plugin.phase>prepare-package</antora-maven-plugin.phase>
 		<generate-readme.phase>prepare-package</generate-readme.phase>
 		<generate-cloud-resources.phase>generate-resources</generate-cloud-resources.phase>
-		<central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
+		<central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
 		<node-download-url>https://nodejs.org/dist</node-download-url>
 	</properties>
 	<dependencyManagement>
