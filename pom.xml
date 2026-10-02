@@ -121,7 +121,6 @@
 		<maven-deploy-plugin.version>3.2.0</maven-deploy-plugin.version>
 		<readme.main.classpath>${docs.classes.dir}</readme.main.classpath>
 		<readme.class.path>readme.class.path</readme.class.path>
-		<sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
 		<duplicate-finder-maven-plugin.version>2.0.1</duplicate-finder-maven-plugin.version>
 		<duplicate-finder-maven-plugin.printEqualFiles>false</duplicate-finder-maven-plugin.printEqualFiles>
 		<duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>false</duplicate-finder-maven-plugin.failBuildInCaseOfDifferentContentConflict>
@@ -1460,29 +1459,8 @@
 							</execution>
 						</executions>
 					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>org.sonar.java.jacoco.JUnitListener</value>
-								</property>
-							</properties>
-						</configuration>
-					</plugin>
 				</plugins>
 			</build>
-			<dependencies>
-				<dependency>
-					<groupId>org.sonarsource.java</groupId>
-					<artifactId>sonar-jacoco-listeners</artifactId>
-					<version>${sonar-jacoco-listeners.version}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 		</profile>
 		<profile>
 			<id>license</id>
